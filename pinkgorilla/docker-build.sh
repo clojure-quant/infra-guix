@@ -51,6 +51,8 @@ guix system \
 # -s system
 # Attempt to build for system instead of the host system type. This works as per guix build (see Invoking guix build).
 
+# x86_64-linux
+
 # --expression=expr
 # -e expr
 # Consider the operating-system expr evaluates to. This is an alternative to specifying a file which evaluates to an operating system. This is used to generate the Guix system installer see Building the Installation Image).

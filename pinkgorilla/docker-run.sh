@@ -4,15 +4,24 @@
 
 # echo "NODE_ENV: " ${NODE_ENV}
 
+# no session variable - no connect
+rm -f artefacts/pinkgorilla-session
+
+echo "running docker-pinkgorilla"
 
 docker run \
+       -d \
+       --privileged \
        -p 7070:7070 \
        --net "host" \
        -e NODE_ENV=${NODE_ENV} \
        -e USER=alice \
        -t -i pinkgorilla:latest \
        /run/current-system/profile/bin/bash \
-       --login
+       --login \
+       > artefacts/pinkgorilla-session
+
+echo "running docker-pinkgorilla done."
 
 #      -u alice \
 #       /bin/bash
@@ -27,5 +36,4 @@ docker run \
 # --net host --entrypoint /var/guix/profiles/system/profile/bin/guile 
 # dcaa8fb677c7 /var/guix/profiles/system/boot
 
-# docker exec -it  fb06fdcd3a0d 
-# /run/current-system/profile/bin/bash --login
+# docker exec -it  fb06fdcd3a0d /run/current-system/profile/bin/bash --login
