@@ -1,22 +1,22 @@
 (define-module (shepherd))
 
 
-;(load-from-path "config.scm")
-(load "myconfig.scm")
+;(load-from-path "./scm/config.scm")
+(load "scm/myconfig.scm")
 
 (display "My Shepherd config loading..")
 (newline)
 
 
 (use-modules (shepherd service)
+            ; (gnu build shepherd)
              ((ice-9 ftw) #:select (scandir))
 ;  #:declarative? #f
  )
 
-;(load-from-path "./services/syncthing.scm")
-
-(load "services/syncthing.scm")
-(load "services/mycron.scm")
+;    ;(load-from-path "./services/syncthing.scm")
+;(load "scm/services/syncthing.scm")
+(load "scm/services/mycron.scm")
 
 ;; Load all the files in the directory 'init.d' with a suffix '.scm'.
 ; (for-each

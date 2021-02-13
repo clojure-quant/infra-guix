@@ -1,1 +1,1 @@
-guix package --export-manifest > flo.scm
+guix package --export-manifest > manifest.scm

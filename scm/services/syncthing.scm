@@ -1,4 +1,25 @@
+(define-module (services syncthing))
 
+; https://guix.gnu.org/blog/2020/gnu-shepherd-user-services/
+
+(use-modules ;(guix) 
+  ;(gnu)
+  ;(gnu build shepherd)
+  (oop goops)      ;; Defining classes and methods.
+
+(shepherd)
+  (shepherd config)
+   (shepherd support)
+    (shepherd service)
+   (shepherd system)
+   (shepherd args)
+   (shepherd comm)
+
+  ;(gnu services mcron)
+  )
+
+
+;(use-package-modules base idutils)
 
 (define syncthing
   (make <service>
