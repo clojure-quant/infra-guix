@@ -25,6 +25,9 @@ guix system
    list-generations list the system generations
    switch-generation switch to an existing operating system configuration
    delete-generations delete old system generations
+
+    guix system container --list-image-types list available image types
+
 ´´´
 
 
@@ -69,6 +72,16 @@ guix publish                                Serve Packages
 Several configs     https://github.com/Millak/guix-config/blob/master/vm_config.scm
 Big setup:             https://github.com/alezost/guix-config
 Services               https://lists.gnu.org/archive/html/help-guix/2019-05/msg00262.html
+
+
+
+
+# Containers
+Guix can also generate docker images
+
+https://github.com/pjotrp/guix-notes/blob/master/CONTAINERS.org
+Orchestration: 
+https://gitlab.com/pjotrp/guix-notes/-/blob/master/DEPLOY.org
 
 
 

@@ -36,6 +36,7 @@
   (bootloader (bootloader-configuration
                (bootloader grub-bootloader)
                (target "does-not-matter")))
+               
   ;; This will be ignored, too.
   (file-systems (list (file-system
                         (device "does-not-matter")

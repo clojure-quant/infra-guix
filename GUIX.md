@@ -61,19 +61,31 @@ reads ~/.config/guix/channels.scm; with -C it can take channel specifications fr
 https://guix.gnu.org/de/packages
 The exact installed version depends on the version-hash of the channel.
 A manifest is a scm file that can be installed with one click. From a profile the manifest can be extracted.
+
+´´´
+info
 guix search xxx
-guix show xxx
-guix install xxx
-guix remove xxx
-guix pull
-guix upgrade
 guix package --list-installed
-guix package --export-manifest     → this can be saved in git repo.
-guix package --manifest=flo.scm       -> import packages from manifest
 guix package --list-profiles
 guix package --search-paths. List recommended environment variables
 
+update
+guix pull
+guix upgrade
+
+install
+guix show xxx
+guix install xxx
+guix remove xxx
+
+manifest
+guix package --export-manifest     → this can be saved in git repo.
+guix package --manifest=flo.scm       -> import packages from manifest
+
+Example manifest:
 (specifications->manifest '("emacs" "frozen-bubble" "git"))
+
+´´´
 
 Make your own package:
 https://gitlab.com/pjotrp/guix-notes/-/blob/master/GUIX-SIMPLE-PACKAGE.org
@@ -88,8 +100,6 @@ Guix provides a profile file which contains the necessary shell settings
 cat ~/opt/sambamba/etc/profile
 sourcing this file brings sambamba into the environment
 source ~/opt/sambamba/etc/profile
-
-
 
 # environments
 When running guix environment SOME-PACKAGES, Guix sets up a temporary environment where all the requirements for SOME-PACKAGES are exposed the environment manifest is just a Scheme code file that evaluates to a list of packages to include inside the environment. An environment is an ephemeral thing (just a process tree/container/whatever).  It spawns a subshell, exit with CTRL-D.
@@ -120,26 +130,4 @@ If the term "container" makes you think of Docker, note that this is something d
 1:37 AM <terpri> see (info "(guix) Inferiors")
 1:38 AM <dftxbs3e> inferiors can reference any channel or older versions of GNU Guix (up to a certain point because it needs support code in the version you try to use I think)
 
-
-myLinux/distros/guix
-guix environment --container -m flo.scm  I use this
-       guix environment --container -m flo.scm  --network -- df
-       guix environment -m ./flo.scm
- 
-Inside container
-shepherd --config=scm/shepherd.scm   this loads all services in services folder
-         shepherd --config=syncthing.scm           this loads only syncthing services
-herd status
-herd start apache
-herd status apache
-https://guix.gnu.org/blog/2020/gnu-shepherd-user-services/
-
-guix system describe
-
-# Containers
-Guix can also generate docker images
-
-https://github.com/pjotrp/guix-notes/blob/master/CONTAINERS.org
-Orchestration: 
-https://gitlab.com/pjotrp/guix-notes/-/blob/master/DEPLOY.org
 
