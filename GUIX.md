@@ -4,19 +4,10 @@ http://guix.gnu.org/cookbook/en/guix-cookbook.html
 https://git.sr.ht/~lle-bout/awesome-guix#awesome-guix
 https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
 https://framagit.org/tyreunom/guix-home-manager
-Data science
-https://elephly.net/posts/2015-04-17-gnu-guix.html. guix in clusters
-https://hpc.guix.info/blog/2019/10/towards-reproducible-jupyter-notebooks/ reproduceable jupiter notebooks
-https://hpc.guix.info/ 
-https://hpc.guix.info/blog/2021/01/guix-jupyter-0.2.1-released/
-https://hpc.guix.info/blog/2020/07/reproducible-research-hackathon-experience-report/
-https://gitlab.com/pjotrp/guix-notes/-/blob/master/R.org
-https://elephly.net/posts/2017-03-24-r-with-guix.html
 
-# Forums
-https://www.reddit.com/r/GUIX?utm_medium=android_app&utm_source=share
-https://t.me/gnuguix
-IRC: #guix #guix-hpc 
+
+
+
 
 # Directories
 ls /gnu/store
