@@ -5,7 +5,9 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (specifications->manifest
-  (list "guix"
+  (list "glibc-locales"
+        "syncthing-gtk"
+        "rclone"
         "idutils"
         "mcron"
         "syncthing"
@@ -14,6 +16,4 @@
         "guile"
         "shepherd"
         "clojure"
-        "syncthing-gtk"
-        "rclone"
         "hello"))
