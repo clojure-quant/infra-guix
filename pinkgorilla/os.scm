@@ -1,3 +1,8 @@
+;; stolen from guix tarball
+; 'gnu/system/examples/docker-image.tmpl'
+; , maybe then add a 'nginx-service-type' to its services field.
+
+
 ;; This is an operating system configuration template for a "Docker image"
 ;; setup, so it has barely any services at all.
 
@@ -7,7 +12,6 @@
   (host-name "komputilo")
   (timezone "Europe/Berlin")
   (locale "en_US.utf8")
-
   ;; This is where user accounts are specified.  The "root" account is
   ;; implicit, and is initially created with the empty password.
   (users (cons (user-account
@@ -36,7 +40,7 @@
   (bootloader (bootloader-configuration
                (bootloader grub-bootloader)
                (target "does-not-matter")))
-               
+
   ;; This will be ignored, too.
   (file-systems (list (file-system
                         (device "does-not-matter")

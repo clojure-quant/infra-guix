@@ -1,3 +1,11 @@
+
+# update guix
+on a foreign install:
+´´´
+sudo -i guix pull
+systemctl restart guix-daemon.service
+´´´
+
 # Install
 Can be installed as a package manager on top of an existing distro, or as an operating system.
 https://guix.gnu.org/manual/en/html_node/Binary-Installation.html

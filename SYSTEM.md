@@ -94,16 +94,6 @@ This variable is exported by (guix build-system clojure). It implements a simple
 Webbrowser Like emacs
 https://nyxt.atlas.engineer/faq
 
-In guix tarball.
-10:40 PM <iyzsong> awb99: you can try 'gnu/system/examples/docker-image.tmpl', maybe then add a 'nginx-service-type' to its services field.
-.
-Auf einer Fremddistribution können Sie den Erstellungsdaemon aktualisieren, indem Sie diesen Befehl:
-
-sudo -i guix pull
-systemctl restart guix-daemon.service
-
-
-
 guix size coreutils
 
 guix graph coreutils | dot -Tpdf > dag.pdf
@@ -113,7 +103,6 @@ guix copy --to=Benutzer@Rechner \
 guix copy --to=Benutzer@Rechner \
           coreutils `readlink -f ~/.guix-profile`
 
-docker exec -ti $container_id /run/current-system/profile/bin/bash --login
 
 guix system container my-config.scm \
    --expose=$HOME --share=$HOME/tmp=/exchange

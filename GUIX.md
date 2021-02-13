@@ -6,9 +6,6 @@ https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
 https://framagit.org/tyreunom/guix-home-manager
 
 
-
-
-
 # Directories
 ls /gnu/store
 cat  ~/.config/guix/current/etc/profile       bash env variables
