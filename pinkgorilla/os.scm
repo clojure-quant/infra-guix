@@ -27,6 +27,7 @@
                      ;nvi
                      ;package-management 
                      wget
+                     java ; jdk ; icedtea ; java
                      clojure 
                      ;xorg
                      )
@@ -55,6 +56,7 @@
                           git
                           wget
                           ncdu
+                          icedtea
                           clojure
                           )
                     %base-packages))

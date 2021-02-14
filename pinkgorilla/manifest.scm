@@ -5,7 +5,9 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (specifications->manifest
-  (list "wget"
+  (list "icedtea"
+        "xdot"
+        "wget"
         "git"
         "ncdu"
         "ncurses"
