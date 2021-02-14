@@ -5,6 +5,7 @@
 ;;'gnu/system/examples/docker-image.tmpl'
 
 (use-modules (gnu)
+             (nongnu packages clojure) ; leiningen
              ;(guix)
              ;(srfi srfi-1)
              )
@@ -27,8 +28,13 @@
                      ;nvi
                      ;package-management 
                      wget
-                     java ; jdk ; icedtea ; java
-                     clojure 
+
+                     ; clojure
+                     java ; jdk ; icedtea 
+                     ;leiningen ; (nongnu packages clojure) ; lein
+                     clojure  ; gnu/packages/clojure
+                     
+                     ; desktop
                      ;xorg
                      )
 
@@ -57,8 +63,10 @@
                           git
                           wget
                           ncdu
+                          ; clojure
                           icedtea
                           clojure
+                          leiningen ; in (nongnu packages clojure)
                           )
                     %base-packages))
 

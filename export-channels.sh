@@ -1,1 +1,1 @@
-cat  ~/.config/guix/channels.scm  >> channels.scm
+cat  ~/.config/guix/channels.scm  > channels.scm

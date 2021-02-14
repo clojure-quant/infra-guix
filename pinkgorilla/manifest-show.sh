@@ -1,0 +1,1 @@
+guix package --export-manifest

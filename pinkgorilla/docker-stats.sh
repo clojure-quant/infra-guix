@@ -10,11 +10,11 @@ echo "stats os.scm"
 guix size $(guix system build os.scm)
 
 
-# show hiux package definition
+# show giux package definition
 # guix search icedtea
 # guix edit clojure
 # guix show icedtea@3.7.0
-# guix edit icedtea@3.7.0
+
 
 # generate graph
 # guix graph clojure | dot -Tpdf > dag.pdf

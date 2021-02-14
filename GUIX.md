@@ -29,7 +29,7 @@ Important add-on channels:
 Guix patches: more up to date packages https://git.guix-patches.cbaines.net/guix-patches/?h=base patches are added via https://issues.guix.gnu.org/
 Nonfree: wifi driver, qemu, steem https://www.rohleder.de/gitweb/?p=guix.git;a=blob;f=mroh/guix/install.scm;hb=HEAD
 Nonguix clojure steam broadcom installer nonfree https://gitlab.com/nonguix/nonguix
-
+https://gitlab.com/nonguix/nonguix/-/tree/master/
 Bio informatics https://github.com/pjotrp/guix-notes/blob/master/BIOINFORMATICS.org
 Gaming https://gitlab.com/guix-gaming-channels
 RStudio https://github.com/leibniz-psychology/guix-zpid
@@ -39,6 +39,7 @@ Guix past channel: old Python versions https://gitlab.inria.fr/guix-hpc/guix-pas
 https://gitlab.inria.fr/guix-hpc/guix-hpc-non-free cuda mkl 
 https://gitlab.inria.fr/guix-hpc/guix-hpc
 https://gitlab.com/mbakke/guix-chromium
+
 
 
 
