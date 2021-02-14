@@ -1,29 +1,63 @@
+
+;; This is an operating system configuration template for a "Docker image" setup.
+
 ;; stolen from guix tarball
-; 'gnu/system/examples/docker-image.tmpl'
-; , maybe then add a 'nginx-service-type' to its services field.
+;;'gnu/system/examples/docker-image.tmpl'
+
+(use-modules (gnu)
+             ;(guix)
+             ;(srfi srfi-1)
+             )
+
+;(use-service-modules ;desktop 
+                     ;networking 
+ ;                    ssh 
+                     ;xorg
+  ;                   )
 
 
-;; This is an operating system configuration template for a "Docker image"
-;; setup, so it has barely any services at all.
+; to see where package is stored use:
+; guix show git
+(use-package-modules base  ; hello
+                     version-control ; git
+                     ncdu
+;bootloaders 
+                     ;certs 
+                     ;fonts 
+                     ;nvi
+                     ;package-management 
+                     wget
+                     clojure 
+                     ;xorg
+                     )
 
-(use-modules (gnu))
 
 (operating-system
-  (host-name "komputilo")
-  (timezone "Europe/Berlin")
+  (host-name "gorilla")
+  ;(timezone "Europe/Berlin")
+  (timezone "Etc/UTC")
   (locale "en_US.utf8")
   ;; This is where user accounts are specified.  The "root" account is
   ;; implicit, and is initially created with the empty password.
   (users (cons (user-account
-                (name "alice")
-                (comment "Bob's sister")
+                (name "pink")
+                (comment "pink at gorilla")
                 (group "users")
                 (supplementary-groups '("wheel"
-                                        "audio" "video")))
+                                        "audio" 
+                                        "video")))
                %base-user-accounts))
 
-  ;; Globally-installed packages.
-  (packages %base-packages)
+ ;; Globally-installed packages.
+
+  ; (packages %base-packages)
+  (packages (append (list hello
+                          git
+                          wget
+                          ncdu
+                          clojure
+                          )
+                    %base-packages))
 
   ;; Because the system will run in a Docker container, we may omit many
   ;; things that would normally be required in an operating system
@@ -47,5 +81,22 @@
                         (mount-point "/")
                         (type "does-not-matter"))))
 
+
+ 
+
   ;; Guix is all you need!
-  (services (list (service guix-service-type))))
+  (services (list (service guix-service-type)
+                
+                  ;; Uncomment the line below to add an SSH server.
+                  ;(service openssh-service-type)
+
+                  ;;, maybe then add a 'nginx-service-type' to its services field.
+  ))
+
+  ; end of os
+  )
+
+
+
+
+

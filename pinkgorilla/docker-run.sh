@@ -15,7 +15,7 @@ docker run \
        -p 7070:7070 \
        --net "host" \
        -e NODE_ENV=${NODE_ENV} \
-       -e USER=alice \
+       -e USER=pink \
        -t -i pinkgorilla:latest \
        /run/current-system/profile/bin/bash \
        --login \
@@ -23,7 +23,7 @@ docker run \
 
 echo "running docker-pinkgorilla done."
 
-#      -u alice \
+#      -u pink \
 #       /bin/bash
 
 # --env-file=<file-with-env-vars> 

@@ -11,52 +11,71 @@ echo "cleaning up artefacts directory"
 rm -R -f ./artefacts
 mkdir ./artefacts
 
+echo "saving build time.."
+echo `date` >> ./artefacts/build-date
+
+echo "getting manifest packages"
+guix package --manifest=./manifest.scm
+
+echo "saving channels.."
+echo `guix describe` >> ./artefacts/channels
+
+
+echo "removing old docker images"
+docker rmi -f guix:latest
+docker rmi -f pinkgorilla:latest
+
 echo "guix is creating docker tar.gz file"
 guix system \
+     --cores=4 \
      --root=./artefacts/docker-pinkgorilla.tar.gz \
-     --network \
-     --debug=2 \
      docker-image \
      ./os.scm
 
+
+#       --debug=2 \    
 # debug 0-5 (5=highest)
 
-#      --verbosity=2 \
+# --verbosity=2 \
 # -v, --verbosity=LEVEL  use the given verbosity LEVEL
 # 0=none  1=short 2=all
 
-#    manifest does not work
-#     --manifest=manifest.scm \
+# manifest does not work
+# --manifest=manifest.scm \
 
-#    --root=file
-#    -r file
-#                Make file a symlink to the result, and register it as a garbage collector root.
+# --root=file
+# -r file
+# Make file a symlink to the result, and register it as a garbage collector root.
 
-#     -expose=$HOME 
+# expose = read only
+# -expose=$HOME 
 
-#     --share=$HOME/tmp=/exchange
-#     -S /usr/bin=/bin 
-#     -S /etc/profile=/etc/profile \
-#     -S /book-evolutionary-genomics=/share/book-evolutionary-genomics \
+# share = read/write
+# --share=$HOME/tmp=/exchange
+# -S /usr/bin=/bin 
+# -S /etc/profile=/etc/profile \
+# -S /book-evolutionary-genomics=/share/book-evolutionary-genomics \
 
 # -p ~/opt/book-evolutionary-genomics \
 
-#  --no-grafts 
+# --no-grafts 
 
-#  -i book-evolutionary-genomics \
-
-# --entry-point=PROGRAM
+# -i book-evolutionary-genomics \
 
 # --system=system
 # -s system
-# Attempt to build for system instead of the host system type. This works as per guix build (see Invoking guix build).
-
+# Attempt to build for system instead of the host system type. 
+# This works as per guix build (see Invoking guix build).
 # x86_64-linux
 
 # --expression=expr
 # -e expr
-# Consider the operating-system expr evaluates to. This is an alternative to specifying a file which evaluates to an operating system. This is used to generate the Guix system installer see Building the Installation Image).
+# Consider the operating-system expr evaluates to. 
+# This is an alternative to specifying a file which evaluates to an operating system. 
+# This is used to generate 
+# the Guix system installer see Building the Installation Image).
 
+# --entry-point=PROGRAM
 
 # echo "uncompressing docker tar"
 # mkdir ./artefacts/docker-pinkgorilla

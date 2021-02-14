@@ -21,7 +21,9 @@ https://elephly.net/posts/2017-03-24-r-with-guix.html
 # Pinkgorilla
 ´´´
 ./docker-build.sh
-./docker-run-interactive.sh
+./docker-run.sh
+./docker-exec.sh
+./docker-stop.sh
 ´´´
 
 # guest-side services

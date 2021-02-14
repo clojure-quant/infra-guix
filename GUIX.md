@@ -83,11 +83,9 @@ Profiles
 Goal: create byte identical profiles over time that are not only shared between machines (important for deployment) but also between developers. Development, testing, staging, production - essentially these are all profiles!
 
 guix package -i sambamba -p ~/opt/sambamba
-
-Guix provides a profile file which contains the necessary shell settings
+Guix provides a profile file which contains the necessary shell settings into the environment
 cat ~/opt/sambamba/etc/profile
-sourcing this file brings sambamba into the environment
-source ~/opt/sambamba/etc/profile
+
 
 # environments
 When running guix environment SOME-PACKAGES, Guix sets up a temporary environment where all the requirements for SOME-PACKAGES are exposed the environment manifest is just a Scheme code file that evaluates to a list of packages to include inside the environment. An environment is an ephemeral thing (just a process tree/container/whatever).  It spawns a subshell, exit with CTRL-D.

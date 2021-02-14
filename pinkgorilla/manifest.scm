@@ -5,7 +5,10 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (specifications->manifest
-  (list "ncurses"
+  (list "wget"
+        "git"
+        "ncdu"
+        "ncurses"
         "glibc-locales"
         "syncthing-gtk"
         "rclone"
