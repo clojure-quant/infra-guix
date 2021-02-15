@@ -4,6 +4,8 @@
 ;; stolen from guix tarball
 ;;'gnu/system/examples/docker-image.tmpl'
 
+;; https://github.com/Millak/guix-config/blob/master/vm_config.scm
+
 ; load guile namespaces 
 (use-modules (gnu)
              ;(nongnu packages clojure) ; leiningen
@@ -28,6 +30,25 @@
 ;                     java ; jdk ; icedtea 
 ;                     clojure  ; gnu/packages/clojure
 ;                     )
+
+(define base-services-patched-vm
+   (modify-services %base-services
+                     ;; The default udev rules are not needed in a VM.
+                     (udev-service-type config =>
+                                        (udev-configuration
+                                          (inherit config)
+                                          (rules '())))
+                     ;(guix-service-type config =>
+                     ;                   (guix-configuration
+                     ;                     (inherit config)
+                     ;                     (substitute-urls
+                     ;                       (list "https://ci.guix.gnu.org"
+                     ;                             "https://bayfront.guixsd.org"))
+                     ;                     (authorized-keys
+                     ;                       (list %ci.guix.gnu.org.pub))))
+                                            ))
+
+
 
 
 (operating-system

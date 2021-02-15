@@ -22,8 +22,4 @@ guix system disk-image -t iso9660 /home/andreas/Documents/myguix/c2.scm
 
 sudo dd if=/gnu/store/6phpslb8z6zz6npii8qcnsrcvmwqz982-image.iso of=/dev/sdb status=progress
 sync
-Non x86 architecture
 
-https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
-
-https://framagit.org/tyreunom/guix-android

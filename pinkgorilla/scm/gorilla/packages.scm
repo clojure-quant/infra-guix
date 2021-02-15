@@ -1,8 +1,9 @@
 (define-module (gorilla packages)
-  ;#:use-module (gorilla guixutils)
   #:export (p-linux
             p-clojure 
             p-python 
+            p-r
+            p-node
             p-services 
             p-desktop
             p-notebook
@@ -13,7 +14,11 @@
 (define p-linux 
   (list "coreutils" ; glibcc gcc bash 
        ;  "glibc-locales" ; all supported gnu clib locales (1 gig)
+       ;"direnv" google this
         "bash"
+        "zsh"
+        "zsh-autosuggestions"
+        "fish"
         "wget"
         "git"
         "ncdu"
@@ -51,37 +56,42 @@
 ; r repos: Bioconductor + Cran
 (define p-r
   (list ;; for RMarkdown
+    "r"
    ;"r-knitr"
    ;"r-yaml"
    ;"r-markdown"
    ;"r-rmarkdown"
-   "texlive"
+   ;"texlive"
    ;; commonly used r packages
-   "r-psych"
-   "r-ggplot2"
+   ;"r-psych"
+   ;"r-ggplot2"
    "r-lattice"
    "r-foreign"
    "r-readr"
-   "r-haven"
+   ;"r-haven"
    "r-dplyr"
    "r-tidyr"
-   "r-stringr"
-   "r-forecast"
-   "r-lme4"
-   "r-nlme"
-   "r-nnet"
-   "r-glmnet"
-   "r-caret"
-   "r-xmisc"
-   "r-splitstackshape"
-   "r-tm"
-   "r-quanteda"
-   "r-topicmodels"
-   "r-stm"
+   ;"r-stringr"
+   ;"r-forecast"
+   ;"r-lme4"
+   ;"r-nlme"
+   ;"r-nnet"
+   ;"r-glmnet"
+   ;"r-caret"
+   ;"r-xmisc"
+   ;"r-splitstackshape"
+   ;"r-tm"
+   ;"r-quanteda"
+   ;"r-topicmodels"
+   ;"r-stm"
    ;;"r-parallel"
-   "r-dt"
-   "r-nlp"
+   ;"r-dt"
+   ;"r-nlp"
    ))
+
+(define p-node 
+  (list "node" ; v10, v14 is in development. brings node and npm
+  ))
 
 (define p-services 
   (list  "shepherd"
@@ -109,6 +119,8 @@
        p-linux
        p-clojure
        p-python
+       p-r
+       p-node
          ; services
          ; desktop       
         )

@@ -15,6 +15,14 @@ ls  ~/.guix-profile/bin                              installed binaries
 ~/.config/guix/current         profile, populated by guix pull
 /var/guix/profiles/system
 
+# profiles
+
+Goal: create byte identical profiles over time that are not only shared between machines (important for deployment) but also between developers. Development, testing, staging, production - essentially these are all profiles!
+
+guix package -i sambamba -p ~/opt/sambamba
+Guix provides a profile file which contains the necessary shell settings into the environment
+cat ~/opt/sambamba/etc/profile
+
 # Channels (repositories)
 A channel is a git repo that defines packages in scheme files that can be built.
 https://gitlab.com/pjotrp/guix-notes/-/blob/master/CHANNELS.org
@@ -77,13 +85,7 @@ Example manifest:
 Make your own package:
 https://gitlab.com/pjotrp/guix-notes/-/blob/master/GUIX-SIMPLE-PACKAGE.org
 
-Package inheritance makes it very easy to customize packages with a patch, for instance
-Profiles
-Goal: create byte identical profiles over time that are not only shared between machines (important for deployment) but also between developers. Development, testing, staging, production - essentially these are all profiles!
 
-guix package -i sambamba -p ~/opt/sambamba
-Guix provides a profile file which contains the necessary shell settings into the environment
-cat ~/opt/sambamba/etc/profile
 
 
 # environments
@@ -106,7 +108,7 @@ The option --container ensures the best possible isolation from the standard env
 
 If the term "container" makes you think of Docker, note that this is something different. Note also that the option --container requires support from the Linux kernel, which may not be present on your system, or may be disabled by default. Finally, note that by default, a containerized environment has no network access, which may be a problem. If for whatever reason you cannot use --container, use --pure instead
 
-1:15 AM <dftxbs3e> On GNU Guix System it's handy because it happens a [env] to the prompt so you know you are in an environment.
+
 1:17 AM <terpri> (info "(guix) Invoking guix environment") shows how to change the prompt on foreign distros (it's just based on $GUIX_ENVIRONMENT existing)
 
 1:17 AM <dftxbs3e> ~/src/guix [env]$ find . -name '*zsh*'
@@ -116,7 +118,6 @@ If the term "container" makes you think of Docker, note that this is something d
 1:38 AM <dftxbs3e> inferiors can reference any channel or older versions of GNU Guix (up to a certain point because it needs support code in the version you try to use I think)
 
 # build systems
-
 
 maven:
 https://maven.apache.org/configure.html
@@ -129,6 +130,7 @@ https://guix.gnu.org/manual/en/html_node/Build-Systems.html
         Java Development Kit (JDK) 
    as provided by the icedtea package to the set of inputs. 
   Different packages can be specified with the #:ant and #:jdk parameters, respectively.
+
 - clojure-build-system
   extension of ant-build-system, 
   Different packages can be specified with the 
@@ -164,7 +166,21 @@ https://guix.gnu.org/manual/en/html_node/Build-Systems.html
 
     https://github.com/leibniz-psychology/psychnotebook-deploy/blob/master/src/zpid/machines/yamunanagar/ci.scm
 
+# os tweaking
+
+(define-module (zeus)
+  #:use-module (base-system)
+  #:use-module (gnu))
+
+(operating-system
+ (inherit base-operating-system)
+ (host-name "zeus")
+;;; Specific customisations for this system
+)
+
 # package tweaking
+
+Package inheritance makes it very easy to customize packages with a patch, for instance
 
 guix build --with-input=guile=guile@2.0 guix
 
@@ -210,3 +226,24 @@ Florian Hoertlehner, [14.02.21 14:28]
 11:47 AM <mdevos> yoctocell: could you run "guix repl", and evaluate (@ (guix config) %config-directory) there?  I wonder if nix configures guix incorrectly
 
 https://medium.com/swlh/guix-packaging-by-example-6e44ba693fb2
+
+
+
+ guix gc --delete-generations=1m
+
+Search paths will suggest a Guix enviroment, e.g.
+guix package --search-paths
+
+(define-public libnode
+  (package
+    (inherit node)
+    (name "libnode")
+    (arguments
+     (substitute-keyword-arguments (package-arguments node)
+       ((#:configure-flags flags ''())
+        `(cons* "--shared" "--without-npm" ,flags))
+       ((#:phases phases '%standard-phases)
+        `(modify-phases ,phases
+           (delete 'patch-npm-shebang)))))))
+
+           

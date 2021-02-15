@@ -1,10 +1,16 @@
 
 # update guix
+
+see:
+guix-guix-update
+
 on a foreign install:
 ´´´
 sudo -i guix pull
+guix package -i guix
 systemctl restart guix-daemon.service
 ´´´
+
 
 # Install
 Can be installed as a package manager on top of an existing distro, or as an operating system.
@@ -32,8 +38,32 @@ ausearch -c '(x-daemon)' --raw | audit2allow -M my-xdaemon
  1018  sudo setenforce 0
  1019  sestatus
 
+# nuc
 https://willschenk.com/articles/2019/installing_guix_on_nuc/
 
-Update guix: guix package -i guix
-
+# linode
 https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
+
+# ui 
+
+xfce
+https://guix.gnu.org/en/blog/2019/running-a-guix-xfce-desktop-on-centos-7/
+
+sway
+https://www.reddit.com/r/GUIX/comments/epckio/gnu_system_with_wayland_and_sway/?utm_medium=android_app&utm_source=share
+
+dwm
+https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
+
+
+# Non x86 architecture
+
+https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
+
+https://framagit.org/tyreunom/guix-android
+
+# luks disk encryption
+
+https://libreboot.org/docs/gnulinux/guix_system.html
+
+https://guix.gnu.org/manual/en/html_node/Building-the-Installation-Image.html#Building-the-Installation-Image
