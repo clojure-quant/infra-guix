@@ -6,10 +6,11 @@
 
 ; load guile namespaces 
 (use-modules (gnu)
-             (nongnu packages clojure) ; leiningen
-             (gnu packages python)
+             ;(nongnu packages clojure) ; leiningen
+             ;(gnu packages python)
              (gorilla packages)
-             (gorilla guixutils))
+             (gorilla guixutils) 
+             (gorilla os-release))
 
 ;(use-service-modules ;desktop 
                      ;networking 
@@ -47,7 +48,7 @@
                %base-user-accounts))
 
   ;; Globally-installed packages.
-  ;; %base-packages: Core Utilities, Networking Utilities, Zile text editor, find, grep, etc.
+  ;; %base-packages: Coompression, Networking Utilities, Zile/nano text editor, find, grep, etc.
   ;; (packages %base-packages)
   ;(packages (append (list hello git wget ncdu
   ;                        icedtea clojure leiningen ; in (nongnu packages clojure)
@@ -79,9 +80,14 @@
 
  
 
-  ;; Guix is all you need!
+  ;; more services here:
+  ;; https://github.com/Millak/guix-config/blob/master/macbook41_config.scm
   (services (list (service guix-service-type)
                 
+                  (simple-service 'os-release etc-service-type
+                                  `(("os-release" ,%os-release-file)))
+
+
                   ;; Uncomment the line below to add an SSH server.
                   ;(service openssh-service-type)
 

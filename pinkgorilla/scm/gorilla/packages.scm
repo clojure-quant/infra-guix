@@ -11,18 +11,15 @@
 
 
 (define p-linux 
-  (list "xdot"
+  (list "coreutils" ; glibcc gcc bash 
+       ;  "glibc-locales" ; all supported gnu clib locales (1 gig)
+        "bash"
         "wget"
         "git"
         "ncdu"
         "ncurses" ; clear
-        "glibc-locales"
-       
         "rclone"
-        "idutils"
-        
-        "coreutils"
-        "bash"
+        ;"idutils"
         "guile" 
         "hello"
   ))
@@ -51,6 +48,7 @@
 
 ; possibly add this channel too ?
 ; https://github.com/UMCUGenetics/guix-additions/blob/master/umcu/packages/rstudio.scm
+; r repos: Bioconductor + Cran
 (define p-r
   (list ;; for RMarkdown
    ;"r-knitr"
@@ -92,7 +90,8 @@
   ))
 
 (define p-desktop 
-  (list "syncthing-gtk" 
+  (list "xdot" ; graphviz .dot viewer
+        "syncthing-gtk" 
   ))
 
 

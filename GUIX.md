@@ -186,3 +186,27 @@ https://guix.gnu.org/manual/en/html_node/package-Reference.html
 
 (transform-package-toolchain replacement-specs)
 list of strings like \"fftw=gcc-toolchain@10\"
+
+
+Florian Hoertlehner, [14.02.21 14:25]
+11:05 AM <ngz> yoctocell: #f not f
+
+Florian Hoertlehner, [14.02.21 14:25]
+11:05 AM <ngz> #f (or #false) and #t (or #true) are the booleans
+
+Florian Hoertlehner, [14.02.21 14:26]
+11:20 AM <ngz> guix archive --authorize < PREFIX/share/guix/ci.guix.gnu.org.pub per manual
+
+Florian Hoertlehner, [14.02.21 14:26]
+11:19 AM <ngz> You didn't authorize substitutes
+
+Florian Hoertlehner, [14.02.21 14:27]
+11:20 AM <ngz> where PREFIX is the Guix installation prefix.
+
+Florian Hoertlehner, [14.02.21 14:28]
+11:48 AM <mdevos> (btw. apparently the configuration directory can be overriden by setting the GUIX_CONFIGURATION_DIRECTORY environment variable)
+
+Florian Hoertlehner, [14.02.21 14:28]
+11:47 AM <mdevos> yoctocell: could you run "guix repl", and evaluate (@ (guix config) %config-directory) there?  I wonder if nix configures guix incorrectly
+
+https://medium.com/swlh/guix-packaging-by-example-6e44ba693fb2

@@ -1,4 +1,6 @@
-(use-modules (gorilla packages)
+(use-modules (gnu)
+             (guix)
+             (gorilla packages)
              (gorilla guixutils))
 
 
@@ -18,4 +20,10 @@
 (display (->manifests p-notebook))
 (newline)
 
+(display "base packages")
+(newline)
+;(display %base-packages)
+;(newline)
+(display (map package-name %base-packages))
+(newline)
 
