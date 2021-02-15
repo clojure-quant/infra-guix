@@ -4,11 +4,12 @@
 ;; stolen from guix tarball
 ;;'gnu/system/examples/docker-image.tmpl'
 
+; load guile namespaces 
 (use-modules (gnu)
              (nongnu packages clojure) ; leiningen
-             ;(guix)
-             ;(srfi srfi-1)
-             )
+             (gnu packages python)
+             (gorilla packages)
+             (gorilla guixutils))
 
 ;(use-service-modules ;desktop 
                      ;networking 
@@ -19,24 +20,13 @@
 
 ; to see where package is stored use:
 ; guix show git
-(use-package-modules base  ; hello
-                     version-control ; git
-                     ncdu
-;bootloaders 
-                     ;certs 
-                     ;fonts 
-                     ;nvi
-                     ;package-management 
-                     wget
-
-                     ; clojure
-                     java ; jdk ; icedtea 
-                     ;leiningen ; (nongnu packages clojure) ; lein
-                     clojure  ; gnu/packages/clojure
-                     
-                     ; desktop
-                     ;xorg
-                     )
+;(use-package-modules base  ; hello
+;                     version-control ; git
+;                     ncdu
+;                     wget
+;                     java ; jdk ; icedtea 
+;                     clojure  ; gnu/packages/clojure
+;                     )
 
 
 (operating-system
@@ -56,19 +46,13 @@
                                         "video")))
                %base-user-accounts))
 
- ;; Globally-installed packages.
-
-  ; (packages %base-packages)
-  (packages (append (list hello
-                          git
-                          wget
-                          ncdu
-                          ; clojure
-                          icedtea
-                          clojure
-                          leiningen ; in (nongnu packages clojure)
-                          )
-                    %base-packages))
+  ;; Globally-installed packages.
+  ;; %base-packages: Core Utilities, Networking Utilities, Zile text editor, find, grep, etc.
+  ;; (packages %base-packages)
+  ;(packages (append (list hello git wget ncdu
+  ;                        icedtea clojure leiningen ; in (nongnu packages clojure)
+  ;                        python) %base-packages))
+  (packages (append (->packages p-notebook) %base-packages))
 
   ;; Because the system will run in a Docker container, we may omit many
   ;; things that would normally be required in an operating system

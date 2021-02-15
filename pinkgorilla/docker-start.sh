@@ -9,6 +9,7 @@ rm -f artefacts/pinkgorilla-session
 
 echo "running docker-pinkgorilla"
 
+# docker run returns sesseion id
 docker run \
        -d \
        --privileged \

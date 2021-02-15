@@ -85,28 +85,13 @@ https://gitlab.com/pjotrp/guix-notes/-/blob/master/DEPLOY.org
 
 
 
-# My tools
-
-Clojure
-clojure-build-system
-This variable is exported by (guix build-system clojure). It implements a simple build procedure for Clojure packages using plain old compile in Clojure. Cross-compilation is not supported yet.
-
 Webbrowser Like emacs
 https://nyxt.atlas.engineer/faq
 
-guix size coreutils
-
-guix graph coreutils | dot -Tpdf > dag.pdf
 guix copy --to=Benutzer@Rechner \
           coreutils `readlink -f ~/.guix-profile`
-
-guix copy --to=Benutzer@Rechner \
-          coreutils `readlink -f ~/.guix-profile`
-
 
 guix system container my-config.scm \
    --expose=$HOME --share=$HOME/tmp=/exchange
 
-
-. Being unable to read NVME drives (which have been around since 2011) is no longer acceptable for an OS in 2020.
 

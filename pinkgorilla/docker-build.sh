@@ -7,6 +7,8 @@
 # for problems with docjer socket see:
 # https://developer.fedoraproject.org/tools/docker/docker-installation.html
 
+export GUILE_LOAD_PATH=./scm:$GUILE_LOAD_PATH
+
 echo "cleaning up artefacts directory"
 rm -R -f ./artefacts
 mkdir ./artefacts
