@@ -10,17 +10,19 @@ rm -f artefacts/pinkgorilla-session
 echo "running docker-pinkgorilla"
 
 # docker run returns sesseion id
+#        --user pink \
 docker run \
        -d \
        --privileged \
        -p 7070:7070 \
        --net "host" \
        -e NODE_ENV=${NODE_ENV} \
-       -e USER=pink \
+       -v $HOME/pinkgorilla:/home/pink/pinkgorilla \
        -t -i pinkgorilla:latest \
        /run/current-system/profile/bin/bash \
        --login \
        > artefacts/pinkgorilla-session
+#        -e USER=pink \
 
 echo "running docker-pinkgorilla done."
 

@@ -100,7 +100,7 @@
   ))
 
 (define p-desktop 
-  (list "xdot" ; graphviz .dot viewer
+  (list "xdot" ; graphviz .dot viewer needed for guix graph
         "syncthing-gtk" 
   ))
 

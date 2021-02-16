@@ -19,3 +19,6 @@ guix size $(guix system build os.scm)
 # guix graph clojure | dot -Tpdf > dag.pdf
 # guix graph clojure | xdot -
 
+guix graph --type=reverse-package python3 | xdot -
+
+guix graph --type=bag-emerged python3 | xdot -
