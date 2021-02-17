@@ -1,7 +1,9 @@
 (use-modules (gnu)
              (guix)
              (gorilla packages)
-             (gorilla guixutils))
+             (gorilla guixutils)
+             (gorilla services)
+             )
 
 
 (display "gorilla package names:")
@@ -27,3 +29,7 @@
 (display (map package-name %base-packages))
 (newline)
 
+
+(display "sshd service")
+(newline)
+(display (gorilla-ssh-service))

@@ -1,3 +1,3 @@
-# guixdemo
+# infra-guix
 
 guix experiments

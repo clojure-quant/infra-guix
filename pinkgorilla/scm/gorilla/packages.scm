@@ -102,6 +102,7 @@
 (define p-desktop 
   (list "xdot" ; graphviz .dot viewer needed for guix graph
         "syncthing-gtk" 
+        "ranger" ; directory explorer
   ))
 
 

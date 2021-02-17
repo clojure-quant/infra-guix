@@ -8,7 +8,7 @@ echo "pinkgorilla docker session: " $s
 docker exec \
     -it $s \
     --user pink \
-     /bin/bash \
-    --login
+     /run/current-system/profile/bin/bash #\
+    #--login
 
 #     /run/current-system/profile/bin/bash \

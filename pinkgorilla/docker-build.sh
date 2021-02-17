@@ -22,7 +22,6 @@ guix package --manifest=./manifest.scm
 echo "saving channels.."
 echo `guix describe` >> ./artefacts/channels
 
-
 echo "removing old docker images"
 docker rmi -f guix:latest
 docker rmi -f pinkgorilla:latest
@@ -32,7 +31,7 @@ guix system \
      --cores=4 \
      --root=./artefacts/docker-pinkgorilla.tar.gz \
      docker-image \
-     ./os.scm
+     ./scm/systems/gorilla.scm
 
 
 #       --debug=2 \    

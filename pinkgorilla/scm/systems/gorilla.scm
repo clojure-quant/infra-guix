@@ -11,6 +11,7 @@
              ;(nongnu packages clojure) ; leiningen
              ;(gnu packages python)
              (gorilla packages)
+             (gorilla services)
              (gorilla guixutils) 
              (gorilla os-release))
 
@@ -31,25 +32,6 @@
 ;                     clojure  ; gnu/packages/clojure
 ;                     )
 
-(define base-services-patched-vm
-   (modify-services %base-services
-                     ;; The default udev rules are not needed in a VM.
-                     (udev-service-type config =>
-                                        (udev-configuration
-                                          (inherit config)
-                                          (rules '())))
-                     ;(guix-service-type config =>
-                     ;                   (guix-configuration
-                     ;                     (inherit config)
-                     ;                     (substitute-urls
-                     ;                       (list "https://ci.guix.gnu.org"
-                     ;                             "https://bayfront.guixsd.org"))
-                     ;                     (authorized-keys
-                     ;                       (list %ci.guix.gnu.org.pub))))
-                                            ))
-
-
-
 
 (operating-system
  ;(host-name "muzaffarnagar.psychnotebook.org")
@@ -60,12 +42,26 @@
   ;; This is where user accounts are specified.  The "root" account is
   ;; implicit, and is initially created with the empty password.
   (users (cons (user-account
-                (name "pink")
-                (comment "pink at gorilla")
-                (group "users")
-                (supplementary-groups '("wheel"
-                                        "audio" 
-                                        "video")))
+                 (name "pink")
+                 (comment "pink at gorilla")
+                 (uid 2002) ; uid needs to match user in host for docker
+                 (group "users")
+                 ;; "input" and "tty" are needed to start X server without
+              ;; root permissions: "input" - to access "/dev/input"
+              ;; devices, "tty" - to access "/dev/ttyN".
+                 (supplementary-groups '("wheel" ; sudo
+                                         "audio" 
+                                        "video"
+                                        "input"
+                                         "tty"
+                                         "lp"
+                                         ))
+                 (home-directory "/home/pink")
+                 ;(shell (file-append zsh "/bin/zsh"))
+                  ;; Specify a SHA-512-hashed initial password.
+                  ;; (password (crypt "InitialPassword!" "$6$abc"))
+                  (password "")
+                                        )
                %base-user-accounts))
 
   ;; Globally-installed packages.
@@ -103,17 +99,13 @@
 
   ;; more services here:
   ;; https://github.com/Millak/guix-config/blob/master/macbook41_config.scm
-  (services (list (service guix-service-type)
-                
-                  (simple-service 'os-release etc-service-type
-                                  `(("os-release" ,%os-release-file)))
-
-
-                  ;; Uncomment the line below to add an SSH server.
-                  ;(service openssh-service-type)
-
-                  ;;, maybe then add a 'nginx-service-type' to its services field.
-  ))
+  (services 
+      (append 
+         (list 
+            (simple-service 'os-release etc-service-type
+               `(("os-release" ,%os-release-file)))
+            (gorilla-ssh-service)) 
+         %base-services))
 
   ; end of os
   )
