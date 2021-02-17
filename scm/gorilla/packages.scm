@@ -5,12 +5,16 @@
 
 (define p-linux 
   (list "coreutils" ; glibcc gcc bash 
-       ;  "glibc-locales" ; all supported gnu clib locales (1 gig)
+       "glibc-locales" ; all supported gnu clib locales (1 gig)
        ;"direnv" google this
         "bash"
         "zsh"
         "zsh-autosuggestions"
         "fish"
+        "grep" ; needed by byobu
+        "sed" ; needed by byobu
+        "tmux" ; needed by byobu
+        "byobu" ; tmux with better cofig
         "wget"
         "git"
         "ncdu"

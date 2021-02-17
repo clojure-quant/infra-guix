@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Declare an array of string with type
 declare -a RepoNameArray=( \
@@ -63,6 +63,38 @@ clean () {
   echo "cleaning $reponame"
   # rm .settings -r
   #rm -rf node_modules target out .shadow-cljs
+  # rm target/ -r
+  # rm .shadow-cljs/ -r
+}
+
+demo () {
+  reponame="$1"
+  repodir="$main/$1"
+  app="$2"
+  if [ -d $repodir ]; then
+     cd $repodir
+     echo "running demo for $reponame in path: $repodir"
+     if [[ -n $GUIX_ENVIRONMENT ]]; then
+         case $reponame in
+            'pinkie')
+                   echo "running pinkie demo" ;;
+            'webly')
+                   echo "running webly demo" 
+                   lein demo ;;
+            'gorilla-ui')
+                   echo "running gorilla-ui demo" 
+                   npm install && lein demo ;;
+            *)
+                   echo "no demo command defined for repo: $reponame"
+                   exit 0 ;;
+         esac
+      else
+          echo "not running in a guix environment. exiting."
+          exit 0
+      fi   
+  else 
+      echo "$reponame: $repodir does not exist. cannot run demo"
+  fi
 }
 
 help () {
@@ -71,6 +103,7 @@ help () {
   echo "admin gitclone     clones non existing gorilla git repos"
   echo "admin gitstatus    git status all git repos"
   echo "admin clean        cleans temp build paths in git repos"
+  echo "admin demo webly   runs webly demo (change webly for any other name"
   echo ""
   echo "useful guix commands:"
   echo "guix package --list-installed"
@@ -93,19 +126,32 @@ prog="gitstatus" ;;
 'clean')
 prog="clean" ;;
 
+'demo')
+prog="demo" ;;
+
 *)
 help
 exit 0 ;;
 
 esac
 
+APP="$2"
+echo "app: $APP"
+if [[ -n $APP ]]; then
+  echo "running $prog for app $APP "
+  $prog $APP
+else
+  echo "running $prog for all repos"
+  # Iterate the string array using for loop
+  for reponame in ${RepoNameArray[@]}; do
+     #gitclone $reponame
+     # info $reponame
+     $prog $reponame %2
+  done
+fi
 
-echo "running $prog"
 
-# Iterate the string array using for loop
-for val in ${RepoNameArray[@]}; do
-   #gitclone $val
-   # info $val
-   $prog $val
-done
+  
+
+
 
