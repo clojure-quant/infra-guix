@@ -7,5 +7,5 @@ echo "pinkgorilla docker session: " $s
 
 docker exec \
     -it $s \
-     /run/current-system/profile/bin/bash \
+     /run/current-system/profile/bin/fish \
     --login

@@ -58,13 +58,49 @@ gitstatus () {
 }
 
 clean () {
+  reponame="$1"
+  repodir="$main/$1"
+  echo "cleaning $reponame"
   # rm .settings -r
-  rm -rf node_modules target out .shadow-cljs
+  #rm -rf node_modules target out .shadow-cljs
 }
+
+help () {
+  echo "admin"
+  echo "admin info         shows missing repos"
+  echo "admin gitclone     clones non existing gorilla git repos"
+  echo "admin gitstatus    git status all git repos"
+  echo "admin clean        cleans temp build paths in git repos"
+}
+
+op=$1
+case $op in
+
+'info')
+prog="info" ;;
+
+'gitclone')
+prog="gitclone" ;;
+
+'gitstatus')
+prog="gitstatus" ;;
+
+'clean')
+prog="clean" ;;
+
+*)
+help
+exit 0 ;;
+
+esac
+
+
+echo "running $prog"
 
 # Iterate the string array using for loop
 for val in ${RepoNameArray[@]}; do
-   gitclone $val
+   #gitclone $val
    # info $val
+   $prog $val
 done
 

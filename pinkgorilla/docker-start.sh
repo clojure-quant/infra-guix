@@ -17,7 +17,7 @@ docker run \
        -p 7070:7070 \
        --net "host" \
        -e NODE_ENV=${NODE_ENV} \
-       -v $HOME/pinkgorilla:/pinkgorilla \
+       -v $HOME/pinkgorilla:/home/pink/pinkgorilla \
        -t -i pinkgorilla:latest \
        /run/current-system/profile/bin/bash \
        --login \

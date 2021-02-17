@@ -1,15 +1,7 @@
 (define-module (gorilla packages)
-  #:export (p-linux
-            p-clojure 
-            p-python 
-            p-r
-            p-node
-            p-services 
-            p-desktop
-            p-notebook
+  #:export (p-notebook
+            p-dev
             ))
-
-
 
 (define p-linux 
   (list "coreutils" ; glibcc gcc bash 
@@ -103,6 +95,12 @@
   (list "xdot" ; graphviz .dot viewer needed for guix graph
         "syncthing-gtk" 
         "ranger" ; directory explorer
+        "mc"
+        "glances"
+        "htop"
+        "emacs"
+        "neovim"
+        "xclock" ;x test
   ))
 
 
@@ -124,5 +122,10 @@
        p-node
          ; services
          ; desktop       
-        )
-)
+        ))
+
+(define p-dev
+    (append 
+       p-notebook
+       p-desktop     
+        ))
