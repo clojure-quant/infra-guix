@@ -71,6 +71,11 @@ help () {
   echo "admin gitclone     clones non existing gorilla git repos"
   echo "admin gitstatus    git status all git repos"
   echo "admin clean        cleans temp build paths in git repos"
+  echo ""
+  echo "useful guix commands:"
+  echo "guix package --list-installed"
+  echo "guix package --list-profiles"
+  echo "guix package --delete-generations"
 }
 
 op=$1

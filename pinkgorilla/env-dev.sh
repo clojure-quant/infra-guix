@@ -5,9 +5,10 @@ export GUILE_LOAD_PATH=./scm:$GUILE_LOAD_PATH
 
 guix environment \
      --pure \
+     --container \
      --preserve='^DISPLAY$' \
      --preserve='^TERM$' \
-     --container \
+     --network \
      -m scm/manifests/dev.scm 
      
 
