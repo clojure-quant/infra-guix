@@ -1,5 +1,7 @@
 (use-modules (gorilla packages)
-             (gorilla guixutils))
+             (gorilla guixutils)
+   ;          (gorilla tweak-r)
+             )
 
 ;; guix package -m ./manifest.scm
 
@@ -13,3 +15,6 @@
 
 
 (->manifests p-dev)
+
+;(->manifests (cons r-maximal p-dev ))
+

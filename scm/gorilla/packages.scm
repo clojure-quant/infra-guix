@@ -11,6 +11,7 @@
         "zsh"
         "zsh-autosuggestions"
         "fish"
+        "which" ; needed by clojisr in --pure environment
         "grep" ; needed by byobu
         "sed" ; needed by byobu
         "tmux" ; needed by byobu
@@ -53,6 +54,7 @@
 (define p-r
   (list ;; for RMarkdown
     "r"
+    "r-rserve" ; tcp server adaptor
    ;"r-knitr"
    ;"r-yaml"
    ;"r-markdown"
@@ -60,7 +62,13 @@
    ;"texlive"
    ;; commonly used r packages
    ;"r-psych"
-   ;"r-ggplot2"
+
+   ; clojisr goldly-example-datascience
+   "r-ggplot2" 
+   "r-dt"
+   "r-svglite"
+   "r-plotly"
+   
    "r-lattice"
    "r-foreign"
    "r-readr"
@@ -81,7 +89,6 @@
    ;"r-topicmodels"
    ;"r-stm"
    ;;"r-parallel"
-   ;"r-dt"
    ;"r-nlp"
    ))
 

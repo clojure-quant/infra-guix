@@ -1,9 +1,11 @@
 (use-modules (gnu)
              (guix)
+             (guix packages)
+             (ice-9 pretty-print)
              (gorilla packages)
              (gorilla guixutils)
              (gorilla services)
-             )
+             (gorilla tweak-r))
 
 
 (display "gorilla package names:")
@@ -30,6 +32,13 @@
 (newline)
 
 
-(display "sshd service")
+;(display "sshd service")
+;(newline)
+;(display (gorilla-ssh-service))
+
+
+(display "r-max")
 (newline)
-(display (gorilla-ssh-service))
+;(display r-maximal)
+;(display (package->bag r-maximal))
+(display (pretty-print (package->bag r-maximal)))

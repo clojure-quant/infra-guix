@@ -44,20 +44,29 @@ Create a virtual environment (can be exited with CTRL+D)
 that only exports the apps/environment variables of the GUIX app bundle.
 Therefore builds are guaranteed to be deterministic.
 
+## Run Pinkgorilla Demos
 
-Say you want to test pinkie and you havent any repo:
+Initial Install
 ```
 mkdir /home/pinkgorilla
 ./admin.sh gitclone pinkie
+```
+```
 ./dev-env.sh 
-./admin.sh demo pinkie          run demo app git for pinkie repo  
-```
-
-Example:
-```
-./dev-env.sh
 
 ```
+
+Inside the virtual environment:
+```
+./admin.sh demo pinkie
+./admin.sh demo webly
+./admin.sh demo goldly
+./admin.sh demo gorilla-ui
+
+./admin.sh demo goldly-example-datascience           
+./admin.sh demo pinkie            
+```
+
 
 
 
@@ -71,4 +80,25 @@ GUIX can create Docker Images that could be run in a KVM cluster.
  ./docker-exec.sh
  ./docker-stop.sh
 ```
+
+## guix bugs
+
+PYTHON env variable: if python3 is installed in host, this variable
+fucksup local apps thatuse python. I only install python in dev 
+profile. so should not be an issue. solution: unset python in bashrc
+or wait for update (which comes soon)
+
+tmux not working: language issue
+
+http://guix.gnu.org/en/packages/r-rserve-1.8-6/
+
+## pinkgorilla todo:
+
+goldly-example-datascience
+python demo has to be added
+r demo has to be made beautiful
+goldly needs an upgrade
+
+goldly-example-golf
+needs to be ported to goldly
 

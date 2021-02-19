@@ -3,15 +3,21 @@
 echo "guix: dev environment"
 export GUILE_LOAD_PATH=./scm:$GUILE_LOAD_PATH
 
+# R_HOME must be set so Rserve is found.
+# export R_HOME=$HOME/.guix-profile/lib/R
+export R_HOME=$(guix build r-minimal)/lib/R 
+
 guix environment \
-     --pure \
      --container \
      --preserve='^DISPLAY$' \
      --preserve='^TERM$' \
+     --preserve='^R_HOME$' \
      --network \
      --share=$HOME/pinkgorilla \
      --share=$HOME/.m2 \
      -m scm/manifests/dev.scm 
+
+#      --pure \
 
 # --expose is read-only
 # --share is read/write     

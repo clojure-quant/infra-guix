@@ -11,29 +11,21 @@ Interesting data-science links:
 https://elephly.net/posts/2015-04-17-gnu-guix.html. guix in clusters
 notebooks
 https://hpc.guix.info/ 
-
 https://hpc.guix.info/blog/2020/07/reproducible-research-hackathon-experience-report/
-
-
 https://hpc.guix.info/blog/2021/02/guix-hpc-activity-report-2020/
-
 https://news.ycombinator.com/item?id=14400697
 
-## python
+## python / jupyter
 https://github.com/pjotrp/guix-notes/blob/master/PYTHON.org
-
-## jupyter
 https://hpc.guix.info/blog/2021/01/guix-jupyter-0.2.1-released/
 https://hpc.guix.info/blog/2019/10/towards-reproducible-jupyter-notebooks/ reproduceable jupiter 
 https://gitlab.inria.fr/guix-hpc/guix-kernel/-/blob/master/guix/jupyter/containers.scm
 
 ## R
 https://github.com/pjotrp/guix-notes/blob/master/R.org
-https://gitlab.com/pjotrp/guix-notes/-/blob/master/R.org
 https://elephly.net/posts/2017-03-24-r-with-guix.html
-https://github.com/leibniz-psychology/guix-zpid/tree/master/zpid/packages
-channel with rstudio
-https://github.com/leibniz-psychology/guix-zpid
+channel with rstudio: https://github.com/leibniz-psychology/guix-zpid
+https://github.com/pjotrp/genable-R-shlibuix-notes/blob/master/R.org
 
 # node
 https://www.mail-archive.com/guix-commits@gnu.org/msg110479.html

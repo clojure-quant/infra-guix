@@ -38,12 +38,6 @@ ausearch -c '(x-daemon)' --raw | audit2allow -M my-xdaemon
  1018  sudo setenforce 0
  1019  sestatus
 
-# nuc
-https://willschenk.com/articles/2019/installing_guix_on_nuc/
-
-# linode
-https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
-
 # ui 
 
 xfce
@@ -56,7 +50,11 @@ dwm
 https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
 
 
-# Non x86 architecture
+# hardware architecture
+
+https://willschenk.com/articles/2019/installing_guix_on_nuc/
+
+https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
 
 https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
 

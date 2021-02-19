@@ -4,3 +4,4 @@ jar tf ~/.m2/repository/org/pinkgorilla/kernel-cljs-shadowdeps/0.0.12/kernel-clj
 
 jar tf ~/.m2/repository/org/pinkgorilla/gorilla-ui/0.2.10/gorilla-ui-0.2.10.jar
 
+jar tf ~/.m2/repository/org/pinkgorilla/goldly/0.2.1/goldly-0.2.3.jar

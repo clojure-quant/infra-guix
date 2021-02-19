@@ -80,10 +80,23 @@ demo () {
                    echo "running pinkie demo" ;;
             'webly')
                    echo "running webly demo" 
-                   lein demo ;;
+                   npm install & lein demo ;;
             'gorilla-ui')
                    echo "running gorilla-ui demo" 
                    npm install && lein demo ;;
+            'goldly')
+                   echo "running goldly demo" 
+                   npm install && lein shadow-compile && lein goldly ;;
+            'goldly-example-datascience')
+                   echo "running goldly-example-datascience demo" 
+                   #npm install && lein shadow-compile && 
+                   lein goldly ;;
+            'notebook-clj')
+                   echo "running notebook-clj demo" 
+                   #npm install && lein shadow-compile && 
+                   npm install
+                   lein build-prod
+                   lein notebook ;; 
             *)
                    echo "no demo command defined for repo: $reponame"
                    exit 0 ;;
@@ -109,6 +122,9 @@ help () {
   echo "guix package --list-installed"
   echo "guix package --list-profiles"
   echo "guix package --delete-generations"
+  echo ""
+  echo "available packages:"
+  echo $RepoNameArray
 }
 
 op=$1
