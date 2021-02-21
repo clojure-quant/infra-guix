@@ -12,10 +12,13 @@ guix environment \
      --preserve='^DISPLAY$' \
      --preserve='^TERM$' \
      --preserve='^R_HOME$' \
+     --preserve='^GUIX_LOCPATH$' \
      --network \
      --share=$HOME/pinkgorilla \
      --share=$HOME/.m2 \
      -m scm/manifests/dev.scm 
+
+## LOCPATH is important for tmux
 
 #      --pure \
 

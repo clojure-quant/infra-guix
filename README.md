@@ -51,6 +51,8 @@ Initial Install
 mkdir /home/pinkgorilla
 ./admin.sh gitclone pinkie
 ```
+
+To create the virtual environment
 ```
 ./dev-env.sh 
 
@@ -58,13 +60,19 @@ mkdir /home/pinkgorilla
 
 Inside the virtual environment:
 ```
+
+# Enduser Apps and Examples
+./admin.sh demo notebook-clj  
+./admin.sh demo goldly-example-datascience 
+
+# Developer Libraries
 ./admin.sh demo pinkie
 ./admin.sh demo webly
 ./admin.sh demo goldly
 ./admin.sh demo gorilla-ui
-
-./admin.sh demo goldly-example-datascience           
-./admin.sh demo pinkie            
+./admin.sh demo nrepl-middleware
+          
+          
 ```
 
 
@@ -81,18 +89,13 @@ GUIX can create Docker Images that could be run in a KVM cluster.
  ./docker-stop.sh
 ```
 
-## guix bugs
 
-PYTHON env variable: if python3 is installed in host, this variable
-fucksup local apps thatuse python. I only install python in dev 
-profile. so should not be an issue. solution: unset python in bashrc
-or wait for update (which comes soon)
-
-tmux not working: language issue
 
 http://guix.gnu.org/en/packages/r-rserve-1.8-6/
 
 ## pinkgorilla todo:
+
+nrepl-middleware: slow startup time (because of nrepl?)
 
 goldly-example-datascience
 python demo has to be added
@@ -102,3 +105,11 @@ goldly needs an upgrade
 goldly-example-golf
 needs to be ported to goldly
 
+## guix bugs
+
+PYTHON env variable: if python3 is installed in host, this variable
+fucksup local apps thatuse python. I only install python in dev 
+profile. so should not be an issue. solution: unset python in bashrc
+or wait for update (which comes soon)
+
+tmux not working: language issue

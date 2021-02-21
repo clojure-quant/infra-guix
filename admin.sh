@@ -76,6 +76,11 @@ demo () {
      echo "running demo for $reponame in path: $repodir"
      if [[ -n $GUIX_ENVIRONMENT ]]; then
          case $reponame in
+            'nrepl-middleware')
+                   echo "running nrepl-middleware" 
+                   #npm install && lein shadow-compile && 
+                   npm install
+                   lein demo ;;
             'pinkie')
                    echo "running pinkie demo" ;;
             'webly')
@@ -91,6 +96,9 @@ demo () {
                    echo "running goldly-example-datascience demo" 
                    #npm install && lein shadow-compile && 
                    lein goldly ;;
+            'notebook-ui')
+                   echo "running notebook-ui demo" 
+                   npm install && lein demo ;;
             'notebook-clj')
                    echo "running notebook-clj demo" 
                    #npm install && lein shadow-compile && 

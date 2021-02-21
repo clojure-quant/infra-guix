@@ -5,7 +5,8 @@
 
 (define p-linux 
   (list "coreutils" ; glibcc gcc bash 
-       "glibc-locales" ; all supported gnu clib locales (1 gig)
+       ;"glibc-locales" ; all supported gnu clib locales (1 gig)
+       "glibc-utf8-locales" ; small set of locales
        ;"direnv" google this
         "bash"
         "zsh"
@@ -110,6 +111,7 @@
         "glances"
         "htop"
         "emacs"
+        "emacs-spacemacs-theme"
         "neovim"
         "xclock" ;x test
   ))
