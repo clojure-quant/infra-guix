@@ -18,6 +18,7 @@
         "tmux" ; needed by byobu
         "byobu" ; tmux with better cofig
         "wget"
+        "openssh" ; required for git with ssh repos
         "git"
         "ncdu"
         "ncurses" ; clear

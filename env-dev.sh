@@ -16,6 +16,9 @@ guix environment \
      --network \
      --share=$HOME/pinkgorilla \
      --share=$HOME/.m2 \
+     --share="$HOME/.emacs.d" \
+     --expose=$HOME/.ssh \
+     --expose=$HOME/Documents/myLinux \
      -m scm/manifests/dev.scm 
 
 ## LOCPATH is important for tmux

@@ -93,17 +93,35 @@ GUIX can create Docker Images that could be run in a KVM cluster.
 
 http://guix.gnu.org/en/packages/r-rserve-1.8-6/
 
-## pinkgorilla todo:
+# pinkgorilla todo
 
-nrepl-middleware: slow startup time (because of nrepl?)
+notebook (features missing in notebook-clj):
+- cljs kernel
+- custom tailwind build
+- replikativ
+- tenx
+- 
+
+webly:
+- configuration totally declarative + simpler startup
+- document oauth2
+- better logging of wrapped handlers
+
+nrepl-middleware: 
+- relay disconnect: close session hack?
+- slow startup time (because of nrepl?)
+
+notebook-ui
+- unit tests via karma or npm ?
+
 
 goldly-example-datascience
-python demo has to be added
-r demo has to be made beautiful
-goldly needs an upgrade
+- python demo has to be added
+- r demo has to be made beautiful
+- goldly needs an upgrade
 
 goldly-example-golf
-needs to be ported to goldly
+- needs to be ported to goldly
 
 ## guix bugs
 
@@ -112,4 +130,3 @@ fucksup local apps thatuse python. I only install python in dev
 profile. so should not be an issue. solution: unset python in bashrc
 or wait for update (which comes soon)
 
-tmux not working: language issue

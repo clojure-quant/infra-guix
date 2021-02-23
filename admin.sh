@@ -4,7 +4,8 @@
 declare -a RepoNameArray=( \
 "pinkie" "gorilla-ui" \
 "webly" "goldly" "goldly-demo" "goldly-example-golf" "goldly-example-datascience" \
-"picasso"  "gorilla-explore" "notebook-ui" "notebook-encoding" "nrepl-middleware" "notebook-clj" \
+"picasso" "nrepl-middleware" \
+"notebook-encoding" "gorilla-explore" "notebook-ui" "notebook-clj" \
 "gorilla-plot" "python-gorilla"  "clojisr-gorilla" \
 "pink-gorilla.github.io" "lein-pinkgorilla" )
 
@@ -96,6 +97,10 @@ demo () {
                    echo "running goldly-example-datascience demo" 
                    #npm install && lein shadow-compile && 
                    lein goldly ;;
+            'gorilla-explore')
+                   echo "running notebook-explore demo" 
+                   #npm install && 
+                   lein demo ;;
             'notebook-ui')
                    echo "running notebook-ui demo" 
                    npm install && lein demo ;;
