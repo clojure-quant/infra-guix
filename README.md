@@ -130,3 +130,6 @@ fucksup local apps thatuse python. I only install python in dev
 profile. so should not be an issue. solution: unset python in bashrc
 or wait for update (which comes soon)
 
+
+GIT SSL: if guest os has ssl issue with git:
+git config --global http.sslverify false
