@@ -89,9 +89,25 @@ GUIX can create Docker Images that could be run in a KVM cluster.
  ./docker-stop.sh
 ```
 
-
-
 http://guix.gnu.org/en/packages/r-rserve-1.8-6/
+
+# pinkgorilla goals
+
+- get users or die
+- notebook viewer via kubernetes on pinkgorilla.org
+- docs (from md and reagent code) in viewer
+  explanatory videos   
+- notebook app jar (clj -fast startup, cljs optimized)  
+- notebook app via lein-pinkgorilla (cljs optimized)
+  the lein plugin allows to use custom libraries 
+
+# pinkgorilla philosophy
+
+- code high quality 
+  - mostly pure fuctions
+  - comments + documentation
+  - unit tests 
+
 
 # pinkgorilla todo
 
@@ -126,10 +142,17 @@ goldly-example-golf
 ## guix bugs
 
 PYTHON env variable: if python3 is installed in host, this variable
-fucksup local apps thatuse python. I only install python in dev 
+fucks up local apps that use python. I only install python in dev 
 profile. so should not be an issue. solution: unset python in bashrc
 or wait for update (which comes soon)
 
 
 GIT SSL: if guest os has ssl issue with git:
 git config --global http.sslverify false
+
+
+tmux:
+tmux: need UTF-8 locale (LC_CTYPE) but have ANSI_X3.4-1968
+guix environment --container --ad-hoc glibc-utf8-locales tmux …
+export GUIX_LOCPATH=$GUIX_ENVIRONMENT/lib/locale
+or use the option --preserve.
