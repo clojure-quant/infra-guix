@@ -32,6 +32,7 @@
   (list "icedtea"   ; open-jdk java
         "leiningen" ; nongnu downloads java-8 jar from github repo, v 2.9.5
         "clojure"   ; from gnu guix
+        "ungoogled-chromium"  ; karma js unit tests
   ))
 
 ; possibly add this channel too ?

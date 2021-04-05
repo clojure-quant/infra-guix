@@ -130,7 +130,10 @@ goldly-example-golf
 
 ## guix bugs
 
-/usr/bin/enc  karma test runner needs it. Create a symlink automatically
+/usr/bin/enc  
+karma test runner needs it. Create a symlink automatically
+fix: run ./env.sh after guix env is created.
+
 
 PYTHON env variable: if python3 is installed in host, this variable
 fucks up local apps that use python. I only install python in dev 
