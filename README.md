@@ -115,17 +115,6 @@ notebook (features missing in notebook-clj):
 - cljs kernel
 - custom tailwind build
 - replikativ
-- tenx
-- 
-
-webly:
-- configuration totally declarative + simpler startup
-- document oauth2
-- better logging of wrapped handlers
-
-nrepl-middleware: 
-- relay disconnect: close session hack?
-- slow startup time (because of nrepl?)
 
 notebook-ui
 - unit tests via karma or npm ?
@@ -140,6 +129,8 @@ goldly-example-golf
 - needs to be ported to goldly
 
 ## guix bugs
+
+/usr/bin/enc  karma test runner needs it. Create a symlink automatically
 
 PYTHON env variable: if python3 is installed in host, this variable
 fucks up local apps that use python. I only install python in dev 

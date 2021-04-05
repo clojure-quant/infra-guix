@@ -16,7 +16,7 @@
         "grep" ; needed by byobu
         "sed" ; needed by byobu
         "tmux" ; needed by byobu
-        "byobu" ; tmux with better cofig
+        "byobu" ; tmux with better config
         "wget"
         "openssh" ; required for git with ssh repos
         "git"

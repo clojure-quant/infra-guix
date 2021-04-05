@@ -18,6 +18,7 @@ guix environment \
      --share=$HOME/.m2 \
      --share="$HOME/.emacs.d" \
      --expose=$HOME/.ssh \
+     --expose=$HOME/.keystore \
      --expose=$HOME/Documents/myLinux \
      -m scm/manifests/dev.scm 
 
