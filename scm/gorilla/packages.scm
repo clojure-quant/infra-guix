@@ -117,6 +117,7 @@
         "emacs-spacemacs-theme"
         "neovim"
         "xclock" ;x test
+        "libreoffice"  ; libreoffice
   ))
 
 
