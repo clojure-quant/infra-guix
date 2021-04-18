@@ -16,6 +16,7 @@ guix environment \
      --network \
      --share=fish_prompt.fish=$HOME/.config/fish/functions/fish_prompt.fish \
      --share=config.fish=$HOME/.config/fish/config.fish \
+     --share=fish_variables=$HOME/.config/fish/fish_variables \
      --share=$HOME/pinkgorilla \
      --share=$HOME/.m2 \
      --share="$HOME/.emacs.d" \
