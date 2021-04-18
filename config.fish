@@ -5,5 +5,5 @@ echo Started dev environment
 
 ls "$GUIX_ENVIRONMENT/bin"
 
-node --version
+echo "node version" (node --version)
 java -version

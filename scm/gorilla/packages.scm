@@ -12,6 +12,7 @@
         "zsh"
         "zsh-autosuggestions"
         "fish"
+        "less" ; needed by fish history
         "which" ; needed by clojisr in --pure environment
         "grep" ; needed by byobu
         "sed" ; needed by byobu
