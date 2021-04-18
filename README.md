@@ -76,8 +76,6 @@ Inside the virtual environment:
 ```
 
 
-
-
 ## Docker 
 
 GUIX can create Docker Images that could be run in a KVM cluster.
@@ -91,42 +89,7 @@ GUIX can create Docker Images that could be run in a KVM cluster.
 
 http://guix.gnu.org/en/packages/r-rserve-1.8-6/
 
-# pinkgorilla goals
 
-- get users or die
-- notebook viewer via kubernetes on pinkgorilla.org
-- docs (from md and reagent code) in viewer
-  explanatory videos   
-- notebook app jar (clj -fast startup, cljs optimized)  
-- notebook app via lein-pinkgorilla (cljs optimized)
-  the lein plugin allows to use custom libraries 
-
-# pinkgorilla philosophy
-
-- code high quality 
-  - mostly pure fuctions
-  - comments + documentation
-  - unit tests 
-
-
-# pinkgorilla todo
-
-notebook (features missing in notebook-clj):
-- cljs kernel
-- custom tailwind build
-- replikativ
-
-notebook-ui
-- unit tests via karma or npm ?
-
-
-goldly-example-datascience
-- python demo has to be added
-- r demo has to be made beautiful
-- goldly needs an upgrade
-
-goldly-example-golf
-- needs to be ported to goldly
 
 ## guix bugs
 

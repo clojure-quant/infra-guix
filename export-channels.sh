@@ -1,1 +1,2 @@
-cat  ~/.config/guix/channels.scm  > channels.scm
+guix package --export-channels  > channels.scm
+cat channels.scm
