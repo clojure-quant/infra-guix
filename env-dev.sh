@@ -14,13 +14,18 @@ guix environment \
      --preserve='^R_HOME$' \
      --preserve='^GUIX_LOCPATH$' \
      --network \
+     --share=fish_prompt.fish=$HOME/.config/fish/functions/fish_prompt.fish \
+     --share=config.fish=$HOME/.config/fish/config.fish \
      --share=$HOME/pinkgorilla \
      --share=$HOME/.m2 \
      --share="$HOME/.emacs.d" \
      --expose=$HOME/.ssh \
      --expose=$HOME/.keystore \
      --expose=$HOME/Documents/myLinux \
-     -m scm/manifests/dev.scm 
+     -m scm/manifests/dev.scm \
+     -- fish
+
+
 
 ## LOCPATH is important for tmux
 
@@ -34,4 +39,4 @@ guix environment \
 
 
 #    --share=$HOME/pinkgorilla:$HOME/pinkgorilla \
-#     --load-path=./scm  this is bad - crwates packages for all scm files
+#     --load-path=./scm  this is bad - crw-eates packages for all scm files
