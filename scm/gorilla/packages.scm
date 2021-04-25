@@ -8,6 +8,7 @@
        ;"glibc-locales" ; all supported gnu clib locales (1 gig)
        "glibc-utf8-locales" ; small set of locales
        ;"direnv" google this
+       "the-silver-searcher" ; ag
         "bash"
         "zsh"
         "zsh-autosuggestions"
