@@ -9,6 +9,7 @@
        "glibc-utf8-locales" ; small set of locales
        ;"direnv" google this
        "the-silver-searcher" ; ag
+       "iputils" ; ping
         "bash"
         "zsh"
         "zsh-autosuggestions"
