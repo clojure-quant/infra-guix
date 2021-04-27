@@ -7,7 +7,9 @@ declare -a RepoNameArray=( \
 "picasso" "nrepl-middleware" \
 "notebook-encoding" "gorilla-explore" "notebook-ui" "notebook-clj" \
 "gorilla-plot" "python-gorilla"  "clojisr-gorilla" \
-"pink-gorilla.github.io" "lein-pinkgorilla" )
+"pink-gorilla.github.io" "lein-pinkgorilla"
+ "kernel-cljs-shadow" "kernel-cljs-shadowdeps"
+ )
 
 # "../quant/trateg" "../../gorilla" ../quant/trateg
 # "libpython-clj-examples"
