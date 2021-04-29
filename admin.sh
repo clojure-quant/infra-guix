@@ -3,10 +3,11 @@
 # Declare an array of string with type
 declare -a RepoNameArray=( \
 "pinkie" "gorilla-ui" \
-"webly" "goldly" "goldly-demo" "goldly-example-golf" "goldly-example-datascience" \
+"webly" 
+"goldly" "goldly-demo" "goldly-example-golf" "goldly-example-datascience" \
 "picasso" "nrepl-middleware" \
 "notebook-encoding" "gorilla-explore" "notebook-ui" "notebook-clj" \
-"gorilla-plot" "python-gorilla"  "clojisr-gorilla" \
+"gorilla-plot" "gorilla-python" "gorilla-clojisr" \
 "pink-gorilla.github.io" "lein-pinkgorilla"
  "kernel-cljs-shadow" "kernel-cljs-shadowdeps"
  )
