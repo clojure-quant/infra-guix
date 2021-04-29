@@ -21,6 +21,7 @@
         "tmux" ; needed by byobu
         "byobu" ; tmux with better config
         "wget"
+        "curl"
         "openssh" ; required for git with ssh repos
         "git"
         "ncdu"
