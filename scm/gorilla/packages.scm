@@ -27,9 +27,11 @@
         "ncdu"
         "ncurses" ; clear
         "rclone"
+        "nano"
         ;"idutils"
         "guile" 
         "hello"
+        "nss-certs" ; tls certificates
   ))
 
 (define p-clojure 
@@ -54,6 +56,19 @@
        "python-scipy" 
        "python-pandas"
        ;"python-setuptools
+       "python-yarl" ; for edgar
+       "python-certifi"
+       "python-tqdm"
+       "python-lxml"
+       "python-soupsieve"
+       "python-urllib3"
+       "python-beautifulsoup4"
+       "python-async-timeout"
+       "python-chardet"
+       "python-requests" 
+       "python-typing-extensions"
+       "python-attrs"
+       "python-aiohttp"
   ))
 
 ; possibly add this channel too ?

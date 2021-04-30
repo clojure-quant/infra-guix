@@ -1,6 +1,10 @@
 #!/bin/bash
 
 echo "guix: dev environment"
+export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
+export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+
 export GUILE_LOAD_PATH=./scm:$GUILE_LOAD_PATH
 
 # R_HOME must be set so Rserve is found.
