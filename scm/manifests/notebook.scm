@@ -2,9 +2,6 @@
              (gorilla guixutils))
 
 ;; guix package -m ./manifest.scm
-
-; another approach
-; this is perhaps better, as I dont need manifest+os
 ; guix environment -l guix-requirements.scm.
 ;https://unix.stackexchange.com/questions/621269/use-a-python-projects-requirements-txt-as-input-to-a-guix-package-definition?rq=1
 

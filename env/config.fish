@@ -8,4 +8,4 @@ ls "$GUIX_ENVIRONMENT/bin"
 echo "node version" (node --version)
 java -version
 
-./env.sh
+./env/env.sh

@@ -14,15 +14,16 @@ guix environment \
      --preserve='^R_HOME$' \
      --preserve='^GUIX_LOCPATH$' \
      --network \
-     --share=fish_prompt.fish=$HOME/.config/fish/functions/fish_prompt.fish \
-     --share=config.fish=$HOME/.config/fish/config.fish \
-     --share=fish_variables=$HOME/.config/fish/fish_variables \
-     --share=$HOME/pinkgorilla \
+     --share=env/fish_prompt.fish=$HOME/.config/fish/functions/fish_prompt.fish \
+     --share=env/config.fish=$HOME/.config/fish/config.fish \
+     --share=env/fish_variables=$HOME/.config/fish/fish_variables \
      --share=$HOME/.m2 \
+     --share=$HOME/.local/share/fish/fish_history \
      --share="$HOME/.emacs.d" \
      --expose=$HOME/.ssh \
      --expose=$HOME/.keystore \
      --expose=$HOME/Documents/myLinux \
+     --share=$HOME/pinkgorilla \
      -m scm/manifests/dev.scm \
      -- fish
 
