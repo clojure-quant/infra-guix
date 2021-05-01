@@ -107,3 +107,6 @@ If the term "container" makes you think of Docker, note that this is something d
 
 
 1:17 AM <terpri> (info "(guix) Invoking guix environment") shows how to change the prompt on foreign distros (it's just based on $GUIX_ENVIRONMENT existing)
+
+
+https://github.com/guix-mirror/guix
