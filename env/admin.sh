@@ -4,7 +4,8 @@
 declare -a RepoNameArray=( \
 "pinkie" "gorilla-ui" \
 "webly" 
-"goldly" "goldly-demo" "goldly-example-golf" "goldly-example-datascience" \
+"goldly" "goldly-server" 
+"goldly-example-datascience" \
 "picasso" "nrepl-middleware" \
 "notebook-encoding" "gorilla-explore" "notebook-ui" "notebook-clj" \
 "gorilla-plot" "gorilla-python" "gorilla-clojisr" \
