@@ -4,10 +4,10 @@
 declare -a RepoNameArray=( \
 "pinkie" "gorilla-ui" \
 "webly" 
-"goldly" "goldly-server" 
+"goldly" "goldly-bundel" 
 "goldly-example-datascience" \
 "picasso" "nrepl-middleware" \
-"notebook-encoding" "gorilla-explore" "notebook-ui" "notebook-clj" \
+"notebook-encoding" "gorilla-explore" "notebook-ui" "notebook-bundel" \
 "gorilla-plot" "gorilla-python" "gorilla-clojisr" \
 "pink-gorilla.github.io" "lein-pinkgorilla"
  "kernel-cljs-shadow" "kernel-cljs-shadowdeps"
@@ -24,7 +24,7 @@ declare -a RepoNameArray=( \
 # ui-geschichte clojurewb ui-graph ui-shapes fortune nextjournal 
 # punk2 unnecessarily-3d-clock gg4clj                                                   
 # haunting-refrain-posh quil-examples
-# integrator notebook-junk sente "sample-notebooks"
+# integrator notebook-junk "sample-notebooks"
 
 main="$HOME/pinkgorilla"
 
