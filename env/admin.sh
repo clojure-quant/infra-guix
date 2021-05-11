@@ -7,10 +7,11 @@ declare -a RepoNameArray=( \
 "goldly" "goldly-bundel" 
 "goldly-example-datascience" \
 "picasso" "nrepl-middleware" \
-"notebook-encoding" "gorilla-explore" "notebook-ui" "notebook-bundel" \
-"gorilla-plot" "gorilla-python" "gorilla-clojisr" \
+"notebook-encoding" "gorilla-explore" 
+"notebook" "notebook-bundel" \
 "pink-gorilla.github.io" "lein-pinkgorilla"
- "kernel-cljs-shadow" "kernel-cljs-shadowdeps"
+"gorilla-plot" "gorilla-python" "gorilla-clojisr" \
+"kernel-cljs-shadow" "kernel-cljs-shadowdeps"
  )
 
 # "../quant/trateg" "../../gorilla" ../quant/trateg
