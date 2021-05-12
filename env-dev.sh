@@ -28,6 +28,7 @@ guix environment \
      --expose=$HOME/.keystore \
      --expose=$HOME/Documents/myLinux \
      --share=$HOME/pinkgorilla \
+     --share=$HOME/quant \
      -m scm/manifests/dev.scm \
      -- fish
 
