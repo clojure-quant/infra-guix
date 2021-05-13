@@ -13,6 +13,8 @@ export R_HOME=$(guix build r-minimal)/lib/R
 
 guix environment \
      --container \
+     --preserve='^CLOJARS_USERNAME$' \
+     --preserve='^CLOJARS_PASSWORD$' \
      --preserve='^DISPLAY$' \
      --preserve='^TERM$' \
      --preserve='^R_HOME$' \
