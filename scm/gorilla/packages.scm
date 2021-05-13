@@ -32,6 +32,13 @@
         "guile" 
         "hello"
         "nss-certs" ; tls certificates
+        "tar"
+        "tarlz"
+        "gzip"
+        "ranger" ; directory explorer
+        "mc"
+        "glances"
+        "htop"
   ))
 
 (define p-clojure 
@@ -39,7 +46,9 @@
         "openjdk"
         "fastjar" ; java "jar" app
         "leiningen" ; nongnu downloads java-8 jar from github repo, v 2.9.5
-        "clojure"   ; from gnu guix
+        ;"clojure"   ; from gnu guix
+        "rlwrap"
+        "clojure-tools-cli"
         "ungoogled-chromium"  ; karma js unit tests
   ))
 
@@ -129,10 +138,6 @@
 (define p-desktop 
   (list "xdot" ; graphviz .dot viewer needed for guix graph
         "syncthing-gtk" 
-        "ranger" ; directory explorer
-        "mc"
-        "glances"
-        "htop"
         "emacs"
         "emacs-spacemacs-theme"
         "neovim"
