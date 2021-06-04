@@ -50,6 +50,7 @@
         "rlwrap"
         "clojure-tools-cli"
         "ungoogled-chromium"  ; karma js unit tests
+        "graphviz" ;  dependency graphs
   ))
 
 ; possibly add this channel too ?
