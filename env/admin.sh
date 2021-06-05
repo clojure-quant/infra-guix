@@ -2,15 +2,12 @@
 
 # Declare an array of string with type
 declare -a RepoNameArray=( \
-"pinkie" "gorilla-ui" \
-"webly" 
-"goldly" "goldly-bundel" 
+"pinkie" "picasso" "nrepl-middleware" \
+"webly" "goldly" \
+"notebook-encoding" "gorilla-explore" "notebook" \
+"ui-vega" "ui-code" "ui-site" "ui-markdown" "ui-repl" "ui-binary-clock" "ui-quil" "gorilla-ui"  \
 "goldly-example-datascience" \
-"picasso" "nrepl-middleware" \
-"notebook-encoding" "gorilla-explore" 
-"notebook" "notebook-bundel" \
-"pink-gorilla.github.io" "lein-pinkgorilla"
-"gorilla-plot" "gorilla-python" "gorilla-clojisr" \
+"pink-gorilla.github.io" "gorilla-python" "gorilla-clojisr" \
 "kernel-cljs-shadow" "kernel-cljs-shadowdeps"
  )
 
