@@ -14,7 +14,8 @@
 ; https://github.com/alezost/guix-config/blob/master/modules/al/guix/utils.scm
 
 
-(->manifests p-dev)
+;(->manifests p-dev)
 
 ;(->manifests (cons r-maximal p-dev ))
 
+(specifications->manifest p-dev)

@@ -44,7 +44,11 @@
 (define p-clojure 
   (list ;"icedtea"   ; open-jdk java
         "openjdk"
+        ;(list "openjdk" "jdk" "doc" "out")
+        "openjdk:doc"  ; doc output of openjdk - needed by cider/orchard
+        "openjdk:jdk"
         "fastjar" ; java "jar" app
+        "java-qdox" 
         "leiningen" ; nongnu downloads java-8 jar from github repo, v 2.9.5
         ;"clojure"   ; from gnu guix
         "rlwrap"
