@@ -28,6 +28,8 @@
         "ncurses" ; clear
         "rclone"
         "nano"
+        "findutils" ; find
+        "mlocate"  ; locate == whereis
         ;"idutils"
         "guile" 
         "hello"
