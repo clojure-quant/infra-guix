@@ -58,6 +58,7 @@
         "clojure-tools-cli"
         "ungoogled-chromium"  ; karma js unit tests
         "graphviz" ;  dependency graphs
+        "babashka" ; channel guiliani
   ))
 
 ; possibly add this channel too ?

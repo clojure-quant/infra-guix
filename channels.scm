@@ -3,11 +3,13 @@
 ;; used to populate this profile.
 
 (list
+     ;; Note: these other commits were also used to install some of the packages in this profile:
+     ;;   "131265ea3a3d71c3b430bce6bb2d428cc1a2a4fa"
      (channel
        (name 'guix)
        (url "https://git.savannah.gnu.org/git/guix.git")
        (commit
-         "131265ea3a3d71c3b430bce6bb2d428cc1a2a4fa")
+         "f09e4dd8ea6b86ecbae9c90e0316f6fa44b546d6")
        (introduction
          (make-channel-introduction
            "9edb3f66fd807b096b48283debdcddccfea34bad"
