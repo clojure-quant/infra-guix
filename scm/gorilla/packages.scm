@@ -41,6 +41,8 @@
         "mc"
         "glances"
         "htop"
+        "make"
+        "gcc-toolchain"
   ))
 
 (define p-clojure 
