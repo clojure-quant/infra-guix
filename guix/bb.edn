@@ -1,0 +1,31 @@
+{:paths ["script"]
+ :tasks {:requires [guix]
+
+         ; helper tasks
+         sudo (guix/sudo *command-line-args*)
+         guix (guix/guix)
+         describe (guix/guix "describe")
+
+         channels-florian (guix/guix "describe")
+         channels-root (guix/sudo "describe")
+
+         build-image-nuc-user (guix/build "reconfigure" "nuc")
+         build-image-nuc (guix/sudo "build-image-nuc-user")
+
+         manifest-florian (shell "cat" "/home/florian/.config/guix/current/manifest")
+         manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
+         set-channels! (shell "./install-channels-" "describe")
+
+         build-pine (guix/build "image" "pinephone")
+         ; build-rock (guix/build "image" "rock1")
+         build-rock (guix/image "rock1"
+                                ;"--system=aarch64-linux"
+                                "--image-size=8G")
+         build-rock-install (guix/image
+                             "--system=aarch64-linux"
+                             "-e"
+                             "(@ (gnu system install) rock64-installation-os)")
+
+
+ ;
+         }}

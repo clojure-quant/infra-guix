@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Jitsi Meet
+Exec=/gnu/store/5rm65hybqwxzyhnqw92bm92lk9mzm6lm-ungoogled-chromium-94.0.4606.81-1/lib/chromium --profile-directory=Default --app-id=ngnppoekbepeohkepoefoopjppeojhff
+Icon=chrome-ngnppoekbepeohkepoefoopjppeojhff-Default
+StartupWMClass=crx_ngnppoekbepeohkepoefoopjppeojhff

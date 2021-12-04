@@ -1,0 +1,37 @@
+(use-modules      
+              (shepherd service) 
+             (mcron scripts mcron)
+             (mcron base)
+             (mcron config)
+             (mcron job-specifier)    ; For user/system files.
+             (mcron utils)
+             (mcron vixie-specification)
+             (mcron core)
+            (guix) (gnu) (gnu services mcron))
+
+            
+(use-package-modules base idutils)
+
+
+
+
+
+
+(define myservice-cron
+   (service mcron-service-type
+       (mcron-configuration
+          (jobs (list 
+                   hello-job1
+                  ; hello-job3
+                 ;guix-reconfigure-job
+           )))))
+
+
+
+(register-services myservice-cron)
+(start myservice-cron)
+
+
+
+
+
