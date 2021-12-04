@@ -1,19 +1,24 @@
 (use-modules 
-(gnu)
-(gnu packages suckless)
-(gnu packages wm)
-(gnu packages shells) ; zsh
-(gnu services networking) ; ntpd
-(gnu system images rock64)
-(gnu bootloader u-boot)
-(gnu packages linux)
-(gnu image)
-(srfi srfi-26)
-(gnu platforms arm)
-(gnu system image)
-(gnu packages shells) ; zsh
-(gnu services networking) ; ntpd
-)
+  (gnu)
+  (gnu packages suckless)
+  (gnu packages wm)
+  (gnu packages shells) ; zsh
+  (gnu services networking) ; ntpd
+  (gnu system images rock64)
+  (gnu bootloader u-boot)
+  (gnu packages linux)
+  (gnu image)
+  (srfi srfi-26)
+  (gnu platforms arm)
+  (gnu system image)
+  (gnu packages shells) ; zsh
+  (gnu services networking) ; ntpd
+  ; awb99
+  (awb99 config users)
+  ;(awb99 config ssh)
+  )
+
+(use-modules (awb99 config users))
            
 ;  (use-service-modules x y …) is just syntactic sugar for (use-modules (gnu services x) (gnu services y) …)
 (use-service-modules desktop networking ssh xorg mcron certbot web)
@@ -83,39 +88,10 @@
       %base-packages))
 
 
-(define my-groups
-(cons* 
-   (user-group 
-      (system? #f) 
-      (name "bongotrotters"))
-    %base-groups))
-
-(define my-users
-(cons* 
-  (user-account
-    (name "florian")
-    (comment "Florian")
-    (group "users")
-    (home-directory "/home/florian")
-    ;(shell (file-append fish "/bin/fish"))
-   ; (identity "/home/florian/repo/myLinux/data/ssh/coin")
-    (supplementary-groups
-    '("wheel" 
-      "netdev" 
-      "audio" 
-      "video"
-    )))
-  (user-account
-    (name "bob")
-    (comment "Alice's bro")
-    (group "users")
-    (home-directory "/home/robert")
-    (shell (file-append zsh "/bin/zsh")))
-  %base-user-accounts))
-
 (define services2 
   (append 
     (list (service dhcp-client-service-type)
+        ;  awb99-ssh-service
          ; (service openssh-service-type
          ;   (openssh-configuration
          ;     (x11-forwarding? #t)
@@ -137,8 +113,8 @@
     (locale "en_US.utf8")
   ; (keyboard-layout (keyboard-layout "us" "altgr-intl"))
     (keyboard-layout (keyboard-layout "at"))
-    (groups my-groups)
-    (users my-users)
+    (groups mygroups)
+    (users myusers)
    ; (packages my-packages)
     (services services2)
     (kernel linux-libre-arm64-generic)

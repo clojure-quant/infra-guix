@@ -6,6 +6,6 @@
 echo "GUIX REPL"
 
 guix repl \
-   ./scm/system/nuc2.scm \
-   --load-path=/home/florian/repo/myLinux/distros/guix/modules
+   ./modules/awb99/config/users.scm \
+   --load-path=./modules
    
