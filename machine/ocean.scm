@@ -1,8 +1,8 @@
 (use-modules
    (gnu services admin)
    (gnu packages)
-   (gorilla util)
-   (gorilla install clojure)
+   (awb99 util)
+   (awb99 install clojure)
    (awb99 system server)
    )
 

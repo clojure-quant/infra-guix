@@ -11,10 +11,9 @@
          ; 2 is similar to 1 but it additionally displays download URLs
          ; 3 shows all the build log output on standard error.
 
-         channel-install {:doc "installs channels"
-                          :task (guix/pull "channels")}
-
-        ; packages
+        ; install
+         install-channels {:doc "installs channels"
+                           :task (guix/pull "channels")}
          install-desktop {:doc "installs desktop packages"
                           :task (guix/package "desktop"
                                               "--verbosity=1"
@@ -25,20 +24,26 @@
              :task (do (println "guix garbage collect..")
                        (guix/guix "gc" "--optimize" "-d" "2m")
                        (guix/guix "gc" "-F" "200G"))}
-         pull (do (println "guix pull..")
-                  (guix/guix "pull"))
-         update {:doc "Updates guix " ;; ensure sequential order 
-                 :task (do (run 'gc)
-                           (run 'pull))}
-
-
+         pull {:doc "guix pull (update package definitions)"
+               :task  (do (println "guix pull..") 
+                         (guix/guix "pull"
+                                    ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
+                                    (str "--channels=" "./channels.scm")
+                                    "--verbosity=3"))}
+         upgrade {:doc "guix upgrade installed packages"
+                  :task (do (println "guix upgrade packages..")
+                            (guix/guix "upgrade"))}
+         update {:doc "Updates guix (gc pull upgrade)" ; ensure sequential order 
+                 :task (do ;(run 'gc)
+                           (run 'pull)
+                           (run 'upgrade))}
 
 
         ; build
-         image-types (guix/guix "system" "--list-image-types")
-         build-image-nuc-user (guix/build "reconfigure" "nuc")
-         build-image-nuc {:doc "builds image for nuc"
-                          :task (guix/sudo "build-image-nuc-user")}
+         build-nuc-user (guix/build "reconfigure" "nuc")
+         build-nuc {:doc "builds image for nuc"
+                          :task (do (guix/sudo "build-nuc-user")
+                                    (guix/guix "system" "describe"))}
          ; build-rock (guix/build "image" "rock1")
          build-rock {:doc "builds an image for pine/rock-pro"
                      :task (guix/image "rock1"
@@ -74,6 +79,7 @@
          show-channels-root (guix/sudo "describe")
          show-manifest (shell "cat" "/home/florian/.config/guix/current/manifest")
          show-manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
+         show-image-types (guix/guix "system" "--list-image-types")
         ; size
          size-clojure {:doc "size of clojure"
                        :task (do (println "guix size clojure..")
@@ -83,6 +89,6 @@
                        :task (do (println "guix size desktop..")
                                  (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
 
-         graph-clojure (guix/graph "clojure")
+         graph-clojure (guix/graph "clojure") ; this does not work yet.
  ;
          }}

@@ -5,9 +5,9 @@
              (gnu packages finance)  ; trezord-udev-rules
              (gnu services web)
              (gnu packages logging) ; tailon
-             (gorilla config cron)
-             (gorilla services special-files)
-             (gorilla services trezord-debug)
+             (awb99 config cron)
+             (awb99 services special-files)
+             (awb99 services trezord-debug)
              (awb99 services nginx)
              (awb99 config mail)
             )

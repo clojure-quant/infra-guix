@@ -8,7 +8,7 @@
 
 (use-modules (gnu)
              (gnu services admin) ; unattended upgrades
-             (gorilla services special-files)
+             (awb99 services special-files)
              (awb99 config mail)
              )
 

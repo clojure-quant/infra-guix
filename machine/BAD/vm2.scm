@@ -11,7 +11,7 @@
              (gnu packages shells) ; zsh
              (gnu packages finance)  ; trezord-udev-rules
              (awb99 services trezord)
-             (gorilla services networking)
+             (awb99 services networking)
              )
 
 (use-service-modules       

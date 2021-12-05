@@ -12,7 +12,7 @@
   (gnu services networking) ; ntpd
   (gnu services virtualization) ; qemu
   
-(awb99 services trezord)
+  (awb99 services trezord)
   (awb99 services special-files)
   (awb99 config cron)
   (awb99 config iptables))
@@ -238,9 +238,6 @@
             (specification->package "docker")   
 
             (specification->package "iptables")   
-
-
-
 
       )
       %base-packages))

@@ -4,7 +4,7 @@
              (gnu packages wm)
              (gnu packages finance)  ; trezord-udev-rules
              (gnu packages shells) ; zsh
-             (gorilla config cron)
+             (awb99 config cron)
              (awb99 config guix-daemon)
              )
              
