@@ -40,11 +40,29 @@
 
 
         ; build
-         build-nuc-user (guix/build "reconfigure" "nuc")
+         build-nuc-user (guix/system "reconfigure" "nuc")
          build-nuc {:doc "builds image for nuc"
                           :task (do (guix/sudo "build-nuc-user")
                                     (guix/guix "system" "describe"))}
-         ; build-rock (guix/build "image" "rock1")
+
+         build-vm {:doc "builds vm-image to be run with qemu"
+           :task (do (println "building vm image..")
+                     (guix/system "vm"
+                                  "vm-terminal"
+                                   "--verbosity=3" 
+                                  "--no-grafts"))}
+
+        build-ocean {:doc "builds digital-ocean image and deploys it" 
+                    ; https://stumbles.id.au/getting-started-with-guix-deploy.html
+                    ; cfdisk, select the /dev/vda2 root partition, select "Resize", "Write" and type "yes". 
+                    ; Then resize the filesystem to match by running resize2fs /dev/vda2.
+                     :task (do (println "builing/deploying digital-ocean image..")
+                               (guix/guix "deploy"
+                                          "./machine/ocean.scm"
+                                          "--verbosity=3"
+                                          "--no-grafts"))}
+
+         ; build-rock (guix/system "image" "rock1")
          build-rock {:doc "builds an image for pine/rock-pro"
                      :task (guix/image "rock1"
                                        "--system=aarch64-linux"
@@ -90,5 +108,6 @@
                                  (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
 
          graph-clojure (guix/graph "clojure") ; this does not work yet.
+         guix-repl (guix/guix "repl")
  ;
          }}

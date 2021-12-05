@@ -38,7 +38,7 @@
     (println "guix package args: " full-args)
     (apply guix "package" full-args)))
 
-(defn build
+(defn system
   [task name]
   (let [filename (str "./machine/" name ".scm")]
     (guix "system" task filename "--image-size=50G")))
@@ -48,13 +48,6 @@
   (let [filename (str "./machine/" name ".scm")
         full-args (concat args [filename])]
      (println "args: " full-args)
-    (apply guix "system" "image" full-args)))
-
-(defn image
-  [name & args]
-  (let [filename (str "./machine/" name ".scm")
-        full-args (concat args [filename])]
-    (println "args: " full-args)
     (apply guix "system" "image" full-args)))
 
 
