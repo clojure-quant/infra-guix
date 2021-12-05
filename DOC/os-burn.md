@@ -24,7 +24,7 @@ wget https://ftp.gnu.org/gnu/guix/guix-binary-1.3.0.armhf-linux.tar.xz
 
 # guix rock-pro
 lsblk -a
-sudo dd if=/gnu/store/k5sjmjiv366snxix098lnsf3ljj4yn09-disk-image of=/dev/mmcblk0 bs=4M
+sudo dd if=/gnu/store/vxx37ailmi9kxrqfm6hpj3jp281bj3rl-disk-image of=/dev/mmcblk0 bs=4M
 
 # guix pinephone
 lsblk -a

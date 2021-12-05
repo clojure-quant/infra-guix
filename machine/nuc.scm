@@ -6,11 +6,15 @@
   (gnu packages finance)  ; trezord-udev-rules
   (gnu packages shells) ; zsh
   (gnu packages docker) ; docker
+  
+  (gnu services base) ; mingetty 
   (gnu services docker) ; docker service
   (gnu services networking) ; ntpd
-  (gorilla services trezord)
-  (gorilla services special-files)
-  (gorilla config cron)
+  (gnu services virtualization) ; qemu
+  
+(awb99 services trezord)
+  (awb99 services special-files)
+  (awb99 config cron)
   (awb99 config iptables))
              
 ;  (use-service-modules x y …) is just syntactic sugar for (use-modules (gnu services x) (gnu services y) …)
@@ -78,8 +82,13 @@
       (mcron-configuration
         (jobs %guix-maintenance-jobs)))
 
-    (service trezord-service-type
-      (trezord-configuration))
+;    (service trezord-service-type
+;      (trezord-configuration))
+
+    (service qemu-binfmt-service-type
+      (qemu-binfmt-configuration
+        (platforms (lookup-qemu-platforms "arm" "aarch64"))))
+
 
     service-bin-links
 

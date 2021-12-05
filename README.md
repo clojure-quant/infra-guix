@@ -1,15 +1,12 @@
 # pinkgorilla infra-guix
 
-GNU GUIX is a package manager and/or an operating system.
-Configuration is done in Guile (Scheme) scripts.
-For GUIX installation see DOCS/GUIX-INSTALL.
+GNU GUIX is a package manager and/or an operating system that is configured via Guile (Scheme).
+For GUIX installation see DOCS/foreign.md
 
-For a reproduceable build two things are needed:
-- channel config: the repository setup. We use nonfree which is
-not included in standard gux. For each channel the git commit 
-defines the version of the packages that are used.
-- package config: This is done in scm/gorilla/packages.scm
-  
+## requirements
+
+- guix installed (package manager (guix foreign) or guix operating system)
+- babashka
 
 
 ## GUIX App bundle
@@ -180,3 +177,12 @@ gsettings-compile-schema, use glib:bin
 -*- apteryx laughs
 <apteryx> or perhaps s/windows/legacy systems/
 
+
+
+
+{:tasks {a 1 b {:depends [a] :task (inc a)}}}
+13:30 Uhr
+$ bb run --prn a
+1
+$ bb run --prn b
+2

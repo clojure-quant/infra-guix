@@ -4,7 +4,6 @@
          ; helper tasks
          sudo (guix/sudo *command-line-args*)
          guix (guix/guix)
-         describe (guix/guix "describe")
 
          ; verbosity:
          ; 0 means that no output is produced
@@ -13,66 +12,77 @@
          ; 3 shows all the build log output on standard error.
 
          channel-install {:doc "installs channels"
-                          :task (guix/pull "channels" "--verbosity=3")}
-
-         channels-export (guix/guix "package" "--export-channels")
-         channels-florian (guix/guix "describe")
-         channels-root (guix/sudo "describe")
-         set-channels! (shell "./install-channels-" "describe")
+                          :task (guix/pull "channels")}
 
         ; packages
          install-desktop {:doc "installs desktop packages"
-                          :task (guix/package "desktop" 
+                          :task (guix/package "desktop"
                                               "--verbosity=1"
-                                              "--no-grafts"
-                                              )}
-
-
-         manifest-florian (shell "cat" "/home/florian/.config/guix/current/manifest")
-         manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
+                                              "--no-grafts")}
 
          ; guix maintenance
          gc {:doc "guix garbage collect"
              :task (do (println "guix garbage collect..")
                        (guix/guix "gc" "--optimize" "-d" "2m")
-                       (guix/guix "gc" "-F" "200G" ))}
+                       (guix/guix "gc" "-F" "200G"))}
          pull (do (println "guix pull..")
                   (guix/guix "pull"))
          update {:doc "Updates guix " ;; ensure sequential order 
                  :task (do (run 'gc)
                            (run 'pull))}
 
-        ; size
-        size-clojure {:doc "size of clojure"
-                      :task (do (println "guix size clojure..")
-                                (guix/guix "size" "clojure"))}
-       ; guix size $(guix system build os.scm)
-       size-desktop {:doc "size of desktop"
-                     :task (do (println "guix size desktop..")
-                                (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
+
 
 
         ; build
          image-types (guix/guix "system" "--list-image-types")
          build-image-nuc-user (guix/build "reconfigure" "nuc")
-         build-image-nuc (guix/sudo "build-image-nuc-user")
+         build-image-nuc {:doc "builds image for nuc"
+                          :task (guix/sudo "build-image-nuc-user")}
          ; build-rock (guix/build "image" "rock1")
-         build-rock (guix/image "rock1"
-                                ;"--system=aarch64-linux"
-                               ; "--target=aarch64-linux"
+         build-rock {:doc "builds an image for pine/rock-pro"
+                     :task (guix/image "rock1"
+                                       "--system=aarch64-linux"
+                               ; "--target=aarch64-linux-gnu"     "--target=aarch64-linux" ; cross-compilation via qemu
                                ; "--image-size=8G"
-                                "--image-type=rock64-raw"
-                                "--no-grafts")
+                                       "--image-type=rock64-raw"
+                                       "--no-grafts")}
+
+        ; guix system image -t rock64-raw --system=aarch64-linux -e "(@ (gnu system install) rockpro64-installation-os)"
+         build-rock-installer {:doc "builds guix installer-image for pine/rock-pro"
+                               :task (guix/guix "system" "image"
+                                                "--no-grafts"
+                                                "-t" "rock64-raw"
+                                       ;  "--system=aarch64-linux" 
+                                        ; "--target=aarch64-linux" ; cross-compilation via qemu
+                                                "--target=aarch64-linux-gnu" ; cross-compilation via qemu
+                                                "-e" "(@ (gnu system install) rockpro64-installation-os)")}
+
+         ; image --image-type=pine64-raw my-pine-os.scm
          build-pine (guix/image "pinephone"
                                 "--image-type=pine64-raw"
                                 "--no-grafts")
 
 
-         build-rock-install (guix/image
-                             "--system=aarch64-linux"
-                             "-e"
-                             "(@ (gnu system install) rock64-installation-os)")
+         ; environment (guix/guix "environment")
+         environment-openjdk-11 (guix/guix "environment" "--ad-hoc" "openjdk@11")
 
 
+         ; show
+         channels-export (guix/guix "package" "--export-channels")
+         show-channels (guix/guix "describe")
+         show-channels-root (guix/sudo "describe")
+         show-manifest (shell "cat" "/home/florian/.config/guix/current/manifest")
+         show-manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
+        ; size
+         size-clojure {:doc "size of clojure"
+                       :task (do (println "guix size clojure..")
+                                 (guix/guix "size" "clojure"))}
+       ; guix size $(guix system build os.scm)
+         size-desktop {:doc "size of desktop"
+                       :task (do (println "guix size desktop..")
+                                 (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
+
+         graph-clojure (guix/graph "clojure")
  ;
          }}
