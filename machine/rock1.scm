@@ -14,17 +14,17 @@
   (gnu packages shells) ; zsh
   (gnu services networking) ; ntpd
   ; awb99
+  (awb99 config helper)
   (awb99 config users)
-  ;(awb99 config ssh)
+  (awb99 config ssh)
   )
 
-(use-modules (awb99 config users))
            
 ;  (use-service-modules x y …) is just syntactic sugar for (use-modules (gnu services x) (gnu services y) …)
 (use-service-modules desktop networking ssh xorg mcron certbot web)
 (use-service-modules networking ssh)
 (use-package-modules certs rsync screen ssh)
-         
+
 
 ; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
 ; https://guix.gnu.org/de/blog/2019/guix-on-an-arm-board/
@@ -56,46 +56,58 @@
    desktop-services
    ))
 
-  (define my-packages
-  (append
-      (list (specification->package "nss-certs")
- 
-            (specification->package "xrandr") ; hidpi x-windows scaling
+(define extra-packages
+  (->packages-output
+    (list ;"openssh"
+       ;  "dropbear"
+           "openssh-sans-x"
+           "git"
+         ; "xfce4-screensaver"
+         ; "xfce4-systemload-plugin"
+         ; "xfce4-mount-plugin"
+         ; "xfce4-panel"
+         ; "garcon" ; menu manager
+         ; "xfce4-places-plugin"
+         ; "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps,
+          ; allowing them to open file chooser dialogs, open links, et.c.
+          ; xfce4-power-manager       ** add this
+          ; xfce4-pulseaudio-plugin   
+          ; xfce4-whiskermenu-plugin
+          ; xfce4-settings
+          ; xfce4-screenshooter
+          ; elementary-xfce-icon-theme
+        ; shells used in user profiles need to be on system
+        ;"fish"
+       ; "zsh"
+    )))
 
-             ; xfce
-            (specification->package "xfce4-screensaver")    
-            (specification->package "xfce4-systemload-plugin")  
-            (specification->package "xfce4-mount-plugin") 
-            (specification->package "xfce4-panel") 
-            (specification->package "garcon") ; menu manager
-            (specification->package "xfce4-places-plugin")
-            (specification->package "xdg-desktop-portal") 
-            ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps,
-            ; allowing them to open file chooser dialogs, open links, et.c.
-                                
-            ; xfce4-power-manager       ** add this
-            ; xfce4-pulseaudio-plugin   
-            ; xfce4-whiskermenu-plugin
-            ; xfce4-settings
-            ; xfce4-screenshooter
-            ; elementary-xfce-icon-theme
-          
-           ; shells used in user profiles need to be on system
-            (specification->package "fish")
-            (specification->package "zsh")
 
-      )
-      %base-packages))
+(display "extra packages:")
+(display extra-packages)
+
+(define my-packages
+  (append extra-packages
+          %base-packages))
+
+(define awb99-ssh-service
+  (service openssh-service-type
+         awb99-ssh-config
+        ))
+
 
 
 (define services2 
   (append 
     (list (service dhcp-client-service-type)
-        ;  awb99-ssh-service
-         ; (service openssh-service-type
-         ;   (openssh-configuration
-         ;     (x11-forwarding? #t)
-         ;     (extra-content "StreamLocalBindUnlink yes")))
+          awb99-ssh-service
+        ;(service dropbear-service-type
+        ;(dropbear-configuration
+        ; (root-login? #t)
+        ; (allow-empty-passwords? #t)))
+        ;  (service openssh-service-type
+        ;    (openssh-configuration
+        ;      (x11-forwarding? #t)
+        ;      (extra-content "StreamLocalBindUnlink yes")))
          ; (service agetty-service-type
          ;   (agetty-configuration
          ;     (extra-options '("-L")) ; no carrier detect
@@ -115,7 +127,8 @@
     (keyboard-layout (keyboard-layout "at"))
     (groups mygroups)
     (users myusers)
-   ; (packages my-packages)
+    (packages my-packages)
+    ;(packages (cons* openssh %base-packages)) ; wpa-supplicant-minimal 
     (services services2)
     (kernel linux-libre-arm64-generic)
     (kernel-arguments 
@@ -130,7 +143,8 @@
     (bootloader 
       (bootloader-configuration
        (bootloader u-boot-rockpro64-rk3399-bootloader)
-       (targets '("/dev/mmcblk0"))))  ; "/dev/sda"   "/dev/mmcblk0p1" "/dev/mmcblk1" "/dev/mmcblk0"
+       (targets '("/dev/mmcblk1")))) ; "/dev/mmcblk0"
+       ; "/dev/sda"   "/dev/mmcblk0p1"  "/dev/mmcblk0"
     (file-systems
       (cons ; cons* 
         (file-system
@@ -173,4 +187,4 @@
  (name 'rock64-raw-image)))
 
 rock64-raw-image
-; rock64-os
+rock64-os

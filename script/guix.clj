@@ -4,7 +4,7 @@
 (defn extra-path-env [var extra]
   (let [current (System/getenv var)
         appended (str current ":" extra)]
-    (println "adding extra path: " appended)
+    (println "guix/extra path: " appended)
     {:extra-env (assoc {} var appended)}))
 
 (defn guix
@@ -38,6 +38,27 @@
         "--channels=/home/florian/repo/myLinux/distros/guix/app/channels.scm"
         "--verbosity=3"))
 
+
+(defn pull
+  [name & args]
+  (let [filename (str "./app/" name ".scm")
+        channels (str "--channels=" filename)
+        full-args (concat args [channels])]
+    (println "guix pull args: " full-args)
+    (apply guix "pull" full-args)))
+    
+
+
+(defn package
+  [name & args]
+  (let [filename (str "./manifest/" name ".scm")
+        manifest (str "--manifest=" filename)
+        full-args (concat args [manifest])]
+    (println "guix package args: " full-args)
+    (apply guix "package" full-args)))
+
+
+
 (defn build
   [task name]
   (let [filename (str "./machine/" name ".scm")]
@@ -48,11 +69,18 @@
   (let [filename (str "./machine/" name ".scm")
         full-args (concat args [filename])]
      (println "args: " full-args)
-  
     (apply guix "system" "image" full-args)))
+
 
 ;"image"
 ;(defn build-image
 ;  [name]
 ;  (let [filename (str "./machine/" name ".scm")]
 ;    (guix-extra "system" "reconfigure" filename "--image-size=5G")))
+
+(defn image
+  [name & args]
+  (let [filename (str "./machine/" name ".scm")
+        full-args (concat args [filename])]
+    (println "args: " full-args)
+    (apply guix "system" "image" full-args)))

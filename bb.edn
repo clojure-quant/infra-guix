@@ -1,0 +1,78 @@
+{:paths ["script"]
+ :tasks {:requires [guix]
+
+         ; helper tasks
+         sudo (guix/sudo *command-line-args*)
+         guix (guix/guix)
+         describe (guix/guix "describe")
+
+         ; verbosity:
+         ; 0 means that no output is produced
+         ; 1 is for quiet output
+         ; 2 is similar to 1 but it additionally displays download URLs
+         ; 3 shows all the build log output on standard error.
+
+         channel-install {:doc "installs channels"
+                          :task (guix/pull "channels" "--verbosity=3")}
+
+         channels-export (guix/guix "package" "--export-channels")
+         channels-florian (guix/guix "describe")
+         channels-root (guix/sudo "describe")
+         set-channels! (shell "./install-channels-" "describe")
+
+        ; packages
+         install-desktop {:doc "installs desktop packages"
+                          :task (guix/package "desktop" 
+                                              "--verbosity=1"
+                                              "--no-grafts"
+                                              )}
+
+
+         manifest-florian (shell "cat" "/home/florian/.config/guix/current/manifest")
+         manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
+
+         ; guix maintenance
+         gc {:doc "guix garbage collect"
+             :task (do (println "guix garbage collect..")
+                       (guix/guix "gc" "--optimize" "-d" "2m")
+                       (guix/guix "gc" "-F" "200G" ))}
+         pull (do (println "guix pull..")
+                  (guix/guix "pull"))
+         update {:doc "Updates guix " ;; ensure sequential order 
+                 :task (do (run 'gc)
+                           (run 'pull))}
+
+        ; size
+        size-clojure {:doc "size of clojure"
+                      :task (do (println "guix size clojure..")
+                                (guix/guix "size" "clojure"))}
+       ; guix size $(guix system build os.scm)
+       size-desktop {:doc "size of desktop"
+                     :task (do (println "guix size desktop..")
+                                (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
+
+
+        ; build
+         image-types (guix/guix "system" "--list-image-types")
+         build-image-nuc-user (guix/build "reconfigure" "nuc")
+         build-image-nuc (guix/sudo "build-image-nuc-user")
+         ; build-rock (guix/build "image" "rock1")
+         build-rock (guix/image "rock1"
+                                ;"--system=aarch64-linux"
+                               ; "--target=aarch64-linux"
+                               ; "--image-size=8G"
+                                "--image-type=rock64-raw"
+                                "--no-grafts")
+         build-pine (guix/image "pinephone"
+                                "--image-type=pine64-raw"
+                                "--no-grafts")
+
+
+         build-rock-install (guix/image
+                             "--system=aarch64-linux"
+                             "-e"
+                             "(@ (gnu system install) rock64-installation-os)")
+
+
+ ;
+         }}

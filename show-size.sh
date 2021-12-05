@@ -7,11 +7,6 @@ echo "stats os.scm"
 guix size $(guix system build os.scm)
 #/bin/bash
 
-echo "stats core utils"
-guix size coreutils
-
-echo "stats clojure"
-guix size clojure
 
 echo "stats os.scm"
 guix size $(guix system build os.scm)

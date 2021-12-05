@@ -6,6 +6,6 @@
 echo "GUIX REPL"
 
 guix repl \
-   ./modules/awb99/config/users.scm \
+   ./modules/awb99/config/ssh.scm \
    --load-path=./modules
    

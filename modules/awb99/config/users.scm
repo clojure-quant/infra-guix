@@ -35,5 +35,6 @@
       (comment "Alice's bro")
       (group "users")
       (home-directory "/home/robert")
-      (shell (file-append zsh "/bin/zsh")))
+    ;  (shell (file-append zsh "/bin/zsh"))
+    )
     %base-user-accounts))
