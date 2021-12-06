@@ -29,6 +29,7 @@
   (awb99 config users)
   (awb99 services ssh)
   (awb99 services files)
+  (awb99 services mingetty)
   )
 
            
@@ -99,6 +100,7 @@
    (list 
     (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
     service-files
+    ;service-login-prompt
     ;(service xfce-desktop-service-type)
     ;(set-xorg-configuration
     ;  (xorg-configuration
@@ -111,7 +113,8 @@
        ;       (term "vt100")
        ;       (tty "ttyS0")))
   )
-  (remove-services %base-services) ;   %desktop-services
+(patch-mingetty 
+  (remove-services %base-services)) ;   %desktop-services
 ))
 
 
@@ -129,7 +132,7 @@
     (services my-services)
     (kernel linux-libre-arm64-generic)
     (kernel-arguments 
-      '("console=ttyS2" ; ,1500000
+      '("console=ttyS2,1500000" ; 
       ; "video=HDMI-A-1:1920x1080@60" "video=eDP-1:1920x1080@60"
       ; "vga=current"
       ; "ethaddr=${ethaddr}" "eth1addr=${eth1addr}"
