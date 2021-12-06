@@ -52,6 +52,21 @@
                                    "--verbosity=3" 
                                   "--no-grafts"))}
 
+         build-ocean-image {:doc "builds ocean vm-image to be run with qemu"
+          :task (do (println "building vm image..")
+                    (guix/system "image"
+                                 "ocean"
+                                 "--verbosity=3"
+                                 "--no-grafts")
+                     (println "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2")
+                                )}
+
+        ; https://cloudinit.readthedocs.io/en/stable/
+        ;# guix package: cloud-utils    has cloud-init
+        ; Guile AWS for AWS backend.
+        ; 178.128.203.133
+        ; cloud.digitalocean.com
+        ; https://othacehe.org/hosting-a-blog-using-only-scheme.html
         build-ocean {:doc "builds digital-ocean image and deploys it" 
                     ; https://stumbles.id.au/getting-started-with-guix-deploy.html
                     ; cfdisk, select the /dev/vda2 root partition, select "Resize", "Write" and type "yes". 
@@ -93,9 +108,10 @@
          ; environment (guix/guix "environment")
          environment-openjdk-11 (guix/guix "environment" "--ad-hoc" "openjdk@11")
 
-
+         ;export 
+         export-channels (guix/guix "package" "--export-channels")
+         export-manifest (guix/guix "package" "--export-manifest")
          ; show
-         channels-export (guix/guix "package" "--export-channels")
          show-channels (guix/guix "describe")
          show-channels-root (guix/sudo "describe")
          show-manifest (shell "cat" "/home/florian/.config/guix/current/manifest")
