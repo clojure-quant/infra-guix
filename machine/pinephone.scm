@@ -33,13 +33,12 @@
 
 (operating-system
   (host-name "pine64")
-  (timezone "Asia/Jerusalem")
+  (timezone "Europe/Amsterdam")
   (locale "en_US.UTF-8")
   (locale-definitions
     (list (locale-definition (source "en_US")
                              (name "en_US.UTF-8"))
-          (locale-definition (source "he_IL")
-                             (name "he_IL.UTF-8"))))
+          ))
 
   (bootloader (bootloader-configuration
                 (bootloader u-boot-pine64-plus-bootloader)

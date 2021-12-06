@@ -21,7 +21,7 @@
   (gnu packages linux)
   (gnu packages shells) ; zsh
   (gnu packages screen)
-(gnu packages autotools)
+ (gnu packages autotools)
  
   ; awb99
   (awb99 config helper)
@@ -193,7 +193,6 @@
 
 
 
-
 (define rock64-image-type
 (image-type
  (name 'rock64-raw)
@@ -208,5 +207,6 @@
                       #:type rock64-image-type))
  (name 'rock64-raw-image)))
 
-rock64-raw-image
+; rock64-raw-image
+
 rock64-os

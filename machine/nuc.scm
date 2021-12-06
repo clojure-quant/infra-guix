@@ -82,13 +82,12 @@
       (mcron-configuration
         (jobs %guix-maintenance-jobs)))
 
-;    (service trezord-service-type
-;      (trezord-configuration))
+    (service trezord-service-type
+      (trezord-configuration))
 
     (service qemu-binfmt-service-type
       (qemu-binfmt-configuration
         (platforms (lookup-qemu-platforms "arm" "aarch64"))))
-
 
     service-bin-links
 
@@ -167,80 +166,72 @@
       (shell (file-append zsh "/bin/zsh")))
     %base-user-accounts))
 
-(define my-packages
+(define (->packages-output specs)
+  (map specification->package+output specs))
+
+(define (specifications->package specs)
+   (map specification->package specs))
+
+(define extra-packages
+   (list "nss-certs"
+         "xrandr" ; hidpi x-windows scaling
+         ; xfce
+         "xfce4-screensaver"
+         "xfce4-systemload-plugin"
+         "xfce4-mount-plugin"
+         "xfce4-panel"
+         "garcon" ; menu manager
+         "xfce4-places-plugin"
+         "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
+         ; xfce4-power-manager       ** add this
+         ; xfce4-pulseaudio-plugin   
+         ; xfce4-whiskermenu-plugin
+         ; xfce4-settings
+         ; xfce4-screenshooter
+         ; elementary-xfce-icon-theme
+         ; lxqt
+         "lxqt"
+         ; lxqt
+         "mate"
+         ;enlightenment
+         "enlightenment"
+         ; gnome
+         "gnome"
+         ; i3
+         "i3-wm"
+         "i3status"
+         "i3blocks"
+         "i3lock"
+         "dmenu"
+         "rofi"
+         ; sway
+         "sway"
+         "swaybg"
+         "swayidle"
+         "swaylock"
+         "bemenu"
+         ; shells used in user profiles need to be on system
+         "fish"
+         "zsh"
+         ; trezor
+         "trezord-udev-rules"
+         "trezord"
+         ; printing
+         "cups"
+         "cups-filters"
+         "foomatic-filters"    ; postscript -> printer driver
+         "hplip"
+         "system-config-printer"
+         "grep"    ;grep errro in foomatic-filters.
+         ; docker
+         "docker"
+         "iptables"))   
+
+
+ (define my-packages
   (append
-      (list (specification->package "nss-certs")
- 
-            (specification->package "xrandr") ; hidpi x-windows scaling
-
-             ; xfce
-            (specification->package "xfce4-screensaver")    
-            (specification->package "xfce4-systemload-plugin")  
-            (specification->package "xfce4-mount-plugin") 
-            (specification->package "xfce4-panel") 
-            (specification->package "garcon") ; menu manager
-            (specification->package "xfce4-places-plugin")
-            (specification->package "xdg-desktop-portal") 
-            ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps,
-            ; allowing them to open file chooser dialogs, open links, et.c.
-                                
-            ; xfce4-power-manager       ** add this
-            ; xfce4-pulseaudio-plugin   
-            ; xfce4-whiskermenu-plugin
-            ; xfce4-settings
-            ; xfce4-screenshooter
-            ; elementary-xfce-icon-theme
-
-            ; lxqt
-           (specification->package "lxqt")
-          
-           ; lxqt
-           (specification->package "mate")
-
-           ;enlightenment
-           (specification->package "enlightenment")
-
-           ; gnome
-          (specification->package "gnome")
-
-             ; i3
-            (specification->package "i3-wm")    
-            (specification->package "i3status")
-            (specification->package "i3blocks")
-            (specification->package "i3lock")
-            (specification->package "dmenu")
-            (specification->package "rofi")
-
-            ; sway
-            (specification->package "sway")
-            (specification->package "swaybg")
-            (specification->package "swayidle")
-            (specification->package "swaylock")
-            (specification->package "bemenu")
-
-           ; shells used in user profiles need to be on system
-            (specification->package "fish")
-            (specification->package "zsh")
-
-            ; trezor
-            (specification->package "trezord-udev-rules")
-            (specification->package "trezord")
-
-            ; printing
-            (specification->package "cups")    
-            (specification->package "cups-filters")    
-            (specification->package "foomatic-filters")    ; postscript -> printer driver
-            (specification->package "hplip")    
-            (specification->package "system-config-printer")    
-            (specification->package "grep")    ;grep errro in foomatic-filters.
-
-            ; docker
-            (specification->package "docker")   
-
-            (specification->package "iptables")   
-
-      )
-      %base-packages))
+    (specifications->package extra-packages)
+    %base-packages))
 
 
 (operating-system
@@ -256,7 +247,8 @@
   (bootloader
     (bootloader-configuration
       (bootloader grub-efi-bootloader)
-      (target "/boot/efi")
+      ;(target "/boot/efi")
+      (targets '("/boot/efi"))
       (keyboard-layout keyboard-layout)))
   (mapped-devices
     (list (mapped-device

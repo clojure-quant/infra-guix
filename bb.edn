@@ -69,7 +69,8 @@
                                ; "--target=aarch64-linux-gnu"     "--target=aarch64-linux" ; cross-compilation via qemu
                                ; "--image-size=8G"
                                        "--image-type=rock64-raw"
-                                       "--no-grafts")}
+                                       ;"--no-grafts"
+                                       )}
 
         ; guix system image -t rock64-raw --system=aarch64-linux -e "(@ (gnu system install) rockpro64-installation-os)"
          build-rock-installer {:doc "builds guix installer-image for pine/rock-pro"
@@ -83,8 +84,10 @@
 
          ; image --image-type=pine64-raw my-pine-os.scm
          build-pine (guix/image "pinephone"
+                                "--system=aarch64-linux"
                                 "--image-type=pine64-raw"
-                                "--no-grafts")
+                                ;"--no-grafts"
+                                )
 
 
          ; environment (guix/guix "environment")
