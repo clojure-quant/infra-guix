@@ -1,4 +1,4 @@
-(define-module (gorilla tweak-r)
+(define-module (awb99 tweak-r)
   #:use-module (guix packages)
   #:use-module (guix profiles)
   #:use-module (guix utils)

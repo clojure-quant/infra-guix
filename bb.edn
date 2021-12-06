@@ -47,20 +47,21 @@
 
          build-vm {:doc "builds vm-image to be run with qemu"
            :task (do (println "building vm image..")
-                     (guix/system "vm"
-                                  "vm-terminal"
-                                   "--verbosity=3" 
+                     (guix/system "vm-terminal"
+                                  "vm"
+                                  "--verbosity=3" 
                                   "--no-grafts"))}
 
          build-ocean-image {:doc "builds ocean vm-image to be run with qemu"
           :task (do (println "building vm image..")
-                    (guix/system "image"
-                                 "ocean"
+                    (guix/system "ocean"
+                                 "image"
                                  "--verbosity=3"
                                  "--no-grafts")
                      (println "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2")
                                 )}
 
+        ; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
         ; https://cloudinit.readthedocs.io/en/stable/
         ;# guix package: cloud-utils    has cloud-init
         ; Guile AWS for AWS backend.
@@ -77,13 +78,16 @@
                                           "--verbosity=3"
                                           "--no-grafts"))}
 
+         ; https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
+         ; https://framagit.org/tyreunom/guix-android
          ; build-rock (guix/system "image" "rock1")
          build-rock {:doc "builds an image for pine/rock-pro"
                      :task (guix/image "rock1"
-                                       "--system=aarch64-linux"
-                               ; "--target=aarch64-linux-gnu"     "--target=aarch64-linux" ; cross-compilation via qemu
-                               ; "--image-size=8G"
                                        "--image-type=rock64-raw"
+                                      ; "--system=aarch64-linux"  ; via qemu (slow, but works)
+                                        "--target=aarch64-linux-gnu" ; cross-compilation for TRIPLET
+                                      ; "--image-size=8G"
+                                       "--cores=6"
                                        ;"--no-grafts"
                                        )}
 
@@ -97,12 +101,39 @@
                                                 "--target=aarch64-linux-gnu" ; cross-compilation via qemu
                                                 "-e" "(@ (gnu system install) rockpro64-installation-os)")}
 
+
+         ; https://othacehe.org/distributing-guix-system-pinebook-pro-images.html
+         ; guix system disk-image --system=armhf-linux -e "(@ (gnu system install) beaglebone-black-installation-os)"
+         build-pine-installer (guix/guix "system" "image" 
+                                "--system=aarch64-linux"
+                                ;"--target=aarch64-linux-gnu"
+                                "--image-type=pine64-raw"
+                                ;"--no-grafts"
+                                 "-e" "(@ (gnu system install) pine64-plus-installation-os)"
+                                )
+
+         ; https://github.com/Schroedinger50PCT/guix-pinephone
+         ; Der linux-libre-arm64-generic kernel bootet aber gibt keinen Display output.
          ; image --image-type=pine64-raw my-pine-os.scm
          build-pine (guix/image "pinephone"
-                                "--system=aarch64-linux"
+                                ;"--system=aarch64-linux"
+                                "--target=aarch64-linux-gnu" 
                                 "--image-type=pine64-raw"
                                 ;"--no-grafts"
                                 )
+         build-pine-chromium (guix/image "pinephone-chromium"
+                                        ;"--system=aarch64-linux"
+                                        "--target=aarch64-linux-gnu"
+                                      ;  "--image-type=pine64-raw"
+                                        ;"--no-grafts"
+                                        )
+
+         ; pinebook pro
+         ; https://github.com/Schroedinger50PCT/guix-pinebook-pro/blob/main/pbp.scm
+
+         ; nonfree
+         ; https://github.com/aartaka/guix-config/blob/master/nonfree-desktop.scm
+         ; https://willschenk.com/articles/2019/installing_guix_on_nuc/
 
 
          ; environment (guix/guix "environment")
@@ -128,5 +159,10 @@
 
          graph-clojure (guix/graph "clojure") ; this does not work yet.
          guix-repl (guix/guix "repl")
+
+
+         a 1 
+         b {:depends [a]    ; bb run --prn b          this tests return values of tasks
+            :task (inc a)}
  ;
          }}

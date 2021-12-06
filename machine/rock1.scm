@@ -16,6 +16,7 @@
   (gnu services networking) ; ntpd
   (gnu services xorg)
   (gnu services desktop)
+  (gnu services ssh) ;dropbear ssh
 
   ;; packages
   (gnu packages linux)
@@ -26,7 +27,8 @@
   ; awb99
   (awb99 config helper)
   (awb99 config users)
-  (awb99 config ssh)
+  (awb99 services ssh)
+  (awb99 services files)
   )
 
            
@@ -45,6 +47,7 @@
   (list ;"openssh"
     ;   "dropbear"
         ; "openssh-sans-x"
+        ; "zlib" ; needed for openssh?
        ;  "git"
        ; "xfce4-screensaver"
        ; "xfce4-systemload-plugin"
@@ -73,15 +76,8 @@
 (append extra-packages
         %base-packages))
 
-(define (auto-login-to-tty config tty user)
-  (if (string=? tty (mingetty-configuration-tty config))
-        (mingetty-configuration
-         (inherit config)
-         (auto-login user))
-        config))
 
-
-(define desktop-services
+(define (remove-services guix-services)
   (remove (lambda (service)
   (let ((type (service-kind service)))
     (or (memq type
@@ -89,55 +85,34 @@
                   wpa-supplicant-service-type
                   cups-pk-helper-service-type
                   network-manager-service-type
-                  modem-manager-service-type))
+                  modem-manager-service-type
+                  openssh-service-type
+                ))
         (eq? 'network-manager-applet
            (service-type-name type)))))
-   (modify-services %desktop-services
-      (mingetty-service-type config =>
-          (auto-login-to-tty config "tty1" "florian"))
-        )))
+    guix-services))
 
 
 
 (define my-services
-  (list 
-    ; Because the GNOME, Xfce and MATE desktop services pull in so many packages, 
-    ; the default %desktop-services variable doesn’t include any of them by default. 
+  (append 
+   (list 
     (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
-    (service xfce-desktop-service-type)
+    service-files
+    ;(service xfce-desktop-service-type)
     ;(set-xorg-configuration
     ;  (xorg-configuration
     ;  (keyboard-layout (keyboard-layout "at"))))
-    ;(service openssh-service-type
-    ;         awb99-ssh-config
-    ;        )
-
-        ;(service dropbear-service-type
-        ;(dropbear-configuration
-        ; (root-login? #t)
-        ; (allow-empty-passwords? #t)))
-        ;  (service openssh-service-type
-        ;    (openssh-configuration
-        ;      (x11-forwarding? #t)
-        ;      (extra-content "StreamLocalBindUnlink yes")))
-
-          (service agetty-service-type
-            (agetty-configuration
-              (extra-options '("-L")) ; no carrier detect
-              (baud-rate "115200")
-              (term "vt100")
-              (tty "ttyS0")))
-
-
-  ))
-
-(define os-services
-(append
-   my-services
-   ;   %desktop-services
-   desktop-services
-   ;%base-services
-   ))
+    ; service-ssh
+       ;   (service agetty-service-type
+       ;     (agetty-configuration
+       ;       (extra-options '("-L")) ; no carrier detect
+       ;       (baud-rate "115200")
+       ;       (term "vt100")
+       ;       (tty "ttyS0")))
+  )
+  (remove-services %base-services) ;   %desktop-services
+))
 
 
 (define rock64-os
@@ -151,7 +126,7 @@
     (users myusers)
     (packages my-packages)
     ;(packages (cons* openssh %base-packages)) ; wpa-supplicant-minimal 
-    (services os-services)
+    (services my-services)
     (kernel linux-libre-arm64-generic)
     (kernel-arguments 
       '("console=ttyS2" ; ,1500000
@@ -165,13 +140,13 @@
     (bootloader 
       (bootloader-configuration
        (bootloader u-boot-rockpro64-rk3399-bootloader)
-       (targets '("/dev/mmcblk1")))) ; "/dev/mmcblk0"
+       (targets '("/dev/mmcblk1p1")))) ; "/dev/mmcblk0"
        ; "/dev/sda"   "/dev/mmcblk0p1"  "/dev/mmcblk0"
     (file-systems
       (cons ; cons* 
         (file-system
           (mount-point "/")
-          (device "/dev/mmcblk1p2")
+          (device "/dev/mmcblk1p2") ; p2
           (type "ext4"))
         %base-file-systems))
     ;; This module is required to mount the SD card.

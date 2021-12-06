@@ -28,16 +28,7 @@
                      )
 
 
-(define %os-release-file
-  (plain-file "os-release"
-              (string-append
-                "NAME=\"Guix System\"\n"
-                "PRETTY_NAME=\"Guix System\"\n"
-                "VERSION=\""((@ (guix packages) package-version) (@ (gnu packages package-management) guix))"\"\n"
-                "ID=guix\n"
-                "HOME_URL=\"https://www.gnu.org/software/guix/\"\n"
-                "SUPPORT_URL=\"https://www.gnu.org/software/guix/help/\"\n"
-                "BUG_REPORT_URL=\"mailto:bug-guix@gnu.org\"\n")))
+
 
 
 (define %ci.guix.gnu.org.pub
@@ -61,9 +52,6 @@
                  (comment "pink at gorilla")
                  (uid 2002) ; uid needs to match user in host for docker
                  (group "users")
-                 ;; "input" and "tty" are needed to start X server without
-              ;; root permissions: "input" - to access "/dev/input"
-              ;; devices, "tty" - to access "/dev/ttyN".
                  (supplementary-groups '("wheel" ; sudo
                                          "audio" 
                                         "video"
@@ -103,8 +91,7 @@
   (services 
     (cons*
 
-      (simple-service 'os-release etc-service-type
-                                   `(("os-release" ,%os-release-file)))
+      
 
       ; networking (needed by trezord)
       (service dhcp-client-service-type)

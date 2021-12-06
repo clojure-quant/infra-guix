@@ -46,9 +46,7 @@
                  (comment "pink at gorilla")
                  (uid 2002) ; uid needs to match user in host for docker
                  (group "users")
-                 ;; "input" and "tty" are needed to start X server without
-              ;; root permissions: "input" - to access "/dev/input"
-              ;; devices, "tty" - to access "/dev/ttyN".
+
                  (supplementary-groups '("wheel" ; sudo
                                          "audio" 
                                         "video"

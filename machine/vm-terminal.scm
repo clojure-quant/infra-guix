@@ -5,11 +5,19 @@
              (gnu packages finance)  ; trezord-udev-rules
              (gnu services web)
              (gnu packages logging) ; tailon
+             (gnu packages mc)
+             (gnu packages disk) ; ranger
+            
+             (awb99 config users)
+             (awb99 config mail)
              (awb99 config cron)
+
+             (awb99 services os-release)
              (awb99 services special-files)
+            (awb99 services mingetty)
              (awb99 services trezord-debug)
              (awb99 services nginx)
-             (awb99 config mail)
+            
             )
              
 (use-service-modules desktop mcron networking spice ssh)
@@ -41,14 +49,9 @@ accounts.\x1b[0m
   (locale "en_US.utf8")
   ; (keyboard-layout (keyboard-layout "us" "altgr-intl"))
   (keyboard-layout (keyboard-layout "at"))
-
-  ;; Label for the GRUB boot menu.
-  (label (string-append "GNU Guix " (package-version guix)))
-
+  (label (string-append "GNU Guix " (package-version guix))) ;; Label for the GRUB boot menu.
   (firmware '())
-
   ;; Below we assume /dev/vda is the VM's hard disk.
-  ;; Adjust as needed.
   (bootloader (bootloader-configuration
                (bootloader grub-bootloader)
                (targets '("/dev/vda"))
@@ -59,14 +62,7 @@ accounts.\x1b[0m
                         (type "ext4"))
                       %base-file-systems))
 
-  (users (cons (user-account
-                (name "florian")
-                (comment "GNU Guix Live")
-                (password "")                     ;no password
-                (group "users")
-                (supplementary-groups '("wheel" "netdev"
-                                        "audio" "video")))
-               %base-user-accounts))
+  (users myusers-vm)
 
   ;; Our /etc/sudoers file.  Since 'guest' initially has an empty password,
   ;; allow for password-less sudo.
@@ -74,42 +70,42 @@ accounts.\x1b[0m
 root ALL=(ALL) ALL
 %wheel ALL=NOPASSWD: ALL\n"))
 
-  (packages (append (list  nss-certs nvi wget trezord  )
+  (packages (append (list  nss-certs 
+                           nvi 
+                           wget 
+                           trezord 
+                           mc
+                           ranger)
                     %base-packages))
 
   (services
    (append (list 
-
-                 ;; Use the DHCP client service rather than NetworkManager.
-                 (service dhcp-client-service-type)
-
+                 service-os-release
                  service-bin-links
+                ; service-login-prompt
 
+                 (service dhcp-client-service-type)  ;; Use the DHCP client service rather than NetworkManager.
+                
+                 (service mcron-service-type
+                   (mcron-configuration
+                     (jobs %guix-maintenance-jobs)))
                  (service trezord-service-type
                     (trezord-configuration))
-
-                  (service mcron-service-type
-                  (mcron-configuration
-                    (jobs %guix-maintenance-jobs)))
-
-                  my-certbot-service
-                  my-nginx-service
-
+                 my-certbot-service
+                 my-nginx-service
                  (service tailon-service-type
                     (tailon-configuration
                        (config-file
                          (tailon-configuration-file
                            (allowed-commands '("tail" "grep" "awk" "sed"))))))
-                          
-                  
-                 
                  )
 
-           (append (lepiller-mail-services   
-                     #:interface "ens3"         
-                     #:domain "pinkgorilla.org") 
-                    %base-services
-                    )
+           ;(append (lepiller-mail-services   
+           ;          #:interface "ens3"         
+           ;          #:domain "pinkgorilla.org") 
+           ;         %base-services
+           ;         )
+           (patch-mingetty %base-services)
            ; %base-services
           ))
 

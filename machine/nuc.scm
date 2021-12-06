@@ -23,14 +23,6 @@
 (use-package-modules certs rsync screen ssh)
 
 
-(define (auto-login-to-tty config tty user)
-(if (string=? tty (mingetty-configuration-tty config))
-      (mingetty-configuration
-       (inherit config)
-       (auto-login user))
-      config))
-
-
 
 (define i3-service
   (simple-service
@@ -85,7 +77,7 @@
     (service trezord-service-type
       (trezord-configuration))
 
-    (service qemu-binfmt-service-type
+    (service qemu-binfmt-service-type ; needed for qemu arm system compile
       (qemu-binfmt-configuration
         (platforms (lookup-qemu-platforms "arm" "aarch64"))))
 
@@ -93,14 +85,7 @@
 
     (service docker-service-type)
 
-    ; ntp is already in guix desktop services
-    ; (service
-    ;   openntpd-service-type
-    ;     (openntpd-configuration
-    ;       (listen-on '("127.0.0.1" "::1"))
-    ;       (sensor '("udcf0 correction 70000"))
-    ;       (constraint-from '("www.gnu.org"))
-    ;       (constraints-from '("https://www.google.com/"))))
+
 
     (set-xorg-configuration
       (xorg-configuration
@@ -110,9 +95,6 @@
 (define desktop-services
   (cons*
     (modify-services %desktop-services
-
-      (mingetty-service-type config =>
-         (auto-login-to-tty config "tty1" "florian"))
 
       (udev-service-type config =>
         (udev-configuration

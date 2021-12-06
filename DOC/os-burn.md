@@ -9,7 +9,7 @@ login: root  password: dietpi
 Root password is 1234. Y
 https://docs.armbian.com/
 
-# manjaro
+# manjaro rockpro
 https://wiki.pine64.org/wiki/ROCKPro64_Software_Release#Manjaro_ARM
 xz -d Manjaro-ARM-xfce-rockpro64-20.02.img.xz
 lsblk -a
@@ -24,11 +24,11 @@ wget https://ftp.gnu.org/gnu/guix/guix-binary-1.3.0.armhf-linux.tar.xz
 
 # guix rock-pro
 lsblk -a
-sudo dd if=/gnu/store/vxx37ailmi9kxrqfm6hpj3jp281bj3rl-disk-image of=/dev/mmcblk0 bs=4M
+sudo dd if=/gnu/store/84lyf33l34vf3bigznqcyp5lqb848lg8-disk-image of=/dev/mmcblk0 bs=4M
 
 # guix pinephone
 lsblk -a
-sudo dd if=/gnu/store/k5sjmjiv366snxix098lnsf3ljj4yn09-disk-image of=/dev/mmcblk0 bs=4M
+sudo dd if=/gnu/store/51s41s45mlwhgi86kmln7daww0vl3liy-disk-image of=/dev/mmcblk0 bs=4M
 
 # manjaro posh
 https://github.com/manjaro-pinephone/phosh/releases/tag/beta19

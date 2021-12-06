@@ -5,12 +5,17 @@
   (let [current (System/getenv var)
         appended (str current ":" extra)]
     (println "guix/extra path: " appended)
-    {:extra-env (assoc {} var appended)}))
+    {; :out :string
+     ; :err :inherit
+     :extra-env (assoc {} var appended)}))
 
 (defn guix
   [command & args]
-  (let [opts (extra-path-env "GUILE_LOAD_PATH" "./modules")]
-      (apply shell opts "guix" command args)))
+  (let [opts (extra-path-env "GUILE_LOAD_PATH" "./modules")
+        result (apply shell opts "guix" command args)]
+     ;(println "guix result: " result)
+     ;(println "guix out result: "  (:out result))
+     result))
 
 (defn sudo
   [command & args]
@@ -38,10 +43,17 @@
     (println "guix package args: " full-args)
     (apply guix "package" full-args)))
 
-(defn system
+(defn system-old
   [task name]
   (let [filename (str "./machine/" name ".scm")]
     (guix "system" task filename "--image-size=50G")))
+
+(defn system
+  [name & args]
+  (let [filename (str "./machine/" name ".scm")
+        full-args (concat args [filename])]
+    (println "args: " full-args)
+    (apply guix "system" full-args)))
 
 (defn image
   [name & args]
