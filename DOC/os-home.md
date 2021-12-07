@@ -8,3 +8,5 @@ $ guix home reconfigure myhome.scm
 
 
 A good way to discover avaliable home services is using the guix home search command 
+
+

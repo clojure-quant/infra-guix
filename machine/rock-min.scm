@@ -38,7 +38,7 @@
 
 (define extra-packages
 (->packages-output
-(list "nss-certs"
+(list "nss-certs" ; The nss-certs package provides X.509 certificates, which allow programs to authenticate Web servers accessed over HTTPS
      ; "openssh"
      ; "dropbear"
      ; "openssh-sans-x"
@@ -104,6 +104,7 @@
     ; "ethaddr=${ethaddr}" "eth1addr=${eth1addr}"
     ; "serial=${serial#}"
     ))     
+
   ;; microSD: /dev/mmcblk1
   ;;    eMMC: /dev/mmcblk2
   (bootloader 

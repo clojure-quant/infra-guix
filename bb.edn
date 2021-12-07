@@ -164,6 +164,7 @@
          graph-clojure (guix/graph "clojure") ; this does not work yet.
          guix-repl (guix/guix "repl")
 
+         home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
 
          a 1 
          b {:depends [a]    ; bb run --prn b          this tests return values of tasks

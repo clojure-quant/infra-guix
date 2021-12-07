@@ -13,13 +13,15 @@
         (name nonguix)
         (url "https://gitlab.com/nonguix/nonguix.git")) ; binary build system, clojure, dotnet, wine
 
-      ;(channel
-      ;  (name 'gorilla)
-      ;  (url "https://github.com/pink-gorilla/gorilla-guix-chan")) ; babashka + vs-codium
-
       (channel
         (name 'science)
-        (url "https://github.com/guix-science/guix-science.git")) ; rdesktop 
+        (url "https://github.com/guix-science/guix-science.git")) ; Rstudio
+
+      (channel
+        (name 'gorilla)
+        (url "https://github.com/pink-gorilla/gorilla-guix-chan")) ; babashka + vs-codium
+
+      
   )
   
   ; %default-channels)

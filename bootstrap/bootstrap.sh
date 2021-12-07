@@ -13,6 +13,14 @@ guix package --manifest=/etc/static/manifest-bootstrap.scm
 
 date -d "2021-12-07 22:10:15"
 
+
+# guix package -i nss-certs
+export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
+export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+
+
+
 cd /home/florian
 mkdir repo
 cd repo

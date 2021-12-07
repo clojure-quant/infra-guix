@@ -9,11 +9,16 @@
   (gnu packages)
   (gnu services)
   (guix gexp)
-  (gnu home services shells))
+  (gnu home services shells)
+  (awb99 guixutils) 
+)
+
+(define (specifications->package specs)
+(map specification->package specs))
 
 (home-environment
   (packages
-    (map specification->package
+    (->packages ; map specification->package
          (list "libreoffice"
                "emacs"
                "icecat"
