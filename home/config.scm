@@ -11,6 +11,7 @@
   (guix gexp)
   (gnu home services shells)
   (awb99 guixutils) 
+  (awb99 config helper)
 )
 
 (define (specifications->package specs)
@@ -18,7 +19,7 @@
 
 (home-environment
   (packages
-    (->packages ; map specification->package
+    (->packages-output ; ->packages ; map specification->package
          (list "libreoffice"
                "emacs"
                "icecat"
@@ -182,8 +183,8 @@
                   ("ll" . "ls -l")
                   ("ls='ls -p --color" . "auto")))
               (bashrc
-                (list (local-file "./home/.bashrc" "bashrc")))
+                (list (local-file "./.bashrc" "bashrc")))
               (bash-profile
                 (list (local-file
-                        "./home/.bash_profile"
+                        "./.bash_profile"
                         "bash_profile"))))))))
