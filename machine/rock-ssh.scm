@@ -156,7 +156,7 @@
       (cons ; cons* 
         (file-system
           (mount-point "/")
-          (device "/dev/mmcblk1p2")
+        (device "/dev/mmcblk1p1") ; (device "/dev/mmcblk1p2")
           (type "ext4"))
         ;(file-system
         ;  (mount-point "/multimedia")

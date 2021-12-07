@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo ./build-ssh.sh
+sudo ./bootstrap/build-ssh.sh
