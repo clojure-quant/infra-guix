@@ -15,9 +15,13 @@
   (openssh-configuration
     (openssh openssh-sans-x)
     (password-authentication? #false)
+    ;(port-number 2222)
+    (permit-root-login 'prohibit-password)
+    ;(permit-root-login #f)
+    (public-key-authentication? #t)
     (authorized-keys
-      `(("florian" ,(local-file "/home/florian/repo/myLinux/data/ssh/flo5.pub"  )) ; relative this file "../../flo5.pub"
-        ("root" ,(local-file "/home/florian/repo/myLinux/data/ssh/flo5.pub" )) ; "../../flo5.pub"
+      `(("florian" ,(local-file "/home/florian/repo/clojure-quant/infra-guix/bootstrap/flo5.pub"  )) ; relative this file "../../flo5.pub"
+        ("root" ,(local-file "/home/florian/repo/clojure-quant/infra-guix/bootstrap/flo5.pub" )) ; "../../flo5.pub"
       ))))
 
 
@@ -38,3 +42,7 @@
     (dropbear-configuration
      (root-login? #t)
      (allow-empty-passwords? #t))))
+
+
+; endlessh - trick ssh attackers by giving fake ssh daemon.
+; https://github.com/skeeto/endlessh

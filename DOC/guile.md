@@ -29,8 +29,4 @@ guix repl
 That is nice, because then you can just edit that file to change your package set. Also, you can backup that file, copy it to another computer, or put it under version control.
 
 
-# guile compile cache - remove
 
-rm -rf ~/.cache/guile
-For more advanced cache management tools than ‘rm’, see ‘Compilation’ in the Guile manual.
-Specifically GUILE_AUTO_COMPILE.

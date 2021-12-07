@@ -32,6 +32,10 @@
 
           dkimproxy-out-configuration-config-file))
 
+
+;        https://notabug.org/jbranso/linode-guix-system-configuration/src/master/opensmtpd.scm
+
+
 (define-record-type* <dkimproxy-out-signature-configuration>
 dkimproxy-out-signature-configuration make-dkimproxy-out-signature-configuration
 dkimproxy-out-signature-configuration?

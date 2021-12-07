@@ -7,7 +7,7 @@
 (srfi srfi-1)
   ;; rockpro
   (gnu image)
-  (gnu system images rock64)
+;  (gnu system images rock64)
   (gnu bootloader u-boot)
   (gnu platforms arm)
   (gnu system image)
@@ -45,7 +45,10 @@
 
 (define extra-packages
 (->packages-output
-  (list ;"openssh"
+  (list  "util-linux"
+         "parted"
+  
+  ;"openssh"
     ;   "dropbear"
         ; "openssh-sans-x"
         ; "zlib" ; needed for openssh?
@@ -99,13 +102,13 @@
   (append 
    (list 
     (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
-    service-files
+     service-ssh
     ;service-login-prompt
     ;(service xfce-desktop-service-type)
     ;(set-xorg-configuration
     ;  (xorg-configuration
     ;  (keyboard-layout (keyboard-layout "at"))))
-    ; service-ssh
+  
        ;   (service agetty-service-type
        ;     (agetty-configuration
        ;       (extra-options '("-L")) ; no carrier detect
@@ -127,6 +130,11 @@
     (keyboard-layout (keyboard-layout "at"))
     (groups mygroups)
     (users myusers)
+    ;; Our /etc/sudoers file.  Since 'guest' initially has an empty password,
+    ;; allow for password-less sudo.
+    (sudoers-file (plain-file "sudoers" "\
+     root ALL=(ALL) ALL
+     %wheel ALL=NOPASSWD: ALL\n"))
     (packages my-packages)
     ;(packages (cons* openssh %base-packages)) ; wpa-supplicant-minimal 
     (services my-services)
@@ -143,14 +151,21 @@
     (bootloader 
       (bootloader-configuration
        (bootloader u-boot-rockpro64-rk3399-bootloader)
-       (targets '("/dev/mmcblk1p1")))) ; "/dev/mmcblk0"
-       ; "/dev/sda"   "/dev/mmcblk0p1"  "/dev/mmcblk0"
+       (targets '("/dev/mmcblk1p1"))))
     (file-systems
       (cons ; cons* 
         (file-system
           (mount-point "/")
-          (device "/dev/mmcblk1p2") ; p2
+          (device "/dev/mmcblk1p2")
           (type "ext4"))
+        ;(file-system
+        ;  (mount-point "/multimedia")
+        ;  (device
+        ;     (uuid "20048579-a0bd-4180-8ea3-4b546309fb3b"
+        ;        'btrfs))
+        ;  (type "btrfs")
+        ;  (options "compress=zstd,discard,space_cache=v2"))
+
         %base-file-systems))
     ;; This module is required to mount the SD card.
     ; the SD card itself also requires two drivers: sunxi-mmc and sd_mod.
@@ -170,21 +185,5 @@
 ))
 
 
-
-(define rock64-image-type
-(image-type
- (name 'rock64-raw)
- (constructor (cut image-with-os
-                   (raw-with-offset-disk-image (expt 2 24))
-                   <>))))
-
-(define rock64-raw-image
-(image
- (inherit
-  (os+platform->image rock64-os aarch64-linux
-                      #:type rock64-image-type))
- (name 'rock64-raw-image)))
-
-; rock64-raw-image
 
 rock64-os

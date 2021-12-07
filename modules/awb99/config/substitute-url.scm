@@ -9,7 +9,6 @@
       "http://guix.genenetwork.org"
       "https://guix.tobias.gr"))
 
-
 --substitute-urls=urls
 ;; Assume we're starting from '%desktop-services'.  Replace it
     ;; with the list of services you're actually using.

@@ -17,15 +17,5 @@
 ;        ))
 
 
-(define (gorilla-ssh-service)
-    (service openssh-service-type
-        (openssh-configuration
-            (openssh openssh-sans-x)
-            (password-authentication? #false)
-                (authorized-keys
-                    `(("pink" ,(local-file "../../flo5.pub")) ; relative this file
-                      ("root" ,(local-file "../../flo5.pub")))))))
-
-
 
 

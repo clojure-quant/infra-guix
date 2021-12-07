@@ -14,7 +14,7 @@
 
              (awb99 services os-release)
              (awb99 services special-files)
-            (awb99 services mingetty)
+             (awb99 services mingetty)
              (awb99 services trezord-debug)
              (awb99 services nginx)
             
