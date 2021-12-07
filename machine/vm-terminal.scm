@@ -16,14 +16,12 @@
              (awb99 services special-files)
              (awb99 services mingetty)
              (awb99 services trezord-debug)
-             (awb99 services nginx)
-            
+             (awb99 services nginx)       
             )
              
 (use-service-modules desktop mcron networking spice ssh)
 (use-package-modules bootloaders certs fonts nvi
                      package-management wget)
-
 
 
 (define vm-image-motd (plain-file "motd" "

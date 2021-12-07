@@ -1,53 +1,46 @@
 (use-modules 
   (gnu)
-  ;(gnu packages suckless)
-  ;(gnu packages wm)
-  ;(gnu packages shells) ; zsh
   (srfi srfi-26)
-(srfi srfi-1)
-  ;; rockpro
+  (srfi srfi-1)
+
+   ;; rockpro
   (gnu image)
-;  (gnu system images rock64)
+  (gnu system images rock64)
   (gnu bootloader u-boot)
   (gnu platforms arm)
   (gnu system image)
 
-  ;; servuces
+  ;; services
   (gnu services networking) ; ntpd
-  (gnu services xorg)
   (gnu services desktop)
-  (gnu services ssh) ;dropbear ssh
+  (gnu services xorg) ; to exclude gdm
+  (gnu services ssh) ; to exclude open-ssh
 
   ;; packages
   (gnu packages linux)
   (gnu packages shells) ; zsh
+  (gnu packages autotools)
   (gnu packages screen)
- (gnu packages autotools)
  
   ; awb99
   (awb99 config helper)
   (awb99 config users)
-  (awb99 services ssh)
-  (awb99 services files)
+  (awb99 services os-release)
+  (awb99 services bootstrap-files)
   (awb99 services mingetty)
   )
 
-           
-;  (use-service-modules x y …) is just syntactic sugar for (use-modules (gnu services x) (gnu services y) …)
-;(use-service-modules ; desktop 
-;     networking ) ;ssh xorg mcron certbot web
-; (use-package-modules certs rsync screen ssh)
-
-
-; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
-; https://guix.gnu.org/de/blog/2019/guix-on-an-arm-board/
-; https://github.com/guix-mirror/guix/blob/master/gnu/system/images/rock64.scm
+;; this is a bootstrap image of guix for rock-pro
+;; it can be build on x86.
+;; it includes files in /etc/static
+;; when this image is booted execute bash /etc/static/boostrap.sh
+(display "building rock-pro min image \n")
 
 (define extra-packages
 (->packages-output
-  (list  "util-linux"
-         "parted"
-  
+  (list  "util-linux" 
+         "nano"
+         "nss-certs"
   ;"openssh"
     ;   "dropbear"
         ; "openssh-sans-x"
@@ -72,14 +65,10 @@
      ; "zsh"
   )))
 
-
-(display "extra packages:")
-(display extra-packages)
-
 (define my-packages
-(append extra-packages
-        %base-packages))
-
+  ;(cons* openssh %base-packages) ; wpa-supplicant-minimal 
+  (append extra-packages
+          %base-packages))
 
 (define (remove-services guix-services)
   (remove (lambda (service)
@@ -96,34 +85,19 @@
            (service-type-name type)))))
     guix-services))
 
-
-
 (define my-services
   (append 
-   (list 
-    (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
-     service-ssh
-    ;service-login-prompt
-    ;(service xfce-desktop-service-type)
-    ;(set-xorg-configuration
-    ;  (xorg-configuration
-    ;  (keyboard-layout (keyboard-layout "at"))))
-  
-       ;   (service agetty-service-type
-       ;     (agetty-configuration
-       ;       (extra-options '("-L")) ; no carrier detect
-       ;       (baud-rate "115200")
-       ;       (term "vt100")
-       ;       (tty "ttyS0")))
-  )
-(patch-mingetty 
-  (remove-services %base-services)) ;   %desktop-services
-))
+    (list (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
+          service-bootstrap-files
+          service-os-release)
+    (patch-mingetty 
+      (remove-services %base-services)) ;   %desktop-services
+  ))
 
 
 (define rock64-os
   (operating-system
-    (host-name "rockit")
+    (host-name "rockmin")
     (timezone "Europe/Amsterdam") ; (timezone "Etc/UTC")
     (locale "en_US.utf8")
   ; (keyboard-layout (keyboard-layout "us" "altgr-intl"))
@@ -136,7 +110,6 @@
      root ALL=(ALL) ALL
      %wheel ALL=NOPASSWD: ALL\n"))
     (packages my-packages)
-    ;(packages (cons* openssh %base-packages)) ; wpa-supplicant-minimal 
     (services my-services)
     (kernel linux-libre-arm64-generic)
     (kernel-arguments 
@@ -156,16 +129,8 @@
       (cons ; cons* 
         (file-system
           (mount-point "/")
-          (device "/dev/mmcblk1p2")
+          (device "/dev/mmcblk1p2") 
           (type "ext4"))
-        ;(file-system
-        ;  (mount-point "/multimedia")
-        ;  (device
-        ;     (uuid "20048579-a0bd-4180-8ea3-4b546309fb3b"
-        ;        'btrfs))
-        ;  (type "btrfs")
-        ;  (options "compress=zstd,discard,space_cache=v2"))
-
         %base-file-systems))
     ;; This module is required to mount the SD card.
     ; the SD card itself also requires two drivers: sunxi-mmc and sd_mod.
@@ -184,6 +149,6 @@
 ;;
 ))
 
-
+(display rock64-os)
 
 rock64-os

@@ -10,12 +10,8 @@
         (url "https://git.savannah.gnu.org/git/guix.git"))
 
       (channel
-        (name nonguix)
-        (url "https://gitlab.com/nonguix/nonguix.git")) ; binary build system, clojure, dotnet, wine
-
-      ;(channel
-      ;  (name 'gorilla)
-      ;  (url "https://github.com/pink-gorilla/gorilla-guix-chan")) ; babashka + vs-codium
+        (name 'gorilla)
+        (url "https://github.com/pink-gorilla/gorilla-guix-chan")) ; babashka + vs-codium
 
       (channel
         (name 'science)

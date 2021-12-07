@@ -30,3 +30,4 @@
     (firmware (list linux-firmware))))
 
 installation-os-nonfree
+

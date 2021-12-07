@@ -33,3 +33,11 @@
     (login-configuration
     (motd (plain-file "motd" "\
        Welcome to Hyksos!  I mean GuixOS!\n\n")))))
+
+
+           ;   (service agetty-service-type
+     ;     (agetty-configuration
+     ;       (extra-options '("-L")) ; no carrier detect
+     ;       (baud-rate "115200")
+     ;       (term "vt100")
+     ;       (tty "ttyS0")))

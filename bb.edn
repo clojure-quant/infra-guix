@@ -90,7 +90,7 @@
                                        "--image-type=rock64-raw"
                                       ; "--system=aarch64-linux"  ; via qemu (slow, but works)
                                         "--target=aarch64-linux-gnu" ; cross-compilation for TRIPLET
-                                      ; "--image-size=8G"
+                                       "--image-size=6G"
                                        "--cores=6"
                                        ;"--no-grafts"
                                        )}

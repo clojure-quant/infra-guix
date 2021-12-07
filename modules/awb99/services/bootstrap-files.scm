@@ -16,6 +16,7 @@
     `( 
        ("manifest-bootstrap.scm" ,(local-file "../../../bootstrap/manifest-bootstrap.scm"))
        ("bootstrap.sh" ,(local-file "../../../bootstrap/bootstrap.sh"))
+       ("resize-disk.sh" ,(local-file "../../../bootstrap/resize-disk.sh"))
       ; ("rock1.scm" ,(local-file "../../../machine/rock.scm"))
        ("flo5.pub" ,(local-file "../../../bootstrap/flo5.pub"))
       

@@ -1,10 +1,11 @@
 (use-modules 
-(guix packages)
-(guix profiles)
-(gnu packages))
+  (guix packages)
+  (guix profiles)
+  (gnu packages))
 
 (define my-min
   (list 
+    "nss-certs"
     "git"
     ;"openssh" ; required for git with ssh repos
     "openssh-sans-x"
@@ -13,7 +14,8 @@
     "nano"
     "bash"
     "wget"
-  
+    "chrony"
+    "ntpd"
     
   
   ))
