@@ -33,4 +33,9 @@
        "python-attrs"
        "python-aiohttp"
 
+       "python-yubikey-manager"
+       ;"rofi-pass"
+    ;"rofi"
+    ;"python-yubikey-oath-dmenu"
+
    ))

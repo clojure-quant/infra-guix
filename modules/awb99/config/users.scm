@@ -16,10 +16,9 @@
     %base-groups))
 
 
-    ;; Adding the account to 
-    ;;  "wheel" group; makes it a sudoer.  
-    ;; Adding it to "audio" and "video" allows the user to play sound and access the webcam.
-
+;; Adding the account to group
+;; "wheel"                makes it a sudoer
+;; "audio" and "video"    play sound and access the webcam.
 
 (define myusers
   (cons* 
@@ -29,20 +28,22 @@
       (group "users")
       (home-directory "/home/florian")
       ;(shell (file-append fish "/bin/fish"))
-      ; (identity "/home/florian/repo/myLinux/data/ssh/coin")
+      ;(identity "/home/florian/repo/clojure-quant/infra-guix/bootstrap/flo5")
       (supplementary-groups
         ;; "input" and "tty" are needed to start X server without
         ;; root permissions: "input" - to access "/dev/input"
         ;; devices, "tty" - to access "/dev/ttyN".
-
       '("wheel" 
         "netdev" 
-        "audio" 
-        "video"
+        "audio" "video"
         "tty"
+        ; "input"
+        ; "kvm" "libvirt"
+        ; "lp" "lpadmin"
+
       )))
     (user-account
-      (name "bob")
+      (name "robert")
       (comment "Alice's bro")
       (group "users")
       (home-directory "/home/robert")

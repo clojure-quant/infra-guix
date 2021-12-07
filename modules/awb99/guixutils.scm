@@ -1,4 +1,4 @@
-(define-module (gorilla guixutils) 
+(define-module (awb99 guixutils) 
   #:use-module (guix packages)
   #:use-module (guix profiles)
   #:use-module (gnu packages)

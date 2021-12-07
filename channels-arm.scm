@@ -15,11 +15,11 @@
 
       (channel
         (name 'science)
-        (url "https://github.com/guix-science/guix-science.git")) ; Rstudio
+        (url "https://github.com/guix-science/guix-science.git")) ; rdesktop 
 
-      (channel
-        (name 'gorilla)
-        (url "https://github.com/pink-gorilla/gorilla-guix-chan")) ; babashka + vs-codium
+      ;(channel
+      ;  (name 'gorilla)
+      ;  (url "https://github.com/pink-gorilla/gorilla-guix-chan")) ; babashka + vs-codium
 
       
   )

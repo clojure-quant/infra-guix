@@ -1,51 +1,47 @@
 (use-modules 
   (gnu)
-  ;(gnu packages suckless)
-  ;(gnu packages wm)
-  ;(gnu packages shells) ; zsh
   (srfi srfi-26)
-(srfi srfi-1)
-  ;; rockpro
+  (srfi srfi-1)
+
+   ;; rockpro
   (gnu image)
   (gnu system images rock64)
   (gnu bootloader u-boot)
   (gnu platforms arm)
   (gnu system image)
 
-  ;; servuces
+  ;; services
   (gnu services networking) ; ntpd
-  (gnu services xorg)
   (gnu services desktop)
-  (gnu services ssh) ;dropbear ssh
+  (gnu services xorg) ; to exclude gdm
+  (gnu services ssh) ; to exclude open-ssh
 
   ;; packages
   (gnu packages linux)
   (gnu packages shells) ; zsh
+  (gnu packages autotools)
   (gnu packages screen)
- (gnu packages autotools)
  
   ; awb99
   (awb99 config helper)
   (awb99 config users)
-  (awb99 services ssh)
-  (awb99 services files)
+  (awb99 services os-release)
+  (awb99 services bootstrap-files)
   (awb99 services mingetty)
   )
 
-           
-;  (use-service-modules x y …) is just syntactic sugar for (use-modules (gnu services x) (gnu services y) …)
-;(use-service-modules ; desktop 
-;     networking ) ;ssh xorg mcron certbot web
-; (use-package-modules certs rsync screen ssh)
-
-
-; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
-; https://guix.gnu.org/de/blog/2019/guix-on-an-arm-board/
-; https://github.com/guix-mirror/guix/blob/master/gnu/system/images/rock64.scm
+;; this is a bootstrap image of guix for rock-pro
+;; it can be build on x86.
+;; it includes files in /etc/static
+;; when this image is booted execute bash /etc/static/boostrap.sh
+(display "building rock-pro min image \n")
 
 (define extra-packages
 (->packages-output
-  (list ;"openssh"
+  (list  "util-linux" 
+         "nano"
+         "nss-certs"
+  ;"openssh"
     ;   "dropbear"
         ; "openssh-sans-x"
         ; "zlib" ; needed for openssh?
@@ -69,14 +65,10 @@
      ; "zsh"
   )))
 
-
-(display "extra packages:")
-(display extra-packages)
-
 (define my-packages
-(append extra-packages
-        %base-packages))
-
+  ;(cons* openssh %base-packages) ; wpa-supplicant-minimal 
+  (append extra-packages
+          %base-packages))
 
 (define (remove-services guix-services)
   (remove (lambda (service)
@@ -93,42 +85,31 @@
            (service-type-name type)))))
     guix-services))
 
-
-
 (define my-services
   (append 
-   (list 
-    (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
-    service-files
-    ;service-login-prompt
-    ;(service xfce-desktop-service-type)
-    ;(set-xorg-configuration
-    ;  (xorg-configuration
-    ;  (keyboard-layout (keyboard-layout "at"))))
-    ; service-ssh
-       ;   (service agetty-service-type
-       ;     (agetty-configuration
-       ;       (extra-options '("-L")) ; no carrier detect
-       ;       (baud-rate "115200")
-       ;       (term "vt100")
-       ;       (tty "ttyS0")))
-  )
-(patch-mingetty 
-  (remove-services %base-services)) ;   %desktop-services
-))
+    (list (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
+          service-bootstrap-files
+          service-os-release)
+    (patch-mingetty 
+      (remove-services %base-services)) ;   %desktop-services
+  ))
 
 
 (define rock64-os
   (operating-system
-    (host-name "rockit")
+    (host-name "rockmin")
     (timezone "Europe/Amsterdam") ; (timezone "Etc/UTC")
     (locale "en_US.utf8")
   ; (keyboard-layout (keyboard-layout "us" "altgr-intl"))
     (keyboard-layout (keyboard-layout "at"))
     (groups mygroups)
     (users myusers)
+    ;; Our /etc/sudoers file.  Since 'guest' initially has an empty password,
+    ;; allow for password-less sudo.
+    (sudoers-file (plain-file "sudoers" "\
+     root ALL=(ALL) ALL
+     %wheel ALL=NOPASSWD: ALL\n"))
     (packages my-packages)
-    ;(packages (cons* openssh %base-packages)) ; wpa-supplicant-minimal 
     (services my-services)
     (kernel linux-libre-arm64-generic)
     (kernel-arguments 
@@ -143,13 +124,12 @@
     (bootloader 
       (bootloader-configuration
        (bootloader u-boot-rockpro64-rk3399-bootloader)
-       (targets '("/dev/mmcblk1p1")))) ; "/dev/mmcblk0"
-       ; "/dev/sda"   "/dev/mmcblk0p1"  "/dev/mmcblk0"
+       (targets '("/dev/mmcblk1p1"))))
     (file-systems
       (cons ; cons* 
         (file-system
           (mount-point "/")
-          (device "/dev/mmcblk1p2") ; p2
+          (device "/dev/mmcblk1p2") 
           (type "ext4"))
         %base-file-systems))
     ;; This module is required to mount the SD card.
@@ -169,22 +149,6 @@
 ;;
 ))
 
-
-
-(define rock64-image-type
-(image-type
- (name 'rock64-raw)
- (constructor (cut image-with-os
-                   (raw-with-offset-disk-image (expt 2 24))
-                   <>))))
-
-(define rock64-raw-image
-(image
- (inherit
-  (os+platform->image rock64-os aarch64-linux
-                      #:type rock64-image-type))
- (name 'rock64-raw-image)))
-
-; rock64-raw-image
+(display rock64-os)
 
 rock64-os
