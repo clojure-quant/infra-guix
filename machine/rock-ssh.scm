@@ -28,7 +28,7 @@
   (awb99 config users)
   (awb99 config helper)
   (awb99 services ssh)
-  (awb99 services files)
+  (awb99 services bootstrap-files)
   (awb99 services mingetty)
   )
 
