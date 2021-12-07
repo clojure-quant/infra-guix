@@ -8,7 +8,7 @@
 
 )
 
-(pretty-print chat)
+(pretty-print my-chat)
 
 
 

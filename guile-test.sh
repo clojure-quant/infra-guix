@@ -1,11 +1,12 @@
 #!/bin/sh
 
-export GUILE_LOAD_PATH=/home/florian/repo/myLinux/distros/guix/modules:$GUILE_LOAD_PATH
-
-
 echo "GUIX GUILE TEST"
+echo "PWD:" $PWD
 
-guile -l /home/florian/repo/myLinux/distros/guix/modules/awb99/test.scm
+export GUILE_LOAD_PATH=$PWD/modules:$GUILE_LOAD_PATH
+echo "GUILE LOAD PATH:" $GUILE_LOAD_PATH
+
+guile -l ./modules/awb99/test.scm
 
 #guix repl --load-path=/home/florian/repo/myLinux/distros/guix/modules
 
