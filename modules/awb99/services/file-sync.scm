@@ -8,6 +8,21 @@
 ;The (gnu services syncthing) module provides the following services:
 ; You might want a syncthing daemon if you have files between two or more computers and want to sync them in real time, safely protected from prying eyes.
 
+; http://localhost:8384/
+; Two devices will only connect and talk to each other if they are both configured with each other’s device ID. 
+; A device ID is a unique, cryptographically-secure identifier that is generated as part of the key generation the 
+; first time you start Syncthing. 
+; It is printed in the log above, and you can see it in the web GUI by selecting “Actions” (top right) and “Show ID
+
+; ssh -L 9090:127.0.0.1:8384 user@othercomputer.example.com
+
+; ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
+
+; Print device ID to command line
+; syncthing --device-id
+
+
+
 (define service-syncthing
   (service 
      syncthing-service-type
@@ -18,6 +33,9 @@
        ; logflags (default: 0) Sum of logging flags, see Syncthing documentation logflags.
        ; arguments (default: ’())  ; List of command-line arguments passing to syncthing binary.
         )))
+
+    
+
 
 
 ; (service rsync-service-type)

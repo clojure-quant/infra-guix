@@ -56,6 +56,7 @@
        '("electrum"
          "gnucash"
          "ledger")))
+
 (define-public monitor-packages
   (map (compose list specification->package+output)
        '("htop"
@@ -98,6 +99,7 @@
   (map (compose list specification->package+output)
        '("libreoffice"
          "obs")))
+         
 (define-public %my-extra-desktop-packages
   (map (compose list specification->package+output)
        '("alsa-utils" "pulseaudio"

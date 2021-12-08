@@ -15,7 +15,7 @@
     "bash"
     "wget"
     "chrony"
-    "ntpd"
+  ;  "ntpd"
     
   
   ))

@@ -18,7 +18,7 @@ date -d "2021-12-07 22:10:15"
 export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
 export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
 export GIT_SSL_CAINFO="$SSL_CERT_FILE"
-
+export GIT_SSL_NO_VERIFY=true
 
 
 cd /home/florian
@@ -30,14 +30,12 @@ git clone https://github.com/clojure-quant/infra-guix.git
 cd infra-guix
 
 
-guix system reconfigure ./machine/rock-ssh.scm
-
 # install channels
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 sudo guix pull --channels=/home/florian/repo/clojure-quant/infra-guix/channels.scm \
           --verbosity=3
 
-
+guix system reconfigure ./machine/rock-ssh.scm
 
 # guix install babashka
 # sudo guix install babashka

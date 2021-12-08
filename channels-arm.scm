@@ -10,7 +10,7 @@
         (url "https://git.savannah.gnu.org/git/guix.git"))
 
       (channel
-        (name nonguix)
+        (name 'nonguix)
         (url "https://gitlab.com/nonguix/nonguix.git")) ; binary build system, clojure, dotnet, wine
 
       (channel
