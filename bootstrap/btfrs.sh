@@ -15,3 +15,24 @@ sudo mkfs.btrfs -L nas -f /dev/sda
 
 # mkfs.btrfs /dev/tecmint_vg/tecmint_lv1
 # sudo mkfs.btrfs -L btrfs /dev/sda1
+
+
+parted --script /dev/vdb mklabel gpt \\
+  mkpart primary ext2 1M 3M \\
+  mkpart primary ext2 3M 2G \\
+  set 1 boot on \\
+  set 1 bios_grub on
+
+mkfs.btrfs -L my-root /dev/vdb2
+
+mount /dev/vdb2 /mnt
+
+;btrfs subvolume create /mnt/home
+
+(file-system
+                          (device (file-system-label "my-root"))
+                          (mount-point "/")
+                          (type "btrfs"))
+
+
+

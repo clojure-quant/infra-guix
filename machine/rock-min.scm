@@ -118,6 +118,7 @@
       (file-system
         (mount-point "/")
         (device "/dev/mmcblk0p1") ;p2
+        ; (device (file-system-label "Guix_image"))
         (type "ext4")) 
       %base-file-systems))
   ;; This module is required to mount the SD card.
