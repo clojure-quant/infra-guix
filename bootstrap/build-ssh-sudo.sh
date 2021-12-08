@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo ./bootstrap/build-nas.sh
+sudo ./bootstrap/build-ssh.sh
