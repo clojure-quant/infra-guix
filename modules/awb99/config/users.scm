@@ -43,10 +43,10 @@
 
       )))
     (user-account
-      (name "robert")
+      (name "roberto")
       (comment "Alice's bro")
       (group "users")
-      (home-directory "/home/robert")
+      (home-directory "/home/roberto")
     ;  (shell (file-append zsh "/bin/zsh"))
     )
     %base-user-accounts))

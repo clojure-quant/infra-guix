@@ -3,8 +3,8 @@
 echo "bootstrapping arm image"
 
 #guix install util-linux
-#echo "cfdisk, select the /dev/vda2 root partition, select Resize, Write and type yes. "
-#cfdisk
+# sudo cfdisk /dev/mmcblk0
+# cfdisk does not let me make the disk bigger
  
 # sudo bash /etc/static/resize-disk.sh sd
 

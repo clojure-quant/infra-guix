@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # guix
 # https://github.com/pjotrp/guix-notes/blob/master/CONTAINERS.org#docker
@@ -7,20 +8,20 @@
 # for problems with docjer socket see:
 # https://developer.fedoraproject.org/tools/docker/docker-installation.html
 
-export GUILE_LOAD_PATH=./scm:$GUILE_LOAD_PATH
+export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
 echo "cleaning up artefacts directory"
-rm -R -f ./artefacts
-mkdir ./artefacts
+rm -R -f ./docker-image
+mkdir ./docker-image
 
-echo "saving build time.."
-echo `date` >> ./artefacts/build-date
+#echo "saving build time.."
+#echo `date` >> ./docker-image/build-date
 
-echo "getting manifest packages"
-guix package --manifest=./manifest.scm
+#echo "getting manifest packages"
+#;guix package --manifest=./manifest.scm
 
-echo "saving channels.."
-echo `guix describe` >> ./artefacts/channels
+#echo "saving channels.."
+#echo `guix describe` >> ./artefacts/channels
 
 echo "removing old docker images"
 docker rmi -f guix:latest
@@ -29,9 +30,9 @@ docker rmi -f pinkgorilla:latest
 echo "guix is creating docker tar.gz file"
 guix system \
      --cores=4 \
-     --root=./artefacts/docker-pinkgorilla.tar.gz \
+     --root=./docker-image/docker-pinkgorilla.tar.gz \
      docker-image \
-     ./scm/systems/gorilla.scm
+     ./machine/vm-docker.scm
 
 
 #       --debug=2 \    
@@ -83,7 +84,7 @@ guix system \
 # tar -xf ./artefacts/docker-pinkgorilla.tar.gz -C ./artefacts/docker-pinkgorilla
 
 echo "docker is loading docker image from tar.gz .."
-docker load --input ./artefacts/docker-pinkgorilla.tar.gz
+docker load --input ./docker-image/docker-pinkgorilla.tar.gz
 # image will have tag guix:latest
 
 echo "tagging image: pinkgorilla:latest"

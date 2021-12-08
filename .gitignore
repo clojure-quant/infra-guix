@@ -1,5 +1,5 @@
 .lsp
-/artefacts
+/docker-image
 /creds/creds.edn
 /creds.edn
 creds.edn

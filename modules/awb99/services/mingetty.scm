@@ -28,11 +28,10 @@
 
     )))  
 
-(define service-login-prompt
-  (service login-service-type
-    (login-configuration
-    (motd (plain-file "motd" "\
-       Welcome to Hyksos!  I mean GuixOS!\n\n")))))
+;(define service-login-prompt
+;  (service login-service-type
+;    (login-configuration
+;      (motd (plain-file "motd" "Welcome to clojure-quant!  I mean GuixOS!\n\n")))))
 
 
            ;   (service agetty-service-type

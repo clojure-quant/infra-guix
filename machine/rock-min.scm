@@ -36,6 +36,8 @@
 ;; when this image is booted execute bash /etc/static/boostrap.sh
 (display "building rock-pro min image \n")
 
+; https://framagit.org/tyreunom/system-configuration/-/blob/master/systems/ene.scm
+
 (define extra-packages
 (->packages-output
 (list "nss-certs" ; The nss-certs package provides X.509 certificates, which allow programs to authenticate Web servers accessed over HTTPS
@@ -110,13 +112,13 @@
   (bootloader 
     (bootloader-configuration
      (bootloader u-boot-rockpro64-rk3399-bootloader)
-     (targets '("/dev/mmcblk1p1"))))
+     (targets '("/dev/mmcblk0" )))) ; p1"/dev/mmcblk0"  
   (file-systems
     (cons ; cons* 
       (file-system
         (mount-point "/")
-        (device "/dev/mmcblk1p2")
-        (type "ext4"))
+        (device "/dev/mmcblk0p1") ;p2
+        (type "ext4")) 
       %base-file-systems))
   ;; This module is required to mount the SD card.
   ; the SD card itself also requires two drivers: sunxi-mmc and sd_mod.

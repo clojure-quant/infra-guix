@@ -6,14 +6,15 @@
 
 ;; https://github.com/Millak/guix-config/blob/master/vm_config.scm
 
-; load guile namespaces 
+
 (use-modules (gnu)
              ;(nongnu packages clojure) ; leiningen
              ;(gnu packages python)
-             (gorilla packages)
-             (gorilla services)
-             (gorilla guixutils) 
-             (gorilla os-release))
+             (awb99 services os-release)
+             (awb99 services ssh)
+             (awb99 packages)
+             (awb99 guixutils) 
+             )
 
 ;(use-service-modules ;desktop 
                      ;networking 
@@ -42,9 +43,9 @@
   ;; This is where user accounts are specified.  The "root" account is
   ;; implicit, and is initially created with the empty password.
   (users (cons (user-account
-                 (name "pink")
-                 (comment "pink at gorilla")
-                 (uid 2002) ; uid needs to match user in host for docker
+                 (name "florian")
+                 (comment "florian at gorilla")
+                 (uid 1000) ; uid needs to match user in host for docker; in cli: "id"
                  (group "users")
 
                  (supplementary-groups '("wheel" ; sudo
@@ -54,7 +55,7 @@
                                          "tty"
                                          "lp"
                                          ))
-                 (home-directory "/home/pink")
+                 (home-directory "/home/florian")
                  ;(shell (file-append zsh "/bin/zsh"))
                   ;; Specify a SHA-512-hashed initial password.
                   ;; (password (crypt "InitialPassword!" "$6$abc"))
@@ -100,9 +101,8 @@
   (services 
       (append 
          (list 
-            (simple-service 'os-release etc-service-type
-               `(("os-release" ,%os-release-file)))
-            (gorilla-ssh-service)) 
+            service-os-release
+            service-ssh) 
          %base-services))
 
   ; end of os

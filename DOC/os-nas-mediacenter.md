@@ -6,6 +6,8 @@ NAS
 - RockStor
 - Kodi as a Nas. (Previously known as XBMC)
 - DietPi-CloudShell - system stats
+- LibreElec
+- FreeNas
 
 MediaServer:
 - Kodi (prior: XBMC) DLNA-compliant 

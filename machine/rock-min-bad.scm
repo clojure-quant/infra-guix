@@ -97,7 +97,7 @@
 
 (define rock64-os
   (operating-system
-    (host-name "rockmin")
+    (host-name "rock")
     (timezone "Europe/Amsterdam") ; (timezone "Etc/UTC")
     (locale "en_US.utf8")
   ; (keyboard-layout (keyboard-layout "us" "altgr-intl"))
@@ -113,12 +113,13 @@
     (services my-services)
     (kernel linux-libre-arm64-generic)
     (kernel-arguments 
-      '("console=ttyS2,1500000" ; 
+      '("console=ttyS2,1500000" ; "ttyS2"
       ; "video=HDMI-A-1:1920x1080@60" "video=eDP-1:1920x1080@60"
       ; "vga=current"
       ; "ethaddr=${ethaddr}" "eth1addr=${eth1addr}"
       ; "serial=${serial#}"
       ))     
+    ;; in manjaro the disk shows up as /dev/mmcblk1 and the partition as /dev/mmcblk0p1
     ;; microSD: /dev/mmcblk1
     ;;    eMMC: /dev/mmcblk2
     (bootloader 
