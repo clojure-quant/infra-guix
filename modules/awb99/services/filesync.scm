@@ -1,6 +1,0 @@
-
-
-
-
-
-(service rsync-service-type)

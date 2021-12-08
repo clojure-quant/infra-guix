@@ -1,16 +1,17 @@
 
+sudo lsblk -a
 
- fdisk -c /dev/sdb
+# our drive is /dev/sda
 
-sudo cfdisk /dev/sdb
+# fdisk -c /dev/sda
+
+# create a partition - Choose ‘8e‘ for Linux LVM and press Enter to apply
+sudo cfdisk /dev/sda
 
 
-btrfs-progs-static
-btrfs-progs
+# btfrs guix package: btrfs-progs
+# The -L option is used to specify the volume label.
+sudo mkfs.btrfs -f /dev/sda
 
-
-sudo lsblk
 # mkfs.btrfs /dev/tecmint_vg/tecmint_lv1
-
-sudo mkfs.btrfs -L btrfs /dev/sdb1
-The -L option is used to specify the volume label.
+# sudo mkfs.btrfs -L btrfs /dev/sda1
