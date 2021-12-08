@@ -11,7 +11,7 @@ sudo cfdisk /dev/sda
 
 # btfrs guix package: btrfs-progs
 # The -L option is used to specify the volume label.
-sudo mkfs.btrfs -f /dev/sda
+sudo mkfs.btrfs -L nas -f /dev/sda
 
 # mkfs.btrfs /dev/tecmint_vg/tecmint_lv1
 # sudo mkfs.btrfs -L btrfs /dev/sda1

@@ -174,9 +174,8 @@
           (type "ext4"))
         (file-system
           (mount-point "/nas")
-          (device
-             (uuid "d6c22b6e-792a-4ea3-bc6c-6a53f6657d4a"
-                'btrfs))
+          (device (file-system-label "nas"))
+          ;(device (uuid "d6c22b6e-792a-4ea3-bc6c-6a53f6657d4a" 'btrfs))
           (type "btrfs")
           (options "compress=zstd,discard,space_cache=v2"))
 
