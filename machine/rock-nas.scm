@@ -30,6 +30,7 @@
   (awb99 services ssh)
   (awb99 services bootstrap-files)
   (awb99 services mingetty)
+  (awb99 services file-sync)
   )
 
            
@@ -61,6 +62,7 @@
    "curl" "dbus"
     "guile-readline" "mcron"
    "cryptsetup" "dosfstools" "ntfs-3g" "nftables"
+  "syncthing"
     ;   "dropbear"
         ;
         ; "zlib" ; needed for openssh?
@@ -114,6 +116,7 @@
    (list 
     (service dhcp-client-service-type) ; Use the DHCP client service rather than NetworkManager.
      service-ssh
+     service-syncthing
     ;service-login-prompt
     ;(service xfce-desktop-service-type)
     ;(set-xorg-configuration
@@ -170,7 +173,7 @@
         (device "/dev/mmcblk1p1") ; (device "/dev/mmcblk1p2")
           (type "ext4"))
         (file-system
-          (mount-point "/multimedia")
+          (mount-point "/nas")
           (device
              (uuid "d6c22b6e-792a-4ea3-bc6c-6a53f6657d4a"
                 'btrfs))
