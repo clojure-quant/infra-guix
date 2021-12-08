@@ -164,7 +164,7 @@
        (bootloader u-boot-rockpro64-rk3399-bootloader)
        (targets '("/dev/mmcblk1p1"))))
     (file-systems
-      (cons ; cons* 
+      (cons* 
         (file-system
           (mount-point "/")
         (device "/dev/mmcblk1p1") ; (device "/dev/mmcblk1p2")
