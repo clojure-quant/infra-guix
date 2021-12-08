@@ -99,12 +99,14 @@
                                        "--image-type=rock64-raw"
                                       ; "--system=aarch64-linux"  ; via qemu (slow, but works)
                                         "--target=aarch64-linux-gnu" ; cross-compilation for TRIPLET
-                                    ;   "--image-size=6G" ; use up most of the volume
+                                       "--image-size=16G" ; use up most of the volume
                                        "--cores=6"
                                        ;"--no-grafts"
                                        )}
 
         ; guix system image -t rock64-raw --system=aarch64-linux -e "(@ (gnu system install) rockpro64-installation-os)"
+        ; https://github.com/SystemCrafters/guix-installer
+        ; https://github.com/ofosos/guix-packer
          build-rock-installer {:doc "builds guix installer-image for pine/rock-pro"
                                :task (guix/guix "system" "image"
                                                ; "--no-grafts"

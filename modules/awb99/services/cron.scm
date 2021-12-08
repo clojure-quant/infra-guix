@@ -51,3 +51,19 @@
                           ;updatedb-job
                           ;idutils-job
                           )))
+
+
+
+; (define lift-nofile-limit-job
+;  ;; Lift the maximum open files restriction for all processes every 30 minutes
+;  #~(job "0-59/30 * * * *"            ;Vixie cron syntax
+;         "for i in $(pgrep .); do sudo prlimit --pid $i --nofile=1000000:1000000; done"))
+                      
+                      
+; (define guix-reconfigure-job
+;; gc (remove packages older than 2 months, keep at least 500G free), pull and update every day at 03:05
+; #~(job "5 3 * * *"            ;Vixie cron syntax
+;     "guix gc --optimize -d 2m && guix gc -F 500G && guix pull && guix system reconfigure -k /etc/config.scm"))
+                      
+                      
+                      

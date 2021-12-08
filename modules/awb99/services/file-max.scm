@@ -17,3 +17,6 @@ https://superuser.com/questions/1639692/how-to-set-sysctl-fs-notify-max-user-wat
  (settings '(("fs.inotify.max_user_watches" . "100000")
              ("net.core.default_qdisc" . "fq")
              ("net.ipv4.tcp_congestion_control" . "bbr")))))))
+
+
+  

@@ -112,7 +112,7 @@
   (bootloader 
     (bootloader-configuration
      (bootloader u-boot-rockpro64-rk3399-bootloader)
-     (targets '("/dev/mmcblk0" )))) ; p1"/dev/mmcblk0"  
+     (targets '("/dev/mmcblk0" )))) ; p1"/dev/mmcblk0" 
   (file-systems
     (cons ; cons* 
       (file-system

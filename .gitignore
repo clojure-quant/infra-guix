@@ -5,3 +5,10 @@
 creds.edn
 /cljenv
 .cpcache
+
+
+./guix-cuf/
+./guix-cuf-1-link/
+guix-cuf.lock
+guix-cuf-1-link
+guix-cuf
