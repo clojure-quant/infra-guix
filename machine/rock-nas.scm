@@ -46,7 +46,7 @@
 (define extra-packages
 (->packages-output  ;   (map (compose list specification->package+output)
   (list 
-      "ntpd"
+     ; "ntpd"
       "nss-certs"
       "git"
       "openssh-sans-x"
