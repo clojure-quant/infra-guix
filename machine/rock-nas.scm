@@ -51,7 +51,7 @@
       "nss-certs"
       "git"
       "openssh-sans-x"
-      "btrfs-progs"
+      "btrfs-progs" ; "dosfstools" "ntfs-3g"
       "nano"
     ; shells used in user profiles need to be on system
       "bash"
@@ -59,9 +59,11 @@
     ; "zsh"
       "wget"
   ;  "bind:utils"
-   "curl" "dbus"
-    "guile-readline" "mcron"
-   "cryptsetup" "dosfstools" "ntfs-3g" "nftables"
+   "curl"
+  ; "dbus"
+  ;  "guile-readline"
+   "mcron"
+  ; "cryptsetup"  "nftables"
   "syncthing"
     ;   "dropbear"
         ;
@@ -150,7 +152,6 @@
      root ALL=(ALL) ALL
      %wheel ALL=NOPASSWD: ALL\n"))
     (packages my-packages)
-
     (services my-services)
     (kernel linux-libre-arm64-generic)
     (kernel-arguments 
@@ -165,11 +166,12 @@
     (bootloader 
       (bootloader-configuration
        (bootloader u-boot-rockpro64-rk3399-bootloader)
-       (targets '("/dev/mmcblk1p1"))))
+       (targets '("/dev/mmcblk1"))))
     (file-systems
       (cons* 
         (file-system
           (mount-point "/")
+          ; in the running system it appears as: /dev/mmcblk1p1 
         (device "/dev/mmcblk1p1") ; (device "/dev/mmcblk1p2")
           (type "ext4"))
         (file-system
