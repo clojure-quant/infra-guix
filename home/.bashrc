@@ -26,9 +26,19 @@ then
 else
     PS1='\u@\h \w\$ '
 fi
+
+
 alias ls='ls -p --color=auto'
 alias ll='ls -l'
 alias grep='grep --color=auto'
+alias clear="printf '\033c'"
+alias lsa="ls -lsa"
+alias lsah="ls -lsah"
+alias psg='ps aux | grep -i'
+alias tml="tmux list-sessions"
+alias tma="TERM=xterm-24bits tmux attach-session -t"
+
+
 [ -r /home/florian/.byobu/prompt ] && . /home/florian/.byobu/prompt   #byobu-prompt#
 
 GUIX_PROFILE="/home/florian/.guix-profile"
