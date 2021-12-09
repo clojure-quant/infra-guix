@@ -151,12 +151,12 @@
     (bootloader 
       (bootloader-configuration
        (bootloader u-boot-rockpro64-rk3399-bootloader)
-       (targets '("/dev/mmcblk1p1"))))
+       (targets '("/dev/mmcblk1p1"))))  ; "/dev/disk/by-id/mmc-SC64G_0xb13f1704"
     (file-systems
       (cons ; cons* 
         (file-system
-          (mount-point "/")
-        (device "/dev/mmcblk1p1") ; (device "/dev/mmcblk1p2")
+          (mount-point "/") 
+          (device "/dev/mmcblk1p1") ; (device "/dev/mmcblk1p2")     
           (type "ext4"))
         ;(file-system
         ;  (mount-point "/multimedia")

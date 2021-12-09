@@ -1,22 +1,11 @@
+
+
+
 (file-system
-                        (device (file-system-label "my-root"))
-                        (mount-point "/")
-                        (type "ext4"))
+  (device (file-system-label "my-root"))
+  (mount-point "/")
+  (type "ext4"))
 
-
-
-connman ;call connmanctl
-                       cryptsetup
-                       dosfstools ;mkfs.fat
-                       e2fsprogs ;mkfs.ext4
-                       lvm2-static ;dmsetup
-                       btrfs-progs
-                       jfsutils ;jfs_mkfs
-                       ntfs-3g ;mkfs.ntfs
-                       xfsprogs ;mkfs.xfs
-                       kbd ;chvt
-                       guix ;guix system init call
-                       util-linux ;mkwap
 
 
 sudo mkfs.ext4 /dev/sdc1

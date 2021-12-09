@@ -1,38 +1,56 @@
+#!/bin/sh
 
 sudo lsblk -a
 
-# our drive is /dev/sda
+# our drive is /dev/sda  1.8T 
 
-# fdisk -c /dev/sda
+guix install parted  btrfs-progs
 
-# create a partition - Choose ‘8e‘ for Linux LVM and press Enter to apply
-sudo cfdisk /dev/sda
+# 1. CREATE A PARTITION
 
+# btfrs guix package:
 
-# btfrs guix package: btrfs-progs
-# The -L option is used to specify the volume label.
-sudo mkfs.btrfs -L nas -f /dev/sda
+# sudo mkfs.btrfs -L nas -f /dev/sda
 
 # mkfs.btrfs /dev/tecmint_vg/tecmint_lv1
 # sudo mkfs.btrfs -L btrfs /dev/sda1
 
+parted --script /dev/sda mklabel gpt \
+  mkpart primary ext2 1M 3M \
+  mkpart primary ext2 3M 1800G 
+ # \\
+ # set 1 boot on \\
+ # set 1 bios_grub on
 
-parted --script /dev/vdb mklabel gpt \\
-  mkpart primary ext2 1M 3M \\
-  mkpart primary ext2 3M 2G \\
-  set 1 boot on \\
-  set 1 bios_grub on
 
-mkfs.btrfs -L my-root /dev/vdb2
 
-mount /dev/vdb2 /mnt
+# 2. FORMAT PARTITION
 
-;btrfs subvolume create /mnt/home
+# The -L option is used to specify the volume label.
+mkfs.btrfs -L nas /dev/sda2
 
-(file-system
-                          (device (file-system-label "my-root"))
-                          (mount-point "/")
-                          (type "btrfs"))
+#;btrfs subvolume create /mnt/home
+
+
+# 3. MOUNT PARTITION
+
+# sudo mkdir /nas
+# sudo mount /dev/sda2 /nas
+# sudo umount /dev/sda2
+
+
+
+# (file-system
+#   (device (file-system-label "nas"))
+#   (mount-point "/nas")
+#   (type "btrfs"))
+
+
+
+
+
+
+
 
 
 
