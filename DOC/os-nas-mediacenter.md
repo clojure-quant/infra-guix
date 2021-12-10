@@ -25,11 +25,3 @@ Protocols:
 - Secure File Transport Protocol (SFTP)
 - WebDAV stands for "Web-based Distributed Authoring and Versioning"
 
-
-
-guix:
-kodi
-kodi-wayland
-kodi-cli
-play-to-kodi-chromium
-calibre

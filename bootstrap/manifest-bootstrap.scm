@@ -7,6 +7,7 @@
   (list 
     "nss-certs"
     "git"
+    "ntp"
     ;"openssh" ; required for git with ssh repos
     "openssh-sans-x"
     "btrfs-progs"

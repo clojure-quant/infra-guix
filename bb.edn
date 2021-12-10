@@ -177,6 +177,15 @@
 
          home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
 
+         syncthing-tunnel {:doc "creates syncthing webadmin tunnel (for nas/syncthing config"
+                           :task (do (println "starting syncthing tunnel..")
+                                     ;(shell "ssh" "-L" "9090:127.0.0.1:8384" "florian@192.168.1.116")
+                                     (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.1.116")
+                                     (println "syncting local webadmin: localhost:9090")
+                                     )}
+
+
+
          a 1 
          b {:depends [a]    ; bb run --prn b          this tests return values of tasks
             :task (inc a)}

@@ -34,9 +34,6 @@ ls  ~/.guix-profile/bin                              installed binaries
 /var/guix/profiles/system
 
 
-sudo dmesg
-for links errors.
-
 
 # GUIX SYSTEM ADMIN
 

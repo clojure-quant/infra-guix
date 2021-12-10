@@ -14,3 +14,8 @@ awb99: This cpuidle_enter_state shows up in wildly different random bug reports 
 
 uname -srm
 Linux 5.14.9-gnu x86_64
+
+
+
+sudo dmesg
+for links errors.

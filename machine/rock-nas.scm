@@ -65,6 +65,15 @@
    "mcron"
   ; "cryptsetup"  "nftables"
   "syncthing"
+
+  "kodi"
+  ;"kodi-wayland"
+  "kodi-cli"
+  ;"play-to-kodi-chromium"
+  "calibre"
+
+;dyndns ddclient to disec.io  
+
     ;   "dropbear"
         ;
         ; "zlib" ; needed for openssh?

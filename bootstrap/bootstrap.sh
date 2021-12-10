@@ -10,13 +10,14 @@ echo "bootstrapping arm image"
 
 guix package --manifest=/etc/static/manifest-bootstrap.scm
 
+sudo ntpdate -u pool.ntp.org
 
 # CLONE GIT REPO
 
 # guix package -i nss-certs
-#export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
-#export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
-#export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+export SSL_CERT_DIR="$HOME/.guix-profile/etc/ssl/certs"
+export SSL_CERT_FILE="$HOME/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+export GIT_SSL_CAINFO="$SSL_CERT_FILE"
 # date -d "2021-12-07 22:10:15"  
 # this is needed because on clone time the date is off
 export GIT_SSL_NO_VERIFY=true
@@ -32,6 +33,10 @@ cd infra-guix
 # install channels
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 sudo guix pull --channels=/home/florian/repo/clojure-quant/infra-guix/channels.scm \
+          --verbosity=3
+
+
+guix pull --channels=/home/florian/repo/clojure-quant/infra-guix/channels.scm \
           --verbosity=3
 
 # reconfigure to rock-ssh
