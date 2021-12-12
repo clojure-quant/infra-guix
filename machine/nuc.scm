@@ -14,6 +14,7 @@
   
   (awb99 services trezord)
   (awb99 services special-files)
+  (awb99 services file-sync)
   (awb99 config cron)
   (awb99 config iptables))
              
@@ -82,6 +83,7 @@
         (platforms (lookup-qemu-platforms "arm" "aarch64"))))
 
     service-bin-links
+    service-syncthing
 
     (service docker-service-type)
 
@@ -156,6 +158,10 @@
 
 (define extra-packages
    (list "nss-certs"
+         "fuse" ; for sshfs
+         "sshfs"
+         "nbd" ; to mount qcow2 images
+
          "xrandr" ; hidpi x-windows scaling
          ; xfce
          "xfce4-screensaver"
@@ -222,6 +228,7 @@
   (timezone "Europe/Amsterdam")
   (keyboard-layout (keyboard-layout "at"))
   (host-name "nuc27")
+  (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
   (groups my-groups)
   (users my-users)
   (packages my-packages)

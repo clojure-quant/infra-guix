@@ -38,7 +38,7 @@
 ;(use-service-modules ; desktop 
 ;     networking ) ;ssh xorg mcron certbot web
 ; (use-package-modules certs rsync screen ssh)
-
+ 
 
 ; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
 ; https://guix.gnu.org/de/blog/2019/guix-on-an-arm-board/
@@ -58,21 +58,21 @@
     ; "fish"
     ; "zsh"
       "wget"
-  ;  "bind:utils"
-   "curl"
-  ; "dbus"
-  ;  "guile-readline"
-   "mcron"
-  ; "cryptsetup"  "nftables"
-  "syncthing"
-
-  "kodi"
-  ;"kodi-wayland"
-  "kodi-cli"
-  ;"play-to-kodi-chromium"
-  "calibre"
-
-;dyndns ddclient to disec.io  
+    ;  "bind:utils"
+    "curl"
+    ; "dbus"
+    ;  "guile-readline"
+    "mcron"
+    ; "cryptsetup"  "nftables"
+    "syncthing"
+    "kodi"
+    ;"kodi-wayland"
+    "kodi-cli"
+    ;"play-to-kodi-chromium"
+    "calibre"
+    "readymedia" ; DLNA/UPnP-AV media server (formerly known as MiniDLNA)
+   ; "pulseaudio-dlna" ; Stream audio to DLNA/UPnP and Chromecast devices
+   ;dyndns ddclient to disec.io  
 
     ;   "dropbear"
         ;
@@ -160,6 +160,7 @@
     (sudoers-file (plain-file "sudoers" "\
      root ALL=(ALL) ALL
      %wheel ALL=NOPASSWD: ALL\n"))
+    (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
     (packages my-packages)
     (services my-services)
     (kernel linux-libre-arm64-generic)

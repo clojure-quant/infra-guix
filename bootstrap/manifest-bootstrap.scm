@@ -5,9 +5,9 @@
 
 (define my-min
   (list 
-    "nss-certs"
+    "nss-certs" ; https certificate
+    "ntp" ; for ntp time sync
     "git"
-    "ntp"
     ;"openssh" ; required for git with ssh repos
     "openssh-sans-x"
     "btrfs-progs"
