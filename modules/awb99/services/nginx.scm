@@ -23,6 +23,13 @@
   #~(let ((pid (call-with-input-file "/var/run/nginx/pid" read)))
          (kill pid SIGHUP))))
 
+(define (set-up-html-directory directories)
+  (when (not (access? "/srv/http" (logior R_OK W_OK)))
+             (mkdir "/srv/http")))
+    
+    
+
+
 
 
 (define my-certbot-service
@@ -42,6 +49,8 @@
     ;    (deploy-hook %nginx-deploy-hook))
     
     )))))
+
+
 
 (define my-nginx-service
 (service nginx-service-type
@@ -86,3 +95,4 @@
 
 
 ;; /var/lib/certbot/renew-certificates
+

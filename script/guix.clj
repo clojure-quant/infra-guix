@@ -23,6 +23,15 @@
   (apply shell "sudo" "bb" command args))
 
 
+(defn guile
+  [& args]
+  (let [opts (extra-path-env "GUILE_LOAD_PATH" "./modules")
+        result (apply shell opts "guile" args)]
+     ;(println "guix result: " result)
+     ;(println "guix out result: "  (:out result))
+    result))
+
+
 (defn describe
   ([]
    (guix "describe")))

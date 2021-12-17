@@ -7,6 +7,7 @@
   #:export (awb99-ssh-config
             service-ssh
             service-ssh-dropbear
+            service-ssh-bitblock
   ))
 
 
@@ -14,14 +15,14 @@
 (define awb99-ssh-config
   (openssh-configuration
     (openssh openssh-sans-x)
-    (password-authentication? #false)
+    (password-authentication? #f)
     ;(port-number 2222)
     (permit-root-login 'prohibit-password)
     ;(permit-root-login #f)
     (public-key-authentication? #t)
     (authorized-keys
-      `(("florian" ,(local-file "/home/florian/repo/clojure-quant/infra-guix/bootstrap/flo5.pub"  )) ; relative this file "../../flo5.pub"
-        ("root" ,(local-file "/home/florian/repo/clojure-quant/infra-guix/bootstrap/flo5.pub" )) ; "../../flo5.pub"
+      `(("florian" ,(local-file "../../../keys/flo5.pub"  )) ; relative this file "../../flo5.pub"
+        ("root" ,(local-file "../../../keys/flo5.pub" )) ; "../../flo5.pub"
       ))))
 
 
@@ -30,6 +31,20 @@
   (service openssh-service-type
      awb99-ssh-config
     ))
+
+
+(define service-ssh-bitblock
+  (service openssh-service-type
+     (openssh-configuration
+     (openssh openssh-sans-x)
+     (permit-root-login 'prohibit-password)
+     (public-key-authentication? #t)
+     (authorized-keys
+     `( ("viktor" ,(local-file"../../../keys/viktor.pub")) 
+        ("florian" ,(local-file"../../../keys/flo5.pub"))
+    )))))
+
+
 
 ; (service openssh-service-type
 ; (openssh-configuration

@@ -103,9 +103,12 @@
     "claws-mail"
     ; "kmail"
     "celestia-gtk" ; 3d simulation of universe/planets
-    "vscodium"
+  
     "go-ipfs"   ; bin: ipfs 
     "ntp"
     "ncurses"  ; cli gui 
+
+     ;"vscodium"
+
     
   ))

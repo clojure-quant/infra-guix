@@ -46,6 +46,12 @@
 
     ;i3-service
     ;(screen-locker-service i3lock)
+
+  ; printer: HP LJ Pro MFP M148fdw MFG Laser
+  ; https://developers.hp.com/hp-linux-imaging-and-printing
+  ; guix install hplip
+  ; HP LaserJet m14-m17, hpcups 3.21.10
+
     (service cups-service-type
       (cups-configuration
         (default-paper-size "A4")
@@ -161,6 +167,7 @@
          "fuse" ; for sshfs
          "sshfs"
          "nbd" ; to mount qcow2 images
+         "glibc-locales" ; guix locales
 
          "xrandr" ; hidpi x-windows scaling
          ; xfce
@@ -208,12 +215,17 @@
          "cups"
          "cups-filters"
          "foomatic-filters"    ; postscript -> printer driver
-         "hplip"
+         "hplip"; hp line printer drivers
          "system-config-printer"
-         "grep"    ;grep errro in foomatic-filters.
+         "grep"    ;grep errror in foomatic-filters.
          ; docker
          "docker"
-         "iptables"))   
+         "iptables"
+         "rofi" ; programm launcher
+        ; "wofi" wayland rofi
+        ; "interrobang"
+        
+        ))   
 
 
  (define my-packages

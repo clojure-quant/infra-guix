@@ -16,7 +16,7 @@
     ;"clojure-tools-cli"  ; guix version (OLD)
     ;"clojure"   ; from gnu guix  this is old.  brings clojure
     "clojure-tools" ; nongnu version brings clj and clojure
-    "leiningen" ; nongnu 
+    ; "leiningen" ; nongnu 
     ; channel gorilla (prior: guiliani)
     "babashka" 
       

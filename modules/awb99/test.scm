@@ -5,6 +5,7 @@
   #:use-module (awb99 config iptables)
   #:use-module (awb99 config users)
   #:use-module (awb99 install chat)
+  #:use-module (awb99 guixutils)
   ; #:use-module (awb99 services special-files)
 
 )

@@ -62,10 +62,9 @@
                                   "--verbosity=3" 
                                   "--no-grafts"))}
 
-         build-ocean-image {:doc "builds ocean vm-image to be run with qemu"
-          :task (do (println "building vm image..")
-                    (guix/system "ocean"
-                                 "image"
+         build-ocean {:doc "builds ocean vm-image to be run with qemu"
+          :task (do (println "building oceaan vm image..")
+                    (guix/image "ocean-image"
                                  "--verbosity=3"
                                  "--no-grafts")
                      (println "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2")
@@ -78,7 +77,7 @@
         ; 178.128.203.133
         ; cloud.digitalocean.com
         ; https://othacehe.org/hosting-a-blog-using-only-scheme.html
-        build-ocean {:doc "builds digital-ocean image and deploys it" 
+        deploy-ocean {:doc "builds digital-ocean image and deploys it" 
                     ; https://stumbles.id.au/getting-started-with-guix-deploy.html
                     ; cfdisk, select the /dev/vda2 root partition, select "Resize", "Write" and type "yes". 
                     ; Then resize the filesystem to match by running resize2fs /dev/vda2.
@@ -178,7 +177,7 @@
 
          home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
 
-         syncthing-tunnel {:doc "creates syncthing webadmin tunnel (for nas/syncthing config"
+         syncthing-tunnel {:doc "creates syncthing webadmin tunnel (for nas/syncthing config)"
                            :task (do (println "starting syncthing tunnel..")
                                      (println "syncting local webadmin: localhost:9090")
                                      ;(shell "ssh" "-L" "9090:127.0.0.1:8384" "florian@192.168.1.116")
@@ -187,9 +186,12 @@
                                      )}
 
 
-
-         a 1 
-         b {:depends [a]    ; bb run --prn b          this tests return values of tasks
-            :task (inc a)}
+         
+         guile-test (guix/guile "-l" "./modules/awb99/test.scm")
+         ; #guix repl --load-path=/home/florian/repo/myLinux/distros/guix/modules
+         
+        ; a 1 
+        ; b {:depends [a]    ; bb run --prn b          this tests return values of tasks
+        ;    :task (inc a)}
  ;
          }}

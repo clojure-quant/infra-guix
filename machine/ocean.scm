@@ -1,13 +1,23 @@
 (use-modules
-   (gnu services admin)
-   (gnu packages)
-   (awb99 util)
-   (awb99 install clojure)
-   (awb99 system server)
+  (gnu machine) ; machine definition
+  (gnu machine ssh) ; machine-ssh-configuration
+  (gnu machine digital-ocean) ; digital-ocean-configurations
+  (awb99 machine ocean)
    )
 
-(use-service-modules networking ssh web)
-(use-package-modules bootloaders ssh)
+; https://stumbles.id.au/getting-started-with-guix-deploy.html
+; https://guix.gnu.org/blog/2019/managing-servers-with-gnu-guix-a-tutorial/
+; https://wiki.pantherx.org/Installation-digital-ocean/
+
+; https://git.pixie.town/pinoaffe/config/src/branch/master/hostile_takeover.sh
+
+
+; guix system disk-image -t qcow2 config.scm' .
+; then uploaded to custom image in DO interface. 
+; make sure to upload image to the region you wish to deploy to. 
+; and make sure you select one that's actually available to deploy droplet
+
+
 
 (define c-ssh
   (machine-ssh-configuration
@@ -15,37 +25,38 @@
     (system "x86_64-linux")
     (host-key "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC1QoCpwM+XzvGqM4g3z2yZbRH1ZBa8EQ7Weqx7ixoxT")
     (user "root")
-    (identity "/home/florian/repo/myLinux/data/ssh/coin")
+    (identity "./keys/coin")
     (port 22)))
 
-(display "base packages: \n")
-(display my-packages)
-
-(define (->packages-output specs)
-  (map specification->package+output specs))
-
-
-(define extra-packages
-   (->packages-output
-     (append (list "mc")
-             my-clojure
-     )))
-
-(display "extra packages: \n")
-(display extra-packages)
-(display "extra packages: done.\n")
+(define c-do
+  (digital-ocean-configuration
+    (region "nyc1")
+    (size "s-1vcpu-1gb")
+    (enable-ipv6? #f)
+    (ssh-key "../keys/coin")
+    (tags (list "ubuntu-s-1vcpu-1gb-nyc1-01"
+      ))
+      ))
 
 
-(define ocean-os 
-  (operating-system
-    (inherit my-server)
-    (packages (append extra-packages my-packages))
-  ))
+(define machine-ocean 
+   (machine
+     (environment managed-host-environment-type)
+     (configuration c-ssh)
+     (operating-system  ocean-os
+      ;(inherit ocean-os2)
+     ; (packages (append extra-packages %base-packages))
+     )
+   ))
 
-(list (machine
-       (operating-system ocean-os)
-       (environment managed-host-environment-type)
-       (configuration c-ssh)))
+
+
+(list 
+  machine-ocean
+  )
 
 ; this needs to be run from time to time.
 ; /var/lib/certbot/renew-certificates
+
+
+

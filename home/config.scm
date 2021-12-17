@@ -99,7 +99,6 @@
                "subdl"
                "libwebp"
                "xdotool"
-               "vscodium"
                "ntp"
                "xsettingsd"
                "font-iosevka"
@@ -172,7 +171,7 @@
                "fastjar"
                "rlwrap"
                "clojure-tools"
-               "leiningen"
+              ; "leiningen"
                "babashka")))
   (services
     (list (service
