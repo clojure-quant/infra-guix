@@ -12,167 +12,47 @@
   (gnu home services shells)
   (awb99 guixutils) 
   (awb99 config helper)
-)
+  (awb99 packages) 
+  )
+
+(define nuc-packages
+  (append 
+    ; clojure apps
+      clojure-packages
+      node-packages
+    ; python-packages
+    ; r-packages
+      build-packages
+    ; linux cli
+      security-packages
+      archive-packages
+      monitor-packages
+      network-packages
+      file-transfer-packages
+      shell-packages
+      hardware-packages
+    ; apps
+      guix-core-packages
+      virtual-machine-packages
+      crypto-packages
+    ; desktop
+      desktop-chat-packages
+      desktop-multimedia-packages
+      desktop-office-packages
+      desktop-browser-packages 
+      desktop-tool-packages
+    ; services
+      services-packages
+    ))
+
 
 (define (specifications->package specs)
-(map specification->package specs))
+  (map specification->package specs))
 
 (home-environment
   (packages
     (->packages-output ; ->packages ; map specification->package
-         (list "libreoffice"
-               "emacs"
-               "icecat"
-               "ungoogled-chromium"
-               "nyxt"
-               "docker"
-               "qemu"
-               "virt-manager"
-               "udiskie"
-               "remmina"
-               "claws-mail"
-               "java-swt"
-               "emacs-spacemacs-theme"
-               "openssh"
-               "openjdk:jdk"
-               "gparted"
-               "inxi"
-               "git"
-               "certbot"
-               "telegram-desktop"
-               "quassel"
-               "xfce4-screenshooter"
-               "xfce4-notifyd"
-               "xfce4-whiskermenu-plugin"
-               "exo"
-               "fontconfig"
-               "eovim"
-               "kate"
-               "mousepad"
-               "pdfarranger"
-               "qpdfview"
-               "midori"
-               "nomad"
-               "vimb"
-               "glimpse"
-               "xdot"
-               "gst-libav"
-               "gst-plugins-base"
-               "gst-plugins-good"
-               "gst-plugins-bad"
-               "gst-plugins-ugly"
-               "vlc"
-               "kodi"
-               "ffmpeg"
-               "pavucontrol"
-               "keepassxc"
-               "transmission:gui"
-               "qbittorrent"
-               "youtube-dl"
-               "syncthing-gtk"
-               "docker-compose"
-               "flatpak"
-               "catfish"
-               "celestia-gtk"
-               "syncthing"
-               "elementary-xfce-icon-theme"
-               "adwaita-icon-theme"
-               "breeze-icons"
-               "matcha-theme"
-               "papirus-icon-theme"
-               "java-qdox"
-               "iputils"
-               "fish"
-               "byobu"
-               "wget"
-               "curl"
-               "unzip"
-               "ranger"
-               "mc"
-               "glances"
-               "rsync"
-               "mesa-utils"
-               "openssl"
-               "xclock"
-               "sxiv"
-               "gstreamer"
-               "subdl"
-               "libwebp"
-               "xdotool"
-               "ntp"
-               "xsettingsd"
-               "font-iosevka"
-               "font-iosevka-aile"
-               "node"
-               "graphviz"
-               "sdparm"
-               "hdparm"
-               "parted"
-               "cryptsetup"
-               "cpuid"
-               "cpuinfo"
-               "tree"
-               "whois"
-               "perftest"
-               "the-silver-searcher"
-               "bash"
-               "zsh"
-               "zsh-autosuggestions"
-               "less"
-               "which"
-               "grep"
-               "sed"
-               "tmux"
-               "tar"
-               "p7zip"
-               "tarlz"
-               "gzip"
-               "zip"
-               "sysfsutils"
-               "htop"
-               "ncdu"
-               "ncurses"
-               "rclone"
-               "nano"
-               "findutils"
-               "mlocate"
-               "glibc-locales"
-               "mcron"
-               "fasd"
-               "coreutils"
-               "hello"
-               "make"
-               "gcc-toolchain"
-               "xcursor-themes"
-               "hicolor-icon-theme"
-               "font-hack"
-               "font-fira-mono"
-               "font-gnu-unifont"
-               "font-google-noto"
-               "font-openmoji"
-               "opus"
-               "docker-cli"
-               "scm"
-               "go-ipfs"
-               "arc-icon-theme"
-               "gnome-icon-theme"
-               "gnome-backgrounds"
-               "font-fira-code"
-               "font-jetbrains-mono"
-               "font-abattis-cantarell"
-               "font-dejavu"
-               "font-gnu-freefont"
-               "font-liberation"
-               "font-awesome"
-               "font-google-material-design-icons"
-               "gs-fonts"
-               "font-ibm-plex"
-               "font-wqy-microhei"
-               "fastjar"
-               "rlwrap"
-               "clojure-tools"
-              ; "leiningen"
-               "babashka")))
+        nuc-packages))
   (services
     (list (service
             home-bash-service-type

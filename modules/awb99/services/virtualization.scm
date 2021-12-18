@@ -1,5 +1,9 @@
+(define-module (awb99 services virtualization))
 
-(use-modules (gnu services virtualization))
+(use-modules 
+  (gnu services)
+  (gnu services virtualization)
+  )
 
 
 ; virtualization
@@ -16,3 +20,13 @@
 (service virtlog-service-type
          (virtlog-configuration
           (max-clients 1000)))
+
+
+; (define (vm-services-patch services)
+;   (modify-services services
+;        ;; The default udev rules are not needed in a VM.
+;        (udev-service-type config =>
+;            (udev-configuration
+;            (inherit config)
+;            (rules '())))
+;        ))

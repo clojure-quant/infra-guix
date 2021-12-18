@@ -34,7 +34,7 @@
 "openssh"
 "tree"
 "whois"
-"perftest"
+
 "the-silver-searcher" ; ag
 "iputils" ; ping
 ; SHELL

@@ -1,8 +1,13 @@
-(define-module (awb99 install emacs)
+(define-module (awb99 packages emacs)
   #:export (my-emacs))
 
 (define my-emacs
   (list 
+
+    "emacs"
+    "emacs-spacemacs-theme"
+     ; emacs + geiser .. geiser = guix repl for emacs
+
     "emacs-aio"
     "emacs-anzu"
     "emacs-base16-theme"

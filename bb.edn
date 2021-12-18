@@ -14,8 +14,8 @@
         ; install
          install-channels {:doc "installs channels"
                            :task (guix/pull "channels")}
-         install-desktop {:doc "installs desktop packages"
-                          :task (guix/package "desktop"
+         install-nuc {:doc "installs nuc desktop packages"
+                          :task (guix/package "nuc"
                                               "--verbosity=1"
                                               "--no-grafts")}
 
@@ -25,50 +25,49 @@
                        (guix/guix "gc" "--optimize" "-d" "2m")
                        (guix/guix "gc" "-F" "200G"))}
          pull {:doc "guix pull (update package definitions)"
-               :task  (do (println "guix pull..") 
-                         (guix/guix "pull"
+               :task  (do (println "guix pull..")
+                          (guix/guix "pull"
                                     ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
-                                    (str "--channels=" "./channels.scm")
-                                    "--verbosity=3"))}
+                                     (str "--channels=" "./channels.scm")
+                                     "--verbosity=3"))}
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
                             (guix/guix "upgrade"))}
          update {:doc "Updates guix (gc pull upgrade)" ; ensure sequential order 
                  :task (do ;(run 'gc)
-                           (run 'pull)
-                           (run 'upgrade))}
+                         (run 'pull)
+                         (run 'upgrade))}
 
          update-root {:doc "updates guix ROOT (gc pull upgrade)"
                       :task (do (guix/sudo "update")
                                 (guix/guix "system" "describe"))}
         ; build
-         build-nuc-user (guix/system "nuc" 
+         build-nuc-user (guix/system "nuc"
                                      "reconfigure")
-         build-nuc {:doc "builds image for nuc"
-                          :task (do (guix/sudo "build-nuc-user")
-                                    (guix/guix "system" "describe"))}
+         build-nuc  {:doc "builds guix os for desktop nuc (runs as sudo)"
+                     :task (do (guix/sudo "build-nuc-user")
+                               (guix/guix "system" "describe"))}
 
          build-vm {:doc "builds vm-image to be run with qemu"
-           :task (do (println "building vm image..")
-                     (guix/system "vm-terminal"
-                                  "vm"
-                                  "--verbosity=3" 
-                                  "--no-grafts"))}
+                   :task (do (println "building vm image..")
+                             (guix/system "vm-terminal"
+                                          "vm"
+                                          "--verbosity=3"
+                                          "--no-grafts"))}
 
          build-docker {:doc "builds docker image"
-           :task (do (println "building docker image..")
-                     (guix/system "vm-docker"
-                                  "vm"
-                                  "--verbosity=3" 
-                                  "--no-grafts"))}
+                       :task (do (println "building docker image..")
+                                 (guix/system "vm-docker"
+                                              "vm"
+                                              "--verbosity=3"
+                                              "--no-grafts"))}
 
-         build-ocean {:doc "builds ocean vm-image to be run with qemu"
-          :task (do (println "building oceaan vm image..")
-                    (guix/image "ocean-image"
-                                 "--verbosity=3"
-                                 "--no-grafts")
-                     (println "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2")
-                                )}
+         build-ocean {:doc "builds digital-ocean vm-image to be run with qemu"
+                      :task (do (println "building oceaan vm image..")
+                                (guix/image-result "ocean-image"
+                                                   "--verbosity=3"
+                                                   "--no-grafts")
+                                (println "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2"))}
 
         ; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
         ; https://cloudinit.readthedocs.io/en/stable/
@@ -77,15 +76,15 @@
         ; 178.128.203.133
         ; cloud.digitalocean.com
         ; https://othacehe.org/hosting-a-blog-using-only-scheme.html
-        deploy-ocean {:doc "builds digital-ocean image and deploys it" 
+         deploy-ocean {:doc "builds digital-ocean image and deploys it"
                     ; https://stumbles.id.au/getting-started-with-guix-deploy.html
                     ; cfdisk, select the /dev/vda2 root partition, select "Resize", "Write" and type "yes". 
                     ; Then resize the filesystem to match by running resize2fs /dev/vda2.
-                     :task (do (println "builing/deploying digital-ocean image..")
-                               (guix/guix "deploy"
-                                          "./machine/ocean.scm"
-                                          "--verbosity=3"
-                                          "--no-grafts"))}
+                       :task (do (println "builing/deploying digital-ocean image..")
+                                 (guix/guix "deploy"
+                                            "./machine/ocean.scm"
+                                            "--verbosity=3"
+                                            "--no-grafts"))}
 
          ; https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
          ; https://framagit.org/tyreunom/guix-android
@@ -98,7 +97,7 @@
                      :task (guix/image "rock-min"
                                        "--image-type=rock64-raw"
                                       ; "--system=aarch64-linux"  ; via qemu (slow, but works)
-                                        "--target=aarch64-linux-gnu" ; cross-compilation for TRIPLET
+                                       "--target=aarch64-linux-gnu" ; cross-compilation for TRIPLET
                                        "--image-size=16G" ; use up most of the volume
                                        "--cores=6"
                                        ;"--no-grafts"
@@ -110,8 +109,8 @@
          build-rock-installer {:doc "builds guix installer-image for pine/rock-pro"
                                :task (guix/guix "system" "image"
                                                ; "--no-grafts"
-                                                 "--image-type=rock64-raw"
-                                         "--system=aarch64-linux" 
+                                                "--image-type=rock64-raw"
+                                                "--system=aarch64-linux"
                                         ; "--target=aarch64-linux" ; cross-compilation via qemu
                                                 "--target=aarch64-linux-gnu" ; cross-compilation via qemu
                                                 "-e" "(@ (gnu system install) rockpro64-installation-os)")}
@@ -119,29 +118,28 @@
 
          ; https://othacehe.org/distributing-guix-system-pinebook-pro-images.html
          ; guix system disk-image --system=armhf-linux -e "(@ (gnu system install) beaglebone-black-installation-os)"
-         build-pine-installer (guix/guix "system" "image" 
-                                "--system=aarch64-linux"
+         build-pine-installer (guix/guix "system" "image"
+                                         "--system=aarch64-linux"
                                 ;"--target=aarch64-linux-gnu"
-                                "--image-type=pine64-raw"
+                                         "--image-type=pine64-raw"
                                 ;"--no-grafts"
-                                 "-e" "(@ (gnu system install) pine64-plus-installation-os)"
-                                )
+                                         "-e" "(@ (gnu system install) pine64-plus-installation-os)")
 
          ; https://github.com/Schroedinger50PCT/guix-pinephone
          ; Der linux-libre-arm64-generic kernel bootet aber gibt keinen Display output.
          ; image --image-type=pine64-raw my-pine-os.scm
          build-pine (guix/image "pinephone"
                                 ;"--system=aarch64-linux"
-                                "--target=aarch64-linux-gnu" 
+                                "--target=aarch64-linux-gnu"
                                 "--image-type=pine64-raw"
                                 ;"--no-grafts"
                                 )
          build-pine-chromium (guix/image "pinephone-chromium"
                                         ;"--system=aarch64-linux"
-                                        "--target=aarch64-linux-gnu"
+                                         "--target=aarch64-linux-gnu"
                                       ;  "--image-type=pine64-raw"
                                         ;"--no-grafts"
-                                        )
+                                         )
 
          ; pinebook pro
          ; https://github.com/Schroedinger50PCT/guix-pinebook-pro/blob/main/pbp.scm
@@ -181,15 +179,13 @@
                            :task (do (println "starting syncthing tunnel..")
                                      (println "syncting local webadmin: localhost:9090")
                                      ;(shell "ssh" "-L" "9090:127.0.0.1:8384" "florian@192.168.1.116")
-                                     (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.178.25")
-                                     
-                                     )}
+                                     (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.178.25"))}
 
 
-         
+
          guile-test (guix/guile "-l" "./modules/awb99/test.scm")
          ; #guix repl --load-path=/home/florian/repo/myLinux/distros/guix/modules
-         
+
         ; a 1 
         ; b {:depends [a]    ; bb run --prn b          this tests return values of tasks
         ;    :task (inc a)}
