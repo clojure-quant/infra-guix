@@ -41,12 +41,15 @@
          update-root {:doc "updates guix ROOT (gc pull upgrade)"
                       :task (do (guix/sudo "update")
                                 (guix/guix "system" "describe"))}
-        ; build
+         
+        ; NUC
          build-nuc-user (guix/system "nuc"
                                      "reconfigure")
          build-nuc  {:doc "builds guix os for desktop nuc (runs as sudo)"
                      :task (do (guix/sudo "build-nuc-user")
                                (guix/guix "system" "describe"))}
+
+         ; VM TERMINAL
 
          build-vm {:doc "builds vm-image to be run with qemu"
                    :task (do (println "building vm image..")
@@ -55,12 +58,16 @@
                                           "--verbosity=3"
                                           "--no-grafts"))}
 
+         ; DOCKER
+         
          build-docker {:doc "builds docker image"
                        :task (do (println "building docker image..")
                                  (guix/system "vm-docker"
                                               "vm"
                                               "--verbosity=3"
                                               "--no-grafts"))}
+
+         ; OCEAN
 
          build-ocean {:doc "builds digital-ocean vm-image to be run with qemu"
                       :task (do (println "building oceaan vm image..")
@@ -86,14 +93,16 @@
                                             "--verbosity=3"
                                             "--no-grafts"))}
 
-         ; https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
-         ; https://framagit.org/tyreunom/guix-android
-         ; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
-         ; https://guix.gnu.org/de/blog/2019/guix-on-an-arm-board/
-         ; https://github.com/guix-mirror/guix/blob/master/gnu/system/images/rock64.scm
-         ; build-rock (guix/system "image" "rock1")
-         ; when this image is booted execute bash /etc/static/boostrap.sh
+         ; ROCK-PRO
+         
          build-rock {:doc "builds an image for pine/rock-pro"
+                     ; https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
+                     ; https://framagit.org/tyreunom/guix-android
+                     ; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
+                     ; https://guix.gnu.org/de/blog/2019/guix-on-an-arm-board/
+                     ; https://github.com/guix-mirror/guix/blob/master/gnu/system/images/rock64.scm
+                     ; build-rock (guix/system "image" "rock1")
+                     ; when this image is booted execute bash /etc/static/boostrap.sh
                      :task (guix/image "rock-min"
                                        "--image-type=rock64-raw"
                                       ; "--system=aarch64-linux"  ; via qemu (slow, but works)
@@ -115,7 +124,7 @@
                                                 "--target=aarch64-linux-gnu" ; cross-compilation via qemu
                                                 "-e" "(@ (gnu system install) rockpro64-installation-os)")}
 
-
+         ;; PINE PHONE
          ; https://othacehe.org/distributing-guix-system-pinebook-pro-images.html
          ; guix system disk-image --system=armhf-linux -e "(@ (gnu system install) beaglebone-black-installation-os)"
          build-pine-installer (guix/guix "system" "image"

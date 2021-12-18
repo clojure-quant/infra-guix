@@ -4,15 +4,16 @@
   #:use-module (gnu services base)
   #:use-module (awb99 config iptables)
   #:use-module (awb99 config users)
-  #:use-module (awb99 install chat)
+  #:use-module (awb99 packages)
   #:use-module (awb99 guixutils)
-  ; #:use-module (awb99 services special-files)
+  ;#:use-module (awb99 services special-files)
+  #:use-module (awb99 machine ocean)
 
 )
 
-(pretty-print my-chat)
+(pretty-print desktop-chat-packages)
 
-
+;(display "desktop-chat-packages: " desktop-chat-packages)
 
 
 

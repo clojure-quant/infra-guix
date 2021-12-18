@@ -1,8 +1,5 @@
 (define-module (awb99 machine ocean)
-  #:export (;%guix-maintenance-jobs
-            ;%guix-temproots
-            ;%tmp-tmpfs
-          ocean-os
+  #:export (ocean-os
             ))
 
 ; https://notabug.org/jbranso/linode-guix-system-configuration/src/master/deploy-locke-lamora-linode-simple.scm
@@ -11,19 +8,17 @@
   (gnu)
   (guix)
   (guix gexp)
-
   (gnu packages)
   (gnu packages bootloaders)
   (gnu packages ssh)
   (gnu system)
-
   (gnu services admin) ; unattended upgrades
   (gnu services networking)
   (gnu services ssh)
   (gnu services web)
 
   ; (awb99 guixutils)
-  (awb99 install clojure)
+  (awb99 packages)
   (awb99 services special-files)
   (awb99 services ssh)
   )
@@ -37,9 +32,9 @@
    (append 
      (list 
         "nss-certs"
-        "openssh"
+        "openssh-sans-x"
         "mc")
-      my-clojure
+      clojure-packages
       )))
     
 (display "\nbase packages: \n")
