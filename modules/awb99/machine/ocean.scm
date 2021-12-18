@@ -36,15 +36,6 @@
         "mc")
       clojure-packages
       )))
-    
-(display "\nbase packages: \n")
-(display %base-packages)
-(display "\n")
-(display "\nextra packages: \n")
-(display extra-packages)
-(display "\n")
-    
-
 
 (define my-base-services
   (modify-services %base-services

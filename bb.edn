@@ -70,11 +70,23 @@
          ; OCEAN
 
          build-ocean {:doc "builds digital-ocean vm-image to be run with qemu"
-                      :task (do (println "building oceaan vm image..")
-                                (guix/image-result "ocean-image"
+                      :task (let [_ (println "building oceaan vm image..")
+                                  r (guix/image-result "ocean-image"
                                                    "--verbosity=3"
                                                    "--no-grafts")
-                                (println "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2"))}
+                                  r-out (:out r)
+                                  img (clojure.string/trim r-out)]
+                                ; "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2"
+                                (println "ocean image result: ]" img"[ ")
+                                (shell "sync")
+                                (shell "qemu-img convert" 
+                                       "-c" 
+                                       "-f" "raw"
+                                       "-O" "qcow2"
+                                       img
+                                      "artefact/ocean.qcow2")
+                                (println "generated image: artefact/ocean.qcow2")
+                                )}
 
         ; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
         ; https://cloudinit.readthedocs.io/en/stable/
