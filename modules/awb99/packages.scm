@@ -269,10 +269,11 @@
 
 (define-public guix-core-packages
   (list 
-  "nss-certs" ; tls certificates
+    "nss-certs" ; tls certificates
     "glibc-locales" ; all supported gnu clib locales (1 gig)
     ; "glibc-utf8-locales" ; small set of locales
     ; "openssh" ; required for git with ssh repos
+    "openssh-sans-x"
     "mcron"
     "openssl"
     "guile" 
