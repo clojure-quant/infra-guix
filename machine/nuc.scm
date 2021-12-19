@@ -86,7 +86,9 @@
 
     (service qemu-binfmt-service-type ; needed for qemu arm system compile
       (qemu-binfmt-configuration
-        (platforms (lookup-qemu-platforms "arm" "aarch64"))))
+        (platforms (lookup-qemu-platforms "arm" "aarch64" ; "i686" "ppc"
+        ))))
+
 
     service-bin-links
     service-syncthing

@@ -88,15 +88,13 @@
                                        img
                                       "artefact/ocean.qcow2")
                                 (println "generated image: artefact/ocean.qcow2")
+                                (println "you might want to upload it to: https://cloud.digitalocean.com/images/custom_images")
                                 )}
 
-        ocean-run {:doc "run digital-ocean vm-image"
-                     :task (shell "qemu-system-x86_64"
-                                  "-netdev" "user,id=eno1,hostfwd=tcp::10022-:22,smb=/home/florian/Downloads"
-                                  "-net" "user"
-                                  "-net" "nic,model=virtio-net-pci"
-                                  ;"-net" "bridge,br=bridge1"
-                                  ;"-net" "nic,model=virtio" ; "nic,netdev=eno0"
+        ocean-run {:doc "run digital-ocean vm-image (ssh port outside:10022)"
+                   :task (shell "qemu-system-x86_64"
+                                  "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
+                                  "-device" "virtio-net-pci,netdev=vnet"
                                   "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
                                   "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
                                   "-m" "2048"
@@ -104,11 +102,8 @@
                                   "-drive" "if=none,file=./artefact/ocean.qcow2,id=myhd"
                                   "-vga" "virtio")}
 
-
         ; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
-        ; https://cloudinit.readthedocs.io/en/stable/
-        ;# guix package: cloud-utils    has cloud-init
-        ; Guile AWS for AWS backend.
+        
         ; 178.128.203.133
         ; cloud.digitalocean.com
         ; https://othacehe.org/hosting-a-blog-using-only-scheme.html
@@ -121,6 +116,12 @@
                                             "./machine/ocean.scm"
                                             "--verbosity=3"
                                             "--no-grafts"))}
+
+        ; AWS
+        ; https://cloudinit.readthedocs.io/en/stable/
+        ; # guix package: cloud-utils    has cloud-init
+        ; Guile AWS for AWS backend.
+
 
          ; ROCK-PRO
          

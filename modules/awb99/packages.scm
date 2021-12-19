@@ -179,7 +179,9 @@
     "nmap"
     "socat"
     "tcpdump"
-    "iputils" ; ping
+    "iputils" ; ping tracepath
+    "nethogs"
+    "net-tools" ; netstat
   ))
 
 

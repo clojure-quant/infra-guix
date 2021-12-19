@@ -92,35 +92,9 @@ If the term "container" makes you think of Docker, note that this is something d
 
 1:17 AM <terpri> (info "(guix) Invoking guix environment") shows how to change the prompt on foreign distros (it's just based on $GUIX_ENVIRONMENT existing)
 
-# QEMU
-
-
-qemu-img create -f qcow2 my_guix.cow 4G
-qemu-system-x86_64 \
- -enable-kvm -cpu host \ # feel free to remove this line if you do not have KVM set up
- -net user -net nic,model=virtio \
- -m 1G \
- -hda my_guix.img \
- -hdb guixsd-usb-install-0.9.0.x86_64-linux \
- -boot menu=on
-
-groups: libvirt libvirt-qemu 
-
-If you’re using Intel processor, then make sure your processor has support for hardware virtualization. If it does, then make sure VT-x or VT-d extension is enabled from the BIOS of your computer
-
-packages:  virt-manager
-
-Indeed, it was disabled in the BIOS, after I enabled virtualisation,
-/dev/kvm appeared.
-
- (service qemu-binfmt-service-type      
-  (qemu-binfmt-configuration        
-   (platforms (lookup-qemu-platforms "arm" "aarch64" "i686" "ppc"))))
 
 
 # Export ISO image
-
-C2.scm  ->see myLinux/distros/guix
 
 guix system disk-image -t iso9660 /home/andreas/Documents/myguix/c2.scm
 /gnu/store/6phpslb8z6zz6npii8qcnsrcvmwqz982-image.iso
