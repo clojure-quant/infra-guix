@@ -61,7 +61,7 @@ https://github.com/tycrek/degoogle
 https://www.chezmoi.io/
 
 
-Ganeti is a virtual machine management system
+
 
 
 https://ambrevar.xyz/guix-advance/

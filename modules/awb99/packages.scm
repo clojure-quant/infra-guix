@@ -265,6 +265,7 @@
     "docker"
     "docker-compose"
     "docker-cli" 
+   ; Ganeti is a virtual machine management system
   ))
 
 (define-public guix-core-packages
@@ -422,7 +423,7 @@
     "claws-mail"
     ; "kmail"
     "celestia-gtk" ; 3d simulation of universe/planets
-     ;"vscodium"
+     "vscodium"
 
     
   ))

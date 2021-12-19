@@ -66,6 +66,8 @@
                                               "vm"
                                               "--verbosity=3"
                                               "--no-grafts"))}
+          
+
 
          ; OCEAN
 
@@ -87,6 +89,22 @@
                                       "artefact/ocean.qcow2")
                                 (println "generated image: artefact/ocean.qcow2")
                                 )}
+
+          run-ocean {:doc "run digital-ocean vm-image"
+                     :task (shell "qemu-system-x86_64"
+                                  "-netdev" "user,id=eno0,hostfwd=tcp::1114-:22,smb=/home/florian/Downloads"
+                                  "-net" "user"
+                                  "-net" "nic,model=virtio-net-pci"
+                                  "-net" "hostfwd=tcp::10022-:22"
+                                  ;"-net" "bridge,br=bridge1"
+                                  ;"-net" "nic,model=virtio" ; "nic,netdev=eno0"
+                                  "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
+                                  "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
+                                  "-m" "2048"
+                                  "-device" "virtio-blk,drive=myhd"
+                                  "-drive" "if=none,file=./artefact/ocean.qcow2,id=myhd"
+                                  "-vga" "virtio")}
+
 
         ; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
         ; https://cloudinit.readthedocs.io/en/stable/
@@ -192,7 +210,7 @@
                                  (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
 
          graph-clojure (guix/graph "clojure") ; this does not work yet.
-         guix-repl (guix/guix "repl")
+      
 
          home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
 
@@ -205,7 +223,10 @@
 
 
          guile-test (guix/guile "-l" "./modules/awb99/test.scm")
-         ; #guix repl --load-path=/home/florian/repo/myLinux/distros/guix/modules
+         guix-repl  (guix/guix "repl")
+         guix-repl-ocean (guix/guix "repl"
+                              "./machine/ocean-image.scm")
+
 
         ; a 1 
         ; b {:depends [a]    ; bb run --prn b          this tests return values of tasks

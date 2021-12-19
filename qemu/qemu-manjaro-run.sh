@@ -5,10 +5,6 @@ echo "RUN QEMU manjaro"
 # https://guix.gnu.org/manual/en/html_node/Running-Guix-in-a-VM.html
 # qemu-system-x86_64 -nic model=help
 
-# -enable-kvm
-# If your system has hardware virtualization extensions, enabling the virtual machine 
-# support (KVM) of the Linux kernel will make things run faster. 
-
 # -boot d
 # boot first virtual cdrom
 

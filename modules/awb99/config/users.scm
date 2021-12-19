@@ -8,7 +8,7 @@
   #:export (mygroups myusers myusers-vm))
 
 
-(define mygroups
+(define-public mygroups
   (cons* 
     (user-group 
       (system? #f) 
@@ -17,40 +17,48 @@
 
 
 ;; Adding the account to group
+;; "input" and "tty" are needed to start X server without
+;; root permissions: "input" - to access "/dev/input"
+;; devices, "tty" - to access "/dev/ttyN".
 ;; "wheel"                makes it a sudoer
 ;; "audio" and "video"    play sound and access the webcam.
 
-(define myusers
-  (cons* 
-    (user-account
-      (name "florian")
-      (comment "Florian")
-      (group "users")
-      (home-directory "/home/florian")
-      ;(shell (file-append fish "/bin/fish"))
-      ;(identity "/home/florian/repo/clojure-quant/infra-guix/bootstrap/flo5")
-      (supplementary-groups
-        ;; "input" and "tty" are needed to start X server without
-        ;; root permissions: "input" - to access "/dev/input"
-        ;; devices, "tty" - to access "/dev/ttyN".
+(define-public user-viktor
+  (user-account
+    (name "viktor")
+    (comment "Viktor")
+    (group "users")
+    (home-directory "/home/viktor")
+   ; (identity "../../../keys/viktor")
+    ;  (shell (file-append zsh "/bin/zsh"))
+  ))
+
+(define-public user-florian
+  (user-account
+    (name "florian")
+    (comment "Florian")
+    (group "users")
+    (home-directory "/home/florian")
+    ;(shell (file-append fish "/bin/fish"))
+   ; (identity "../../../keys/flo5")
+    (supplementary-groups
       '("wheel" 
         "netdev" 
         "audio" "video"
         "tty"
         ; "input"
-        ; "kvm" "libvirt"
+        ; "kvm" "libvirt"  ; run qemu as florian with kvm support.
         ; "lp" "lpadmin"
+       ; "wireshark"
+    ))))
 
-      )))
-    (user-account
-      (name "roberto")
-      (comment "Alice's bro")
-      (group "users")
-      (home-directory "/home/roberto")
-    ;  (shell (file-append zsh "/bin/zsh"))
-    )
-    %base-user-accounts))
 
+(define myusers
+  (cons* 
+     user-florian
+     user-viktor
+     %base-user-accounts))
+  
 
 (define myusers-vm
   (cons 

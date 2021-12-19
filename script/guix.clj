@@ -52,7 +52,7 @@
   (let [filename (str "./" name ".scm")
         channels (str "--channels=" filename)
         full-args (concat args [channels])]
-    (println "guix pull args: " full-args)
+    (println "guix pull " full-args)
     (apply guix "pull" full-args)))
 
 (defn package

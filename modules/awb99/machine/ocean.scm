@@ -16,8 +16,8 @@
   (gnu services networking)
   (gnu services ssh)
   (gnu services web)
-
   ; (awb99 guixutils)
+  (awb99 config users)
   (awb99 packages)
   (awb99 services special-files)
   (awb99 services ssh)
@@ -55,6 +55,21 @@
     (host-name "oceanic")
     (timezone "Etc/UTC") ; (timezone "Europe/Paris")
     (locale "en_US.utf8")
+    (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
+    (groups mygroups)
+    (users (cons* user-florian
+                  user-viktor
+                  %base-user-accounts))
+    (packages (append extra-packages %base-packages))
+    (services
+      (append
+        (list
+          (service unattended-upgrade-service-type) ;; Security updates, yes please!
+          (service dhcp-client-service-type)
+          service-bin-links
+          service-ssh-bitblock
+          )
+          %base-services))
     (bootloader (bootloader-configuration
                 (bootloader grub-bootloader)
                 (targets (list "/dev/vda"))
@@ -67,18 +82,8 @@
                           (device "/dev/vda1")
                           (type "ext4"))
                    %base-file-systems))
-    (packages (append extra-packages %base-packages))
-    (services
-      (append
-        (list
-          (service unattended-upgrade-service-type) ;; Security updates, yes please!
-          (service dhcp-client-service-type)
-          service-bin-links
-          service-ssh-bitblock
-             )
-            %base-services     
-            )
-       )
+
+    
   ))
 
 
