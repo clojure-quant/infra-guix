@@ -5,7 +5,7 @@
   #:use-module (gnu packages ssh) ; openssh-sans-x
   #:use-module (gnu system shadow) ; openssh-sans-x
   #:use-module (gnu packages shells) ; zsh
-  #:export (mygroups myusers myusers-vm))
+  #:export (mygroups myusers myusers-vm my-sudoers-file))
 
 
 (define-public mygroups
@@ -74,4 +74,12 @@
                                "tty"
                               )))
  %base-user-accounts))
+
+
+ ;; Our /etc/sudoers file.  Since 'guest' initially has an empty password,
+  ;; allow for password-less sudo.
+(define my-sudoers-file 
+   (plain-file "sudoers" "\
+    root ALL=(ALL) ALL
+    %wheel ALL=NOPASSWD: ALL\n"))
 

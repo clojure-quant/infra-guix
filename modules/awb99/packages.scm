@@ -136,12 +136,6 @@
     ; "patchelf" "binutils" "elfutils"
   ))
 
-
-
-
-
-
-
 (define-public security-packages
   (list 
     "cryptsetup"  ; luks encryption
@@ -163,12 +157,10 @@
     "zstd"
     "zutils"))
   
-
-
 (define-public monitor-packages
   (list
    "htop"
-  "glances"
+   "glances"
    "iftop"
    "iotop"
    "lsof"

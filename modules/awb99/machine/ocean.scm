@@ -21,6 +21,8 @@
   (awb99 packages)
   (awb99 services special-files)
   (awb99 services ssh)
+  (awb99 services os-release)
+  (awb99 services mingetty)
   )
 
 
@@ -35,10 +37,15 @@
         "openssh-sans-x"
         "mc")
       clojure-packages
+      monitor-packages
+      archive-packages
+      network-packages
+      shell-packages
+
       )))
 
-(define my-base-services
-  (modify-services %base-services
+(define (patch-guix-authorized guix-services)
+  (modify-services guix-services
     ;; The server must trust the Guix packages you build. If you add the signing-key
     ;; manually it will be overridden on next `guix deploy` giving
     ;; "error: unauthorized public key". This automatically adds the signing-key.
@@ -48,28 +55,37 @@
             (authorized-keys
             (append (list (local-file "/etc/guix/signing-key.pub"))
                     %default-authorized-guix-keys))))))
-              
+
+(define my-base-services
+  (patch-mingetty 
+    (patch-guix-authorized %base-services) ;   %desktop-services
+  ))
               
 (define ocean-os
   (operating-system
     (host-name "oceanic")
+    (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
+    ;locale
     (timezone "Etc/UTC") ; (timezone "Europe/Paris")
     (locale "en_US.utf8")
-    (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
+    (keyboard-layout (keyboard-layout "at")) ; (keyboard-layout (keyboard-layout "us" "altgr-intl"))
+    ; users
     (groups mygroups)
     (users (cons* user-florian
                   user-viktor
                   %base-user-accounts))
+    (sudoers-file my-sudoers-file)
     (packages (append extra-packages %base-packages))
     (services
       (append
         (list
           (service unattended-upgrade-service-type) ;; Security updates, yes please!
           (service dhcp-client-service-type)
+          ;service-os-release
           service-bin-links
           service-ssh-bitblock
           )
-          %base-services))
+          my-base-services))
     (bootloader (bootloader-configuration
                 (bootloader grub-bootloader)
                 (targets (list "/dev/vda"))

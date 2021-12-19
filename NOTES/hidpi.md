@@ -2,6 +2,7 @@
 
 
 https://wiki.archlinux.org/title/HiDPI#Chromium_/_Google_Chrome
+https://wiki.archlinux.org/title/HiDPI#Enlightenment
 
 xrandr --output eDP1 --scale 1.25x1.25
 
@@ -25,3 +26,4 @@ Make sure the settings are loaded properly when X starts, for instance in your ~
 For E18, go to the E Setting panel. In Look > Scaling, you can control the UI scaling ratios. A ratio of 1.2 seems to work well
 
 enlightenment-wayland
+

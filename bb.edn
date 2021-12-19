@@ -43,10 +43,10 @@
                                 (guix/guix "system" "describe"))}
          
         ; NUC
-         build-nuc-user (guix/system "nuc"
+         nuc-build-user (guix/system "nuc"
                                      "reconfigure")
-         build-nuc  {:doc "builds guix os for desktop nuc (runs as sudo)"
-                     :task (do (guix/sudo "build-nuc-user")
+         nuc-build  {:doc "builds guix os for desktop nuc (runs as sudo)"
+                     :task (do (guix/sudo "nuc-build-user")
                                (guix/guix "system" "describe"))}
 
          ; VM TERMINAL
@@ -71,8 +71,8 @@
 
          ; OCEAN
 
-         build-ocean {:doc "builds digital-ocean vm-image to be run with qemu"
-                      :task (let [_ (println "building oceaan vm image..")
+        ocean-build {:doc "builds digital-ocean vm-image to be run with qemu"
+                      :task (let [_ (println "building ocean vm image..")
                                   r (guix/image-result "ocean-image"
                                                    "--verbosity=3"
                                                    "--no-grafts")
@@ -90,12 +90,11 @@
                                 (println "generated image: artefact/ocean.qcow2")
                                 )}
 
-          run-ocean {:doc "run digital-ocean vm-image"
+        ocean-run {:doc "run digital-ocean vm-image"
                      :task (shell "qemu-system-x86_64"
-                                  "-netdev" "user,id=eno0,hostfwd=tcp::1114-:22,smb=/home/florian/Downloads"
+                                  "-netdev" "user,id=eno1,hostfwd=tcp::10022-:22,smb=/home/florian/Downloads"
                                   "-net" "user"
                                   "-net" "nic,model=virtio-net-pci"
-                                  "-net" "hostfwd=tcp::10022-:22"
                                   ;"-net" "bridge,br=bridge1"
                                   ;"-net" "nic,model=virtio" ; "nic,netdev=eno0"
                                   "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
@@ -113,7 +112,7 @@
         ; 178.128.203.133
         ; cloud.digitalocean.com
         ; https://othacehe.org/hosting-a-blog-using-only-scheme.html
-         deploy-ocean {:doc "builds digital-ocean image and deploys it"
+        ocean-deploy {:doc "builds digital-ocean image and deploys it"
                     ; https://stumbles.id.au/getting-started-with-guix-deploy.html
                     ; cfdisk, select the /dev/vda2 root partition, select "Resize", "Write" and type "yes". 
                     ; Then resize the filesystem to match by running resize2fs /dev/vda2.
@@ -157,7 +156,7 @@
          ;; PINE PHONE
          ; https://othacehe.org/distributing-guix-system-pinebook-pro-images.html
          ; guix system disk-image --system=armhf-linux -e "(@ (gnu system install) beaglebone-black-installation-os)"
-         build-pine-installer (guix/guix "system" "image"
+         pine-build-installer (guix/guix "system" "image"
                                          "--system=aarch64-linux"
                                 ;"--target=aarch64-linux-gnu"
                                          "--image-type=pine64-raw"
@@ -167,13 +166,13 @@
          ; https://github.com/Schroedinger50PCT/guix-pinephone
          ; Der linux-libre-arm64-generic kernel bootet aber gibt keinen Display output.
          ; image --image-type=pine64-raw my-pine-os.scm
-         build-pine (guix/image "pinephone"
+         pine-build (guix/image "pinephone"
                                 ;"--system=aarch64-linux"
                                 "--target=aarch64-linux-gnu"
                                 "--image-type=pine64-raw"
                                 ;"--no-grafts"
                                 )
-         build-pine-chromium (guix/image "pinephone-chromium"
+         pine-build-chromium (guix/image "pinephone-chromium"
                                         ;"--system=aarch64-linux"
                                          "--target=aarch64-linux-gnu"
                                       ;  "--image-type=pine64-raw"
