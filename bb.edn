@@ -109,6 +109,7 @@
                                           "--verbosity=3"
                                           "--no-grafts"
                                           "--cores=4"
+                                          "--save-provenance"
                                           ;  "--root=./artefact/docker-ocean.tar.gz"
                                           ;"--entry-point=bin/guile"
                                           "--manifest=./machine/ocean-docker.scm")
