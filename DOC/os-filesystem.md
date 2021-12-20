@@ -1,22 +1,4 @@
 
-
-
-
-;connman ;call connmanctl
-                       cryptsetup
-                       dosfstools ;mkfs.fat
-                       e2fsprogs ;mkfs.ext4
-                       lvm2-static ;dmsetup
-                       btrfs-progs ; mkfs.btrfs
-                       jfsutils ;jfs_mkfs
-                       ntfs-3g ;mkfs.ntfs
-                       xfsprogs ;mkfs.xfs
-                       kbd ;chvt
-                       guix ;guix system init call
-                       util-linux ;mkwap
-
-
-
 # luks disk encryption
 
 https://libreboot.org/docs/gnulinux/guix_system.html

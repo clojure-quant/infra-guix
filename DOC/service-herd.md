@@ -8,3 +8,7 @@ sudo herd restart mcron
 
 herd doc nscd
 sudo herd doc udev list-actions
+
+herd detailed-status
+herd status
+herd start syncthing

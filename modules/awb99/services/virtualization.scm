@@ -33,9 +33,10 @@
 
 
 
-groups: libvirt libvirt-qemu 
 
-If you’re using Intel processor, then make sure your processor has support for hardware virtualization. If it does, then make sure VT-x or VT-d extension is enabled from the BIOS of your computer
+
+If you’re using Intel processor, then make sure your processor has support for hardware virtualization. 
+If it does, then make sure VT-x or VT-d extension is enabled from the BIOS of your computer
 
 packages:  virt-manager
 

@@ -22,6 +22,7 @@
 ;; devices, "tty" - to access "/dev/ttyN".
 ;; "wheel"                makes it a sudoer
 ;; "audio" and "video"    play sound and access the webcam.
+; groups: libvirt libvirt-qemu 
 
 (define-public user-viktor
   (user-account

@@ -61,12 +61,47 @@
           ("ls='ls -p --color" . "auto")
           ("tml" . "tmux list-sessions")
           ("tma" . "TERM=xterm-24bits tmux attach-session -t")
-
         ))
       (bashrc
         (list (local-file "./bash/.bashrc" "bashrc")))
       (bash-profile
         (list (local-file "./bash/.bash_profile" "bash_profile"))))))
+
+
+(define dummy-job-1
+   #~(job '(next-minute (range 0 60 10))
+   (lambda ()
+     (system* "date" )))
+  )
+
+(define dummy-job-2
+  #~(job next-minute-from
+      (lambda ()
+        (call-with-output-file (string-append (getenv "HOME") "/mcron-file")
+          (lambda (port)
+            (display "Mcron service" port))))))
+
+(define hello-job-1
+  (job
+    '(next-hour '(0 15 30 45))
+     "echo `date` >> /tmp/d.txt"))
+
+(define hello-job-2
+  #~(job '(next-minute '(1))
+       (lambda ()
+          (execl "echo"
+                "hello > /tmp/hello.txt"))))
+
+
+
+(define user-garbage-job
+  ;; Collect garbage 5 minutes after 0am every day.
+  ;; The job's action is a shell command.
+  #~(job "35 0 * * *"            ;Vixie cron syntax
+         "guix gc -d 5d && guix pull && guix package --upgrade"
+         #:user "florian"
+       ))
+
 
 (define mcron-service
   ;; Example configuration, the first job runs mbsync once every ten
@@ -76,15 +111,12 @@
     (home-mcron-configuration
       (jobs 
         (list 
-          #~(job '(next-minute (range 0 60 10))
-            (lambda ()
-              (system* "date" )))
-                  
-          #~(job next-minute-from
-            (lambda ()
-              (call-with-output-file (string-append (getenv "HOME") "/mcron-file")
-                (lambda (port)
-                  (display "Mcron service" port))))))))))
+          dummy-job-1
+          dummy-job-2
+          hello-job-1
+          hello-job-2
+          user-garbage-job
+                )))))
 
 
 (define test-config-service

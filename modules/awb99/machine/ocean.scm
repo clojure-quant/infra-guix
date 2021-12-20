@@ -23,6 +23,7 @@
   (awb99 services ssh)
   (awb99 services os-release)
   (awb99 services mingetty)
+  (awb99 services bootstrap-files)
   )
 
 
@@ -41,6 +42,7 @@
       archive-packages
       network-packages
       shell-packages
+      filesystem-packages
 
       )))
 
@@ -82,6 +84,7 @@
           (service unattended-upgrade-service-type) ;; Security updates, yes please!
           (service dhcp-client-service-type)
           ;service-os-release
+          service-bootstrap-files
           service-bin-links
           service-ssh-bitblock
           )

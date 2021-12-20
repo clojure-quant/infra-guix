@@ -142,6 +142,21 @@
     "encfs"
     "openssl"))
 
+(define-public filesystem-packages
+  (list 
+    "btrfs-progs" ; mkfs.btrfs
+    "e2fsprogs"  ;mkfs.ext4
+    "util-linux" ;mkwap
+    "lvm2-static" ;dmsetup
+    ;"connman" ;call connmanctl
+    ;"dosfstools" ;mkfs.fat
+    ;"jfsutils" ;jfs_mkfs
+    ;"ntfs-3g" ;mkfs.ntfs
+    ;"xfsprogs" ;mkfs.xfs
+    ;"kbd" ;chvt
+  ))
+
+
 (define-public archive-packages
   (list
     "ddrescue"

@@ -5,17 +5,6 @@
   (awb99 machine ocean)
    )
 
-; https://stumbles.id.au/getting-started-with-guix-deploy.html
-; https://guix.gnu.org/blog/2019/managing-servers-with-gnu-guix-a-tutorial/
-; https://wiki.pantherx.org/Installation-digital-ocean/
-
-; https://git.pixie.town/pinoaffe/config/src/branch/master/hostile_takeover.sh
-
-
-; guix system disk-image -t qcow2 config.scm' .
-; then uploaded to custom image in DO interface. 
-; make sure to upload image to the region you wish to deploy to. 
-; and make sure you select one that's actually available to deploy droplet
 
 
 
@@ -43,10 +32,7 @@
    (machine
      (environment managed-host-environment-type)
      (configuration c-ssh)
-     (operating-system  ocean-os
-      ;(inherit ocean-os2)
-     ; (packages (append extra-packages %base-packages))
-     )
+     (operating-system  ocean-os)
    ))
 
 

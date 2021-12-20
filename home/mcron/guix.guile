@@ -1,3 +1,0 @@
-(job '(next-hour-from (next-day) '(02))
-     "guix gc --optimize -d 2m && guix gc -F 300G && guix pull")
-

@@ -19,6 +19,12 @@ fi
 # Source the system-wide file.
 source /etc/bashrc
 
+
+echo "wunderbar.."
+
+ls "$GUIX_ENVIRONMENT/bin"
+
+
 # Adjust the prompt depending on whether we're in 'guix environment'.
 if [ -n "$GUIX_ENVIRONMENT" ]
 then

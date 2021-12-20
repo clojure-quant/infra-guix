@@ -67,12 +67,46 @@
                                               "--verbosity=3"
                                               "--no-grafts"))}
           
+         ; installer
+          installer-build {:doc "builds installer vm-image to be run with qemu"
+                           :task (let [_ (println "building ocean vm image..")
+                                      ; guix system disk-image -t qcow2 config.scm' .
+                                       r (guix/image-result "installer"
+                                                            "--verbosity=3"
+                                                            "--no-grafts")
+                                       r-out (:out r)
+                                       img (clojure.string/trim r-out)]
+                                    ; "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2"
+                                    (println "installer image result: ]" img "[ ")
+                                    (shell "sync")
+                                    (shell "qemu-img convert"
+                                           "-c"
+                                           "-f" "raw"
+                                           "-O" "qcow2"
+                                           img
+                                           "artefact/installer.qcow2")
+                               (println "generated image: artefact/installer.qcow2")
+                               (println "you might want to upload it to: https://cloud.digitalocean.com/images/custom_images")
+                               (println "region has to match the region where you deploy to"))}
 
+           installer-run {:doc "run installer vm-image"
+                         :task (shell "qemu-system-x86_64"
+                                    "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
+                                    "-m" "2048"
+                                    "-vga" "virtio"
+                                ; network
+                                    "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
+                                    "-device" "virtio-net-pci,netdev=vnet"
+                                ; file share
+                                    "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
+                                ;harddisk 
+                                    "-device" "virtio-blk,drive=myhd"
+                                    "-drive" "if=none,file=./artefact/installer.qcow2,id=myhd")}
 
          ; OCEAN
-
         ocean-build {:doc "builds digital-ocean vm-image to be run with qemu"
                       :task (let [_ (println "building ocean vm image..")
+                                  ; guix system disk-image -t qcow2 config.scm' .
                                   r (guix/image-result "ocean-image"
                                                    "--verbosity=3"
                                                    "--no-grafts")
@@ -89,18 +123,23 @@
                                       "artefact/ocean.qcow2")
                                 (println "generated image: artefact/ocean.qcow2")
                                 (println "you might want to upload it to: https://cloud.digitalocean.com/images/custom_images")
+                                (println "region has to match the region where you deploy to")
                                 )}
 
         ocean-run {:doc "run digital-ocean vm-image (ssh port outside:10022)"
                    :task (shell "qemu-system-x86_64"
-                                  "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
-                                  "-device" "virtio-net-pci,netdev=vnet"
-                                  "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
-                                  "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
-                                  "-m" "2048"
-                                  "-device" "virtio-blk,drive=myhd"
-                                  "-drive" "if=none,file=./artefact/ocean.qcow2,id=myhd"
-                                  "-vga" "virtio")}
+                                "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
+                                "-m" "2048"
+                                "-vga" "virtio"
+                                ; network
+                                "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
+                                "-device" "virtio-net-pci,netdev=vnet"
+                                ; file share
+                                "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
+                                ;harddisk 
+                                "-device" "virtio-blk,drive=myhd"
+                                "-drive" "if=none,file=./artefact/ocean.qcow2,id=myhd"
+                                )}
 
         ; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
         
@@ -125,7 +164,7 @@
 
          ; ROCK-PRO
          
-         build-rock {:doc "builds an image for pine/rock-pro"
+        rock-build {:doc "builds an image for pine/rock-pro"
                      ; https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
                      ; https://framagit.org/tyreunom/guix-android
                      ; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
@@ -145,7 +184,7 @@
         ; guix system image -t rock64-raw --system=aarch64-linux -e "(@ (gnu system install) rockpro64-installation-os)"
         ; https://github.com/SystemCrafters/guix-installer
         ; https://github.com/ofosos/guix-packer
-         build-rock-installer {:doc "builds guix installer-image for pine/rock-pro"
+         rock-build-installer {:doc "builds guix installer-image for pine/rock-pro"
                                :task (guix/guix "system" "image"
                                                ; "--no-grafts"
                                                 "--image-type=rock64-raw"
@@ -221,12 +260,23 @@
                                      (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.178.25"))}
 
 
+         ; ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -p 10022 localhost
+         ; The -p tells ssh the port you want to connect to. 
+         ; -o UserKnownHostsFile=/dev/null prevents ssh from complaining every time you modify your config.scm file and 
+         ; -o StrictHostKeyChecking=no prevents you from having to allow a connection to an unknown host every time you connect.
+         ssh-vm-local {:doc "ssh into locally running vm"
+                       :task (do (println "")
+                                 (println "syncting local webadmin: localhost:9090")
+                                     ;(shell "ssh" "-L" "9090:127.0.0.1:8384" "florian@192.168.1.116")
+                                     (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.178.25"))}
+
 
          guile-test (guix/guile "-l" "./modules/awb99/test.scm")
          guix-repl  (guix/guix "repl")
          guix-repl-ocean (guix/guix "repl"
                               "./machine/ocean-image.scm")
 
+        
 
         ; a 1 
         ; b {:depends [a]    ; bb run --prn b          this tests return values of tasks
