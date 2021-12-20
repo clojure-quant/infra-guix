@@ -154,6 +154,9 @@
     ;"ntfs-3g" ;mkfs.ntfs
     ;"xfsprogs" ;mkfs.xfs
     ;"kbd" ;chvt
+    "fuse" 
+    "sshfs" ; mount sshfs via fuse
+    "nbd" ; to mount qcow2 images
   ))
 
 

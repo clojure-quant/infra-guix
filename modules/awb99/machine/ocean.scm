@@ -84,7 +84,7 @@
           (service unattended-upgrade-service-type) ;; Security updates, yes please!
           (service dhcp-client-service-type)
           ;service-os-release
-          service-bootstrap-files
+          service-bootstrap-files; add the trateg git clone script
           service-bin-links
           service-ssh-bitblock
           )
@@ -97,8 +97,8 @@
                           (mount-point "/")
                           ;; Must be vda2 or you won't be able to reboot after `guix deploy`.
                           ;; This is because our base image makes an EFI partition at vda1.
-                          ; (device "/dev/vda2")
-                          (device "/dev/vda1")
+                           (device "/dev/vda2")
+                          ;(device "/dev/vda1")
                           (type "ext4"))
                    %base-file-systems))
 
