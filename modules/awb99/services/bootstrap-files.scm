@@ -25,5 +25,4 @@
 ))) 
 
 
-(display "adding bootstrap files..\n")
 

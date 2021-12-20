@@ -16,13 +16,46 @@
     %base-groups))
 
 
-;; Adding the account to group
-;; "input" and "tty" are needed to start X server without
-;; root permissions: "input" - to access "/dev/input"
-;; devices, "tty" - to access "/dev/ttyN".
-;; "wheel"                makes it a sudoer
-;; "audio" and "video"    play sound and access the webcam.
-; groups: libvirt libvirt-qemu 
+
+(define-public groups-server
+  '("wheel" ;  makes it a sudoer
+    "netdev" ;; network devices
+    "audio" "video" ; play sound and access the webcam.
+    "tty"   ; to access "/dev/ttyN".
+    "input" ; to access "/dev/input"
+    ;; "input" and "tty" are needed to start X server without root permissions: "input" 
+    ; "kvm" "libvirt"  ; run qemu as florian with kvm support.
+    ; "lp" "lpadmin"
+    ; "wireshark"
+  ))
+
+(define-public groups-desktop
+   '("wheel" 
+     "netdev" 
+     "audio" 
+     "video"
+     "tty"
+     "lp"  ; line printer
+     "lpadmin" ; line printer admin
+     "kvm"  ; run qemu as florian with kvm support.
+    ; "libvirt"
+    ; "libvirt-qemu "
+    ;;"wireshark"
+   ))
+
+(define-public (create-user user-name user-id groups)
+  (user-account
+    (name user-name)
+    (comment user-name)
+    (uid user-id) ; uid needs to match user in host for docker; in cli: "id"
+    (group "users")
+    ;(home-directory "/home/florian")
+    ;(shell (file-append fish "/bin/fish"))
+    ;; (password (crypt "InitialPassword!" "$6$abc")) ; Specify a SHA-512-hashed initial password.
+    ;; (password "")
+    (supplementary-groups groups)))
+
+
 
 (define-public user-viktor
   (user-account

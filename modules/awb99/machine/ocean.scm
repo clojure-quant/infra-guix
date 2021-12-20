@@ -63,6 +63,13 @@
     (patch-guix-authorized %base-services) ;   %desktop-services
   ))
               
+;(define ocean-network-service 
+;  (static-networking-service-type "eth0" "XXX.XXX.XXX.XXX"
+;    #:netmask "XXX.XXX.XXX.XXX"
+;    #:gateway "XXX.XXX.XXX.XXX"
+;    #:name-servers '("84.200.69.80" "84.200.70.40")))
+
+
 (define ocean-os
   (operating-system
     (host-name "oceanic")

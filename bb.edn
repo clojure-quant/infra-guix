@@ -29,7 +29,10 @@
                           (guix/guix "pull"
                                     ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
                                      (str "--channels=" "./channels.scm")
-                                     "--verbosity=3"))}
+                                     "--verbosity=3"
+                                     "--max-silent-time=10000"  ; seconds
+                                     "--timeout=10000" ; seconds
+                                     ))}
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
                             (guix/guix "upgrade"))}
@@ -59,13 +62,7 @@
                                           "--no-grafts"))}
 
          ; DOCKER
-         
-         build-docker {:doc "builds docker image"
-                       :task (do (println "building docker image..")
-                                 (guix/system "vm-docker"
-                                              "vm"
-                                              "--verbosity=3"
-                                              "--no-grafts"))}
+     
           
          ; installer
           installer-build {:doc "builds installer vm-image to be run with qemu"
@@ -104,6 +101,25 @@
                                     "-drive" "if=none,file=./artefact/installer.qcow2,id=myhd")}
 
          ; OCEAN
+        ocean-docker {:doc "builds docker image"
+                      :task (let [_ (println "building ocean docker image..")
+                                  r (guix/guix-result 
+                                          "pack"
+                                          "--format=docker"
+                                          "--verbosity=3"
+                                          "--no-grafts"
+                                          "--cores=4"
+                                          ;  "--root=./artefact/docker-ocean.tar.gz"
+                                          ;"--entry-point=bin/guile"
+                                          "--manifest=./machine/ocean-docker.scm")
+                                   r-out (:out r)
+                                   img (clojure.string/trim r-out)]
+                                (println "docker is loading docker image from tar.gz: " img)
+                                (shell "docker" "load" "--input" img) ; image will have tag guix:latest
+                                (println "tagging image: pinkgorilla:latest")
+                                (shell "docker" "tag" "guix:latest" "ocean:latest")
+                                )}
+
         ocean-build {:doc "builds digital-ocean vm-image to be run with qemu"
                       :task (let [_ (println "building ocean vm image..")
                                   ; guix system disk-image -t qcow2 config.scm' .

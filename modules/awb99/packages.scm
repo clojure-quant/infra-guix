@@ -222,6 +222,7 @@
   (list 
     ; SHELL
     "bash"
+    "bash-completion"
     "zsh"
     "zsh-autosuggestions"
     "fish"
@@ -290,6 +291,7 @@
     "mcron"
     "openssl"
     "guile" 
+    ;"stow" symlink manager
   ))
 
 
@@ -323,8 +325,10 @@
     ; irc.libera.chat on port 6697.
     ; "weechat" ; IRC
     "quassel"    ; GUI replication of WeeChat.
+    ;"srain" ; IRC client (supports images )
     ; "hexchat" ;
     ; "pidgin"
+    ; "cawbird" ; twitter client
     ))
 
 (define-public desktop-multimedia-packages
@@ -361,6 +365,7 @@
     "pdfarranger"
     ; "xpdf"  ; does not show text of manually edited pdf files
     "qpdfview"  ; this is much better
+    "zathura" ; lightweight pdf viewer
 
     ; torrent
 
