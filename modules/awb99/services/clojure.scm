@@ -34,14 +34,16 @@
 ;(start syncthing)
 
 
-(define goldly-service
+(define goldly-service-template
   (shepherd-service
-    (provision '(redshift))
-    (requirement '(xorg-server))
-    (documentation "Start Redshift as a service")
+    (provision '(goldly))
+    (requirement '()) ;xorg-server
+    (documentation "Start goldly-docs as a service")
     (start #~(make-forkexec-constructor
-          `("redshift" "-l" ,evry-geolocation)))
+          `("clj" "-X:goldly-docs")))
     (stop #~(make-kill-destructor))))
 
-(simple-service 'goldly-service 'shepherd-root-service-type 
-(list redshift-service))
+(define goldly-service 
+  (simple-service 'goldly-service-template 'shepherd-root-service-type 
+    (list goldly-service-template)))
+
