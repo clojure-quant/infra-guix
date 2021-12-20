@@ -105,7 +105,6 @@
                           ;; Must be vda2 or you won't be able to reboot after `guix deploy`.
                           ;; This is because our base image makes an EFI partition at vda1.
                            (device "/dev/vda2")
-                          ;(device "/dev/vda1")
                           (type "ext4"))
                    %base-file-systems))
 

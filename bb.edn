@@ -158,15 +158,18 @@
                                 "-drive" "if=none,file=./artefact/ocean.qcow2,id=myhd"
                                 )}
 
-        ; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
-        
-        ; 178.128.203.133
+        ocean-ssh {:doc "ssh into digital ocean"
+                   :task (shell "ssh 178.128.203.133")}
         ; cloud.digitalocean.com
-        ; https://othacehe.org/hosting-a-blog-using-only-scheme.html
+        ; resize partition.
+        ; from: https://stumbles.id.au/getting-started-with-guix-deploy.html
+        ; "sudo cfdisk" 
+        ; select the /dev/vda2 root partition, select "Resize", "Write" and type "yes"
+        ; "sudo resize2fs /dev/vda2"
+        
         ocean-deploy {:doc "builds digital-ocean image and deploys it"
-                    ; https://stumbles.id.au/getting-started-with-guix-deploy.html
-                    ; cfdisk, select the /dev/vda2 root partition, select "Resize", "Write" and type "yes". 
-                    ; Then resize the filesystem to match by running resize2fs /dev/vda2.
+                   
+
                        :task (do (println "builing/deploying digital-ocean image..")
                                  (guix/guix "deploy"
                                             "./machine/ocean.scm"

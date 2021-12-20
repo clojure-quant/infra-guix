@@ -5,9 +5,6 @@
   (awb99 machine ocean)
    )
 
-
-
-
 (define c-ssh
   (machine-ssh-configuration
     (host-name "178.128.203.133")
