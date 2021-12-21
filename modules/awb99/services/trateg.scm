@@ -14,9 +14,7 @@
   (param1 trateg-service-configuration-param1
           (default "foo")))
 
-(define scli
-  '("cd" "/home/shared/repo/clojure-quant/trateg/app/demo" "&&"
-    "clj" "-X:goldly-docs"))
+
 
  ; (list (string-append #$service-package "/bin/exe-name")
 ;"-foo" "-bar" ; list of command line arguments
@@ -36,7 +34,8 @@
             (documentation "trateg goldly docs")
             (requirement '())  ; services need to be started before current service
             (start #~(make-forkexec-constructor
-                      scli
+                        '("cd" "/home/shared/repo/clojure-quant/trateg/app/demo" "&&"
+                          "clj" "-X:goldly-docs")
                       ))
             (stop #~(make-kill-destructor)))))))
          
