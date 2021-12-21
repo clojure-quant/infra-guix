@@ -30,3 +30,5 @@ mkdir target/db/crypto
 mkdir target/db/stocks
 mkdir target/db/random
 mkdir target/db/shuffled
+
+mkdir app/resources/tradingview-charts
