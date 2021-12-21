@@ -20,7 +20,10 @@
       ; ("rock1.scm" ,(local-file "../../../machine/rock.scm"))
        ("flo5.pub" ,(local-file "../../../bootstrap/flo5.pub"))
       ; (local-file "ssh/guixrig_host_rsa_key" #:recursive? #t)
-       ("clone-trateg.sh" ,(local-file "../../../bootstrap/clone-trateg.sh"))
+       ("trateg-resize.sh" ,(local-file "../../../bootstrap/trateg-resize.sh"))
+       ("trateg-repo.sh" ,(local-file "../../../bootstrap/trateg-repo.sh"))
+       ("trateg-data.sh" ,(local-file "../../../bootstrap/trateg-data.sh"))
+
       
 ))) 
 

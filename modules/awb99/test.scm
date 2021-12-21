@@ -6,7 +6,7 @@
   #:use-module (awb99 config users)
   #:use-module (awb99 packages)
   #:use-module (awb99 guixutils)
-  ;#:use-module (awb99 services special-files)
+  #:use-module (awb99 services trateg)
   #:use-module (awb99 machine ocean)
 
 )

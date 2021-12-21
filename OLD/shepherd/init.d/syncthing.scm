@@ -9,10 +9,6 @@
      "-logfile=/home/florian/log/syncthing.log"))
 
 
-(define sbash
- (list "bash" "-c"
-       "syncthing -no-browser -logflags=3 -logfile=/home/florian/log/syncthing.log 2>&1 | logger --tag=darkman"))
-
 
 (define syncthing
   (make <service>
