@@ -46,10 +46,10 @@
                                 (guix/guix "system" "describe"))}
          
         ; NUC
-         nuc-build-user (guix/system "nuc"
+         nuc-reconfigure-user (guix/system "nuc"
                                      "reconfigure")
-         nuc-build  {:doc "builds guix os for desktop nuc (runs as sudo)"
-                     :task (do (guix/sudo "nuc-build-user")
+         nuc-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"
+                     :task (do (guix/sudo "nuc-reconfigure-user")
                                (guix/guix "system" "describe"))}
 
          ; VM TERMINAL
@@ -60,9 +60,6 @@
                                           "vm"
                                           "--verbosity=3"
                                           "--no-grafts"))}
-
-         ; DOCKER
-     
           
          ; installer
           installer-build {:doc "builds installer vm-image to be run with qemu"
@@ -161,12 +158,23 @@
         ocean-ssh {:doc "ssh into digital ocean"
                    :task (shell "ssh 178.128.203.133")}
         ; cloud.digitalocean.com
-        ; resize partition.
-        ; from: https://stumbles.id.au/getting-started-with-guix-deploy.html
-        ; "sudo cfdisk" 
-        ; select the /dev/vda2 root partition, select "Resize", "Write" and type "yes"
-        ; "sudo resize2fs /dev/vda2"
         
+
+        ocean-init {:doc "initializes ocean machine with extra files"        
+                    :task (do (shell "scp"
+                                     "./bootstrap/trateg-repo.sh"
+                                     "florian@quant.hoertlehner.com:/home/florian")
+                              (shell "ssh"
+                                     "florian@quant.hoertlehner.com"
+                                     "/home/florian/trateg-repo.sh")
+                              (shell "scp" 
+                                     "/home/florian/repo/myLinux/data/trateg/creds.edn"
+                                     "florian@quant.hoertlehner.com:/home/florian/clojure-quant/trateg/app/demo/creds.edn")
+                              
+                              )
+        ;-i "~/Documents/myLinux/ssh/flo5"
+        }
+
         ocean-deploy {:doc "builds digital-ocean image and deploys it"
                    
 

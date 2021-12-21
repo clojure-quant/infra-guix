@@ -84,17 +84,14 @@
     (service trezord-service-type
       (trezord-configuration))
 
-    (service qemu-binfmt-service-type ; needed for qemu arm system compile
-      (qemu-binfmt-configuration
-        (platforms (lookup-qemu-platforms "arm" "aarch64" ; "i686" "ppc"
-        ))))
-
-
     service-bin-links
     service-syncthing
 
     (service docker-service-type)
-
+    (service qemu-binfmt-service-type ; needed for qemu arm system compile
+      (qemu-binfmt-configuration
+        (platforms (lookup-qemu-platforms "arm" "aarch64" ; "i686" "ppc"
+       ))))
 
 
     (set-xorg-configuration

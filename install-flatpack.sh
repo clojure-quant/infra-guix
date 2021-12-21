@@ -18,6 +18,9 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 flatpak install flathub us.zoom.Zoom 
 flatpak install flathub com.visualstudio.code
+flatpak --user install org.signal.Signal.flatpakref
+
+
 # exodus wallet
 
 # !/run/current-system/profile/bin/bash 

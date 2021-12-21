@@ -5,6 +5,6 @@ export GUILE_LOAD_PATH=./scm:$GUILE_LOAD_PATH
 
 
 # cp -r ./dotfiles/.config/. ~/.config
-cp -r ./home/.ssh/. ~/.ssh
+cp -r ./home/ssh/. ~/.ssh
 
 

@@ -14,8 +14,9 @@ reads ~/.config/guix/channels.scm; with -C it can take channel specifications fr
 
 
 **Nonguix**
- clojure steam broadcom installer nonfree https://gitlab.com/nonguix/nonguix
-  https://gitlab.com/nonguix/nonguix/-/tree/master/
+https://gitlab.com/nonguix/nonguix
+clojure steam broadcom installer nonfree 
+
 
 ### Nonfree
 wifi driver, qemu, steem https://www.rohleder.de/gitweb/?p=guix.git;a=blob;f=mroh/guix/install.scm;hb=HEAD
@@ -49,3 +50,13 @@ https://gitlab.com/genenetwork/guix-bioinformatics r shiny cran java node shell 
 https://github.com/UMCUGenetics/guix-additions/tree/master/umcu/packages
 
 
+guix hydra machine cnfig
+https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
+
+
+
+nice config, machine/environment dependnet
+https://git.sr.ht/~efraim/guix-config/tree/master/item/efraim-home.scm 
+
+
+https://github.com/dustinlyons/guix-config/blob/main/Workstation-Desktop.org

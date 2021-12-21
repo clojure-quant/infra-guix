@@ -22,6 +22,11 @@ Host 178.128.203.133
   UserKnownHostsFile=/dev/null
   User florian
 
+Host quant.hoertlehner.com
+  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  UserKnownHostsFile=/dev/null
+  User florian
+
 Host 192.168.178.25
   IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
   User florian

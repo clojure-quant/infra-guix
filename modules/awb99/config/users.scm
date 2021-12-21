@@ -30,14 +30,17 @@
   ))
 
 (define-public groups-desktop
-   '("wheel" 
+   '(; server-groups
+     "wheel" 
      "netdev" 
      "audio" 
      "video"
      "tty"
+    ; desktop groups
      "lp"  ; line printer
      "lpadmin" ; line printer admin
-     "kvm"  ; run qemu as florian with kvm support.
+     "kvm"  ; hardware-acceleration qemu as user with kvm support.
+     "docker" ; run docker as non root
     ; "libvirt"
     ; "libvirt-qemu "
     ;;"wireshark"

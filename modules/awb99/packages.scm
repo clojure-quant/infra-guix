@@ -200,6 +200,7 @@
     "iputils" ; ping tracepath
     "nethogs"
     "net-tools" ; netstat
+    "speedtest-cli"
   ))
 
 
@@ -355,6 +356,7 @@
     "ffmpeg" ; record/play audio/video
     "libwebp" ; webp video compression"
     "youtube-dl"
+    "obs" ; video/audio streaming
 
     ;; audio
     "pavucontrol" 
@@ -386,7 +388,11 @@
 (define-public desktop-office-packages
   (list
     "libreoffice"
-    "obs"
+    "hunspell-dict-en" ; spell checker
+    "hunspell-dict-en-us"
+    "hunspell-dict-de"
+    "recoll" ; fulltext search engine
+   
    ; "vim"
    ; "neovim"
    "eovim" ;    NEOVIM GUI
@@ -413,6 +419,8 @@
     ; x windows
     "xcursor-themes"
     "xclock" ;x test
+
+     "wmctrl" ; manage x-windows
 
     ; xfce
    ; "xfce4-screenshooter" 
