@@ -68,3 +68,11 @@ https://ambrevar.xyz/guix-advance/
 
 https://github.com/daviwil/dotfiles/blob/master/Systems.org#base-configuration
 
+
+https://github.com/Millak/guix-config/blob/master/Guix_manifest.scm
+
+
+        ; AWS
+        ; https://cloudinit.readthedocs.io/en/stable/
+        ; # guix package: cloud-utils    has cloud-init
+        ; Guile AWS for AWS backend.

@@ -156,7 +156,7 @@
                                 )}
 
         ocean-ssh {:doc "ssh into digital ocean"
-                   :task (shell "ssh 178.128.203.133")}
+                   :task (shell "ssh quant.hoertlehner.com")}
         ; cloud.digitalocean.com
         
 
@@ -169,25 +169,20 @@
                                      "/home/florian/trateg-repo.sh")
                               (shell "scp" 
                                      "/home/florian/repo/myLinux/data/trateg/creds.edn"
-                                     "florian@quant.hoertlehner.com:/home/florian/clojure-quant/trateg/app/demo/creds.edn")
-                              
-                              )
-        ;-i "~/Documents/myLinux/ssh/flo5"
-        }
+                                     "florian@quant.hoertlehner.com:/home/shared/repo/clojure-quant/trateg/app/demo/creds.edn"))}
 
         ocean-deploy {:doc "builds digital-ocean image and deploys it"
-                   
+                      :task (do (println "builing/deploying digital-ocean image..")
+                                (guix/guix "deploy"
+                                           "./machine/ocean.scm"
+                                           "--verbosity=3"
+                                           "--no-grafts"))}
 
-                       :task (do (println "builing/deploying digital-ocean image..")
-                                 (guix/guix "deploy"
-                                            "./machine/ocean.scm"
-                                            "--verbosity=3"
-                                            "--no-grafts"))}
-
-        ; AWS
-        ; https://cloudinit.readthedocs.io/en/stable/
-        ; # guix package: cloud-utils    has cloud-init
-        ; Guile AWS for AWS backend.
+        ocean-reconfigure-user (guix/system "ocean-image"
+                                            "reconfigure")
+        ocean-reconfigure  {:doc "reconfigures guix os on machine ocean (runs as sudo)"
+                            :task (do (guix/sudo "ocean-reconfigure-user")
+                                      (guix/guix "system" "describe"))}
 
 
          ; ROCK-PRO

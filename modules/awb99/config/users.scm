@@ -41,7 +41,7 @@
      "lpadmin" ; line printer admin
      "kvm"  ; hardware-acceleration qemu as user with kvm support.
      "docker" ; run docker as non root
-    ; "libvirt"
+    ; "libvirt" ;Virt-manager  Needs group: libvirt or libvirtd
     ; "libvirt-qemu "
     ;;"wireshark"
    ))
