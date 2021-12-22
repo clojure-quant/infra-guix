@@ -49,7 +49,7 @@
             #:environment-variables (append (list (string-append "HOME=" (or #$home (passwd:dir (getpw #$user))))
                                                   "SSL_CERT_DIR3=/etc/ssl/certs"
                                                   "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
-                                                  (string-append "JAVA_HOME=" #$openjdk "/bin")
+                                                  (string-append "JAVA_HOME=" #$openjdk17 "/bin")
                                                    )
                                             (remove (lambda (str)
                                               (or (string-prefix? "HOME=" str)
