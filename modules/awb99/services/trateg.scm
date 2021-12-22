@@ -40,7 +40,8 @@
           (requirement '(loopback))  ; services need to be started before current service
           (start 
             #~(make-forkexec-constructor
-                (append (list (string-append #$clojure-tools "/bin/clj")
+                (append (list ;(string-append #$clojure-tools "/bin/clj")
+                              "/bin/bash" "/home/shared/repo/clojure-quant/infra-guix/bootstrap/demo.sh" 
                               "-X:goldly-docs")
                          '#$arguments)
             #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
