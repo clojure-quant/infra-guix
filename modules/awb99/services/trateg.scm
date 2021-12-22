@@ -10,47 +10,44 @@
 
 ; see: https://github.com/guix-mirror/guix/blob/892f1b7273d57b25940700877a02618fe826cc08/gnu/services/syncthing.scm
 
+
 (define-record-type* <trateg-service-configuration>
   trateg-service-configuration make-trateg-service-configuration
   trateg-service-configuration?
+
   (param1 trateg-service-configuration-param1
-          (default "foo")))
+          (default "foo")
 
-
-
- ; (list (string-append #$service-package "/bin/exe-name")
-;"-foo" "-bar" ; list of command line arguments
-;)
-
-
-(define sbash
-(list "bash" "-c"
-      "syncthing -no-browser -logflags=3 -logfile=/home/florian/log/syncthing.log 2>&1 | logger --tag=darkman"))
-
+  (arguments trateg-configuration-arguments ;list of strings
+        (default '()))
+        
+        ))
 
 (define trateg-shepherd-service
-(match-lambda
-  (($ <trateg-service-configuration> param1)
-    (list (shepherd-service
-            (provision '(trateg))
-            (documentation "trateg goldly docs")
-            (requirement '(loopback))  ; services need to be started before current service
-            (start 
-              #~(make-forkexec-constructor
-                  '("/home/shared/repo/clojure-quant/infra-guix/bootstrap/trateg-goldly.sh")
-                  #:user "florian"
-                  #:group "users"
-                  ;#:directory (default-service-directory) 
-                  #:environment-variables (list "EDIRECT_PUBMED_MASTER=/export2/PubMed"
-                                                "NLTK_DATA=/home/hchen/nltk_data")
-                  #:log-file "/home/shared/goldly-trateg.log"  
-                  ;#:log-file (string-append %logdir "/goldly.log")
-                  ;#:pid-file #f
-                  ;#:pid-file-timeout (default-pid-file-timeout)
-                  ;#:file-creation-mask #f
-                    ) )
-            (stop #~(make-kill-destructor))
-          )))))
+  (match-lambda
+    (($ <trateg-service-configuration> param1)
+      (list 
+        (shepherd-service
+          (provision '(trateg))
+          (documentation "trateg goldly docs")
+          (requirement '(loopback))  ; services need to be started before current service
+          (start 
+            #~(make-forkexec-constructor
+                (append (list (string-append #$clojure-tools "/bin/clj")
+                              "-X:goldly-docs")
+                         '#$arguments))
+            #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
+            #:user "florian"
+            #:group "users"
+            #:environment-variables (list "EDIRECT_PUBMED_MASTER=/export2/PubMed"
+                                          "NLTK_DATA=/home/hchen/nltk_data")
+            #:log-file (string-append %logdir "/goldly.log")
+            ;#:pid-file #f
+            ;#:pid-file-timeout (default-pid-file-timeout)
+            ;#:file-creation-mask #f
+            ) 
+          (stop #~(make-kill-destructor))
+    )))))
          
 
 (define trateg-service-type
