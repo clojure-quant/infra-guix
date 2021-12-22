@@ -64,8 +64,9 @@
     (extensions (list (service-extension 
                        shepherd-root-service-type
                        trateg-shepherd-service)))
-    (default-value (trateg-configuration))))
-
+    (description "trateg goldly-docs")
+    ;(default-value (trateg-configuration)) 
+  ))
   
 
 (define service-trateg
