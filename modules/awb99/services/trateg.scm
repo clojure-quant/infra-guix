@@ -13,24 +13,19 @@
 
 
 ; see: https://github.com/guix-mirror/guix/blob/892f1b7273d57b25940700877a02618fe826cc08/gnu/services/syncthing.scm
-
-
-(define-record-type* <trateg-service-configuration>
-  trateg-service-configuration make-trateg-service-configuration
-  trateg-service-configuration?
-
-  (param1 trateg-service-configuration-param1
+       
+(define-record-type* <trateg-configuration>
+  trateg-configuration make-trateg-configuration
+  trateg-configuration?
+  (param1 trateg-configuration-param1
           (default "foo")
-
   (arguments trateg-configuration-arguments ;list of strings
-        (default '()))
-        
+        (default '()))  
         ))
  
-
 (define trateg-shepherd-service
   (match-lambda
-    (($ <trateg-service-configuration> param1 arguments)
+    (($ <trateg-configuration> param1 arguments)
       (list 
         (shepherd-service
           (provision '(trateg))
@@ -69,13 +64,13 @@
     (extensions (list (service-extension 
                        shepherd-root-service-type
                        trateg-shepherd-service)))
-    (default-value (trateg-service-configuration))))
+    (default-value (trateg-configuration))))
 
   
 
 (define service-trateg
   (service trateg-service-type
-     (trateg-service-configuration 
-       (param1 "bongo") 
-      ; (arguments '())  
+     (trateg-configuration 
+        (param1 "bongo") 
+        (arguments '())  
         )))
