@@ -51,6 +51,7 @@
                                                   "SSL_CERT_DIR3=/etc/ssl/certs"
                                                   "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
                                                   (string-append "JAVA_HOME=" #$openjdk17)
+                                                  "PATH=/run/setuid-programs:/home/florian/.config/guix/current/bin:/home/florian/.guix-profile/bin:/home/florian/.guix-profile/sbin:/run/current-system/profile/bin:/run/current-system/profile/sbin"
                                                    )
                                             (remove (lambda (str)
                                               (or (string-prefix? "HOME=" str)
