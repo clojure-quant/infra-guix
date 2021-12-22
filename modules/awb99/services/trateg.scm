@@ -25,9 +25,10 @@
         
         ))
 
+
 (define trateg-shepherd-service
   (match-lambda
-    (($ <trateg-service-configuration> param1)
+    (($ <trateg-service-configuration> param1 arguments)
       (list 
         (shepherd-service
           (provision '(trateg))
@@ -35,19 +36,19 @@
           (requirement '(loopback))  ; services need to be started before current service
           (start 
             #~(make-forkexec-constructor
-                (append (list (string-append #$clojure-tools "/bin/clj")
+                (append (list (string-append "/sbin" "/bin/clj") ; #$clojure-tools 
                               "-X:goldly-docs")
                          '#$arguments))
-            #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
-            #:user "florian"
-            #:group "users"
-            #:environment-variables (list "EDIRECT_PUBMED_MASTER=/export2/PubMed"
-                                          "NLTK_DATA=/home/hchen/nltk_data")
-            #:log-file (string-append %logdir "/goldly.log")
+           ; #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
+           ; #:user "florian"
+           ; #:group "users"
+            ;#:environment-variables (list "EDIRECT_PUBMED_MASTER=/export2/PubMed"
+            ;                              "NLTK_DATA=/home/hchen/nltk_data")
+           ; #:log-file (string-append %logdir "/goldly.log")
             ;#:pid-file #f
             ;#:pid-file-timeout (default-pid-file-timeout)
             ;#:file-creation-mask #f
-            #:respawn? #f
+            ;#:respawn? #f
             ) 
           (stop #~(make-kill-destructor))
     )))))

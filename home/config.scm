@@ -5,10 +5,23 @@
 ;; See the "Replicating Guix" section in the manual.
 
 (use-modules
+  (guix) 
+  (gnu) 
   (gnu home)
   (gnu packages)
+  (gnu packages shells)
+
   (gnu services)
   (guix gexp)
+(mcron scripts mcron)
+(mcron base)
+(mcron config)
+(mcron job-specifier)    ; For user/system files.
+(mcron utils)
+(mcron vixie-specification)
+(mcron core)
+
+  (gnu home services)
   (gnu home services shells)
   (gnu home services mcron)
   (awb99 guixutils) 
@@ -113,18 +126,19 @@
         (list 
           dummy-job-1
           dummy-job-2
-          hello-job-1
+         ; hello-job-1
           hello-job-2
           user-garbage-job
                 )))))
 
 
-(define test-config-service
+(define my-config-service
   (simple-service 'test-config
     home-files-service-type
-      (list `("config/test.conf"
-             ,(plain-file "tmp-file.txt"
-                          "the content of ~/.config/test.conf")))))
+      (list `("config/test.conf" ,(plain-file "tmp-file.txt" "the content of ~/.config/test.conf"))
+            `("ssh/config" ,(local-file "./ssh/config"))
+       )))
+
 
 (define env-vars-service
   (simple-service 
@@ -144,7 +158,7 @@
     (list
        bash-service
        mcron-service
-       test-config-service
+       my-config-service
        ;env-vars-service
 
     )))

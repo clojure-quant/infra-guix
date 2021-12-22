@@ -52,6 +52,8 @@
                      :task (do (guix/sudo "nuc-reconfigure-user")
                                (guix/guix "system" "describe"))}
 
+         home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
+
          ; VM TERMINAL
 
          build-vm {:doc "builds vm-image to be run with qemu"
@@ -274,7 +276,7 @@
          graph-clojure (guix/graph "clojure") ; this does not work yet.
       
 
-         home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
+       
 
          syncthing-tunnel {:doc "creates syncthing webadmin tunnel (for nas/syncthing config)"
                            :task (do (println "starting syncthing tunnel..")
@@ -295,7 +297,11 @@
 
 
          guile-test (guix/guile "-l" "./modules/awb99/test.scm")
-         guix-repl  (guix/guix "repl")
+         guix-repl   {:doc "start guix repl, with module load path: ./modules"
+                      :task (guix/guix "repl")}
+         guix-repl-test  {:doc "start guix repl, load ./modules/awb99/test.scm"
+                          :task (guix/guix "repl" "./modules/awb99/test.scm")}
+
          guix-repl-ocean (guix/guix "repl"
                               "./machine/ocean-image.scm")
 
