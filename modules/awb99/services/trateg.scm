@@ -4,6 +4,8 @@
   #:use-module (guix gexp)
   #:use-module (guix records)
   #:use-module (ice-9 match)
+  #:use-module (srfi srfi-1)
+
   #:export (trateg-service-configuration
             trateg-service-type))
 
