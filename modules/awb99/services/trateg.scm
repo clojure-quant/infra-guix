@@ -8,6 +8,8 @@
             trateg-service-type))
 
 
+; see: https://github.com/guix-mirror/guix/blob/892f1b7273d57b25940700877a02618fe826cc08/gnu/services/syncthing.scm
+
 (define-record-type* <trateg-service-configuration>
   trateg-service-configuration make-trateg-service-configuration
   trateg-service-configuration?
