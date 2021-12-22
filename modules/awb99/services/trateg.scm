@@ -33,11 +33,17 @@
             (provision '(trateg))
             (documentation "trateg goldly docs")
             (requirement '())  ; services need to be started before current service
-            (start #~(make-forkexec-constructor
-                        '("cd" "/home/shared/repo/clojure-quant/trateg/app/demo" "&&"
-                          "clj" "-X:goldly-docs")
-                      ))
-            (stop #~(make-kill-destructor)))))))
+            (start 
+              #~(make-forkexec-constructor
+                  '("/home/shared/repo/clojure-quant/infra-guix/bootstrap/trateg-goldly.sh")
+                  #:environment-variables
+                     (list "EDIRECT_PUBMED_MASTER=/export2/PubMed"
+                           "NLTK_DATA=/home/hchen/nltk_data")
+                  #:log-file 
+                    "/home/shepherd/logs/genecup.log"  
+                    ) )
+            (stop #~(make-kill-destructor))
+          )))))
          
 
 (define trateg-service-type
@@ -47,3 +53,14 @@
                        shepherd-root-service-type
                        trateg-shepherd-service)))
     (default-value (trateg-service-configuration))))
+
+  (define genecup
+  (make <service>
+	#:provides '(genecup)
+	#:docstring "Run the genecup.org web server"
+	#:start (make-forkexec-constructor
+		  '("/home/shepherd/run_genecup.sh")
+		  
+		 )
+	#:stop (make-kill-destructor)
+	#:respawn? #t))
