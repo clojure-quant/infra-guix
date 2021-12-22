@@ -5,6 +5,7 @@
   #:use-module (guix records)
   #:use-module (ice-9 match)
   #:use-module (srfi srfi-1)
+  #:use-module (gnu packages java); open-jdk
   #:use-module (nongnu packages clojure)
   #:export (trateg-configuration
             trateg-service-type
@@ -46,8 +47,9 @@
             #:user "florian"
             #:group "users"
             #:environment-variables (append (list (string-append "HOME=" (or #$home (passwd:dir (getpw #$user))))
-                                                    "SSL_CERT_DIR3=/etc/ssl/certs"
-                                                    "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
+                                                  "SSL_CERT_DIR3=/etc/ssl/certs"
+                                                  "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
+                                                  (string-append "JAVA_HOME=" #$open-jdk "/bin")
                                                    )
                                             (remove (lambda (str)
                                               (or (string-prefix? "HOME=" str)

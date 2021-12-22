@@ -12,5 +12,3 @@ it will complain with “Permission denied” because it is trying to install in
 pip3 install --user package-name
 
 
-GIT SSL: if guest os has ssl issue with git:
-git config --global http.sslverify false
