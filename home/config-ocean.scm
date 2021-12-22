@@ -157,8 +157,8 @@
   (services
     (list
        bash-service
-       mcron-service
-       my-config-service
+       ;mcron-service
+       ;my-config-service
        ;env-vars-service
 
     )))
