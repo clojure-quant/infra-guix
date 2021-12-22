@@ -24,15 +24,14 @@
 
 
 (define service-syncthing
-  (service 
-     syncthing-service-type
-     (syncthing-configuration 
-       (user "florian") ; The user as which the Syncthing service is to be run. This assumes that the specified user exists.
-       ; group (default: "users")
-       ; home (default: #f) Common configuration and data directory. The default configuration directory is $HOME of the specified Syncthing user.
-       ; logflags (default: 0) Sum of logging flags, see Syncthing documentation logflags.
-       ; arguments (default: ’())  ; List of command-line arguments passing to syncthing binary.
-        )))
+  (service syncthing-service-type
+    (syncthing-configuration 
+      (user "florian") ; The user as which the Syncthing service is to be run. This assumes that the specified user exists.
+      ; group (default: "users")
+      ; home (default: #f) Common configuration and data directory. The default configuration directory is $HOME of the specified Syncthing user.
+      ; logflags (default: 0) Sum of logging flags, see Syncthing documentation logflags.
+      ; arguments (default: ’())  ; List of command-line arguments passing to syncthing binary.
+      )))
 
     
 

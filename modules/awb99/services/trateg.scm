@@ -74,8 +74,7 @@
   
 
 (define service-trateg
-  (service 
-    trateg-service-type
+  (service trateg-service-type
      (trateg-service-configuration 
        (param1 "bongo") 
       ; (arguments '())  

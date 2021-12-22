@@ -35,14 +35,14 @@
 
 (define service-ssh-bitblock
   (service openssh-service-type
-     (openssh-configuration
-     (openssh openssh-sans-x)
-     (permit-root-login 'prohibit-password)
-     (public-key-authentication? #t)
-     (authorized-keys
-     `( ("viktor" ,(local-file"../../../keys/viktor.pub")) 
-        ("florian" ,(local-file"../../../keys/flo5.pub"))
-    )))))
+    (openssh-configuration
+      (openssh openssh-sans-x)
+      (permit-root-login 'prohibit-password)
+      (public-key-authentication? #t)
+      (authorized-keys
+        `( ("viktor" ,(local-file"../../../keys/viktor.pub")) 
+           ("florian" ,(local-file"../../../keys/flo5.pub"))
+       )))))
 
 
 
