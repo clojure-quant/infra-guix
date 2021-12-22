@@ -17,11 +17,11 @@
 (define-record-type* <trateg-configuration>
   trateg-configuration make-trateg-configuration
   trateg-configuration?
-  (param1 trateg-configuration-param1
-          (default "foo")
-  (arguments trateg-configuration-arguments ;list of strings
-        (default '()))  
-        ))
+    (param1 trateg-configuration-param1
+            (default "foo"))
+    (arguments trateg-configuration-arguments ;list of strings
+            (default '()))  
+  )
  
 (define trateg-shepherd-service
   (match-lambda
