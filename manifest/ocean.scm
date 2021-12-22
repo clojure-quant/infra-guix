@@ -3,14 +3,14 @@
   )
 
 
-(define nuc-packages
+(define ocean-packages
   (append 
   ; clojure apps
     clojure-packages
-    node-packages
+    ;node-packages
   ; python-packages
   ; r-packages
-    build-packages
+   ; build-packages
   ; linux cli
     security-packages
     archive-packages
@@ -21,18 +21,18 @@
     hardware-packages
   ; apps
     guix-core-packages
-    virtual-machine-packages
-    crypto-packages
+   ; virtual-machine-packages
+   ; crypto-packages
   ; desktop
-    desktop-chat-packages
-    desktop-multimedia-packages
-    desktop-office-packages
-    desktop-browser-packages 
-    desktop-tool-packages
+  ;  desktop-chat-packages
+  ;  desktop-multimedia-packages
+  ;  desktop-office-packages
+  ;  desktop-browser-packages 
+  ;  desktop-tool-packages
   ; services
     services-packages
       ))
 
 
-(specifications->manifest nuc-packages)
+(specifications->manifest ocean-packages)
 
