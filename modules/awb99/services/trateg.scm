@@ -40,8 +40,8 @@
           (requirement '(loopback))  ; services need to be started before current service
           (start 
             #~(make-forkexec-constructor
-                (append (list ;(string-append #$clojure-tools "/bin/clj")
-                              "/bin/bash" "/home/shared/repo/clojure-quant/infra-guix/bootstrap/demo.sh" 
+                (append (list (string-append #$clojure-tools "/bin/clj")
+                              ;"/bin/bash" "/home/shared/repo/clojure-quant/infra-guix/bootstrap/demo.sh" 
                               "-X:goldly-docs")
                          '#$arguments)
             #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
@@ -50,7 +50,7 @@
             #:environment-variables (append (list (string-append "HOME=" (or #$home (passwd:dir (getpw #$user))))
                                                   "SSL_CERT_DIR3=/etc/ssl/certs"
                                                   "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
-                                                  (string-append "JAVA_HOME=" #$openjdk17 "/bin")
+                                                  (string-append "JAVA_HOME=" #$openjdk17)
                                                    )
                                             (remove (lambda (str)
                                               (or (string-prefix? "HOME=" str)
