@@ -55,6 +55,7 @@
                                                    )
                                             (remove (lambda (str)
                                               (or (string-prefix? "HOME=" str)
+                                                  (string-prefix? "PATH=" str)
                                                   (string-prefix? "SSL_CERT_DIR3=" str)
                                                   (string-prefix? "SSL_CERT_FILE3=" str)))
                                               (environ)))

@@ -6,6 +6,6 @@ export
 
 echo "hello, world!"
 
-clj -X:goldly-docs
+clojure -X:goldly-docs
 
 echo "done."
