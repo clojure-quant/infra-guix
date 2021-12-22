@@ -32,10 +32,12 @@
     (list (shepherd-service
             (provision '(trateg))
             (documentation "trateg goldly docs")
-            (requirement '())  ; services need to be started before current service
+            (requirement '("term-tty6"))  ; services need to be started before current service
             (start 
               #~(make-forkexec-constructor
                   '("/home/shared/repo/clojure-quant/infra-guix/bootstrap/trateg-goldly.sh")
+                  #:user "florian"
+                  #:group "users"
                   #:environment-variables
                      (list "EDIRECT_PUBMED_MASTER=/export2/PubMed"
                            "NLTK_DATA=/home/hchen/nltk_data")
