@@ -32,7 +32,7 @@
     (list (shepherd-service
             (provision '(trateg))
             (documentation "trateg goldly docs")
-            (requirement '("term-tty6"))  ; services need to be started before current service
+            (requirement '("networking"))  ; services need to be started before current service
             (start 
               #~(make-forkexec-constructor
                   '("/home/shared/repo/clojure-quant/infra-guix/bootstrap/trateg-goldly.sh")
