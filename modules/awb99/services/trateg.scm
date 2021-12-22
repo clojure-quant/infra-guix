@@ -17,6 +17,10 @@
 (define-record-type* <trateg-configuration>
   trateg-configuration make-trateg-configuration
   trateg-configuration?
+    (user trateg-configuration-user      ;string
+       (default #f))
+    (group trateg-configuration-group     ;string
+      (default "users"))
     (param1 trateg-configuration-param1
             (default "foo"))
     (arguments trateg-configuration-arguments ;list of strings
@@ -25,7 +29,7 @@
  
 (define trateg-shepherd-service
   (match-lambda
-    (($ <trateg-configuration> param1 arguments)
+    (($ <trateg-configuration> user group param1 arguments)
       (list 
         (shepherd-service
           (provision '(trateg))
