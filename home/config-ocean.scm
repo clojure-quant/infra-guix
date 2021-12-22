@@ -156,7 +156,7 @@
         nuc-packages))
   (services
     (list
-       bash-service
+       ;bash-service
        ;mcron-service
        ;my-config-service
        ;env-vars-service
