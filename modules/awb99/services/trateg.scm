@@ -7,7 +7,9 @@
   #:use-module (srfi srfi-1)
   #:use-module (nongnu packages clojure)
   #:export (trateg-service-configuration
-            trateg-service-type))
+            trateg-service-type
+            service-trateg
+          ))
 
 
 ; see: https://github.com/guix-mirror/guix/blob/892f1b7273d57b25940700877a02618fe826cc08/gnu/services/syncthing.scm
@@ -51,8 +53,6 @@
                                                   (string-prefix? "SSL_CERT_DIR3=" str)
                                                   (string-prefix? "SSL_CERT_FILE3=" str)))
                                               (environ)))
-
-
            ; #:log-file (string-append %logdir "/goldly.log")
             ;#:pid-file #f
             ;#:pid-file-timeout (default-pid-file-timeout)
@@ -71,3 +71,12 @@
                        trateg-shepherd-service)))
     (default-value (trateg-service-configuration))))
 
+  
+
+(define service-trateg
+  (service 
+    trateg-service-type
+     (trateg-configuration 
+       (param1 "bongo") 
+       (arguments '())  
+        )))

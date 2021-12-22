@@ -95,7 +95,8 @@
           service-bootstrap-files; add the trateg git clone script
           service-bin-links
           service-ssh-bitblock
-          (service trateg-service-type)
+          ;(service trateg-service-type)
+          service-trateg
           )
           my-base-services))
     (bootloader (bootloader-configuration
