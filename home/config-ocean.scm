@@ -145,7 +145,7 @@
     'some-useful-env-vars-service
     home-environment-variables-service-type
       `(("LESSHISTFILE" . "$XDG_CACHE_HOME/.lesshst")
-        ("SHELL" . ,(file-append zsh "/bin/zsh"))
+       ; ("SHELL" . ,(file-append zsh "/bin/zsh"))
         ("USELESS_VAR" . #f)
         ("_JAVA_AWT_WM_NONREPARENTING" . #t))))
 

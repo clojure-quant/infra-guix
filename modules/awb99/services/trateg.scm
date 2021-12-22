@@ -47,7 +47,7 @@
             #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
             #:user "florian"
             #:group "users"
-            #:environment-variables (append (list (string-append "HOME=" (or #$home (passwd:dir (getpw #$user))))
+            #:environment-variables (append (list "HOME=/home/florian" ; (string-append "HOME=" (or #$home (passwd:dir (getpw #$user))))
                                                   "SSL_CERT_DIR3=/etc/ssl/certs"
                                                   "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
                                                   (string-append "JAVA_HOME=" #$openjdk17)
