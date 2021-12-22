@@ -54,7 +54,7 @@
                                                   (string-prefix? "SSL_CERT_DIR3=" str)
                                                   (string-prefix? "SSL_CERT_FILE3=" str)))
                                               (environ)))
-            ;#:log-file ("/home/shared/goldly.log")
+            #:log-file "/home/shared/goldly.log"
             ;#:pid-file #f
             ;#:pid-file-timeout (default-pid-file-timeout)
             ;#:file-creation-mask #f
