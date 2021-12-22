@@ -5,7 +5,7 @@
   #:use-module (guix records)
   #:use-module (ice-9 match)
   #:use-module (srfi srfi-1)
-
+  #:use-module (nongnu packages clojure)
   #:export (trateg-service-configuration
             trateg-service-type))
 
