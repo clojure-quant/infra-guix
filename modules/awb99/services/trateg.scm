@@ -24,7 +24,7 @@
         (default '()))
         
         ))
-
+ 
 
 (define trateg-shepherd-service
   (match-lambda
@@ -36,20 +36,29 @@
           (requirement '(loopback))  ; services need to be started before current service
           (start 
             #~(make-forkexec-constructor
-                (append (list (string-append "/sbin" "/bin/clj") ; #$clojure-tools 
+                (append (list (string-append #$clojure-tools "/bin/clj")
                               "-X:goldly-docs")
-                         '#$arguments))
-           ; #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
-           ; #:user "florian"
-           ; #:group "users"
-            ;#:environment-variables (list "EDIRECT_PUBMED_MASTER=/export2/PubMed"
-            ;                              "NLTK_DATA=/home/hchen/nltk_data")
+                         '#$arguments)
+            #:directory "/home/shared/repo/clojure-quant/trateg/app/demo"
+            #:user "florian"
+            #:group "users"
+            #:environment-variables (append (list (string-append "HOME=" (or #$home (passwd:dir (getpw #$user))))
+                                                    "SSL_CERT_DIR3=/etc/ssl/certs"
+                                                    "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
+                                                   )
+                                            (remove (lambda (str)
+                                              (or (string-prefix? "HOME=" str)
+                                                  (string-prefix? "SSL_CERT_DIR3=" str)
+                                                  (string-prefix? "SSL_CERT_FILE3=" str)))
+                                              (environ)))
+
+
            ; #:log-file (string-append %logdir "/goldly.log")
             ;#:pid-file #f
             ;#:pid-file-timeout (default-pid-file-timeout)
             ;#:file-creation-mask #f
-            ;#:respawn? #f
-            ) 
+            )) 
+          (respawn? #f)
           (stop #~(make-kill-destructor))
     )))))
          
