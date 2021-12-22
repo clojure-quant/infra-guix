@@ -66,11 +66,15 @@ bb home-configure
 OCEAN is a tiny macine hosted by digital-ocean fra-1.
 It runs trateg.
 
+in /home/repo/clojure-quant/infra-guix:
 ```
 bb ocean-build
 bb ocean-ssh 
 bb ocean-init
 ```
+
+see README-tradeg for trateg admin
+
 
 
 ## ROCK
