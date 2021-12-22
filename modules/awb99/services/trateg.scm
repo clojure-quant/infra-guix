@@ -47,6 +47,7 @@
             ;#:pid-file #f
             ;#:pid-file-timeout (default-pid-file-timeout)
             ;#:file-creation-mask #f
+            #:respawn? #f
             ) 
           (stop #~(make-kill-destructor))
     )))))
@@ -60,13 +61,3 @@
                        trateg-shepherd-service)))
     (default-value (trateg-service-configuration))))
 
-  (define genecup
-  (make <service>
-	#:provides '(genecup)
-	#:docstring "Run the genecup.org web server"
-	#:start (make-forkexec-constructor
-		  '("/home/shepherd/run_genecup.sh")
-		  
-		 )
-	#:stop (make-kill-destructor)
-	#:respawn? #t))
