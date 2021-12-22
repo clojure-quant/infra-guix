@@ -6,7 +6,7 @@
   #:use-module (ice-9 match)
   #:use-module (srfi srfi-1)
   #:use-module (nongnu packages clojure)
-  #:export (trateg-service-configuration
+  #:export (trateg-configuration
             trateg-service-type
             service-trateg
           ))
