@@ -21,6 +21,8 @@
        (default #f))
     (group trateg-configuration-group     ;string
       (default "users"))
+    (home trateg-configuration-home      ;string
+      (default #f))
     (param1 trateg-configuration-param1
             (default "foo"))
     (arguments trateg-configuration-arguments ;list of strings
@@ -29,7 +31,7 @@
  
 (define trateg-shepherd-service
   (match-lambda
-    (($ <trateg-configuration> user group param1 arguments)
+    (($ <trateg-configuration> user group home param1 arguments)
       (list 
         (shepherd-service
           (provision '(trateg))
