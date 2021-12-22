@@ -188,6 +188,10 @@
         
         ocean-home-configure (guix/guix "home" "reconfigure" "./home/config-ocean.scm"  "--verbosity=3")
 
+        ocean-install-manifest {:doc "installs ocean user packages"
+                                :task (guix/package "ocean"
+                                              "--verbosity=3"
+                                              "--no-grafts")}
 
          ; ROCK-PRO
          
