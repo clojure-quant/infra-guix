@@ -185,6 +185,8 @@
         ocean-reconfigure  {:doc "reconfigures guix os on machine ocean (runs as sudo)"
                             :task (do (guix/sudo "ocean-reconfigure-user")
                                       (guix/guix "system" "describe"))}
+        
+        ocean-home-configure (guix/guix "home" "reconfigure" "./home/config-ocean.scm")
 
 
          ; ROCK-PRO

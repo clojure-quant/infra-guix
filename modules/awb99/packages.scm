@@ -256,14 +256,12 @@
    "inxi"  ; hardware info 
    "cpuid" ; cpu info
    "cpuinfo" ; cpu info
- 
    "tree"
    "whois"
   ; "perftest" ; makes problems with new guix
    "the-silver-searcher" ; ag
    "mesa-utils"
-   "fasd" ; newer than autojump
-   
+   "fasd" ; newer than autojump  
    ))
 
 ;; apps 
@@ -289,8 +287,8 @@
     ; "glibc-utf8-locales" ; small set of locales
     ; "openssh" ; required for git with ssh repos
     "openssh-sans-x"
+    ;"openssl"
     "mcron"
-    "openssl"
     "guile" 
     ;"stow" symlink manager
   ))
