@@ -186,7 +186,7 @@
                             :task (do (guix/sudo "ocean-reconfigure-user")
                                       (guix/guix "system" "describe"))}
         
-        ocean-home-configure (guix/guix "home" "reconfigure" "./home/config-ocean.scm")
+        ocean-home-configure (guix/guix "home" "reconfigure" "./home/config-ocean.scm"  "--verbosity=3")
 
 
          ; ROCK-PRO
