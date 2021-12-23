@@ -201,6 +201,7 @@
     "nethogs"
     "net-tools" ; netstat
     "speedtest-cli"
+    "ddclient" ; dynamic dns client
   ))
 
 

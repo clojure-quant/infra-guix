@@ -18,6 +18,7 @@
   (gnu services web)
   ; (awb99 guixutils)
   (awb99 config users)
+  (awb99 config iptables)
   (awb99 packages)
   (awb99 services special-files)
   (awb99 services ssh)
@@ -97,6 +98,14 @@
           service-ssh-bitblock
           ;(service trateg-service-type)
           service-trateg
+
+          (service iptables-service-type
+            (iptables-configuration
+               (ipv4-rules (plain-file "iptables.rules" 
+                 ;iptables-allow-8080 
+                 iptables-port-redirect
+             ))))
+
           )
           my-base-services))
     (bootloader (bootloader-configuration

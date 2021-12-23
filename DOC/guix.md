@@ -76,3 +76,22 @@ https://github.com/Millak/guix-config/blob/master/Guix_manifest.scm
         ; https://cloudinit.readthedocs.io/en/stable/
         ; # guix package: cloud-utils    has cloud-init
         ; Guile AWS for AWS backend.
+
+
+guix build farm config:
+https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
+
+
+
+(define headless?
+  (eq? #f (getenv "DISPLAY")))
+
+  (define work-machine?
+  (not (eq? #f (member (gethostname)
+                       (cons "bayfront"
+                             UTenn_machines)))))
+
+(define guix-system
+  (file-exists? "/run/current-system/provenance"))
+  
+                          

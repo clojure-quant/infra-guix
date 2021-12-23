@@ -76,6 +76,15 @@
        "su - MYSELF bash -c 'cd ~/Schreibtisch/arnebab-org && make && hg push sr.ht && hg push'"))
 
 
+; from: https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/monokuma.scm
+;(define btrfs-job
+;; Run 'btrfs balance' every three days to make free space.
+;#~(job (lambda (now)
+;         (next-day-from now (range 1 31 3)))
+;       (string-append #$btrfs-progs "/bin/btrfs balance "
+;                      "start -dusage=50 -musage=70 /")))
+
+
 
 ;; used in nuc, vm-terminal
 

@@ -72,7 +72,7 @@
     "calibre"
     "readymedia" ; DLNA/UPnP-AV media server (formerly known as MiniDLNA)
    ; "pulseaudio-dlna" ; Stream audio to DLNA/UPnP and Chromecast devices
-   ;dyndns ddclient to disec.io  
+    "ddclient"  ;dynamic dns ddclient to disec.io  
 
     ;   "dropbear"
         ;
