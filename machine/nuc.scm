@@ -16,7 +16,9 @@
   (awb99 services special-files)
   (awb99 services file-sync)
   (awb99 config cron)
-  (awb99 config iptables))
+  (awb99 config iptables)
+  (awb99 services ddclient)
+)
              
 ;  (use-service-modules x y …) is just syntactic sugar for (use-modules (gnu services x) (gnu services y) …)
 (use-service-modules desktop networking ssh xorg cups mcron certbot web)
@@ -79,13 +81,14 @@
 
     (service mcron-service-type
       (mcron-configuration
-        (jobs %guix-maintenance-jobs)))
+        (jobs my-guix-maintenance-jobs)))
 
     (service trezord-service-type
       (trezord-configuration))
 
     service-bin-links
     service-syncthing
+    service-ddclient-nuc 
 
     (service docker-service-type)
     (service qemu-binfmt-service-type ; needed for qemu arm system compile
@@ -167,6 +170,7 @@
          "sshfs"
          "nbd" ; to mount qcow2 images
          "glibc-locales" ; guix locales
+         "mcron"
 
          "xrandr" ; hidpi x-windows scaling
          ; xfce

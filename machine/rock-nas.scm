@@ -12,7 +12,7 @@
   (gnu platforms arm)
   (gnu system image)
 
-  ;; servuces
+  ;; services
   (gnu services networking) ; ntpd
   (gnu services xorg)
   (gnu services desktop)

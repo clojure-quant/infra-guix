@@ -86,7 +86,7 @@ root ALL=(ALL) ALL
                 
                  (service mcron-service-type
                    (mcron-configuration
-                     (jobs %guix-maintenance-jobs)))
+                     (jobs my-guix-maintenance-jobs)))
                  (service trezord-service-type
                     (trezord-configuration))
                  my-certbot-service

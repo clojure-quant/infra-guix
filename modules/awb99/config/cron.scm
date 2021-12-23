@@ -1,42 +1,38 @@
 (define-module (awb99 config cron)
 ; #:use-module (gnu services mcron)
-#:use-module (gnu packages linux)
-#:use-module (guix gexp) ; #~
-#:export (%guix-maintenance-jobs
-          ))
+;#:use-module (gnu packages linux)
+;#:use-module (guix gexp) ; #~
+;#:export (my-guix-maintenance-jobs)
+)
 
 (use-modules ;(guix) 
    (gnu) 
+   (guix gexp) ;brings #~     #~ means ‘[begin a] gexp’, short for G-Expression
+   (gnu packages linux)
+   (gnu packages base)
+   (gnu packages idutils)
    (gnu services mcron) ; identical to: (use-service-modules mcron)
-   (mcron scripts mcron)
-   (mcron base)
-   (mcron config)
-   (mcron job-specifier)    ; For user/system files.
-   (mcron utils)
-   (mcron vixie-specification)
-   (mcron core)
+  ; (mcron scripts mcron)
+   ;(mcron base)
+   ;(mcron config)
+   ;(mcron job-specifier)    ; For user/system files.
+   ;(mcron utils)
+   ;(mcron vixie-specification)
+   ;(mcron core)
    ;(mcron)
 )
-
-(use-package-modules base idutils)
-
-
-
 
 ; https://www.gnu.org/software/mcron/manual/mcron.html#Guile-Simple-Examples
 ; https://www.gnu.org/software/mcron/manual/html_node/The-job_002dspecifier-module.html#The-job_002dspecifier-module
 ; https://guix.gnu.org/manual/en/html_node/Scheduled-Job-Execution.html
 ; https://git.savannah.gnu.org/cgit/guix.git/tree/gnu/packages/guile-xyz.scm#n2552
 
-
 ; stolen from:
 ; https://git.sr.ht/~efraim/guix-config/tree/master/item/config/filesystems.scm
 
 
-; #~ means ‘[begin a] gexp’, short for G-Expression
-
 (define system-garbage-job
-   ;; gc (remove packages older than 2 months, keep at least 500G free), pull and update every day at 01:05
+   ;; gc (remove packages older than 2 months, keep at least 500G free), pull and update every day at 00:05
    #~(job "5 0 * * *"            ;Vixie cron syntax
           "guix gc --optimize -d 2m && guix gc -F 300G && guix pull")
     )
@@ -64,16 +60,11 @@
 #~(job "5 3 * * *"            ;Vixie cron syntax
        "guix gc --optimize -d 2m && guix gc -F 500G && guix pull && guix system reconfigure -k /etc/config.scm"))
 
-(define guix-release-throttle-job
-;; release CPU throttle at 3:00, just before guix reconfigure starts
-#~(job "0 3 * * *"            ;Vixie cron syntax
-       "cpupower frequency-set -g powersave -u 6000000"))
 
-
-(define arnebab-org-publish-job
+;(define arnebab-org-publish-job
 ;; gc (publish my website every day at 02:00
-#~(job "* 2 * * *"            ;Vixie cron syntax
-       "su - MYSELF bash -c 'cd ~/Schreibtisch/arnebab-org && make && hg push sr.ht && hg push'"))
+;#~(job "* 2 * * *"            ;Vixie cron syntax
+;       "su - MYSELF bash -c 'cd ~/Schreibtisch/arnebab-org && make && hg push sr.ht && hg push'"))
 
 
 ; from: https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/monokuma.scm
@@ -88,7 +79,7 @@
 
 ;; used in nuc, vm-terminal
 
-(define-public %guix-maintenance-jobs
+(define-public my-guix-maintenance-jobs
   (list
      system-garbage-job
      ; hello-job
@@ -98,5 +89,5 @@
 (define-public service-cron
   (simple-service 'my-cron-jobs
                  mcron-service-type
-                 %guix-maintenance-jobs
+                 my-guix-maintenance-jobs
                 ))

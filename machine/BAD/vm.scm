@@ -30,7 +30,7 @@
 
             (service mcron-service-type
                     (mcron-configuration
-                      (jobs %guix-maintenance-jobs)))
+                      (jobs my-guix-maintenance-jobs)))
 
             (set-xorg-configuration
               (xorg-configuration

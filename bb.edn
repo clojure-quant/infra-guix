@@ -15,9 +15,9 @@
          install-channels {:doc "installs channels"
                            :task (guix/pull "channels")}
          install-nuc {:doc "installs nuc desktop packages"
-                          :task (guix/package "nuc"
-                                              "--verbosity=1"
-                                              "--no-grafts")}
+                      :task (guix/package "nuc"
+                                          "--verbosity=1"
+                                          "--no-grafts")}
 
          ; guix maintenance
          gc {:doc "guix garbage collect"
@@ -44,15 +44,57 @@
          update-root {:doc "updates guix ROOT (gc pull upgrade)"
                       :task (do (guix/sudo "update")
                                 (guix/guix "system" "describe"))}
-         
+
+
+         ; installer
+         installer-build {:doc "builds installer vm-image to be run with qemu"
+                          :task (let [_ (println "building ocean vm image..")
+                                      ; guix system disk-image -t qcow2 config.scm' .
+                                      r (guix/image-result "installer"
+                                                           "--verbosity=3"
+                                                           "--no-grafts")
+                                      r-out (:out r)
+                                      img (clojure.string/trim r-out)]
+                                    ; "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2"
+                                  (println "installer image result: ]" img "[ ")
+                                  (shell "sync")
+                                  (shell "qemu-img convert"
+                                         "-c"
+                                         "-f" "raw"
+                                         "-O" "qcow2"
+                                         img
+                                         "artefact/installer.qcow2")
+                                  (println "generated image: artefact/installer.qcow2")
+                                  (println "you might want to upload it to: https://cloud.digitalocean.com/images/custom_images")
+                                  (println "region has to match the region where you deploy to"))}
+
+         installer-run {:doc "run installer vm-image"
+                        :task (shell "qemu-system-x86_64"
+                                     "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
+                                     "-m" "2048"
+                                     "-vga" "virtio"
+                                     ; network
+                                     "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
+                                     "-device" "virtio-net-pci,netdev=vnet"
+                                     ; file share
+                                     "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
+                                     ;harddisk 
+                                     "-device" "virtio-blk,drive=myhd"
+                                     "-drive" "if=none,file=./artefact/installer.qcow2,id=myhd")}
+
         ; NUC
          nuc-reconfigure-user (guix/system "nuc"
-                                     "reconfigure")
+                                           "reconfigure")
          nuc-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"
-                     :task (do (guix/sudo "nuc-reconfigure-user")
-                               (guix/guix "system" "describe"))}
+                           :task (do (guix/sudo "nuc-reconfigure-user")
+                                     (guix/guix "system" "describe"))}
 
-         home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
+         nuc-home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
+
+         nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
+                            :task (shell "ddclient"
+                                         "-foreground"
+                                         "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
 
          ; VM TERMINAL
 
@@ -62,140 +104,100 @@
                                           "vm"
                                           "--verbosity=3"
                                           "--no-grafts"))}
-          
-         ; installer
-          installer-build {:doc "builds installer vm-image to be run with qemu"
-                           :task (let [_ (println "building ocean vm image..")
-                                      ; guix system disk-image -t qcow2 config.scm' .
-                                       r (guix/image-result "installer"
-                                                            "--verbosity=3"
-                                                            "--no-grafts")
-                                       r-out (:out r)
-                                       img (clojure.string/trim r-out)]
-                                    ; "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2"
-                                    (println "installer image result: ]" img "[ ")
-                                    (shell "sync")
-                                    (shell "qemu-img convert"
-                                           "-c"
-                                           "-f" "raw"
-                                           "-O" "qcow2"
-                                           img
-                                           "artefact/installer.qcow2")
-                               (println "generated image: artefact/installer.qcow2")
-                               (println "you might want to upload it to: https://cloud.digitalocean.com/images/custom_images")
-                               (println "region has to match the region where you deploy to"))}
-
-           installer-run {:doc "run installer vm-image"
-                         :task (shell "qemu-system-x86_64"
-                                    "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
-                                    "-m" "2048"
-                                    "-vga" "virtio"
-                                ; network
-                                    "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
-                                    "-device" "virtio-net-pci,netdev=vnet"
-                                ; file share
-                                    "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
-                                ;harddisk 
-                                    "-device" "virtio-blk,drive=myhd"
-                                    "-drive" "if=none,file=./artefact/installer.qcow2,id=myhd")}
 
          ; OCEAN
-        ocean-docker {:doc "builds docker image"
-                      :task (let [_ (println "building ocean docker image..")
-                                  r (guix/guix-result 
-                                          "pack"
-                                          "--format=docker"
-                                          "--verbosity=3"
-                                          "--no-grafts"
-                                          "--cores=4"
-                                          "--save-provenance"
+         ocean-docker {:doc "builds docker image"
+                       :task (let [_ (println "building ocean docker image..")
+                                   r (guix/guix-result
+                                      "pack"
+                                      "--format=docker"
+                                      "--verbosity=3"
+                                      "--no-grafts"
+                                      "--cores=4"
+                                      "--save-provenance"
                                           ;  "--root=./artefact/docker-ocean.tar.gz"
                                           ;"--entry-point=bin/guile"
-                                          "--manifest=./machine/ocean-docker.scm")
+                                      "--manifest=./machine/ocean-docker.scm")
                                    r-out (:out r)
                                    img (clojure.string/trim r-out)]
-                                (println "docker is loading docker image from tar.gz: " img)
-                                (shell "docker" "load" "--input" img) ; image will have tag guix:latest
-                                (println "tagging image: pinkgorilla:latest")
-                                (shell "docker" "tag" "guix:latest" "ocean:latest")
-                                )}
+                               (println "docker is loading docker image from tar.gz: " img)
+                               (shell "docker" "load" "--input" img) ; image will have tag guix:latest
+                               (println "tagging image: pinkgorilla:latest")
+                               (shell "docker" "tag" "guix:latest" "ocean:latest"))}
 
-        ocean-build {:doc "builds digital-ocean vm-image to be run with qemu"
+         ocean-build {:doc "builds digital-ocean vm-image to be run with qemu"
                       :task (let [_ (println "building ocean vm image..")
                                   ; guix system disk-image -t qcow2 config.scm' .
                                   r (guix/image-result "ocean-image"
-                                                   "--verbosity=3"
-                                                   "--no-grafts")
+                                                       "--verbosity=3"
+                                                       "--no-grafts")
                                   r-out (:out r)
                                   img (clojure.string/trim r-out)]
                                 ; "qemu-img convert -c -f raw -O qcow2 /gnu/store/r4kzcncfvr8l7j9rmmigja73jlhsic6b-disk-image  /tmp/server.qcow2"
-                                (println "ocean image result: ]" img"[ ")
-                                (shell "sync")
-                                (shell "qemu-img convert" 
-                                       "-c" 
-                                       "-f" "raw"
-                                       "-O" "qcow2"
-                                       img
-                                      "artefact/ocean.qcow2")
-                                (println "generated image: artefact/ocean.qcow2")
-                                (println "you might want to upload it to: https://cloud.digitalocean.com/images/custom_images")
-                                (println "region has to match the region where you deploy to")
-                                )}
+                              (println "ocean image result: ]" img "[ ")
+                              (shell "sync")
+                              (shell "qemu-img convert"
+                                     "-c"
+                                     "-f" "raw"
+                                     "-O" "qcow2"
+                                     img
+                                     "artefact/ocean.qcow2")
+                              (println "generated image: artefact/ocean.qcow2")
+                              (println "you might want to upload it to: https://cloud.digitalocean.com/images/custom_images")
+                              (println "region has to match the region where you deploy to"))}
 
-        ocean-run {:doc "run digital-ocean vm-image (ssh port outside:10022)"
-                   :task (shell "qemu-system-x86_64"
-                                "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
-                                "-m" "2048"
-                                "-vga" "virtio"
+         ocean-run {:doc "run digital-ocean vm-image (ssh port outside:10022)"
+                    :task (shell "qemu-system-x86_64"
+                                 "-enable-kvm" ; enable hardware virtual machine support (KVM) - run faster
+                                 "-m" "2048"
+                                 "-vga" "virtio"
                                 ; network
-                                "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
-                                "-device" "virtio-net-pci,netdev=vnet"
+                                 "-netdev" "user,id=vnet,hostfwd=tcp::10022-:22" ; ,smb=/home/florian/Downloads
+                                 "-device" "virtio-net-pci,netdev=vnet"
                                 ; file share
-                                "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
+                                 "-virtfs" "local,path=/home/florian/Downloads,mount_tag=bongo,security_model=none"
                                 ;harddisk 
-                                "-device" "virtio-blk,drive=myhd"
-                                "-drive" "if=none,file=./artefact/ocean.qcow2,id=myhd"
-                                )}
+                                 "-device" "virtio-blk,drive=myhd"
+                                 "-drive" "if=none,file=./artefact/ocean.qcow2,id=myhd")}
 
-        ocean-ssh {:doc "ssh into digital ocean"
-                   :task (shell "ssh quant.hoertlehner.com")}
-        ; cloud.digitalocean.com
-        
+         ; cloud.digitalocean.com
+         ocean-ssh {:doc "ssh into digital ocean"
+                    :task (shell "ssh quant.hoertlehner.com")}
 
-        ocean-init {:doc "initializes ocean machine with extra files"        
-                    :task (do (shell "scp"
-                                     "./bootstrap/trateg-repo.sh"
-                                     "florian@quant.hoertlehner.com:/home/florian")
-                              (shell "ssh"
-                                     "florian@quant.hoertlehner.com"
-                                     "/home/florian/trateg-repo.sh")
-                              (shell "scp" 
-                                     "/home/florian/repo/myLinux/data/trateg/creds.edn"
-                                     "florian@quant.hoertlehner.com:/home/shared/repo/clojure-quant/trateg/app/demo/creds.edn"))}
+         ocean-init {:doc "initializes ocean machine with extra files"
+                     :task (do (shell "scp"
+                                      "./bootstrap/trateg-repo.sh"
+                                      "florian@quant.hoertlehner.com:/home/florian")
+                               (shell "ssh"
+                                      "florian@quant.hoertlehner.com"
+                                      "/home/florian/trateg-repo.sh")
+                               (shell "scp"
+                                      "/home/florian/repo/myLinux/data/trateg/creds.edn"
+                                      "florian@quant.hoertlehner.com:/home/shared/repo/clojure-quant/trateg/app/demo/creds.edn"))}
 
-        ocean-deploy {:doc "builds digital-ocean image and deploys it"
-                      :task (do (println "builing/deploying digital-ocean image..")
-                                (guix/guix "deploy"
-                                           "./machine/ocean.scm"
-                                           "--verbosity=3"
-                                           "--no-grafts"))}
+         ocean-deploy {:doc "builds digital-ocean image and deploys it"
+                       :task (do (println "builing/deploying digital-ocean image..")
+                                 (guix/guix "deploy"
+                                            "./machine/ocean.scm"
+                                            "--verbosity=3"
+                                            "--no-grafts"))}
 
-        ocean-reconfigure-user (guix/system "ocean-image"
-                                            "reconfigure")
-        ocean-reconfigure  {:doc "reconfigures guix os on machine ocean (runs as sudo)"
-                            :task (do (guix/sudo "ocean-reconfigure-user")
-                                      (guix/guix "system" "describe"))}
-        
-        ocean-home-configure (guix/guix "home" "reconfigure" "./home/config-ocean.scm"  "--verbosity=3")
+         ocean-reconfigure-user (guix/system "ocean-image"
+                                             "reconfigure")
+         ocean-reconfigure  {:doc "reconfigures guix os on machine ocean (runs as sudo)"
+                             :task (do (guix/sudo "ocean-reconfigure-user")
+                                       (guix/guix "system" "describe"))}
 
-        ocean-install-manifest {:doc "installs ocean user packages"
-                                :task (guix/package "ocean"
-                                              "--verbosity=3"
-                                              "--no-grafts")}
+         ocean-home-configure (guix/guix "home" "reconfigure" "./home/config-ocean.scm"  "--verbosity=3")
+
+         ocean-install-manifest {:doc "installs ocean user packages"
+                                 :task (guix/package "ocean"
+                                                     "--verbosity=3"
+                                                     "--no-grafts")}
 
          ; ROCK-PRO
-         
-        rock-build {:doc "builds an image for pine/rock-pro"
+
+         rock-build {:doc "builds an image for pine/rock-pro"
                      ; https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
                      ; https://framagit.org/tyreunom/guix-android
                      ; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
@@ -280,9 +282,6 @@
                                  (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
 
          graph-clojure (guix/graph "clojure") ; this does not work yet.
-      
-
-       
 
          syncthing-tunnel {:doc "creates syncthing webadmin tunnel (for nas/syncthing config)"
                            :task (do (println "starting syncthing tunnel..")
@@ -299,7 +298,7 @@
                        :task (do (println "")
                                  (println "syncting local webadmin: localhost:9090")
                                      ;(shell "ssh" "-L" "9090:127.0.0.1:8384" "florian@192.168.1.116")
-                                     (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.178.25"))}
+                                 (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.178.25"))}
 
 
          guile-test (guix/guile "-l" "./modules/awb99/test.scm")
@@ -309,9 +308,7 @@
                           :task (guix/guix "repl" "./modules/awb99/test.scm")}
 
          guix-repl-ocean (guix/guix "repl"
-                              "./machine/ocean-image.scm")
-
-        
+                                    "./machine/ocean-image.scm")
 
         ; a 1 
         ; b {:depends [a]    ; bb run --prn b          this tests return values of tasks
