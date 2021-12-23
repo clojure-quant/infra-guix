@@ -56,3 +56,14 @@
    (simple-service 'my-setuid-programs
                    setuid-program-service-type
                    (list (file-append brightnessctl "/bin/brightnessctl"))))
+
+
+postgresql
+
+xfce4-taskmanager"
+        "pulseaudio"
+        "libappindicator"
+        "xdg-desktop-portal-gtk"
+        "xdg-desktop-portal"
+        "telegram-desktop"
+        "pavucontrol"

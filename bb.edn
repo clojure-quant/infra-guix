@@ -267,7 +267,8 @@
          export-channels (guix/guix "package" "--export-channels")
          export-manifest (guix/guix "package" "--export-manifest")
          ; show
-         show-channels (guix/guix "describe")
+         guix-describe-system (guix/guix "system" "describe")
+         guix-describe-user (guix/guix "describe")
          show-channels-root (guix/sudo "describe")
          show-manifest (shell "cat" "/home/florian/.config/guix/current/manifest")
          show-manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")

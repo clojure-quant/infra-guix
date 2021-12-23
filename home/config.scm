@@ -64,8 +64,7 @@
   (map specification->package specs))
 
 (define bash-service
-  (service
-    home-bash-service-type
+  (service home-bash-service-type
     (home-bash-configuration
       (aliases
         '(("grep='grep --color" . "auto")
@@ -80,6 +79,24 @@
       (bash-profile
         (list (local-file "./bash/.bash_profile" "bash_profile"))))))
 
+; guix install glibc-locales
+; export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+; Hinweis: Vielleicht möchten Sie die nötigen Umgebungsvariablen festlegen, indem Sie dies ausführen:
+; nano ~/.bashrc
+;     GUIX_PROFILE="/home/florian/.guix-profile"
+;     . "$GUIX_PROFILE/etc/profile"
+
+
+(define-public fish-service
+  (service home-fish-service-type
+    (home-fish-configuration
+      (aliases
+       '(("l" . "ls -a")))
+      (abbreviations
+       '(("gc" . "guix gc")))
+      (environment-variables
+       '(("TEST" . "val")))
+    )))
 
 (define dummy-job-1
    #~(job '(next-minute (range 0 60 10))

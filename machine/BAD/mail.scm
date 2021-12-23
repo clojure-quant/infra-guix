@@ -1,5 +1,7 @@
 ; https://notabug.org/jbranso/linode-guix-system-configuration/src/master/linode-locke-lamora-current-config.scm
 
+; https://git.lepiller.eu/system-configuration/tree/-/modules/config/mail.scm
+; Guix mail server.
 
 (add-to-load-path (dirname (current-filename)))
 

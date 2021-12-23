@@ -60,3 +60,8 @@ https://git.sr.ht/~efraim/guix-config/tree/master/item/efraim-home.scm
 
 
 https://github.com/dustinlyons/guix-config/blob/main/Workstation-Desktop.org
+
+
+https://framagit.org/tyreunom/guix-more/-/tree/master/more/packages
+virtualbox
+intelij

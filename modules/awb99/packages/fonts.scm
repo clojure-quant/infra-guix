@@ -70,3 +70,14 @@ font-isas-misc font-micro-misc font-misc-cyrillic font-misc-ethiopic
 font-misc-misc font-mutt-misc font-schumacher-misc
 font-screen-cyrillic font-sony-misc font-sun-misc font-util
 font-winitzki-cyrillic font-xfree86-type1
+
+
+the Gentium font family by SIL is packaged under the name font-sil-gentium.
+
+
+
+
+
+ix font support in Chromium
+xset +fp $(dirname $(readlink -f ~/.guix-profile/share/fonts/truetype/fonts.dir))
+fc-cache -rv

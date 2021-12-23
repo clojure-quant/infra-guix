@@ -94,4 +94,7 @@ https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
 (define guix-system
   (file-exists? "/run/current-system/provenance"))
   
-                          
+
+
+guix system explorer graph:
+https://notabug.org/civodul/guix-explorer

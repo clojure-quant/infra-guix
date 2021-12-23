@@ -10,4 +10,7 @@ https://albertlauncher.github.io/
 
 Rofi
 
+Interrobang launcher: https://github.com/TrilbyWhite/interrobang
+
+
 Ulauncher
