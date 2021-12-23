@@ -38,6 +38,7 @@
      (list 
         "nss-certs"
         "openssh-sans-x"
+        "iptables"
         "mc")
       clojure-packages
       monitor-packages
