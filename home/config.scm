@@ -145,7 +145,7 @@
           dummy-job-2
          ; hello-job-1
           hello-job-2
-          user-garbage-job
+         ; user-garbage-job
                 )))))
 
 

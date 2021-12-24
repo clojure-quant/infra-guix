@@ -1,17 +1,20 @@
 (use-modules 
   (gnu)
+  (srfi srfi-1) ; remove
   (gnu packages cups)
   (gnu packages suckless)
   (gnu packages wm)
   (gnu packages finance)  ; trezord-udev-rules
   (gnu packages shells) ; zsh
   (gnu packages docker) ; docker
-  
+    
   (gnu services base) ; mingetty 
   (gnu services docker) ; docker service
   (gnu services networking) ; ntpd
   (gnu services virtualization) ; qemu
+  (gnu services sddm) ; sddm login manager
   
+  (awb99 packages desktop)
   (awb99 services trezord)
   (awb99 services special-files)
   (awb99 services file-sync)
@@ -43,6 +46,15 @@
     (service mate-desktop-service-type)
     (service lxqt-desktop-service-type)
     (service enlightenment-desktop-service-type)
+
+    (service sddm-service-type
+      (sddm-configuration
+        (display-server "wayland") ; display server for greeter. "x11" or "wayland"
+        (theme "maldives") ; themes provided by SDDM: "elarun" "maldives" "maya"
+        (numlock "on") ; "on" "off" "none"
+        ;(themes-directory "/run/current-system/profile/share/sddm/themes")
+       ))
+;    (screen-locker-service swaylock)
 
     ; Wayland needs sddm-service instead of GDM as the graphical login manager
 
@@ -96,29 +108,37 @@
         (platforms (lookup-qemu-platforms "arm" "aarch64" ; "i686" "ppc"
        ))))
 
-
     (set-xorg-configuration
       (xorg-configuration
         (keyboard-layout (keyboard-layout "at"))))))
 
 ; https://framagit.org/tyreunom/system-configuration/-/blob/master/modules/config/os.scm
-(define desktop-services
-  (cons*
-    (modify-services %desktop-services
 
+(define (remove-gdm system-services)
+  (remove 
+    (lambda (service)
+       (eq? (service-kind service) gdm-service-type)) ;; Remove GDM.
+      system-services))
+
+
+(define (custom-udev system-services)
+  (modify-services system-services
       (udev-service-type config =>
         (udev-configuration
           (inherit config)
           (rules (cons* trezord-udev-rules
                         (udev-configuration-rules config)))))
-          )))
+          ))
 
 
 (define os-services
    (append
       my-services
-      ;   %desktop-services
-      desktop-services
+      ; %desktop-services
+      (remove-gdm (custom-udev %desktop-services))
+      ;desktop-services
+      
+
       ))
 
 
@@ -164,76 +184,9 @@
 (define (specifications->package specs)
    (map specification->package specs))
 
-(define extra-packages
-   (list "nss-certs"
-         "fuse" ; for sshfs
-         "sshfs"
-         "nbd" ; to mount qcow2 images
-         "glibc-locales" ; guix locales
-         "mcron"
-
-         "xrandr" ; hidpi x-windows scaling
-         ; xfce
-         "xfce4-screensaver"
-         "xfce4-systemload-plugin"
-         "xfce4-mount-plugin"
-         "xfce4-panel"
-         "garcon" ; menu manager
-         "xfce4-places-plugin"
-         "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
-         ; xfce4-power-manager       ** add this
-         ; xfce4-pulseaudio-plugin   
-         ; xfce4-whiskermenu-plugin
-         ; xfce4-settings
-         ; xfce4-screenshooter
-         ; elementary-xfce-icon-theme
-         ; lxqt
-         "lxqt"
-         ; lxqt
-         "mate"
-         ;enlightenment
-         "enlightenment"
-         ; gnome
-         "gnome"
-         ; i3
-         "i3-wm"
-         "i3status"
-         "i3blocks"
-         "i3lock"
-         "dmenu"
-         "rofi"
-         ; sway
-         "sway"
-         "swaybg"
-         "swayidle"
-         "swaylock"
-         "bemenu"
-         ; shells used in user profiles need to be on system
-         "fish"
-         "zsh"
-         ; trezor
-         "trezord-udev-rules"
-         "trezord"
-         ; printing
-         "cups"
-         "cups-filters"
-         "foomatic-filters"    ; postscript -> printer driver
-         "hplip"; hp line printer drivers
-         "system-config-printer"
-         "grep"    ;grep errror in foomatic-filters.
-         ; docker
-         "docker"
-         "iptables"
-         "rofi" ; programm launcher
-        ; "wofi" wayland rofi
-        ; "interrobang"
-        
-        ))   
-
-
  (define my-packages
   (append
-    (specifications->package extra-packages)
+    (specifications->package packages-desktop-nuc)
     %base-packages))
 
 
@@ -264,7 +217,6 @@
   ; swapfile has to be created first.
   ; (swap-devices 
   ;  (list "/swapfile"))
-
 
   (file-systems
     (cons* (file-system

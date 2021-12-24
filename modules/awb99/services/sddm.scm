@@ -1,28 +1,35 @@
 
 
-
-(service sddm-service-type
-(sddm-configuration
-  (display-server "wayland")))
-Select display server to use for the greeter. Valid values are ‘"x11"’ or ‘"wayland"’.
-
-theme (default "maldives")
-Theme to use. Default themes provided by SDDM are ‘"elarun"’, ‘"maldives"’ or ‘"maya"’.
-
-themes-directory (default "/run/current-system/profile/share/sddm/themes")
-Directory to look for themes.
-
-numlock (default: "on")
-Valid values are ‘"on"’, ‘"off"’ or ‘"none"’.
-
-the X server is started by a “display manager” such as GDM, SDDM, and SLiM
-
-Simple Desktop Display Manager is a display manager for the X11 and Wayland windowing systems.
-
-efl 1.25.1
-Enlightenment Foundation Libraries
+; the X server is started by a “display manager” such as GDM, SDDM, and SLiM
+; Simple Desktop Display Manager is a display manager for the X11 and Wayland windowing systems.
 
 
-mappu on Nov 17, 2014 | next [–]
-specification->package "ddcutil")  ; for enlightenment screen darkness controls
+;(guix-service-type
+;config => (guix-configuration
+;(inherit config)
+;(substitute-urls %my-substitute-urls)
+;(extra-options '("--max-jobs=4"))))
+
+
+;; Prevent network-manager from modifying /etc/resolv.conf.
+; (network-manager-service-type
+; config => (network-manager-configuration
+;           (inherit config)
+;           (dns "none")))
+
+
+(define-public desktop-services-sddm
+  (cons*
+   
+    ;(simple-service 'my-setuid-programs
+    ;     setuid-program-service-type
+    ;     (list (file-append brightnessctl "/bin/brightnessctl")))
+
+    (modify-services %desktop-services
+      )))
+
+
+
+
+
 

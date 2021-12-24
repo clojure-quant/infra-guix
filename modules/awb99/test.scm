@@ -10,6 +10,7 @@
   #:use-module (awb99 machine ocean)
   #:use-module (awb99 services ddclient)
   #:use-module (awb99 config cron)
+  #:use-module (awb99 packages desktop)
 
 )
 

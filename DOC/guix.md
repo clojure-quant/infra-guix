@@ -38,19 +38,15 @@ ls  ~/.guix-profile/bin                              installed binaries
 # GUIX SYSTEM ADMIN
 
 * system
-guix system describe
 guix system list-generations               ; system profile
 
 * user
-guix describe                             ; shows installed repositories
 guix profile --list-generations            ; user profile
 
 
 1m = 1 month
 guix gc --delete-generations=1m
 
-
-https://www.amazon.de/TP-Link-T2U-Dualband-adapter-compatible/dp/B07P681N66/ref=mp_s_a_1_8?crid=3LLZWSTR1OEXG&keywords=TP-Link+Archer+T2+U%2B+TP-Link+AC600&qid=1638763611&sprefix=tp-link+archer+t2u+plus+tp-link+ac600%2Caps%2C137&sr=8-8
 
 
 

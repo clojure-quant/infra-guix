@@ -46,21 +46,8 @@ to see available tasks: `bb tasks`
 
 ```
 bb alphavantage-import test
-bb alphavantage-import fidelity-select
+bb alphavantage-import all-stocks
 
-bb alphavantage-import bonds
-bb alphavantage-import currency
-bb alphavantage-import  currency-spot
-
-bb alphavantage-import equity-region
-bb alphavantage-import equity-region-country
-bb alphavantage-import equity-sector
-bb alphavantage-import equity-sector-industry
-bb alphavantage-import equity-style
-
-bb alphavantage-import reit
-bb alphavantage-import commodity-sector
-bb alphavantage-import commodity-industry
 ```
 
 **gann charts**

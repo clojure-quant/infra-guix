@@ -244,6 +244,7 @@
     ;"idutils"
     "ntp"
     "ncurses"  ; cli gui 
+    "mosh" ; ssh over instable network connection
   
    ))
 
