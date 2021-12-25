@@ -6,15 +6,15 @@
     "emacs"
     "emacs-spacemacs-theme"
     ; guix / guile
-    "emacs-geiser" ; guix repl for emacs
-    "emacs-guix"
-    "guile-studio"
+    ;"emacs-geiser" ; guix repl for emacs
+    ;"emacs-guix"
+    ;"guile-studio"
    ; clojure
-    "emacs-clojure-mode"
-    "emacs-magit"
-    "emacs-projectile"
-    "emacs-slime"
-    "emacs-yasnippet"
+   ; "emacs-clojure-mode"
+   ; "emacs-magit"
+   ; "emacs-projectile"
+   ; "emacs-slime"
+   ; "emacs-yasnippet"
     ))
 
 
