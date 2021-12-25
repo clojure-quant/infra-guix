@@ -1,6 +1,5 @@
 (define-module (awb99 packages desktop))
 
-
 (define-public packages-desktop-xfce
   (list 
     ; xfce
