@@ -1,7 +1,4 @@
-(define-module (awb99 packages)
-  ;#:export (nuc-packages
-   ;          )
-            )
+(define-module (awb99 packages))
 
 
 (define-public clojure-packages
@@ -244,7 +241,7 @@
     ;"idutils"
     "ntp"
     "ncurses"  ; cli gui 
-    "mosh" ; ssh over instable network connection
+    ;"mosh" ; ssh over instable network connection
   
    ))
 
@@ -264,6 +261,7 @@
    "the-silver-searcher" ; ag
    "mesa-utils"
    "fasd" ; newer than autojump  
+   "neofetch" ; system info (compact format)
    ))
 
 ;; apps 
@@ -408,7 +406,7 @@
     "midori"
    ; "nomad"
     "vimb"   ; vim keybinding browser.
-    "nyxt"    ; browser with keybindings.  https://sparkylinux.org/nyxt/
+    "nyxt"    ; browser with keybindings like emacs  https://sparkylinux.org/nyxt/ https://nyxt.atlas.engineer/faq
     ; "palemoon" ;- A highly customizable browser
     "keepassxc"
   ))
@@ -441,7 +439,7 @@
     ; tools
     "flatpak"
     "xdotool" ; determine windows class names (for i3 wm rules)
-    ; "gvfs" ; virtual file system
+    ; "gvfs" ; for user mounts
     "catfish" ; file search tool
     "udiskie" ; mount usb drives https://github.com/coldfix/udiskie/wiki/Usage
     "remmina"

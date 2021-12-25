@@ -39,6 +39,9 @@
 
 (define my-services
   (list 
+    ; use "guix system search" to search for available services
+
+
     ; Because the GNOME, Xfce and MATE desktop services pull in so many packages, 
     ; the default %desktop-services variable doesn’t include any of them by default. 
     (service xfce-desktop-service-type)
@@ -47,13 +50,7 @@
     (service lxqt-desktop-service-type)
     (service enlightenment-desktop-service-type)
 
-    (service sddm-service-type
-      (sddm-configuration
-        (display-server "wayland") ; display server for greeter. "x11" or "wayland"
-        (theme "maldives") ; themes provided by SDDM: "elarun" "maldives" "maya"
-        (numlock "on") ; "on" "off" "none"
-        ;(themes-directory "/run/current-system/profile/share/sddm/themes")
-       ))
+  
 ;    (screen-locker-service swaylock)
 
     ; Wayland needs sddm-service instead of GDM as the graphical login manager
@@ -110,7 +107,9 @@
 
     (set-xorg-configuration
       (xorg-configuration
-        (keyboard-layout (keyboard-layout "at"))))))
+        (keyboard-layout (keyboard-layout "at"))))
+
+    ))
 
 ; https://framagit.org/tyreunom/system-configuration/-/blob/master/modules/config/os.scm
 
@@ -131,14 +130,16 @@
           ))
 
 
+
+
 (define os-services
    (append
       my-services
       ; %desktop-services
-      (remove-gdm (custom-udev %desktop-services))
-      ;desktop-services
-      
-
+      (custom-udev %desktop-services)
+      ;(remove-gdm (custom-udev %desktop-services))
+      ;(modify-gdm-wayland (custom-udev %desktop-services))
+        
       ))
 
 

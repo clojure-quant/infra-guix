@@ -1,19 +1,4 @@
 
-# hostile takeover approach
-; https://git.pixie.town/pinoaffe/config/src/branch/master/hostile_takeover.sh
-
-# guix deploy
-; https://stumbles.id.au/getting-started-with-guix-deploy.html
-; https://guix.gnu.org/blog/2019/managing-servers-with-gnu-guix-a-tutorial/
-; https://wiki.pantherx.org/Installation-digital-ocean/
-
-
-
-https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
-; https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
-; https://othacehe.org/hosting-a-blog-using-only-scheme.html
-
-
 # Non free kernel with installer 
 https://guix.gnu.org/manual/en/html_node/Building-the-Installation-Image.html#Building-the-Installation-Image
 https://github.com/deusmax/guixsd-config-install

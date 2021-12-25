@@ -11,7 +11,7 @@
   #:use-module (awb99 services ddclient)
   #:use-module (awb99 config cron)
   #:use-module (awb99 packages desktop)
-
+  #:use-module (awb99 services wayland)
 )
 
 (pretty-print desktop-chat-packages)

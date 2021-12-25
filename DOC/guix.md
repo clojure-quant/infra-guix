@@ -17,12 +17,8 @@ https://guix.gnu.org/manual/en/guix.html#The-Perfect-Setup
 http://guix.gnu.org/cookbook/en/guix-cookbook.html
 https://git.sr.ht/~lle-bout/awesome-guix#awesome-guix
 https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
-https://framagit.org/tyreunom/guix-home-manager
 https://ambrevar.xyz/guix-advance/
-
-Guix patches: more up to date packages 
-https://git.guix-patches.cbaines.net/guix-patches/?h=base 
-patches are added via https://issues.guix.gnu.org/
+https://notabug.org/civodul/guix-explorer guix system explorer graph:
 
 # Directories
 ls /gnu/store
@@ -33,50 +29,46 @@ ls  ~/.guix-profile/bin                              installed binaries
 ~/.config/guix/current         profile, populated by guix pull
 /var/guix/profiles/system
 
+# Channels (repositories)
 
+A channel is a git repo that defines packages in scheme files that can be built.
+https://gitlab.com/pjotrp/guix-notes/-/blob/master/CHANNELS.org
 
-# GUIX SYSTEM ADMIN
+guix describe                shows installed repositories  
+cat  ~/.config/guix/channels.scm             config file for custom channels
+cat  ~/.config/guix/current/manifest         shows all channels
 
-* system
-guix system list-generations               ; system profile
+By default guix pull
+reads ~/.config/guix/channels.scm; with -C it can take channel specifications from a user-supplied file 
 
-* user
-guix profile --list-generations            ; user profile
+- **Nonguix** https://gitlab.com/nonguix/nonguix clojure steam broadcom installer nonfree 
+- **Nonfree**  https://www.rohleder.de/gitweb/?p=guix.git;a=blob;f=mroh/guix/install.scm;hb=HEAD wifi driver, qemu, steem
+- **guix science** https://github.com/guix-science/guix-science
+- **pantherX** https://channels.pantherx.org/pantherx-extra.git/tree/
+- **Bio informatics** https://github.com/pjotrp/guix-notes/blob/master/BIOINFORMATICS.org r shiny cran java node shell python2 python3 machine learning tensor flow mysql numpy services: shiny
+- **Gaming** https://gitlab.com/guix-gaming-channels
+- **RStudio** https://github.com/leibniz-psychology/guix-zpid rstudio
+- **Guix past** https://gitlab.inria.fr/guix-hpc/guix-past old Python versions
+- https://gitlab.inria.fr/guix-hpc/guix-hpc-non-free cuda mkl 
+- https://gitlab.inria.fr/guix-hpc/guix-hpc
+- https://gitlab.com/mbakke/guix-chromium
+- https://github.com/UMCUGenetics/guix-additions/tree/master/umcu/packages
+- https://framagit.org/tyreunom/guix-more/-/tree/master/more/packages virtualbox intelij
 
-
-1m = 1 month
-guix gc --delete-generations=1m
-
-
-
-
-look at the output of dmesg.
-
-https://github.com/tycrek/degoogle
-
-https://www.chezmoi.io/
-
-
-
-
-
-https://ambrevar.xyz/guix-advance/
+# system configuration examples
 
 https://github.com/daviwil/dotfiles/blob/master/Systems.org#base-configuration
-
-
 https://github.com/Millak/guix-config/blob/master/Guix_manifest.scm
-
-
-        ; AWS
-        ; https://cloudinit.readthedocs.io/en/stable/
-        ; # guix package: cloud-utils    has cloud-init
-        ; Guile AWS for AWS backend.
-
+https://framagit.org/tyreunom/system-configuration
 
 guix build farm config:
 https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
 
+nice config, machine/environment dependnet
+https://git.sr.ht/~efraim/guix-config/tree/master/item/efraim-home.scm 
+
+https://github.com/dustinlyons/guix-config/blob/main/Workstation-Desktop.org
+https://github.com/daviwil/dotfiles/blob/master/Systems.org
 
 
 (define headless?
@@ -86,11 +78,41 @@ https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
   (not (eq? #f (member (gethostname)
                        (cons "bayfront"
                              UTenn_machines)))))
-
 (define guix-system
   (file-exists? "/run/current-system/provenance"))
-  
+
+# GUIX SYSTEM ADMIN
+
+1m = 1 month
+guix gc --delete-generations=1m
+
+# herd
+
+sudo herd status
+sudo herd detailed-status                 ; shows status of all services
+
+sudo herd schedule mcron                  ; show next 5 scheduled runtimes.
+sudo herd schedule mcron 10               ; next 10 scheduled runtimes
+sudo herd restart mcron
+
+herd doc nscd
+sudo herd doc udev list-actions
+
+herd detailed-status
+herd status
+herd start syncthing
 
 
-guix system explorer graph:
-https://notabug.org/civodul/guix-explorer
+# profiles
+
+Goal: create byte identical profiles over time that are not only shared between machines (important for deployment) but also between developers. 
+Development, testing, staging, production - essentially these are all profiles!
+
+guix package -i sambamba -p ~/opt/sambamba
+Guix provides a profile file which contains the necessary shell settings into the environment
+cat ~/opt/sambamba/etc/profile
+
+
+For trying things out, I recommend using `guix environment --ad-hoc foo`
+That way, your profile history does not contain the thing that you just wanted to try out, so `guix gc` can work more efficiently
+

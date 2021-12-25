@@ -1,6 +1,4 @@
-(define-module (awb99 packages desktop)
-;#:export (my-emacs)
-)
+(define-module (awb99 packages desktop))
 
 
 (define-public packages-desktop-xfce
@@ -68,8 +66,7 @@
       "garcon" ; menu manager
       "dmenu"
       "bemenu" ; menu library inspired by dmenu
-      ; "efl" ; Enlightenment Foundation Libraries
-
+     
       "progress" ; coreutil progress
 
       ; elementary-xfce-icon-theme
@@ -79,9 +76,16 @@
       "mate"
       ;enlightenment
       "enlightenment"
+      ;"efl" ; Enlightenment Foundation Libraries
+
       ; gnome
       "gnome"
      
+     ; "adwaita-icon-theme" ;to make GTK applications look OK
+     ; "qtbase" "qtwayland" ;to make Qt work on Wayland
+
+
+
       ; trezor
       "trezord-udev-rules"
       "trezord"

@@ -1,41 +1,10 @@
-
-## info
-´´´
-guix system 
-   search           search for existing service types
- --list-image-types list available image types
-´´´
-
-
-# export 
-´´´
-guix system 
- build            build the operating system without installing anything
-   container        build a container that shares the host's store
-   vm               build a virtual machine image that shares the host's store
-   vm-image         build a freestanding virtual machine image
-   image            build a Guix System image
-   docker-image     build a Docker image
-
-    --share=SPEC       for 'vm' and 'container', share host file system with
-                         read/write access according to SPEC
-      --expose=SPEC      for 'vm' and 'container', expose host file system
-                         directory as read-only according to SPEC
-  -N, --network          for 'container', allow containers to access the network
-  -r, --root=FILE        for 'vm', 'vm-image', 'image', 'container',
-                         and 'build', make FILE a symlink to the result, and
-                         register it as a garbage collector root
-  -v, --verbosity=LEVEL  use the given verbosity LEVEL
-
-
-´´´
+# guix export 
 
 Export systems
 
 guix system vm config.scm
 guix system docker-image config.scm
 guix system container config.scm
-
 
 guix copy --from=remote-host    one off copy
 guix pack -f docker dovecot       Exporting for Use Outside of Guix
@@ -48,28 +17,7 @@ guix publish                                Serve Packages
 Several configs     https://github.com/Millak/guix-config/blob/master/vm_config.scm
 Big setup:             https://github.com/alezost/guix-config
 
-
-
-
-
-# Containers
-Guix can also generate docker images
-
-https://github.com/pjotrp/guix-notes/blob/master/CONTAINERS.org
-Orchestration: 
-https://gitlab.com/pjotrp/guix-notes/-/blob/master/DEPLOY.org
-
-
-guix copy --to=Benutzer@Rechner \
-          coreutils `readlink -f ~/.guix-profile`
-
-guix system container my-config.scm \
-   --expose=$HOME --share=$HOME/tmp=/exchange
-
-
-
-
-´´´# environments
+# environments
 When running guix environment SOME-PACKAGES, Guix sets up a temporary environment where all the requirements for SOME-PACKAGES are exposed the environment manifest is just a Scheme code file that evaluates to a list of packages to include inside the environment. An environment is an ephemeral thing (just a process tree/container/whatever).  It spawns a subshell, exit with CTRL-D.
 
 You can basically define a manifest and invoke it with 
@@ -93,6 +41,21 @@ If the term "container" makes you think of Docker, note that this is something d
 1:17 AM <terpri> (info "(guix) Invoking guix environment") shows how to change the prompt on foreign distros (it's just based on $GUIX_ENVIRONMENT existing)
 
 
+# Containers
+Guix can also generate docker images
+
+https://github.com/pjotrp/guix-notes/blob/master/CONTAINERS.org
+Orchestration: 
+https://gitlab.com/pjotrp/guix-notes/-/blob/master/DEPLOY.org
+
+
+guix copy --to=Benutzer@Rechner \
+          coreutils `readlink -f ~/.guix-profile`
+
+guix system container my-config.scm \
+   --expose=$HOME --share=$HOME/tmp=/exchange
+
+
 
 # Export ISO image
 
@@ -101,3 +64,20 @@ guix system disk-image -t iso9660 /home/andreas/Documents/myguix/c2.scm
 
 sudo dd if=/gnu/store/6phpslb8z6zz6npii8qcnsrcvmwqz982-image.iso of=/dev/sdb status=progress
 sync
+
+# guix deploy
+
+## hostile takeover approach
+; https://git.pixie.town/pinoaffe/config/src/branch/master/hostile_takeover.sh
+
+https://stumbles.id.au/getting-started-with-guix-deploy.html
+https://guix.gnu.org/blog/2019/managing-servers-with-gnu-guix-a-tutorial/
+https://wiki.pantherx.org/Installation-digital-ocean/
+https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
+https://guix.gnu.org/cookbook/en/guix-cookbook.html#Running-Guix-on-a-Linode-Server
+https://othacehe.org/hosting-a-blog-using-only-scheme.html
+
+       ; AWS
+        ; https://cloudinit.readthedocs.io/en/stable/
+        ; # guix package: cloud-utils    has cloud-init
+        ; Guile AWS for AWS backend.

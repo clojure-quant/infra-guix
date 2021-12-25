@@ -18,7 +18,10 @@
                       :task (guix/package "nuc"
                                           "--verbosity=1"
                                           "--no-grafts")}
-
+         install-emacs {:doc "installs emacs packages"
+                        :task (guix/package "emacs"
+                                 "--verbosity=3"
+                                 "--no-grafts")}
          ; guix maintenance
          gc {:doc "guix garbage collect"
              :task (do (println "guix garbage collect..")
@@ -263,16 +266,24 @@
          ; environment (guix/guix "environment")
          environment-openjdk-11 (guix/guix "environment" "--ad-hoc" "openjdk@11")
 
-         ;export 
-         export-channels (guix/guix "package" "--export-channels")
-         export-manifest (guix/guix "package" "--export-manifest")
          ; show
          guix-describe-system (guix/guix "system" "describe")
          guix-describe-user (guix/guix "describe")
+         guix-generations-system (guix/guix "system" "list-generations")
+         guix-generations-user (guix/guix "profile" "list-generations")
          show-channels-root (guix/sudo "describe")
          show-manifest (shell "cat" "/home/florian/.config/guix/current/manifest")
          show-manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
          show-image-types (guix/guix "system" "--list-image-types")
+
+         weather-mc (shell "guix" "weather" "mc")
+         mcron-schedule-system (shell "sudo" "herd" "schedule" "mcron" "10")
+         mcron-schedule-user (shell "herd" "schedule" "mcron" "10")
+
+         ;export 
+         export-channels (guix/guix "package" "--export-channels")
+         export-manifest (guix/guix "package" "--export-manifest")
+
         ; size
          size-clojure {:doc "size of clojure"
                        :task (do (println "guix size clojure..")
@@ -283,6 +294,11 @@
                                  (guix/guix "size" (guix/guix "system" "build" "./machine/nuc.scm")))}
 
          graph-clojure (guix/graph "clojure") ; this does not work yet.
+
+         graph-nuc (guix/guix "graph"
+                              "-e" "(@ (awb99 ptest) graph-packages))") ; this does not work yet.
+
+
 
          syncthing-tunnel {:doc "creates syncthing webadmin tunnel (for nas/syncthing config)"
                            :task (do (println "starting syncthing tunnel..")

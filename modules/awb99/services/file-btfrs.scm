@@ -30,7 +30,7 @@ define fs-root
 
 
 btrfs-progs
-                gvfs              ;for user mounts
+      
 
 
 

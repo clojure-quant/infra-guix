@@ -92,25 +92,6 @@ list of strings like \"fftw=gcc-toolchain@10\"
 
 guix archive --authorize < PREFIX/share/guix/ci.guix.gnu.org.pub per manual
 
-
 LEARN PACKAGES:
 https://ambrevar.xyz/guix-packaging/index.html
 
-
-SAMPLES:
-- MAIL SERVER https://git.lepiller.eu/system-configuration/tree/-/modules/config/mail.scm
-- https://framagit.org/tyreunom/system-configuration
-
-
-# PASSWORD STORE
-
-https://www.passwordstore.org/#other
-
-
-
-
-
-
-
-Webbrowser Like emacs
-https://nyxt.atlas.engineer/faq
