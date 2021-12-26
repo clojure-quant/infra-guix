@@ -37,18 +37,12 @@
     "font-google-noto"  ; 700 mb
 
    "font-gnu-unifont" 
-   
-
-  
-
-
 
 
     "font-jetbrains-mono"
 
     "font-abattis-cantarell"
     "font-dejavu"
-    "font-google-noto"
     "font-gnu-freefont"
     "font-liberation"
     "font-awesome"

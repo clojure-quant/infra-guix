@@ -104,26 +104,11 @@
 
       ; gnome
       "gnome"
-  
-      ; trezor
-      "trezord-udev-rules"
-      "trezord"
-    
-      ; docker
-      "docker"
-      "iptables"
 
-      "emacs"
+      "iptables"
      
      ))   
 
-(define-public packages-desktop-nuc
-  (append
-    packages-desktop-extra
-    packages-desktop-xfce
-    packages-desktop-i3
-    packages-desktop-sway
-    packages-desktop-printer))
 
 ; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
 ; EXWM  https://config.daviwil.com/desktop

@@ -14,7 +14,7 @@
   (gnu services virtualization) ; qemu
   (gnu services sddm) ; sddm login manager
   
-  (awb99 packages desktop)
+  (awb99 packages nuc)
   (awb99 services trezord)
   (awb99 services special-files)
   (awb99 services file-sync)
@@ -186,7 +186,7 @@
 
  (define my-packages
   (append
-    (specifications->package packages-desktop-nuc)
+    (specifications->package packages-nuc-root)
     %base-packages))
 
 
