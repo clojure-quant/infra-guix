@@ -30,14 +30,19 @@
     "wlr-randr"
     "wofi" ; wayland rofi
     "alacritty"
-    "mako" ; lightweight notification daemon for Wayland 
+    "mako" ; desktop notifications for Wayland 
     "waybar"
-    "xlsclients"
+    "xlsclients" ; running window ids
+    "slurp" ; screenshots
+    "grim" ; screenshots
+    "swappy" ; screenshots
+    "wl-clipboard"
 
     "sway"
     "swaybg" ; wallpaper background
     "swayidle"
     "swaylock"
+
   ))
 
 (define-public packages-desktop-printer

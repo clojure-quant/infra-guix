@@ -16,6 +16,8 @@
 
 ;
 ; https://github.com/Manjaro-Sway/desktop-settings/blob/sway/community/sway/etc/sway/modes/default
+; https://github.com/Manjaro-Sway/desktop-settings/blob/sway/community/sway/etc/sway/config.d/98-application-defaults.conf
+
 
 (define ws-bindings
 (map (lambda (ws)
@@ -95,7 +97,7 @@
       (exec mako)
 
       ; only enable this if every app you use is compatible with wayland
-      (xwayland disable)
+      (xwayland enable)
 
       (workspace_auto_back_and_forth yes)
       (focus_follows_mouse no)
@@ -125,15 +127,23 @@
              ((scroll_method on_button_down)
               (scroll_button BTN_TASK)))
 
-; https://github.com/Manjaro-Sway/desktop-settings/blob/sway/community/sway/etc/sway/config.d/98-application-defaults.conf
+      ; [instance="lxappearance"]
+      ; [app_id="xsensors"]
+      ; [title="Save File"]
+      ; [app_id="thunderbird" title=".*Reminder"]
 
-     ; launch some application at startup
-    (exec "--no-startup-id alacritty")
-
+      ; launch some application at startup
+      (exec "--no-startup-id alacritty")
 
       (assign "[app_id=\"nyxt\"]" 2)
+     
+      (assign "[instance=\"chromium\"]" 2)
       (assign "[app_id=\"chromium\"]" 2)
-     (assign "[app_id=\"codium\"]" 3)
+      (assign "[class=\"chromium/Chromium\"]" 2)
+
+      (assign "[app_id=\"codium\"]" 3)
+      (assign "[instance=\"codium\"]" 3)
+
       (assign "[app_id=\"emacs\"]" 4)
       (assign "[app_id=\"telegramdesktop\"]" 5)
 
