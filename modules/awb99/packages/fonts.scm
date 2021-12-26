@@ -2,9 +2,12 @@
 
 (define-public font-packages
   (list 
-    ;; Settings Manager
-    "xsettingsd"
+    "xsettingsd" ;; Settings Manager replaces daemons GNOME/XFCE - xsettingsd.conf
     "xdg-utils"
+    "fontconfig" ; font loader for os; fc-cache -f  or fc-cache -rv
+    "libxft" ; connect x to font-config
+    "pango" ;text handling library
+    "cairo" ;2d library
 
     ;; GTK Themes
     "arc-icon-theme"
@@ -17,44 +20,42 @@
     "papirus-icon-theme"
     "breeze-icons"
 
-    ; fonts
-    "fontconfig" 
-    "font-hack"
-     
+    ;; Fonts
+
+    ; guix manual: essential fonts:
+    "font-ghostscript"
+    "font-dejavu"  
+    "font-gnu-freefont" 
     
-    "font-iosevka" ; used in alacritty
+    "font-liberation" ; compatibility with Arial, Times New Roman, and Courier New.
+    "font-adobe-source-code-pro" ; UI font.
+
+     "font-fira-code" ; Mozilla Fonts
+     "font-fira-mono" "font-fira-sans"
+
+    "font-hack" ; a code font
+    "font-iosevka" ; used in alacritty. Ideal font for programming
     "font-iosevka-etoile"
+    "font-iosevka-aile"
     ;"font-iosevka-term"
     ;"font-iosevka-term-slab"
     ;"font-iosevka-slab"
-   ; "font-iosevka-curly"
-   ; "font-iosevka-curly-slab"
-   ; "font-iosevka-aile"
-
-   "font-fira-code"
-   "font-fira-mono" "font-fira-sans"
+    ; "font-iosevka-curly"
+    ; "font-iosevka-curly-slab"
+    "font-jetbrains-mono"   
+   
+    "font-google-noto"  ; 700 mb android default,Material ui
+    "font-google-material-design-icons"
+    "font-google-roboto"
 
     "font-openmoji"
-    "font-google-roboto"
-    "font-google-noto"  ; 700 mb
-
-   "font-gnu-unifont" 
-
-
-    "font-jetbrains-mono"
-
-    "font-abattis-cantarell"
-    "font-dejavu"
-    "font-gnu-freefont"
-    "font-liberation"
     "font-awesome"
-    "font-google-material-design-icons"
 
+    "gs-fonts"
+    "font-gnu-unifont" 
+    "font-abattis-cantarell"
     "font-ibm-plex"
-    "font-abattis-cantarell" 
     "font-wqy-microhei"
-    
-    
     ))
 
 ;; lots of fonts from package fonts.scm
