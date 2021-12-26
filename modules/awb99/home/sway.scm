@@ -152,7 +152,7 @@
       (assign "[app_id=\"codium\"]" 3)
       (assign "[instance=\"codium\"]" 3)
 
-      (assign "[app_id=\"emacs\"]" 4)
+      (assign "[instance=\"emacs\"]" 4)
       (assign "[app_id=\"telegramdesktop\"]" 5)
 
       (for_window
