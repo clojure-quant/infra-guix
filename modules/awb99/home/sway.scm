@@ -10,7 +10,13 @@
 ;#:use-module (kreved packages wm)
 )
 
-
+; sway: Wayland compositor compatible with i3
+; the difference is that now GDM supports wayland session although you can run X apps in it using Xwayland
+; https://wiki.archlinux.org/title/Sway
+; https://gitlab.com/rolas978/guix-sway/-/blob/master/guix-sway-config.scm
+; https://www.reddit.com/r/GUIX/comments/epckio/gnu_system_with_wayland_and_sway/?utm_medium=android_app&utm_source=share
+; https://notabug.org/jbranso/cheatsheets/src/master/guix.org  sway notes
+; https://notabug.org/jbranso/guix-config/src/master/sway-service.scm
 ; see also: sway follws i3 config
 ; https://github.com/JensAc/dotfiles/blob/master/.config/i3/config
 
@@ -98,7 +104,7 @@
 
       (exec swayidle -w
             before-sleep "'swaylock -f'"
-            timeout 1800 "'swaylock -f'"
+            timeout  300 "'swaylock -f'"
             timeout 2400 "'swaymsg \"output * dpms off\"'"
             resume "'swaymsg \"output * dpms on\"'")
       (exec wlsunset -l 50.6 -L 36.6 -T 6500 -t 3000)
@@ -118,7 +124,11 @@
 
 ; Default wallpaper
 ;    (output * bg ,(local-file "files/wp.jpg") fill)
-     (output eDP-1 scale 1.33)
+    ; (output eDP-1 scale 1.33)
+  ; The scale factor can be fractional, but it is usually 2 for HiDPI screens.
+   (output DP-2 scale 2.0)
+   (output eDP-1 scale 2.0)
+
 
 ; You can get the names of your inputs by running: swaymsg -t get_inputs
 ; Read `man 5 sway-input` for more information about this section.
@@ -126,7 +136,8 @@
 
       (input "1118:1874:Microsoft_Wired_Keyboard_400"
              ((xkb_layout at)
-              (xkb_options grp:toggle))) ; grp:toggle,ctrl:swapcaps 
+            ;  (xkb_options grp:toggle)
+            )) ; grp:toggle,ctrl:swapcaps 
       (input type:touchpad events disabled)
       (input "2:10:TPPS/2_IBM_TrackPoint"
              ((pointer_accel 0.3)

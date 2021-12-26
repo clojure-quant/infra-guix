@@ -29,8 +29,10 @@
   (awb99 packages) 
   (awb99 packages nuc)
   ;((awb99 home emacs) #:prefix emacs:)
-  (awb99 home emacs)
   (awb99 home sway)
+  (awb99 home emacs)
+  (awb99 home alacritty)
+  
   )
 
 
@@ -143,10 +145,13 @@
 
 (home-environment
   (packages
-    (append
+    ;(append
        (->packages-output ; ->packages ; map specification->package
           nuc-packages)
-       emacs-packages))
+     ;  emacs-packages
+     ; )
+      
+      )
   (services
     (append 
       (list
@@ -155,6 +160,9 @@
         mcron-service
         my-config-service)
         ;env-vars-service)
-      sway-services)
+      sway-services
+      emacs-services
+      alacritty-services
+    )
 
     ))

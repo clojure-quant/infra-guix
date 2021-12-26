@@ -4,7 +4,7 @@
 (define-public emacs-packages
   (list 
     "emacs"
-    "emacs-spacemacs-theme"
+    ;"emacs-spacemacs-theme"
     ; guix / guile
     ;"emacs-geiser" ; guix repl for emacs
     ;"emacs-guix"

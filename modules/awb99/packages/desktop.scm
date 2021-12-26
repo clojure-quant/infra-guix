@@ -3,6 +3,7 @@
 (define-public packages-desktop-xfce
   (list 
     ; xfce
+    ; https://guix.gnu.org/en/blog/2019/running-a-guix-xfce-desktop-on-centos-7/
     "xfce4-screensaver"
     "xfce4-systemload-plugin"
     "xfce4-mount-plugin"
@@ -104,6 +105,8 @@
       ; docker
       "docker"
       "iptables"
+
+      "emacs"
      
      ))   
 
@@ -114,3 +117,6 @@
     packages-desktop-i3
     packages-desktop-sway
     packages-desktop-printer))
+
+; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
+; EXWM  https://config.daviwil.com/desktop

@@ -10,7 +10,7 @@
          "ibus" "ibus-rime" "librime" "dconf"
         "waybar" "rofi" "mako" "libnotify"
          "wl-clipboard" "grim" "slurp" "imv"
-         "alacritty" "fish")))
+     )))
 
 
 postgresql
