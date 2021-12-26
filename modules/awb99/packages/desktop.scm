@@ -27,6 +27,7 @@
 (define-public packages-desktop-sway
   (list 
     "wayland"
+    "alacritty"
     "sway"
     "swaybg"
     "swayidle"
