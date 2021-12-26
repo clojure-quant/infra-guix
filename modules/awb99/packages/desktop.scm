@@ -44,10 +44,13 @@
     "wlroots"
     "xdg-desktop-portal"
     "xdg-desktop-portal-wlr"
+    "xdg-desktop-portal-gtk" 
 
+
+    "hicolor-icon-theme"
+    "gnome-themes-standard"
     "adwaita-icon-theme" ;to make GTK applications look OK
     "qtbase" "qtwayland" ;to make Qt work on Wayland
-
 
     "sway"
     "swaybg" ; wallpaper background
@@ -78,11 +81,10 @@
       "zsh"
       "grep"   
 
-      "xrandr" ; hidpi x-windows scaling
-      "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
+    ;  "xrandr" ; hidpi x-windows scaling
+    ;  "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
       "ddcutil"  ; screen darkness controls
- 
-      "rofi" ; launcher
+       "rofi" ; launcher
      
       ; "interrobang"
       "garcon" ; menu manager
@@ -102,11 +104,7 @@
 
       ; gnome
       "gnome"
-     
- 
-
-
-
+  
       ; trezor
       "trezord-udev-rules"
       "trezord"
