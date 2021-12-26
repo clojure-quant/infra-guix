@@ -21,6 +21,7 @@
   (awb99 config cron)
   (awb99 config iptables)
   (awb99 services ddclient)
+  (awb99 services wayland)
 )
              
 ;  (use-service-modules x y …) is just syntactic sugar for (use-modules (gnu services x) (gnu services y) …)
@@ -135,9 +136,8 @@
    (append
       my-services
       ; %desktop-services
-      (custom-udev %desktop-services)
-      ;(modify-gdm-wayland (custom-udev %desktop-services))
-      
+      ;(custom-udev %desktop-services)
+      (modify-gdm-wayland (custom-udev %desktop-services))
         
       ))
 

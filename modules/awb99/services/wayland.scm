@@ -2,6 +2,7 @@
 
 (use-modules 
   (gnu services)
+  (gnu services xorg)
   ;(gnu services virtualization)
   )
 

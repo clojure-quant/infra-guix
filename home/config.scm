@@ -27,40 +27,12 @@
   (awb99 guixutils) 
   (awb99 config helper)
   (awb99 packages) 
+  (awb99 packages nuc)
   ;((awb99 home emacs) #:prefix emacs:)
   (awb99 home emacs)
   (awb99 home sway)
   )
 
-(define nuc-packages
-  (append 
-    ; clojure apps
-      clojure-packages
-      node-packages
-    ; python-packages
-    ; r-packages
-      build-packages
-    ; linux cli
-      security-packages
-      archive-packages
-      monitor-packages
-      network-packages
-      file-transfer-packages
-      shell-packages
-      hardware-packages
-    ; apps
-      guix-core-packages
-      virtual-machine-packages
-      crypto-packages
-    ; desktop
-      desktop-chat-packages
-      desktop-multimedia-packages
-      desktop-office-packages
-      desktop-browser-packages 
-      desktop-tool-packages
-    ; services
-      services-packages
-    ))
 
 
 (define (specifications->package specs)
@@ -104,8 +76,7 @@
 (define dummy-job-1
    #~(job '(next-minute (range 0 60 10))
    (lambda ()
-     (system* "date" )))
-  )
+     (system* "date" ))))
 
 (define dummy-job-2
   #~(job next-minute-from
