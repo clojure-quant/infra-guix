@@ -30,6 +30,7 @@
 (define-public packages-desktop-sway
   (list 
     "wayland"
+    ;  "xrandr" ; hidpi x-windows scaling
     "wlr-randr"
     "wofi" ; wayland rofi
     "alacritty"
@@ -44,10 +45,10 @@
     "acpi" ; acpi info (battery, temperature)
     "direnv"
     "wlroots"
-    "xdg-desktop-portal"
+    "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
     "xdg-desktop-portal-wlr"
     "xdg-desktop-portal-gtk" 
-
+      
 
     "hicolor-icon-theme"
     "gnome-themes-standard"
@@ -83,9 +84,7 @@
       "zsh"
       "grep"   
 
-    ;  "xrandr" ; hidpi x-windows scaling
-    ;  "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
-      "ddcutil"  ; screen darkness controls
+       "ddcutil"  ; screen darkness controls
        "rofi" ; launcher
      
       ; "interrobang"
@@ -95,7 +94,7 @@
      
       "progress" ; coreutil progress
 
-      ; elementary-xfce-icon-theme
+      ; 
       ; lxqt
       "lxqt"
       ; lxqt

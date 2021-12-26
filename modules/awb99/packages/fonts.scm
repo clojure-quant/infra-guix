@@ -12,6 +12,8 @@
     "hicolor-icon-theme"
     "gnome-icon-theme"
     "gnome-backgrounds"
+    "gnome-themes-extra"
+    "gnome-themes-standard"
     "papirus-icon-theme"
     "breeze-icons"
 
