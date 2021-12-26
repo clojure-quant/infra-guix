@@ -27,9 +27,15 @@
 (define-public packages-desktop-sway
   (list 
     "wayland"
+    "wlr-randr"
+    "wofi" ; wayland rofi
     "alacritty"
+    "mako" ; lightweight notification daemon for Wayland 
+    "waybar"
+    "xlsclients"
+
     "sway"
-    "swaybg"
+    "swaybg" ; wallpaper background
     "swayidle"
     "swaylock"
   ))
@@ -62,7 +68,7 @@
       "ddcutil"  ; screen darkness controls
  
       "rofi" ; launcher
-      ; "wofi" wayland rofi
+     
       ; "interrobang"
       "garcon" ; menu manager
       "dmenu"

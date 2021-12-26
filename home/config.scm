@@ -151,6 +151,7 @@
     (append 
       (list
         bash-service
+        fish-service
         mcron-service
         my-config-service)
         ;env-vars-service)

@@ -10,6 +10,13 @@
 ;#:use-module (kreved packages wm)
 )
 
+
+; see also: sway follws i3 config
+; https://github.com/JensAc/dotfiles/blob/master/.config/i3/config
+
+;
+; https://github.com/Manjaro-Sway/desktop-settings/blob/sway/community/sway/etc/sway/modes/default
+
 (define ws-bindings
 (map (lambda (ws)
        `(,(string->symbol (format #f "$mod+~d" ws))
@@ -30,20 +37,27 @@
    ;; (package sway-next)
    (config
     `((set $mod Mod4)
-      (set $left b)
-      (set $right f)
-      (set $up p)
-      (set $down n)
+      (set $left Left)
+      (set $right Right)
+      (set $up Up)
+      (set $down Down)
 
       (set $term alacritty)
       (set $menu bemenu-run
            --prompt "'run:'"
            --ignorecase)
 
+      (set $wmenu 
+          "wofi --show run")
+ 
+ ;    bindsym Mod1+Tab exec --no-startup-id "rofi -show window"
+ ;    bindsym Mod1+Return exec --no-startup-id "rofi -terminal xfce4-terminal -show ssh" 
+
       (bindsym
        --to-code
        (($mod+Return exec $term)
         ($mod+space exec $menu)
+        ($mod+Shift+space exec $wmenu)
         ($mod+c kill)
         ($mod+q reload)
         ($mod+Shift+q exec swaymsg exit)
@@ -55,7 +69,7 @@
         ($mod+Shift+$down move down)
         ($mod+f fullscreen)
         ($mod+Tab layout toggle split tabbed)
-        ($mod+Shift+Tab split toggle)
+        ($mod+Shift+Tab split toggle)                          
         ($mod+grave floating toggle)
         ($mod+Shift+grave focus mode_toggle)
         ($mod+Shift+s exec "grim -g \"$(slurp)\" - | swappy -f -")
@@ -80,21 +94,29 @@
       (exec wlsunset -l 50.6 -L 36.6 -T 6500 -t 3000)
       (exec mako)
 
-      (xwayland enable)
+      ; only enable this if every app you use is compatible with wayland
+      (xwayland disable)
+
       (workspace_auto_back_and_forth yes)
       (focus_follows_mouse no)
       (smart_borders on)
       (title_align center)
 
-;      (output * bg ,(local-file "files/wp.jpg") fill)
-      (output eDP-1 scale 1.33)
+;
+;   output HDMI-A-1 resolution 1920x1080 position 1920,0
+; You can get the names of your outputs by running: swaymsg -t get_outputs
 
-      (input "1:1:AT_Translated_Set_2_keyboard"
-             ((xkb_layout us,ru)
-              (xkb_options grp:toggle,ctrl:swapcaps)))
-      (input "1133:45890:Keyboard_K380_Keyboard"
-             ((xkb_layout us,ru)
-              (xkb_options grp:toggle,ctrl:swapcaps)))
+; Default wallpaper
+;    (output * bg ,(local-file "files/wp.jpg") fill)
+     (output eDP-1 scale 1.33)
+
+; You can get the names of your inputs by running: swaymsg -t get_inputs
+; Read `man 5 sway-input` for more information about this section.
+; input type:keyboard xkb_layout "us"
+
+      (input "1118:1874:Microsoft_Wired_Keyboard_400"
+             ((xkb_layout at)
+              (xkb_options grp:toggle))) ; grp:toggle,ctrl:swapcaps 
       (input type:touchpad events disabled)
       (input "2:10:TPPS/2_IBM_TrackPoint"
              ((pointer_accel 0.3)
@@ -103,10 +125,17 @@
              ((scroll_method on_button_down)
               (scroll_button BTN_TASK)))
 
+; https://github.com/Manjaro-Sway/desktop-settings/blob/sway/community/sway/etc/sway/config.d/98-application-defaults.conf
+
+     ; launch some application at startup
+    (exec "--no-startup-id alacritty")
+
+
       (assign "[app_id=\"nyxt\"]" 2)
-      (assign "[app_id=\"chromium-browser\"]" 2)
-      (assign "[app_id=\"emacs\"]" 3)
-      (assign "[app_id=\"telegramdesktop\"]" 4)
+      (assign "[app_id=\"chromium\"]" 2)
+     (assign "[app_id=\"codium\"]" 3)
+      (assign "[app_id=\"emacs\"]" 4)
+      (assign "[app_id=\"telegramdesktop\"]" 5)
 
       (for_window
        "[app_id=\"telegramdesktop\" title=\"Media viewer\"]"
