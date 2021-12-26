@@ -80,7 +80,7 @@
       (exec wlsunset -l 50.6 -L 36.6 -T 6500 -t 3000)
       (exec mako)
 
-      (xwayland disable)
+      (xwayland enable)
       (workspace_auto_back_and_forth yes)
       (focus_follows_mouse no)
       (smart_borders on)
