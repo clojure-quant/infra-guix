@@ -100,8 +100,8 @@
                             :task (shell "ddclient"
                                          "-foreground"
                                          "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
- nuc-weather {:doc "installs emacs packages"
-                :task (guix/guix "weather"
+        nuc-weather {:doc "installs emacs packages"
+                     :task (guix/guix "weather"
                                     "--display-missing"
                                     ; "-coverage"
                                  "--manifest=./manifest/nuc.scm")}

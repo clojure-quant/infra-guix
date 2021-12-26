@@ -102,10 +102,14 @@
        ((XF86MonBrightnessUp exec light -A 10)
         (XF86MonBrightnessDown exec light -U 10)))
 
+    ; This will lock your screen after 300 seconds of inactivity, then turn off
+    ; your displays after another 300 seconds, and turn your screens back on when
+    ; resumed. It will also lock your screen before your computer goes to sleep.
+
       (exec swayidle -w
-            before-sleep "'swaylock -f'"
-            timeout  300 "'swaylock -f'"
-            timeout 2400 "'swaymsg \"output * dpms off\"'"
+            before-sleep "'swaylock -f -c 000000'"
+            timeout 300 "'swaylock -f -c 000000'"
+            timeout 600 "'swaymsg \"output * dpms off\"'"
             resume "'swaymsg \"output * dpms on\"'")
       (exec wlsunset -l 50.6 -L 36.6 -T 6500 -t 3000)
       (exec mako)
@@ -133,6 +137,8 @@
 ; You can get the names of your inputs by running: swaymsg -t get_inputs
 ; Read `man 5 sway-input` for more information about this section.
 ; input type:keyboard xkb_layout "us"
+
+    ; (input * xkb_layout "dvorak")
 
       (input "1118:1874:Microsoft_Wired_Keyboard_400"
              ((xkb_layout at)

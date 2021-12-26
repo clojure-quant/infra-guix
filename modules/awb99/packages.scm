@@ -205,7 +205,6 @@
 (define-public file-transfer-packages
   (list
     "aria2"
-   
     "go-ipfs"   ; bin: ipfs 
     "rclone"
     "rsync"
@@ -401,7 +400,7 @@
 (define-public desktop-browser-packages 
   (list 
     ; browser
-   ; "icecat" ; - A free software alternative to Firefox
+    "icecat" ; - A free software alternative to Firefox
    ; "ungoogled-chromium"
    "ungoogled-chromium-wayland"
    "ublock-origin-chromium"
@@ -425,10 +424,7 @@
     ; "interrobang" ; launcher
 
     ; xfce
-   ; "xfce4-screenshooter" 
-   ; "xfce4-notifyd"
-   ; "xfce4-whiskermenu-plugin" 
-   ; "elementary-xfce-icon-theme"
+  
    ; "hicolor-icon-theme"
    ; "adwaita-icon-theme" 
    ; "breeze-icons"

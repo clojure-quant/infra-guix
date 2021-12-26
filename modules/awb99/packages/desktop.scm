@@ -15,6 +15,8 @@
     ; xfce4-whiskermenu-plugin
     ; xfce4-settings
     ; xfce4-screenshooter
+   ; "xfce4-notifyd"
+   ; "elementary-xfce-icon-theme"
  ))
 
 (define-public packages-desktop-i3

@@ -10,9 +10,9 @@
   #:use-module (awb99 machine ocean)
   #:use-module (awb99 services ddclient)
   #:use-module (awb99 config cron)
-  #:use-module (awb99 packages desktop)
+  #:use-module (awb99 packages nuc)
   #:use-module (awb99 services wayland)
-  ;#:use-module (awb99 home emacs)
+  #:use-module  (awb99 config helper)
 )
 
 (pretty-print desktop-chat-packages)
@@ -22,3 +22,8 @@
 (display "cron jobs: ")
 
 (pretty-print my-guix-maintenance-jobs)
+
+(pretty-print nuc-packages)
+
+
+(pretty-print (->packages-output nuc-packages))
