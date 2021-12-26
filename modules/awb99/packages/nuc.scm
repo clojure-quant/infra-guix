@@ -1,5 +1,7 @@
 (define-module (awb99 packages nuc)
-  #:use-module (awb99 packages))
+  #:use-module (awb99 packages)
+  #:use-module (awb99 packages fonts)
+)
 
 
 (define-public nuc-packages
@@ -28,6 +30,7 @@
   desktop-office-packages
   desktop-browser-packages 
   desktop-tool-packages
+  font-packages
 ; services
   services-packages
     ))

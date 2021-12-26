@@ -38,6 +38,10 @@
     "grim" ; screenshots
     "swappy" ; screenshots
     "wl-clipboard"
+    "wlsunset"  ; day night gamma adjustment
+    "acpi" ; acpi info (battery, temperature)
+    "direnv"
+    "wlroots"
 
     "sway"
     "swaybg" ; wallpaper background

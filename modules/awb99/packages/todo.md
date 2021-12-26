@@ -1,6 +1,5 @@
 
 
-
          
 (define-public %my-extra-desktop-packages
   (map (compose list specification->package+output)
@@ -19,4 +18,4 @@ postgresql
         "xdg-desktop-portal-gtk"
         "xdg-desktop-portal"
       
-        "pavucontrol"
+        "pavucontrol"  Control

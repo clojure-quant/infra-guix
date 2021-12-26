@@ -403,7 +403,9 @@
     ; browser
    ; "icecat" ; - A free software alternative to Firefox
    ; "ungoogled-chromium"
-    "midori"
+   "ungoogled-chromium-wayland"
+   "ublock-origin-chromium"
+   "midori"
    ; "nomad"
    ; "vimb"   ; vim keybinding browser.
    ; "nyxt"    ; browser with keybindings like emacs  https://sparkylinux.org/nyxt/ https://nyxt.atlas.engineer/faq
