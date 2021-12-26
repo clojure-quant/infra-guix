@@ -42,6 +42,12 @@
     "acpi" ; acpi info (battery, temperature)
     "direnv"
     "wlroots"
+    "xdg-desktop-portal"
+    "xdg-desktop-portal-wlr"
+
+    "adwaita-icon-theme" ;to make GTK applications look OK
+    "qtbase" "qtwayland" ;to make Qt work on Wayland
+
 
     "sway"
     "swaybg" ; wallpaper background
@@ -97,8 +103,7 @@
       ; gnome
       "gnome"
      
-     ; "adwaita-icon-theme" ;to make GTK applications look OK
-     ; "qtbase" "qtwayland" ;to make Qt work on Wayland
+ 
 
 
 
