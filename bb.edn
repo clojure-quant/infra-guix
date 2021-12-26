@@ -87,7 +87,9 @@
 
         ; NUC
          nuc-reconfigure-user (guix/system "nuc"
-                                           "reconfigure")
+                                           "reconfigure"
+                                           ;"--no-grafts"
+                                           )
          nuc-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"
                            :task (do (guix/sudo "nuc-reconfigure-user")
                                      (guix/guix "system" "describe"))}

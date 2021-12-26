@@ -11,6 +11,9 @@ https://issues.guix.gnu.org/
 mailing list
 https://lists.gnu.org/archive/html/help-guix/
 
+ci build farm
+https://ci.guix.gnu.org/search?query=node-14.18.1
+
 # Docs
 https://archive.fosdem.org/2020/schedule/event/guix/attachments/slides/3931/export/events/attachments/guix/slides/3931/guix_unifying.pdf
 https://guix.gnu.org/manual/en/guix.html#The-Perfect-Setup

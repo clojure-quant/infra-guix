@@ -13,13 +13,13 @@
 
   (gnu services)
   (guix gexp)
-(mcron scripts mcron)
-(mcron base)
-(mcron config)
+;(mcron scripts mcron)
+;(mcron base)
+;(mcron config)
 (mcron job-specifier)    ; For user/system files.
-(mcron utils)
-(mcron vixie-specification)
-(mcron core)
+;(mcron utils)
+;(mcron vixie-specification)
+;(mcron core)
 
   (gnu home services)
   (gnu home services shells)
@@ -27,6 +27,9 @@
   (awb99 guixutils) 
   (awb99 config helper)
   (awb99 packages) 
+  ;((awb99 home emacs) #:prefix emacs:)
+  (awb99 home emacs)
+  (awb99 home sway)
   )
 
 (define nuc-packages
@@ -169,13 +172,17 @@
 
 (home-environment
   (packages
-    (->packages-output ; ->packages ; map specification->package
-        nuc-packages))
+    (append
+       (->packages-output ; ->packages ; map specification->package
+          nuc-packages)
+       emacs-packages))
   (services
-    (list
-       bash-service
-       mcron-service
-       my-config-service
-       ;env-vars-service
+    (append 
+      (list
+        bash-service
+        mcron-service
+        my-config-service)
+        ;env-vars-service)
+      sway-services)
 
-    )))
+    ))

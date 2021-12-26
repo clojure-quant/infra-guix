@@ -319,7 +319,7 @@
 
 (define-public desktop-chat-packages
   (list 
-    "telegram-desktop"
+  ;  "telegram-desktop"
     ;; IRC
     ; irc.libera.chat on port 6697.
     ; "weechat" ; IRC

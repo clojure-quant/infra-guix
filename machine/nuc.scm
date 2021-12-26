@@ -41,7 +41,6 @@
   (list 
     ; use "guix system search" to search for available services
 
-
     ; Because the GNOME, Xfce and MATE desktop services pull in so many packages, 
     ; the default %desktop-services variable doesn’t include any of them by default. 
     (service xfce-desktop-service-type)
@@ -105,9 +104,9 @@
         (platforms (lookup-qemu-platforms "arm" "aarch64" ; "i686" "ppc"
        ))))
 
-    (set-xorg-configuration
-      (xorg-configuration
-        (keyboard-layout (keyboard-layout "at"))))
+    ;(set-xorg-configuration
+    ;  (xorg-configuration
+    ;    (keyboard-layout (keyboard-layout "at"))))
 
     ))
 
@@ -137,8 +136,8 @@
       my-services
       ; %desktop-services
       (custom-udev %desktop-services)
-      ;(remove-gdm (custom-udev %desktop-services))
       ;(modify-gdm-wayland (custom-udev %desktop-services))
+      
         
       ))
 
