@@ -18,6 +18,8 @@
 ; https://github.com/Manjaro-Sway/desktop-settings/blob/sway/community/sway/etc/sway/modes/default
 ; https://github.com/Manjaro-Sway/desktop-settings/blob/sway/community/sway/etc/sway/config.d/98-application-defaults.conf
 
+; https://www.fosskers.ca/en/blog/wayland
+
 
 (define ws-bindings
 (map (lambda (ws)
@@ -58,11 +60,17 @@
       (bindsym
        --to-code
        (($mod+Return exec $term)
-        ($mod+space exec $menu)
-        ($mod+Shift+space exec $wmenu)
+     
+        ($mod+space exec $wmenu)
+        ($mod+Shift+space exec $menu)
+
+        ($mod+s exec "wofi --show ssh")
+        ($mod+w exec "wofi --show window")
+
         ($mod+c kill)
         ($mod+q reload)
         ($mod+Shift+q exec swaymsg exit)
+
         ($mod+$up focus prev)
         ($mod+$down focus next)
         ($mod+Shift+$left move left)
@@ -162,7 +170,7 @@
       (client.unfocused "#ffffff" "#ffffff" "#595959")
       (default_border normal 0)
       (default_floating_border none)
-      (gaps inner 8)
+      (gaps inner 0) ; was 8
       (seat * xcursor_theme Adwaita 24)
 
       (bar

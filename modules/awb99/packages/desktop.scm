@@ -42,7 +42,6 @@
     "swaybg" ; wallpaper background
     "swayidle"
     "swaylock"
-
   ))
 
 (define-public packages-desktop-printer
