@@ -5,6 +5,8 @@
 
 xrandr --dpi 300
 
+# For Xft.dpi, using integer multiples of 96 usually works best, e.g. 192 for 200% scaling.
+# by default xorg's dpi is 96 for compatibility with Windows (or something close)
 # (it's not persisted)
 # invoke xrandr in my .xsession
 # mine is in .xinitrc, but that's what runs my session
@@ -45,4 +47,7 @@ GTK uses .Xresources (Xft.dpi)
 <apteryx> IIRC
 <apteryx> when you're done configuring your DPI, you can start e.g. Inkscape,
  and see if an A4 sized document corresponds on your screen to the real thing.
-<apteryx> by default xorg's dpi is 96 for compatibility with Windows (or something close)
+
+
+this works for chromium on wayland:
+chromium --force-dark-mode --enable-features=WebUIDarkMode

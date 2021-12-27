@@ -10,6 +10,7 @@ bindsym --to-code {
     $mod+Return exec $term
     $mod+space exec $wmenu
     $mod+Shift+space exec $menu
+    $mod+m exec chromium --force-dark-mode --enable-features=WebUIDarkMode
     $mod+s exec wofi --show ssh
     $mod+w exec wofi --show window
     $mod+c kill
@@ -29,7 +30,6 @@ bindsym --to-code {
     $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
     Print exec grim - | wl-copy -t image/png
     $mod+g exec makoctl dismiss --all
-    $mod+m exec makoctl set-mode dnd
     $mod+Shift+m exec makoctl set-mode default
     $mod+o exec ykman oath list | bemenu --prompt 'otp:' --ignorecase | xargs -I {} -r ykman oath code -s '{}' | wl-copy
     $mod+1 workspace number 1
