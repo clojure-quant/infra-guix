@@ -51,3 +51,6 @@ GTK uses .Xresources (Xft.dpi)
 
 this works for chromium on wayland:
 chromium --force-dark-mode --enable-features=WebUIDarkMode
+
+firefox on wayland:
+MOZ_ENABLE_WAYLAND=1 firefox
