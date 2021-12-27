@@ -61,6 +61,7 @@
     "swaybg" ; wallpaper background
     "swayidle"
     "swaylock"
+     "i3blocks" ; sway uses i3blocks for menu
   ))
 
 (define-public packages-desktop-printer
@@ -85,11 +86,7 @@
 
 (define-public packages-desktop-extra
 (list
-      
-     
       "bemenu" ; menu library inspired by dmenu
-      
-
       ; lxqt
       "lxqt"
       ; lxqt
@@ -99,7 +96,6 @@
       ;"efl" ; Enlightenment Foundation Libraries
       ; gnome
       "gnome"
-  
      ))   
 
 
