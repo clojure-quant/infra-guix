@@ -65,7 +65,7 @@
        '(("gc" . "guix gc")))
       (environment-variables
        '(("TEST" . "val")
-         ("GDK_SCALE" . "2")
+         ("GDK_SCALE" . "1")
       ))
     )))
 
@@ -137,7 +137,7 @@
         ;("SHELL" . ,(file-append zsh "/bin/zsh"))
         ("USELESS_VAR" . #f)
        ; ("_JAVA_AWT_WM_NONREPARENTING" . #t)
-        ("GDK_SCALE" . "2")
+        ("GDK_SCALE" . "1")
       )))
 
 
