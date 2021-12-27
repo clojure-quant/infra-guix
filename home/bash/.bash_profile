@@ -16,3 +16,6 @@ if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 #    shepherd \
 #      --config=/home/florian/repo/myLinux/distros/guix/dotfiles/.config/shepherd/init.scm
 #fi
+
+GDK_SCALE=2
+export GDK_SCALE=2

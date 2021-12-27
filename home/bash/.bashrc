@@ -41,3 +41,4 @@ GUIX_PROFILE="/home/florian/.guix-profile"
 . "$GUIX_PROFILE/etc/profile"
 
 GDK_SCALE=2
+export GDK_SCALE=2

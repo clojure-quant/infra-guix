@@ -131,13 +131,14 @@
 
 
 (define env-vars-service
-  (simple-service 
-    'some-useful-env-vars-service
+  (simple-service  'some-useful-env-vars-service
     home-environment-variables-service-type
-      `(("LESSHISTFILE" . "$XDG_CACHE_HOME/.lesshst")
-        ("SHELL" . ,(file-append zsh "/bin/zsh"))
+      `(;("LESSHISTFILE" . "$XDG_CACHE_HOME/.lesshst")
+        ;("SHELL" . ,(file-append zsh "/bin/zsh"))
         ("USELESS_VAR" . #f)
-        ("_JAVA_AWT_WM_NONREPARENTING" . #t))))
+       ; ("_JAVA_AWT_WM_NONREPARENTING" . #t)
+        ("GDK_SCALE" . "2")
+      )))
 
 
 (home-environment
@@ -155,7 +156,7 @@
         bash-service
         fish-service
        ; mcron-service
-        ;env-vars-service
+        env-vars-service
         my-config-service)
       ;sway-services
       ;emacs-services
