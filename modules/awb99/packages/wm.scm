@@ -25,7 +25,7 @@
     "i3-wm"
     "i3status"
     "i3blocks"
-    "i3lock"
+  ;  "i3lock"
   ))
 
 (define-public packages-desktop-sway
@@ -63,7 +63,7 @@
     "sway"
     "swaybg" ; wallpaper background
     "swayidle"
-    "swaylock"
+  ;  "swaylock"
      "i3blocks" ; sway uses i3blocks for menu
   ))
 

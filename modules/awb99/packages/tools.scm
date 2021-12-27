@@ -161,8 +161,8 @@
 
 (define-public services-packages
 (list  
-  "shepherd"
-  "mcron"
+  ;"shepherd"
+  ;"mcron"
   "syncthing"
   "iptables"
 ))

@@ -9,13 +9,13 @@
 
     ;; GTK Themes
     "hicolor-icon-theme"
-    "gnome-themes-standard"
+  ;  "gnome-themes-standard"
     ;"gnome-themes-extra" ; lots of conflicts with gnome-themes-standard
     "adwaita-icon-theme" ;to make GTK applications look OK
     "arc-icon-theme"
     "matcha-theme"
-    "gnome-icon-theme"
-    "gnome-backgrounds"
+   ; "gnome-icon-theme"
+   ; "gnome-backgrounds"
     
     "papirus-icon-theme"
     "breeze-icons"

@@ -22,6 +22,14 @@
     shell-packages
   ))
 
+(define-public packages-nuc-root-only
+(append
+  packages-nuc-root
+  (list
+     "swaylock"
+   )))
+
+
 
 (define-public nuc-packages
 (append 

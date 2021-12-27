@@ -51,18 +51,14 @@
     (service enlightenment-desktop-service-type)
 
   
-;    (screen-locker-service swaylock)
+    (screen-locker-service swaylock "swaylock")
 
     ; Wayland needs sddm-service instead of GDM as the graphical login manager
-
-    ;i3-service
-    ;(screen-locker-service i3lock)
 
   ; printer: HP LJ Pro MFP M148fdw MFG Laser
   ; https://developers.hp.com/hp-linux-imaging-and-printing
   ; guix install hplip
   ; HP LaserJet m14-m17, hpcups 3.21.10
-
     (service cups-service-type
       (cups-configuration
         (default-paper-size "A4")
@@ -186,7 +182,7 @@
 
  (define my-packages
   (append
-    (specifications->package packages-nuc-root)
+    (specifications->package packages-nuc-root-only)
     %base-packages))
 
 

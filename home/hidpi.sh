@@ -21,6 +21,9 @@ gsettings set org.gnome.desktop.interface font-antialiasing 'none'
 gsettings set org.gnome.desktop.interface font-antialiasing 'grayscale'
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
 
+gsettings set org.gnome.desktop.interface text-scaling-factor 2.0
+
+
 
 ;'Cantarell 11
   he type of antialiasing to use when rendering fonts. 
@@ -35,12 +38,11 @@ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
 <apteryx> and then the font sizes in a few places... it's a mess
 <civodul> apteryx: that'd only work for old programs like xterm
 <civodul> "normal apps" do client-side font rendering via gtk and all that
-<apteryx> GTK uses .Xresources (Xft.dpi)
-<civodul> oh? nice
+
+GTK uses .Xresources (Xft.dpi)
 <apteryx> at least some GTK applications (Gimp correctly uses the xorg server's DPI setting)
 <apteryx> but others such as Icecat don't
 <apteryx> IIRC
-<civodul> heh, so like you say, it's a mess :-)
 <apteryx> when you're done configuring your DPI, you can start e.g. Inkscape,
  and see if an A4 sized document corresponds on your screen to the real thing.
 <apteryx> by default xorg's dpi is 96 for compatibility with Windows (or something close)
