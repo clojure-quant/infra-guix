@@ -1,16 +1,9 @@
-;; This "home-environment" file can be passed to 'guix home reconfigure'
-;; to reproduce the content of your profile.  This is "symbolic": it only
-;; specifies package names.  To reproduce the exact same profile, you also
-;; need to capture the channels being used, as returned by "guix describe".
-;; See the "Replicating Guix" section in the manual.
-
 (use-modules
   (guix) 
   (gnu) 
   (gnu home)
   (gnu packages)
   (gnu packages shells)
-
   (gnu services)
   (guix gexp)
 ;(mcron scripts mcron)
@@ -26,7 +19,6 @@
   (gnu home services mcron)
   (awb99 guixutils) 
   (awb99 config helper)
-  (awb99 packages) 
   (awb99 packages nuc)
   ;((awb99 home emacs) #:prefix emacs:)
   (awb99 home sway)
@@ -130,6 +122,7 @@
     home-files-service-type
       (list `("config/test.conf" ,(plain-file "tmp-file.txt" "the content of ~/.config/test.conf"))
             `("ssh/config" ,(local-file "./ssh/config"))
+            ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 
 
@@ -157,9 +150,9 @@
       (list
         bash-service
         fish-service
-        mcron-service
+        ;mcron-service
+        ;env-vars-service
         my-config-service)
-        ;env-vars-service)
       sway-services
       emacs-services
       alacritty-services

@@ -4,7 +4,8 @@
   #:use-module (gnu services base)
   #:use-module (awb99 config iptables)
   #:use-module (awb99 config users)
-  #:use-module (awb99 packages)
+  #:use-module (awb99 packages nuc)
+  #:use-module (awb99 packages desktop)
   #:use-module (awb99 guixutils)
   #:use-module (awb99 services trateg)
   #:use-module (awb99 machine ocean)
@@ -13,6 +14,7 @@
   #:use-module (awb99 packages nuc)
   #:use-module (awb99 services wayland)
   #:use-module  (awb99 config helper)
+  #:use-module (awb99 home emacs)
 )
 
 (pretty-print desktop-chat-packages)

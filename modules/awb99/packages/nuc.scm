@@ -1,14 +1,17 @@
 (define-module (awb99 packages nuc)
-  #:use-module (awb99 packages)
+  #:use-module (awb99 packages tools)
   #:use-module (awb99 packages fonts)
+  #:use-module (awb99 packages wm)
   #:use-module (awb99 packages desktop)
+  #:use-module (awb99 packages programming)
+  #:use-module (awb99 packages emacs)
 )
 
 (define-public packages-nuc-root
   (append
     packages-desktop-extra
     packages-desktop-xfce
-    packages-desktop-i3
+    ;packages-desktop-i3
     packages-desktop-sway
     packages-desktop-printer
     font-packages
@@ -23,32 +26,26 @@
 (define-public nuc-packages
 (append 
   packages-nuc-root
-
+  ; linux cli
+  security-packages
+  archive-packages
+  monitor-packages
+  network-packages
+  file-transfer-packages
+  hardware-packages
 ; clojure apps
   clojure-packages
   node-packages
 ; python-packages
 ; r-packages
   build-packages
-; linux cli
-  security-packages
-  archive-packages
-  monitor-packages
-  network-packages
-  file-transfer-packages
-  
-  hardware-packages
-; apps
- 
- 
 ; desktop
   desktop-chat-packages
   desktop-multimedia-packages
   desktop-office-packages
   desktop-browser-packages 
   desktop-tool-packages
-
- 
-    ))
+  ;emacs-packages ; dont include emacs packges here. home will conflict.
+  ))
 
  

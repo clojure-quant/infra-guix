@@ -1,115 +1,119 @@
 (define-module (awb99 packages desktop))
 
-(define-public packages-desktop-xfce
+(define-public desktop-chat-packages
   (list 
-    ; xfce
-    ; https://guix.gnu.org/en/blog/2019/running-a-guix-xfce-desktop-on-centos-7/
-    "xfce4-screensaver"
-    "xfce4-systemload-plugin"
-    "xfce4-mount-plugin"
-    "xfce4-panel"
-    "xfce4-places-plugin"
-    ;xfce4-taskmanager
-    ; xfce4-power-manager       ** add this
-    ; xfce4-pulseaudio-plugin   
-    ; xfce4-whiskermenu-plugin
-    ; xfce4-settings
-    ; xfce4-screenshooter
-   ; "xfce4-notifyd"
-   ; "elementary-xfce-icon-theme"
- ))
-
-(define-public packages-desktop-i3
-  (list 
-    "i3-wm"
-    "i3status"
-    "i3blocks"
-    "i3lock"
-  ))
-
-(define-public packages-desktop-sway
-  (list 
-    "wayland"
-    ;  "xrandr" ; hidpi x-windows scaling
-    "wlr-randr"
-    "wofi" ; wayland rofi
-    "alacritty"
-    "mako" ; desktop notifications for Wayland 
-    "waybar"
-    "xlsclients" ; running window ids
-    "slurp" ; screenshots
-    "grim" ; screenshots
-    "swappy" ; screenshots
-    "wl-clipboard"
-    "wlsunset"  ; day night gamma adjustment
-    "acpi" ; acpi info (battery, temperature)
-    "direnv"
-    "wlroots"
-    "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
-    "xdg-desktop-portal-wlr"
-    "xdg-desktop-portal-gtk" 
-      
-
-    "hicolor-icon-theme"
-    "gnome-themes-standard"
-    "adwaita-icon-theme" ;to make GTK applications look OK
-    "qtbase" "qtwayland" ;to make Qt work on Wayland
-
-    "sway"
-    "swaybg" ; wallpaper background
-    "swayidle"
-    "swaylock"
-  ))
-
-(define-public packages-desktop-printer
-  (list 
-    "cups"
-    "cups-filters"
-    "foomatic-filters"    ; postscript -> printer driver
-    "hplip"; hp line printer drivers
-    "system-config-printer"
+    ;"telegram-desktop"
+    ;; IRC
+    ; irc.libera.chat on port 6697.
+    ; "weechat" ; IRC
+    "quassel"    ; GUI replication of WeeChat.
+    ;"srain" ; IRC client (supports images )
+    ; "hexchat" ;
+    ; "pidgin"
+    ; "cawbird" ; twitter client
   ))
 
 
-(define-public packages-desktop-extra
-(list "nss-certs"
-      "fuse" ; for sshfs
-      "sshfs"
-      "nbd" ; to mount qcow2 images
-      "glibc-locales" ; guix locales
-      "mcron"
+(define-public desktop-multimedia-packages
+  (list
+    ;image
+    "sxiv" ; simple X image viewer
+    "glimpse" ; image editor
+    "xdot" ; graphviz .dot viewer needed for guix graph
+    "imagemagick"
 
-      ; shells used in user profiles need to be on system
-      "fish"
-      "zsh"
-      "grep"   
+    ;; gstreaner us zsed by Nyxt media dependencies.
+    "gstreamer" ; Multimedia library
+    "gst-libav" 
+    "gst-plugins-base" 
+    "gst-plugins-good"
+    ;"gst-plugins-bad"
+    ;"gst-plugins-ugly"
 
-       "ddcutil"  ; screen darkness controls
-       "rofi" ; launcher
-     
-      ; "interrobang"
-      "garcon" ; menu manager
-      "dmenu"
-      "bemenu" ; menu library inspired by dmenu
-     
-      "progress" ; coreutil progress
+    ;video
+    "vlc"
+    ; "mpv"  ; audio/video player
+    "subdl" ; subtitle download
+    "kodi"
+    "ffmpeg" ; record/play audio/video
+    "libwebp" ; webp video compression"
+    "youtube-dl"
+    "obs" ; video/audio streaming
 
-      ; 
-      ; lxqt
-      "lxqt"
-      ; lxqt
-      "mate"
-      ;enlightenment
-      "enlightenment"
-      ;"efl" ; Enlightenment Foundation Libraries
+    ;; audio
+    "pavucontrol" 
+    "opus" ; audio codec
+    ; "sound" ; to "use-service-modules" to always use pulseaudio to avoid apps crashing. 
 
-      ; gnome
-      "gnome"
+    ; pdf
+    "pdfarranger"
+    ; "xpdf"  ; does not show text of manually edited pdf files
+    "qpdfview"  ; this is much better
+    "zathura" ; lightweight pdf viewer
 
-      "iptables"
-     
-     ))   
+    ; torrent
+ 
+    ; "transmission" ; torrent
+    "transmission:gui" ; without :gui it does not work.n  The normal "out" output is the CLI versiononly.
+    "qbittorrent" ; torrent
+    ;"deluge"
+
+    ; ??
+    "mkvtoolnix"
+    "mpd"
+    "mpd-mpc"
+  ))
+
+   
 
 
-; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
-; EXWM  https://config.daviwil.com/desktop
+(define-public desktop-office-packages
+(list
+  "libreoffice"
+  "hunspell-dict-en" ; spell checker
+  "hunspell-dict-en-us"
+  "hunspell-dict-de"
+  "recoll" ; fulltext search engine
+ 
+   ; "vim"
+   ; "neovim"
+   "eovim" ;    NEOVIM GUI
+   "kate" ;          text editor
+   "mousepad"  ; text editor
+))
+
+(define-public desktop-browser-packages 
+  (list 
+    ; browser
+    "icecat" ; - A free software alternative to Firefox
+   ; "ungoogled-chromium"
+   "ungoogled-chromium-wayland"
+   "ublock-origin-chromium"
+   "midori"
+   ; "nomad"
+   ; "vimb"   ; vim keybinding browser.
+   ; "nyxt"    ; browser with keybindings like emacs  https://sparkylinux.org/nyxt/ https://nyxt.atlas.engineer/faq
+   ; "palemoon" ;- A highly customizable browser
+   "keepassxc"
+))
+
+
+(define-public desktop-tool-packages
+(list 
+  "xdot" ; graphviz .dot viewer needed for guix graph
+  "syncthing-gtk" 
+
+  ; tools
+  "flatpak"
+  "xdotool" ; determine windows class names (for i3 wm rules)
+  ; "gvfs" ; for user mounts
+  "catfish" ; file search tool
+  "udiskie" ; mount usb drives https://github.com/coldfix/udiskie/wiki/Usage
+  "remmina"
+  ; "scm"  ; scheme to c compiler
+  "claws-mail"
+  ; "kmail"
+  "celestia-gtk" ; 3d simulation of universe/planets
+   "vscodium"
+ 
+))

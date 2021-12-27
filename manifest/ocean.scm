@@ -1,5 +1,6 @@
 (use-modules 
-  (awb99 packages)    
+  (awb99 packages tools)    
+  (awb99 packages programming)    
   )
 
 

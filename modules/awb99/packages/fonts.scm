@@ -6,25 +6,27 @@
     "xdg-utils"
     "fontconfig" ; font loader for os; fc-cache -f  or fc-cache -rv
     "libxft" ; connect x to font-config
-    "pango" ;text handling library
-    "cairo" ;2d library
 
     ;; GTK Themes
+    "hicolor-icon-theme"
+    "gnome-themes-standard"
+    "adwaita-icon-theme" ;to make GTK applications look OK
     "arc-icon-theme"
     "matcha-theme"
-    "hicolor-icon-theme"
     "gnome-icon-theme"
     "gnome-backgrounds"
     "gnome-themes-extra"
-    "gnome-themes-standard"
     "papirus-icon-theme"
     "breeze-icons"
+
+
+
 
     ;; Fonts
 
     ; guix manual: essential fonts:
-    "font-ghostscript"
-    "font-dejavu"  
+    "font-ghostscript" ; prior name:  "gs-fonts"
+    "font-dejavu"  ; used in icecat
     "font-gnu-freefont" 
     
     "font-liberation" ; compatibility with Arial, Times New Roman, and Courier New.
@@ -50,8 +52,8 @@
 
     "font-openmoji"
     "font-awesome"
+    "font-wqy-microhei" 
 
-    "gs-fonts"
     "font-gnu-unifont" 
     "font-abattis-cantarell"
     "font-ibm-plex"

@@ -94,7 +94,11 @@
                            :task (do (guix/sudo "nuc-reconfigure-user")
                                      (guix/guix "system" "describe"))}
 
-         nuc-home-configure (guix/guix "home" "reconfigure" "./home/config.scm")
+         nuc-home-configure (guix/guix 
+                              "home" 
+                              "reconfigure" 
+                              "--verbosity=3"
+                              "./home/config.scm")
 
          nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
                             :task (shell "ddclient"

@@ -1,6 +1,6 @@
 (use-modules 
   (gnu)
-  (awb99 packages)
+  (awb99 packages nuc)
   (awb99 guixutils) 
   )
 
