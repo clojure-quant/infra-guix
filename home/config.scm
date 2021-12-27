@@ -64,7 +64,9 @@
       (abbreviations
        '(("gc" . "guix gc")))
       (environment-variables
-       '(("TEST" . "val")))
+       '(("TEST" . "val")
+         ("GDK_SCALE" . "2")
+      ))
     )))
 
 (define dummy-job-1

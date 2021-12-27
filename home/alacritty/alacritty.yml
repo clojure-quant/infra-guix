@@ -51,4 +51,5 @@ key_bindings:
   -
     key: V
     mods: Control
-    action: Paste⏎ 
+    action: Paste
+  
