@@ -109,9 +109,9 @@
   ; "gvfs" ; for user mounts
   "catfish" ; file search tool
   "udiskie" ; mount usb drives https://github.com/coldfix/udiskie/wiki/Usage
-  "remmina"
+  ;"remmina"
   ; "scm"  ; scheme to c compiler
-  "claws-mail"
+  ;"claws-mail"
   ; "kmail"
   "celestia-gtk" ; 3d simulation of universe/planets
    "vscodium"

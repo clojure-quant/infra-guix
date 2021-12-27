@@ -15,6 +15,7 @@
   #:use-module (awb99 services wayland)
   #:use-module  (awb99 config helper)
   #:use-module (awb99 home emacs)
+  #:use-module (awb99 home sway-service)
 )
 
 (pretty-print desktop-chat-packages)

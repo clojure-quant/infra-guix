@@ -21,9 +21,9 @@
   (awb99 config helper)
   (awb99 packages nuc)
   ;((awb99 home emacs) #:prefix emacs:)
-  (awb99 home sway)
-  (awb99 home emacs)
-  (awb99 home alacritty)
+  ;(awb99 home sway)
+  ;(awb99 home emacs)
+  ;(awb99 home alacritty)
   
   )
 
@@ -122,6 +122,8 @@
     home-files-service-type
       (list `("config/test.conf" ,(plain-file "tmp-file.txt" "the content of ~/.config/test.conf"))
             `("ssh/config" ,(local-file "./ssh/config"))
+            `("config/alacritty/alacritty.yml" ,(local-file "./alacritty/alacritty.yml"))
+            `("config/sway/config" ,(local-file "./sway/config"))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 
@@ -150,12 +152,12 @@
       (list
         bash-service
         fish-service
-        ;mcron-service
+        mcron-service
         ;env-vars-service
         my-config-service)
-      sway-services
-      emacs-services
-      alacritty-services
+      ;sway-services
+      ;emacs-services
+      ;alacritty-services
     )
 
     ))

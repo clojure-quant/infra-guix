@@ -106,7 +106,7 @@
     "ncdu"
     "ncurses" ; clear
     "nano"
-    "findutils" ; find
+   ; "findutils" ; find
     "mlocate"  ; locate == whereis
     ;"idutils"
     "ntp"

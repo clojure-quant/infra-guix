@@ -1,0 +1,54 @@
+
+window:
+  dynamic_title: true
+cursor:
+  style:
+    shape: Beam
+font:
+  normal:
+    family: Iosevka
+    style: Light
+  bold:
+    family: Iosevka
+    style: Light
+  italic:
+    family: Iosevka
+    style: Light
+  size: 14.0
+draw_bold_text_with_bright_colors: true
+colors:
+  primary:
+    background: '#FFFFFF'
+    foreground: '#000000'
+  cursor:
+    cursor: '#000000'
+  selection:
+    background: '#E8DFD1'
+    foreground: '#000000'
+  normal:
+    black: '#000000'
+    red: '#A60000'
+    green: '#005E00'
+    yellow: '#813E00'
+    blue: '#0031A9'
+    magenta: '#721045'
+    cyan: '#00538B'
+    white: '#BFBFBF'
+  bright:
+    black: '#595959'
+    red: '#972500'
+    green: '#315B00'
+    yellow: '#70480F'
+    blue: '#2544BB'
+    magenta: '#5317AC'
+    cyan: '#005A5F'
+    white: '#FFFFFF'
+key_bindings:
+  -
+    key: C
+    mods: Alt
+    action: Copy
+  -
+    key: V
+    mods: Control
+    action: Paste⏎ 

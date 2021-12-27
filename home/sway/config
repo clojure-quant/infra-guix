@@ -1,0 +1,112 @@
+set $mod Mod4
+set $left Left
+set $right Right
+set $up Up
+set $down Down
+set $term alacritty
+set $menu bemenu-run --prompt 'run:' --ignorecase
+set $wmenu wofi --show run
+bindsym --to-code {
+    $mod+Return exec $term
+    $mod+space exec $wmenu
+    $mod+Shift+space exec $menu
+    $mod+s exec wofi --show ssh
+    $mod+w exec wofi --show window
+    $mod+c kill
+    $mod+q reload
+    $mod+Shift+q exec swaymsg exit
+    $mod+$up focus prev
+    $mod+$down focus next
+    $mod+Shift+$left move left
+    $mod+Shift+$right move right
+    $mod+Shift+$up move up
+    $mod+Shift+$down move down
+    $mod+f fullscreen
+    $mod+Tab layout toggle split tabbed
+    $mod+Shift+Tab split toggle
+    $mod+grave floating toggle
+    $mod+Shift+grave focus mode_toggle
+    $mod+Shift+s exec grim -g "$(slurp)" - | swappy -f -
+    Print exec grim - | wl-copy -t image/png
+    $mod+g exec makoctl dismiss --all
+    $mod+m exec makoctl set-mode dnd
+    $mod+Shift+m exec makoctl set-mode default
+    $mod+o exec ykman oath list | bemenu --prompt 'otp:' --ignorecase | xargs -I {} -r ykman oath code -s '{}' | wl-copy
+    $mod+1 workspace number 1
+    $mod+2 workspace number 2
+    $mod+3 workspace number 3
+    $mod+4 workspace number 4
+    $mod+5 workspace number 5
+    $mod+6 workspace number 6
+    $mod+7 workspace number 7
+    $mod+8 workspace number 8
+    $mod+9 workspace number 9
+    $mod+Shift+1 move container to workspace number 1
+    $mod+Shift+2 move container to workspace number 2
+    $mod+Shift+3 move container to workspace number 3
+    $mod+Shift+4 move container to workspace number 4
+    $mod+Shift+5 move container to workspace number 5
+    $mod+Shift+6 move container to workspace number 6
+    $mod+Shift+7 move container to workspace number 7
+    $mod+Shift+8 move container to workspace number 8
+    $mod+Shift+9 move container to workspace number 9
+}
+bindsym --locked {
+    XF86MonBrightnessUp exec light -A 10
+    XF86MonBrightnessDown exec light -U 10
+}
+exec swayidle -w before-sleep 'swaylock -f -c 000000' timeout 300 'swaylock -f -c 000000' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec wlsunset -l 50.6 -L 36.6 -T 6500 -t 3000
+exec mako
+xwayland enable
+workspace_auto_back_and_forth yes
+focus_follows_mouse no
+smart_borders on
+title_align center
+
+output * scale 2.0
+
+input 1118:1874:Microsoft_Wired_Keyboard_400 {
+    xkb_layout at
+}
+input type:touchpad events disabled
+input 2:10:TPPS/2_IBM_TrackPoint {
+    pointer_accel 0.3
+    scroll_factor 0.8
+}
+input 1390:268:ELECOM_TrackBall_Mouse_HUGE_TrackBall {
+    scroll_method on_button_down
+    scroll_button BTN_TASK
+}
+exec --no-startup-id alacritty
+assign [app_id="nyxt"] 2
+assign [instance="chromium"] 2
+assign [app_id="chromium"] 2
+assign [class="chromium/Chromium"] 2
+assign [app_id="codium"] 3
+assign [instance="codium"] 3
+assign [instance="emacs"] 4
+assign [app_id="telegramdesktop"] 5
+for_window [app_id="telegramdesktop" title="Media viewer"] focus
+for_window [app_id="^.*"] inhibit_idle fullscreen
+for_window [title="^(?:Open|Save) (?:File|Folder|As).*"] floating enable, resize set width 70 ppt height 70 ppt
+font Iosevka, Light 14
+client.focused #f0f0f0 #f0f0f0 #721045 #721045 #721045
+client.unfocused #ffffff #ffffff #595959
+default_border normal 0
+default_floating_border none
+gaps inner 0
+seat * xcursor_theme Adwaita 24
+bar {
+    status_command i3blocks
+    position top
+    separator_symbol |
+    font Iosevka, Light 18
+    pango_markup enabled
+    colors {
+        statusline #000000
+        background #FFFFFF
+        focused_workspace #f0f0f0 #f0f0f0 #721045
+        inactive_workspace #ffffff #ffffff #595959
+    }
+}

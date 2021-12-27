@@ -2,7 +2,7 @@
 #:use-module (srfi srfi-1)
 #:use-module (guix gexp)
 #:use-module (gnu home services)
-#:use-module (gnu home-services wm)
+;#:use-module (gnu home-services wm)
 ;#:use-module (awb99 home i3blocks)
 ;#:use-module (home services mako)
 ;#:use-module (home services swappy)
@@ -41,10 +41,11 @@
 
 (define-public sway-services
 (list
- (service
-  home-sway-service-type
+ (service home-sway-service-type
   (home-sway-configuration
-   ;; (package sway-next)
+   ;; package does not work.
+   ;;(package sway)
+   ;; (package sway-next) ; no substitutes
    (config
     `((set $mod Mod4)
       (set $left Left)
@@ -130,8 +131,9 @@
 ;    (output * bg ,(local-file "files/wp.jpg") fill)
     ; (output eDP-1 scale 1.33)
   ; The scale factor can be fractional, but it is usually 2 for HiDPI screens.
-   (output DP-2 scale 2.0)
-   (output eDP-1 scale 2.0)
+  (output * scale 1.0)   
+  ;(output DP-2 scale 1.0)
+  ; (output eDP-1 scale 2.0)
 
 
 ; You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -188,6 +190,8 @@
       (default_border normal 0)
       (default_floating_border none)
       (gaps inner 0) ; was 8
+
+      
       (seat * xcursor_theme Adwaita 24)
 
       (bar

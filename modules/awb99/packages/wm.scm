@@ -38,9 +38,9 @@
     "mako" ; desktop notifications for Wayland 
     "waybar"
     "xlsclients" ; running window ids
-    "slurp" ; screenshots
+    ;"slurp" ; screenshots
     "grim" ; screenshots
-    "swappy" ; screenshots
+    ;"swappy" ; screenshots
     "wl-clipboard"
     "wlsunset"  ; day night gamma adjustment
     "acpi" ; acpi info (battery, temperature)
@@ -51,6 +51,9 @@
 
     "qtbase" "qtwayland" ;to make Qt work on Wayland
  
+   ; "glib:bin" ; gtk+ settings (creates conflicts)
+    ;"gsettings-desktop-schemas" ; gtk+ settings - this does not work!
+
     "xcursor-themes"
     "xclock" ;x test
 
@@ -87,17 +90,15 @@
 (define-public packages-desktop-extra
 (list
       "bemenu" ; menu library inspired by dmenu
-      ; lxqt
-      "lxqt"
-      ; lxqt
-      "mate"
+     ; "lxqt"
+     ; "mate"
       ;enlightenment
       "enlightenment"
       ;"efl" ; Enlightenment Foundation Libraries
       ; gnome
-      "gnome"
+     ; "gnome"
+      ; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
+      ; EXWM  https://config.daviwil.com/desktop
      ))   
 
 
-; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
-; EXWM  https://config.daviwil.com/desktop
