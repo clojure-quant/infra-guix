@@ -105,6 +105,11 @@ herd detailed-status
 herd status
 herd start syncthing
 
+# home
+
+cat /home/florian/.local/var/log/shepherd.log
+
+
 
 # profiles
 
