@@ -27,6 +27,9 @@
   packages-nuc-root
   (list
      "swaylock"
+   ;  "mcron"
+   ;  "shepherd"
+  
    )))
 
 

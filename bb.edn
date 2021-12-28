@@ -14,10 +14,7 @@
         ; install
          install-channels {:doc "installs channels"
                            :task (guix/pull "channels")}
-         install-nuc {:doc "installs nuc desktop packages"
-                      :task (guix/package "nuc"
-                                          "--verbosity=1"
-                                          "--no-grafts")}
+        
          install-emacs {:doc "installs emacs packages"
                         :task (guix/package "emacs"
                                  "--verbosity=3"
@@ -99,6 +96,11 @@
                               "reconfigure" 
                               "--verbosity=3"
                               "./home/config.scm")
+         
+         nuc-desktop-install {:doc "installs nuc desktop packages"
+                              :task (guix/package "nuc"
+                                           "--verbosity=1"
+                                           "--no-grafts")}
 
          nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
                             :task (shell "ddclient"

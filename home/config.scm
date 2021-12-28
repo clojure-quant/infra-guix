@@ -1,22 +1,22 @@
 (use-modules
   (guix) 
   (gnu) 
-  (gnu home)
   (gnu packages)
   (gnu packages shells)
+  (gnu packages guile-xyz)
   (gnu services)
   (guix gexp)
-;(mcron scripts mcron)
-;(mcron base)
-;(mcron config)
-(mcron job-specifier)    ; For user/system files.
-;(mcron utils)
-;(mcron vixie-specification)
-;(mcron core)
-
+  (gnu home)
   (gnu home services)
   (gnu home services shells)
   (gnu home services mcron)
+  (mcron job-specifier)   ; For user/system files.
+  (mcron base)
+ ;(mcron scripts mcron)
+ ;(mcron config)
+ ;(mcron utils)
+ ;(mcron vixie-specification)
+ ;(mcron core)
   (yellowsquid services pipewire)
   (awb99 guixutils) 
   (awb99 config helper)
@@ -28,10 +28,11 @@
   
   )
 
+; mcron home example:
+; https://hg.sr.ht/~yoctocell/guixrc/browse/yoctocell/home/mcron.scm?rev=tip
 
 
-(define (specifications->package specs)
-  (map specification->package specs))
+
 
 (define bash-service
   (service home-bash-service-type
@@ -51,10 +52,8 @@
 
 ; guix install glibc-locales
 ; export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
-; Hinweis: Vielleicht möchten Sie die nötigen Umgebungsvariablen festlegen, indem Sie dies ausführen:
-; nano ~/.bashrc
-;     GUIX_PROFILE="/home/florian/.guix-profile"
-;     . "$GUIX_PROFILE/etc/profile"
+; GUIX_PROFILE="/home/florian/.guix-profile"
+; . "$GUIX_PROFILE/etc/profile"
 
 
 (define-public fish-service
@@ -112,10 +111,10 @@
     (home-mcron-configuration
       (jobs 
         (list 
-          dummy-job-1
+         ;  dummy-job-1
          ; dummy-job-2
          ; hello-job-1  ; does not work.
-         ; hello-job-2
+          hello-job-2
          ; user-garbage-job
                 )))))
 
@@ -142,10 +141,13 @@
       )))
 
 
+(define (specifications->package specs)
+  (map specification->package specs))
+
 (home-environment
   (packages
     ;(append
-       (->packages-output ; ->packages ; map specification->package
+       (->packages-output 
           nuc-packages)
      ;  emacs-packages
      ; )
@@ -156,7 +158,7 @@
       (list
         bash-service
         fish-service
-       ; mcron-service
+        mcron-service
         env-vars-service
         my-config-service
         

@@ -141,7 +141,7 @@
   ; "openssh" ; required for git with ssh repos
   "openssh-sans-x"
   ;"openssl"
-  "mcron"
+
   "guile" 
   ;"stow" symlink manager
 ))
@@ -162,8 +162,7 @@
 
 (define-public services-packages
 (list  
-  ;"shepherd"
-  ;"mcron"
+  
   "syncthing"
   "iptables"
 ))

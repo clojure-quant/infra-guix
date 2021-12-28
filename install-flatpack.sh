@@ -3,7 +3,8 @@
 # for flatpak make sure you have xdg-destkop-portal-gtk installed
 # (or just xdg-desktop-portal, but that might not do much)
 # that will handle links, as flatpaks are sandboxed and won't have access to open other things by default
-# (and flatpak has .desktop files for the applications it installed, but you'll need to manually add a directory to XDG_DATA_DIRS)
+# (and flatpak has .desktop files for the applications it installed, but you'll need to manually
+ add a directory to XDG_DATA_DIRS)
 # find -type f -iname "*.Desktop"
 
 
