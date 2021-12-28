@@ -2,8 +2,8 @@
 
 (define-public packages-desktop-xfce
   (list 
-    ; xfce
     ; https://guix.gnu.org/en/blog/2019/running-a-guix-xfce-desktop-on-centos-7/
+    "xfce"
     "xfce4-screensaver"
     "xfce4-systemload-plugin"
     "xfce4-mount-plugin"
@@ -25,7 +25,7 @@
     "i3-wm"
     "i3status"
     "i3blocks"
-  ;  "i3lock"
+    "i3lock"
   ))
 
 (define-public packages-desktop-sway
@@ -65,6 +65,12 @@
     "swayidle"
   ;  "swaylock"
      "i3blocks" ; sway uses i3blocks for menu
+     "sysstat" ;mpstat
+     "pamixer" ;audio volume
+     "aumix"
+
+     "pipewire" ; new audio and video mixer (replaces pulseaudio)
+     "wireplumber"
   ))
 
 (define-public packages-desktop-printer

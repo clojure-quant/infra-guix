@@ -54,3 +54,10 @@ chromium --force-dark-mode --enable-features=WebUIDarkMode
 
 firefox on wayland:
 MOZ_ENABLE_WAYLAND=1 firefox
+To verify it worked, look for Window Protocol in about:support. It should say waylan
+
+
+vs-codium
+electron 12 has wayland experimental support
+https://github.com/microsoft/vscode/issues/109176
+code-oss --verbose --log=TRACE --enable-features=UseOzonePlatform --ozone-platform=wayland

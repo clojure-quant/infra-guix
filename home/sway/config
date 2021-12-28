@@ -16,6 +16,11 @@ bindsym --to-code {
     $mod+c kill
     $mod+q reload
     $mod+Shift+q exec swaymsg exit
+    
+    # cycle between workspace
+    $mod+$right workspace next
+    $mod+$left workspace prev
+    
     $mod+$up focus prev
     $mod+$down focus next
     $mod+Shift+$left move left
