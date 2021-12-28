@@ -38,7 +38,8 @@
     "unzip"
     "gzip"
     "zstd"
-    "zutils"))
+   ; "zutils" conflicts with gzip
+  ))
 
 (define-public monitor-packages
   (list

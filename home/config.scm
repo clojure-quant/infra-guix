@@ -17,6 +17,7 @@
   (gnu home services)
   (gnu home services shells)
   (gnu home services mcron)
+  (yellowsquid services pipewire)
   (awb99 guixutils) 
   (awb99 config helper)
   (awb99 packages nuc)
@@ -157,7 +158,12 @@
         fish-service
        ; mcron-service
         env-vars-service
-        my-config-service)
+        my-config-service
+        
+        (service home-pipewire-service-type)
+        (service home-wireplumber-service-type)
+      
+      )
       ;sway-services
       ;emacs-services
       ;alacritty-services

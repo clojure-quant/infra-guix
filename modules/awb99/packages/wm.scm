@@ -66,11 +66,11 @@
   ;  "swaylock"
      "i3blocks" ; sway uses i3blocks for menu
      "sysstat" ;mpstat
-     "pamixer" ;audio volume
-     "aumix"
+   ;  "pamixer" ;audio volume
+   ;  "aumix"
 
      "pipewire" ; new audio and video mixer (replaces pulseaudio)
-     "wireplumber"
+     "wireplumber" ; wpctl status
   ))
 
 (define-public packages-desktop-printer
