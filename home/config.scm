@@ -112,9 +112,9 @@
       (jobs 
         (list 
          ;  dummy-job-1
-         ; dummy-job-2
+          dummy-job-2
          ; hello-job-1  ; does not work.
-          hello-job-2
+         ; hello-job-2
          ; user-garbage-job
                 )))))
 
