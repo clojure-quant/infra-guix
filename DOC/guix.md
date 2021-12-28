@@ -89,6 +89,18 @@ https://github.com/daviwil/dotfiles/blob/master/Systems.org
 1m = 1 month
 guix gc --delete-generations=1m
 
+guix home delete-generations
+guix package --delete-generations
+
+sudo guix package --list-generations
+guix package --profile=$HOME/.config/guix/current --list-generations
+guix package --profile=$HOME/.config/guix/current --delete-generations
+If you want to "act as root", you have to do `sudo --login foo`
+Remember, `guix pull` is per user. That means that each user have their own Guix and they can manage it independently
+
+sudo --login guix describe
+
+
 # herd
 
 sudo herd status
