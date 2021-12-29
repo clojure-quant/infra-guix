@@ -113,5 +113,6 @@
   ; "kmail"
   "celestia-gtk" ; 3d simulation of universe/planets
    "vscodium"
+  ;"nss-certs"
  
 ))

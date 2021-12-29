@@ -136,3 +136,8 @@ cat ~/opt/sambamba/etc/profile
 For trying things out, I recommend using `guix environment --ad-hoc foo`
 That way, your profile history does not contain the thing that you just wanted to try out, so `guix gc` can work more efficiently
 
+
+ probably because GIT_EXEC_PATH is unset (did you try logging out and in again?)
+<xelxebar>	mbakke: Oh. It's set, but to the wrong thing :/
+<mbakke>	huh
+<xelxebar>	For some reason it's getting set to $HOME/.config/guix/current/libexec/gi
