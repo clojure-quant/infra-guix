@@ -4,7 +4,7 @@ https://guix.gnu.org/manual/en/html_node/Building-the-Installation-Image.html#Bu
 https://github.com/deusmax/guixsd-config-install
 https://github.com/SystemCrafters/guix-installer
 
-Has: wine, emacs, nvidia, broadcom, clojure.
+Has: wine, nvidia, broadcom, clojure.
 https://gitlab.com/nonguix/nonguix.git
 
 

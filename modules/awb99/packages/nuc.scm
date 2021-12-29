@@ -36,7 +36,7 @@
 
 (define-public nuc-packages
 (append 
-  packages-nuc-root
+  ; packages-nuc-root
   ; linux cli
   security-packages
   archive-packages
@@ -56,7 +56,7 @@
   desktop-office-packages
   desktop-browser-packages 
   desktop-tool-packages
-  ;emacs-packages ; dont include emacs packges here. home will conflict.
+  emacs-packages ; dont include emacs packges here. home will conflict.
   ))
 
  

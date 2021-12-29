@@ -13,7 +13,7 @@
 
         ; install
          install-channels {:doc "installs channels"
-                           :task (guix/pull "channels")}
+                           :task (guix/pull "channels" "--allow-downgrades")}
         
          install-emacs {:doc "installs emacs packages"
                         :task (guix/package "emacs"
@@ -85,6 +85,7 @@
         ; NUC
          nuc-reconfigure-user (guix/system "nuc"
                                            "reconfigure"
+                                           "--allow-downgrades"
                                            ;"--no-grafts"
                                            )
          nuc-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"

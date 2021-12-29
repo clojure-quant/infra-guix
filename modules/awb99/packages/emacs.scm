@@ -2,13 +2,17 @@
 
 (define-public emacs-packages
   (list 
-  "emacs-orderless" ; multiple regex match
-  "emacs-modus-themes" ; themes for better readability
-  "emacs-which-key" ; displays incomplete keybindings
-  "emacs-eros" ; eval result overlays
-  "emacs-gcmh" ; garbage collector magic hack
-  "emacs-minions" ; minor mode menu
-  "emacs-async"
+   ;"emacs"
+   "emacs-next"
+   "emacs-evil"
+   "emacs-treemacs"
+;  "emacs-orderless" ; multiple regex match
+;  "emacs-modus-themes" ; themes for better readability
+;  "emacs-which-key" ; displays incomplete keybindings
+;  "emacs-eros" ; eval result overlays
+;  "emacs-gcmh" ; garbage collector magic hack
+  ; "emacs-minions" ; minor mode menu
+;  "emacs-async"
   ;"emacs-marginalia"
 ;     "emacs-rg" ; rip-grep
 ;    "emacs-nov-el" ; ebook reader
@@ -21,25 +25,25 @@
  ; "emacs-macrostep"
   ;"emacs-csv-mode"
   ;"emacs-consult" ; completion functions
-  "emacs-project"
+  ;"emacs-project"
 ;  "emacs-erc-image"
 ;  "emacs-erc-hl-nicks"
-  "emacs-clojure-mode"
-  "emacs-cider"
-  "emacs-geiser"
-  "emacs-geiser-guile"
-  "emacs-magit"
+  ;"emacs-clojure-mode"
+  ;"emacs-cider"
+ ; "emacs-geiser"
+ ; "emacs-geiser-guile"
+ ; "emacs-magit"
   ;"emacs-geiser-eros"
   ;"emacs-flymake-kondor"
-  "emacs-use-package"
-  "emacs-envrc"
-  "emacs-mini-frame"
-  "emacs-embark" ; right click context menu
+  ;"emacs-use-package"
+ ; "emacs-envrc"
+ ; "emacs-mini-frame"
+ ; "emacs-embark" ; right click context menu
   ;"emacs-sly" ; common lisp repl
-  "emacs-paredit"
-  "emacs-notmuch"
-  "emacs-vertico" ; vertical completion
-  "emacs-corfu" ; completion in region
+  ;"emacs-paredit"
+  ;"emacs-notmuch"
+;  "emacs-vertico" ; vertical completion
+ ; "emacs-corfu" ; completion in region
  ; "emacs-polymode-org"
  ; "emacs-org-appear"
   ;"emacs-git-email-fix"

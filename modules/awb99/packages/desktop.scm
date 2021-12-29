@@ -19,7 +19,6 @@
     ;image
     "sxiv" ; simple X image viewer
     "glimpse" ; image editor
-    "xdot" ; graphviz .dot viewer needed for guix graph
     "imagemagick"
 
     ;; gstreaner us zsed by Nyxt media dependencies.
@@ -100,7 +99,6 @@
 
 (define-public desktop-tool-packages
 (list 
-  "xdot" ; graphviz .dot viewer needed for guix graph
   "syncthing-gtk" 
 
   ; tools

@@ -17,7 +17,7 @@
     ; "clojure"   ; from gnu guix  this is old.  brings clojure (OLD)
     ; "leiningen" ; nongnu downloads java-8 jar from github repo, v 2.9.5
    
-    "graphviz" ;  dependency graphs
+   ; "graphviz" ;  dependency graphs
     "babashka" ; channel gorilla
     "certbot" ; letsencrypt certs
     "git"

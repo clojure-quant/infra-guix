@@ -122,7 +122,7 @@
     "gparted"
     "parted"
     "inxi"  ; hardware info 
-    "cpuid" ; cpu info
+  ;  "cpuid" ; cpu info  ; no substitutes available
     "cpuinfo" ; cpu info
     "tree"
     "whois"

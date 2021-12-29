@@ -17,13 +17,13 @@
  ;(mcron utils)
  ;(mcron vixie-specification)
  ;(mcron core)
-  (yellowsquid services pipewire)
+;  (yellowsquid services pipewire)
   (awb99 guixutils) 
   (awb99 config helper)
   (awb99 packages nuc)
   ;((awb99 home emacs) #:prefix emacs:)
   ;(awb99 home sway)
-  ;(awb99 home emacs)
+;  (awb99 home emacs)
   ;(awb99 home alacritty)
   
   )
@@ -162,12 +162,12 @@
         env-vars-service
         my-config-service
         
-        (service home-pipewire-service-type)
-        (service home-wireplumber-service-type)
+       ; (service home-pipewire-service-type)
+       ; (service home-wireplumber-service-type)
       
       )
       ;sway-services
-      ;emacs-services
+;      emacs-services
       ;alacritty-services
     )
 

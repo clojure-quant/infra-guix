@@ -22,6 +22,5 @@
 ;(packages->manifest
 ;(map (compose list specification->package+output)
 ;     '("abbaye"
-;       "emacs"
 ;       "transmission:gui"
 ;       "youtube-dl")))

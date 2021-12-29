@@ -7,7 +7,9 @@
 
       (channel
         (name 'guix)
-        (url "https://git.savannah.gnu.org/git/guix.git"))
+        (url "https://git.savannah.gnu.org/git/guix.git")
+        (commit "2c451db39aabc69bdbf186f412ee6e0b4e180ccb")
+      )
 
       (channel
         (name 'nonguix) ; binary build system, clojure, dotnet, wine
@@ -25,14 +27,14 @@
         (name 'gorilla)
         (url "https://github.com/clojure-quant/gorilla-guix-chan")) ; babashka + vs-codium
 
-   ;   (channel ; extra home services
-   ;     (name 'rde) ; https://sr.ht/~abcdw/rde/
-   ;     (url "https://git.sr.ht/~abcdw/rde")
-   ;     (introduction
-   ;      (make-channel-introduction
-   ;       "257cebd587b66e4d865b3537a9a88cccd7107c95"
-   ;       (openpgp-fingerprint
-   ;        "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
+      (channel ; extra home services
+        (name 'rde) ; https://sr.ht/~abcdw/rde/
+        (url "https://git.sr.ht/~abcdw/rde")
+        (introduction
+         (make-channel-introduction
+          "257cebd587b66e4d865b3537a9a88cccd7107c95"
+          (openpgp-fingerprint
+           "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
 
     (channel 
        (name 'pipewire)
