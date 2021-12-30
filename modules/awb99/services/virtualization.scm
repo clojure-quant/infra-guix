@@ -25,10 +25,7 @@
       (virtlog-configuration
         (max-size 2)
         (max-clients 1000)))))
-
-
-  
-
+ 
 
 ; (define (vm-services-patch services)
 ;   (modify-services services

@@ -106,6 +106,18 @@
   "xdotool" ; determine windows class names (for i3 wm rules)
   ; "gvfs" ; for user mounts
   "catfish" ; file search tool
+
+  ;  file explorer
+  "dolphin" 
+  "krusader" 
+
+  ; pdf editor
+  "inkscape"
+  "scribus"
+
+  "gimp"
+
+
   "udiskie" ; mount usb drives https://github.com/coldfix/udiskie/wiki/Usage
   ;"remmina"
   ; "scm"  ; scheme to c compiler

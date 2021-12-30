@@ -7,7 +7,7 @@
    "emacs-evil"
    "emacs-treemacs"
 ;  "emacs-orderless" ; multiple regex match
-;  "emacs-modus-themes" ; themes for better readability
+   "emacs-modus-themes" ; themes for better readability
 ;  "emacs-which-key" ; displays incomplete keybindings
 ;  "emacs-eros" ; eval result overlays
 ;  "emacs-gcmh" ; garbage collector magic hack
@@ -24,12 +24,13 @@
  ; "emacs-restclient"
  ; "emacs-macrostep"
   ;"emacs-csv-mode"
-  ;"emacs-consult" ; completion functions
+  "emacs-consult" ; completion functions
   ;"emacs-project"
 ;  "emacs-erc-image"
 ;  "emacs-erc-hl-nicks"
-  ;"emacs-clojure-mode"
-  ;"emacs-cider"
+  "emacs-clojure-mode"
+  "emacs-cider"
+  "emacs-projectile" ; made by bbastsov
  ; "emacs-geiser"
  ; "emacs-geiser-guile"
  ; "emacs-magit"
@@ -51,6 +52,10 @@
   ;"emacs-avy"
   ;"emacs-ace-window"
   ;"emacs-telega"
+  "emacs-refactor"
+  "emacs-flycheck-package"
+  ; prelude: bosidar keybindings directly.
+
  )
     )
 

@@ -71,6 +71,11 @@ title_align center
 
 output * scale 2.0
 
+
+input * {
+    xkb_layout at
+}
+
 input 1118:1874:Microsoft_Wired_Keyboard_400 {
     xkb_layout at
 }

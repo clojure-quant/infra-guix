@@ -46,8 +46,8 @@
     ; the default %desktop-services variable doesn’t include any of them by default. 
     (service xfce-desktop-service-type)
     (service gnome-desktop-service-type)
-    (service mate-desktop-service-type)
-    (service lxqt-desktop-service-type)
+   ; (service mate-desktop-service-type)
+   ; (service lxqt-desktop-service-type)
     (service enlightenment-desktop-service-type)
 
   
@@ -163,7 +163,7 @@
         "audio" 
         "video"
         "kvm"  ; run qemu as florian with kvm support.
-        ; "libvirt"
+        "libvirt"
         ;;"wireshark"
       )))
     (user-account
