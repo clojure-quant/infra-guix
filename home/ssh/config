@@ -13,7 +13,6 @@ Host debian.hoertlehner.com
 
 Host aws.hoertlehner.com
   IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
-  UserKnownHostsFile=/dev/null
   User admin
 
 
