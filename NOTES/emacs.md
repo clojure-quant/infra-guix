@@ -44,3 +44,13 @@ prelude
 emacs-perspective
 emacs-parinfer-mode
 emacs-paredit
+
+
+emacs-evil
+emacs-evil-smartparens
+emacs-evil-tmux-navigator
+emacs-evil-paredit
+emacs-evil-owl
+emacs-evil-mc
+emacs-evil-leader
+emacs-evil-cleverparens
