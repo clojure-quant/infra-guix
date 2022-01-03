@@ -8,7 +8,6 @@
       (channel
         (name 'guix)
         (url "https://git.savannah.gnu.org/git/guix.git")
-        (commit "2c451db39aabc69bdbf186f412ee6e0b4e180ccb")
       )
 
       (channel
