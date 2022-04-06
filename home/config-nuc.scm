@@ -148,11 +148,12 @@
 
 (home-environment
   (packages
-    ;(append
-       (->packages-output 
-          nuc-packages)
-     ;  emacs-packages
-     ; )
+    (list )
+    ;;(append
+     ;  (->packages-output 
+     ;     nuc-packages)
+     ;;  emacs-packages
+     ;; )
       
       )
   (services

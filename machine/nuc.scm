@@ -159,7 +159,7 @@
       '("wheel" 
         "lp"  ; line printer
         "lpadmin" ; line printer admin
-        "netdev" 
+        "netdev" ; network/wifi admin
         "audio" 
         "video"
         "kvm"  ; run qemu as florian with kvm support.

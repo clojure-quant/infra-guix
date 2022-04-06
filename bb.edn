@@ -96,7 +96,7 @@
                               "home" 
                               "reconfigure" 
                               "--verbosity=3"
-                              "./home/config.scm")
+                              "./home/config-nuc.scm")
          
          nuc-desktop-install {:doc "installs nuc desktop packages"
                               :task (guix/package "nuc"

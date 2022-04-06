@@ -1,4 +1,5 @@
 (define-module (awb99 packages nuc)
+  #:use-module (gnu packages linuxp) ; wifi driver
   #:use-module (awb99 packages tools)
   #:use-module (awb99 packages fonts)
   #:use-module (awb99 packages wm)
@@ -27,6 +28,7 @@
   packages-nuc-root
   (list
      "swaylock"
+     "rtl8812au-aircrack-ng-linux-module"
    ;  "mcron"
    ;  "shepherd"
   
