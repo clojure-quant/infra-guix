@@ -39,9 +39,9 @@
        (name 'pipewire)
        (url "https://github.com/yellowsquid/squidguix"))
   
-;      (channel
-;        (name 'pantherx)
-;        (url "https://channels.pantherx.org/git/pantherx-extra.git")) ; vs-codium
+      (channel
+        (name 'pantherx)
+        (url "https://channels.pantherx.org/git/pantherx-extra.git")) ; vs-codium
 
       
   )
