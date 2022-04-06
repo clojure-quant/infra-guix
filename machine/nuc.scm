@@ -210,6 +210,9 @@
             (target "cryptroot")
             (type luks-device-mapping))))
 
+  ; for usb wifi card
+  (kernel-loadable-modules (list rtl8812au-aircrack-ng-linux-module))
+
   ; swapfile has to be created first.
   ; (swap-devices 
   ;  (list "/swapfile"))
