@@ -35,9 +35,9 @@
           (openpgp-fingerprint
            "2841 9AC6 5038 7440 C7E9  2FFA 2208 D209 58C1 DEB0"))))
 
-    (channel 
-       (name 'pipewire)
-       (url "https://github.com/yellowsquid/squidguix"))
+    ;(channel 
+    ;   (name 'pipewire)
+    ;   (url "https://github.com/yellowsquid/squidguix"))
   
       (channel
         (name 'pantherx)

@@ -33,7 +33,7 @@
     "wayland"
     ;  "xrandr" ; hidpi x-windows scaling
     ;"wlr-randr"
-    "wofi" ; wayland rofi
+    "wofi" ; wayland rofi - programm launcher
     "alacritty" ; terminal
     "mako" ; desktop notifications for Wayland 
     "waybar"

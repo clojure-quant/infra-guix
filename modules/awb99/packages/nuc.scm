@@ -1,5 +1,5 @@
 (define-module (awb99 packages nuc)
-  #:use-module (gnu packages linuxp) ; wifi driver
+  #:use-module (gnu packages linux) ; wifi driver
   #:use-module (awb99 packages tools)
   #:use-module (awb99 packages fonts)
   #:use-module (awb99 packages wm)
@@ -24,41 +24,41 @@
   ))
 
 (define-public packages-nuc-root-only
-(append
-  packages-nuc-root
-  (list
-     "swaylock"
-     "rtl8812au-aircrack-ng-linux-module"
-   ;  "mcron"
-   ;  "shepherd"
-  
+  (append
+    packages-nuc-root
+    (list
+      "swaylock"
+      ; "rtl8812au-aircrack-ng-linux-module"
+      ;  "mcron"
+      ;  "shepherd"
    )))
 
 
 
 (define-public nuc-packages
 (append 
-  ; packages-nuc-root
-  ; linux cli
+; ********************  packages-nuc-root
+; ********************  linux cli
   security-packages
   archive-packages
   monitor-packages
   network-packages
   file-transfer-packages
   hardware-packages
-; clojure apps
+  ; ********************  clojure apps 
   clojure-packages
   node-packages
-; python-packages
-; r-packages
+; ********************  python-packages
+; ********************  r-packages
+; ********************  cpp-packages
   build-packages
-; desktop
+; ********************  desktop
   desktop-chat-packages
   desktop-multimedia-packages
   desktop-office-packages
   desktop-browser-packages 
   desktop-tool-packages
-  emacs-packages ; dont include emacs packges here. home will conflict.
+  ;emacs-packages ; dont include emacs packges here. home will conflict.
   ))
 
  

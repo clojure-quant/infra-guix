@@ -36,6 +36,7 @@
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
                             (guix/guix "upgrade"))}
+                            
          update {:doc "Updates guix (gc pull upgrade)" ; ensure sequential order 
                  :task (do ;(run 'gc)
                          (run 'pull)
@@ -83,13 +84,13 @@
                                      "-drive" "if=none,file=./artefact/installer.qcow2,id=myhd")}
 
         ; NUC
-         nuc-reconfigure-user (guix/system "nuc"
+         nuc-os-reconfigure-user (guix/system "nuc"
                                            "reconfigure"
                                            "--allow-downgrades"
                                            ;"--no-grafts"
                                            )
-         nuc-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"
-                           :task (do (guix/sudo "nuc-reconfigure-user")
+         nuc-os-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"
+                           :task (do (guix/sudo "nuc-os-reconfigure-user")
                                      (guix/guix "system" "describe"))}
 
          nuc-home-configure (guix/guix 
@@ -99,7 +100,7 @@
                               "./home/config-nuc.scm")
          
          nuc-desktop-install {:doc "installs nuc desktop packages"
-                              :task (guix/package "nuc"
+                              :task (guix/package "nuc-user"
                                            "--verbosity=1"
                                            "--no-grafts")}
 
@@ -107,17 +108,19 @@
                             :task (shell "ddclient"
                                          "-foreground"
                                          "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
-        nuc-weather {:doc "installs emacs packages"
-                     :task (guix/guix "weather"
-                                    "--display-missing"
+        nuc-weather {:doc "substitute availability for nuc desktop packages"
+                     :task (do (guix/guix "weather"
+                                     "--display-missing"
                                     ; "-coverage"
-                                 "--manifest=./manifest/nuc.scm")}
-          emacs-weather {:doc "installs emacs packages"
+                                   "--manifest=./manifest/nuc.scm")
+                                (println "nuc weatehr done."))
+                                   }
+          emacs-weather {:doc "substitute availability for emacs packages"
                        :task (guix/guix "weather"
                                         "--display-missing"
                                     ; "-coverage"
                                         "--manifest=./manifest/emacs.scm")}
-         nuc-weather-root {:doc "installs emacs packages"
+         nuc-weather-root {:doc "substitute availability for nuc system packages"
                       :task (guix/guix "weather"
                                        "--display-missing"
                                     ; "-coverage"

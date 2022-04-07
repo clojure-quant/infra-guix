@@ -86,7 +86,7 @@
     ; browser
     "icecat" ; - A free software alternative to Firefox
    ; "ungoogled-chromium"
-   "ungoogled-chromium-wayland"
+  ; "ungoogled-chromium-wayland"
    "ublock-origin-chromium"
    "midori"
    ; "nomad"

@@ -21,6 +21,7 @@
   (awb99 guixutils) 
   (awb99 config helper)
   (awb99 packages nuc)
+  (awb99 packages wm)
   ;((awb99 home emacs) #:prefix emacs:)
   ;(awb99 home sway)
 ;  (awb99 home emacs)
@@ -148,10 +149,11 @@
 
 (home-environment
   (packages
-    (list )
+    ;(list )
     ;;(append
-     ;  (->packages-output 
-     ;     nuc-packages)
+     ; (->packages-output nuc-packages)
+      (->packages-output packages-desktop-sway)
+       
      ;;  emacs-packages
      ;; )
       
