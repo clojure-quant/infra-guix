@@ -8,7 +8,7 @@ https://framagit.org/tyreunom/system-configuration
 guix build farm config:
 https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/berlin.scm
 
-nice config, machine/environment dependnet
+nice config, machine/environment dependent
 https://git.sr.ht/~efraim/guix-config/tree/master/item/efraim-home.scm 
 
 https://github.com/dustinlyons/guix-config/blob/main/Workstation-Desktop.org

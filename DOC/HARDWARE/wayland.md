@@ -1,6 +1,6 @@
 
 
-WOFI = WAYLAND ROFI 
+## WOFI = WAYLAND ROFI 
 
 Currently wofi has 3 built in modes
 
@@ -14,3 +14,7 @@ Currently wofi has 3 built in modes
 In the event $XDG_DATA_HOME is not specified it defaults to ~/.local/share. If $XDG_DATA_DIRS is not specified it defaults to /usr/local/share:/usr/share.
 
 Combi is not a mode however it does exist as a feature. You can use it by doing --show mode1,mode2,mode3,etc. You can mix and match any number of modes however each mode can only be loaded once so doing something like --show run,drun,run is not supported although I'm not sure why you'd do that in the first place.
+
+
+## polybar
+

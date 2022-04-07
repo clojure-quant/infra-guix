@@ -67,7 +67,8 @@
       (environment-variables
        '(("TEST" . "val")
          ("GDK_SCALE" . "1")
-      ))
+         ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
+           ))
     )))
 
 (define dummy-job-1
@@ -141,6 +142,7 @@
         ("USELESS_VAR" . #f)
        ; ("_JAVA_AWT_WM_NONREPARENTING" . #t)
         ("GDK_SCALE" . "1")
+        ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
       )))
 
 
@@ -159,7 +161,7 @@
       
       )
   (services
-    (append 
+    ;(append 
       (list
         bash-service
         fish-service
@@ -170,7 +172,7 @@
        ; (service home-pipewire-service-type)
        ; (service home-wireplumber-service-type)
       
-      )
+     ; )
       ;sway-services
 ;      emacs-services
       ;alacritty-services
