@@ -13,6 +13,7 @@ bindsym --to-code {
     $mod+m exec chromium --force-dark-mode --enable-features=WebUIDarkMode
     $mod+s exec wofi --show ssh
     $mod+w exec wofi --show window
+    $mod+v exec codium --enable-features=UseOzonePlatform --ozone-platform=wayland
     $mod+c kill
     $mod+q reload
     $mod+Shift+q exec swaymsg exit
@@ -95,6 +96,10 @@ assign [app_id="chromium"] 2
 assign [class="chromium/Chromium"] 2
 assign [app_id="codium"] 3
 assign [instance="codium"] 3
+assign [app_id="vscodium"] 3
+assign [instance="vscodium"] 3
+assign [app_id="VSCodium"] 3
+assign [instance="VSCodium"] 3
 assign [instance="emacs"] 4
 assign [app_id="telegramdesktop"] 5
 for_window [app_id="telegramdesktop" title="Media viewer"] focus
