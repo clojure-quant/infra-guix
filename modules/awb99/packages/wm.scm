@@ -60,6 +60,8 @@
     "wmctrl" ; manage x-windows
    ; "interrobang" ; launcher
 
+    "light" ; background lightness
+
     "sway"
     "swaybg" ; wallpaper background
     "swayidle"

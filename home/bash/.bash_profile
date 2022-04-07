@@ -19,3 +19,7 @@ if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
 
 GDK_SCALE=1
 export GDK_SCALE=1
+
+# icecat/firefox with wayland:
+MOZ_ENABLE_WAYLAND=1
+export MOZ_ENABLE_WAYLAND=1

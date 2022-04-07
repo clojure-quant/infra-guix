@@ -1,4 +1,9 @@
 
+icecat/firefox on wayland:
+MOZ_ENABLE_WAYLAND=1 icecat
+MOZ_ENABLE_WAYLAND=1 firefox
+To verify it worked, look for Window Protocol in about:support. It should say wayland
+
 
 
 https://wiki.archlinux.org/title/HiDPI#Chromium_/_Google_Chrome
