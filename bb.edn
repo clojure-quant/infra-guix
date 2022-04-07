@@ -36,7 +36,7 @@
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
                             (guix/guix "upgrade"))}
-                            
+
          update {:doc "Updates guix (gc pull upgrade)" ; ensure sequential order 
                  :task (do ;(run 'gc)
                          (run 'pull)
@@ -89,6 +89,13 @@
                                            "--allow-downgrades"
                                            ;"--no-grafts"
                                            )
+
+        nuc-os-weather {:doc "substitute availability for nuc system packages"
+                        :task (guix/guix "weather"
+                                       "--display-missing"
+                                    ; "-coverage"
+                                       "--manifest=./manifest/nuc-system.scm")}
+                                           
          nuc-os-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"
                            :task (do (guix/sudo "nuc-os-reconfigure-user")
                                      (guix/guix "system" "describe"))}
@@ -99,32 +106,30 @@
                               "--verbosity=3"
                               "./home/config-nuc.scm")
          
-         nuc-desktop-install {:doc "installs nuc desktop packages"
+         nuc-user-install {:doc "installs nuc desktop packages"
                               :task (guix/package "nuc-user"
                                            "--verbosity=1"
                                            "--no-grafts")}
+
+         nuc-user-weather {:doc "substitute availability for nuc desktop packages"
+                      :task (do (guix/guix "weather"
+                                     "--display-missing"
+                                    ; "-coverage"
+                                   "--manifest=./manifest/nuc-user.scm")
+                                (println "nuc weathrr done."))
 
          nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
                             :task (shell "ddclient"
                                          "-foreground"
                                          "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
-        nuc-weather {:doc "substitute availability for nuc desktop packages"
-                     :task (do (guix/guix "weather"
-                                     "--display-missing"
-                                    ; "-coverage"
-                                   "--manifest=./manifest/nuc.scm")
-                                (println "nuc weatehr done."))
+       
                                    }
           emacs-weather {:doc "substitute availability for emacs packages"
                        :task (guix/guix "weather"
                                         "--display-missing"
                                     ; "-coverage"
                                         "--manifest=./manifest/emacs.scm")}
-         nuc-weather-root {:doc "substitute availability for nuc system packages"
-                      :task (guix/guix "weather"
-                                       "--display-missing"
-                                    ; "-coverage"
-                                       "--manifest=./manifest/nuc-system.scm")}
+    
          ; VM TERMINAL
 
          build-vm {:doc "builds vm-image to be run with qemu"
