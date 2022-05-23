@@ -8,3 +8,8 @@
 
   $ ln -s "/nix/var/nix/profiles/per-user/$USER/profile" ~/.nix-profile
   $ source /run/current-system/profile/etc/profile.d/nix.sh
+
+  To use Nix, some environment variables should be set. In particular, PATH should contain the directories prefix/bin and ~/.nix-profile/bin. The first directory contains the Nix tools themselves, while ~/.nix-profile is a symbolic link to the current user environment (an automatically generated package consisting of symlinks to installed packages). The simplest way to set the required environment variables is to include the file prefix/etc/profile.d/nix.sh in your ~/.profile (or similar), like this:
+
+
+source prefix/etc/profile.d/nix.sh

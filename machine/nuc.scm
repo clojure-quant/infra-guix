@@ -69,16 +69,16 @@
         (extensions
           (list cups-filters hplip splix ))))
 
-    (service certbot-service-type
-     (certbot-configuration
-      (email "hoertlehner@gmail.com")
-      (webroot "/var/www")
-       (certificates
-        (list
-         (certificate-configuration
-             (name "wien")
-             (domains '("wien.hoertlehner.com" )))
-         ))))
+ ;   (service certbot-service-type
+ ;    (certbot-configuration
+ ;     (email "hoertlehner@gmail.com")
+ ;     (webroot "/var/www")
+ ;      (certificates
+ ;       (list
+ ;        (certificate-configuration
+ ;            (name "wien")
+ ;            (domains '("wien.hoertlehner.com" )))
+ ;        ))))
 
     (service iptables-service-type
      (iptables-configuration
