@@ -28,6 +28,7 @@
     packages-nuc-root
     (list
       "swaylock"
+      "nix"
       ; "rtl8812au-aircrack-ng-linux-module"
       ;  "mcron"
       ;  "shepherd"

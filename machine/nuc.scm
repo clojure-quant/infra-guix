@@ -1,18 +1,21 @@
 (use-modules 
   (gnu)
   (srfi srfi-1) ; remove
+  (gnu packages linux)
   (gnu packages cups)
   (gnu packages suckless)
   (gnu packages wm)
   (gnu packages finance)  ; trezord-udev-rules
   (gnu packages shells) ; zsh
   (gnu packages docker) ; docker
-    
+  (gnu packages package-management) ; nix
+
   (gnu services base) ; mingetty 
   (gnu services docker) ; docker service
   (gnu services networking) ; ntpd
   (gnu services virtualization) ; qemu
   (gnu services sddm) ; sddm login manager
+  (gnu services nix) ; nix
   
   (awb99 packages nuc)
   (awb99 services trezord)
@@ -104,6 +107,9 @@
     ;(set-xorg-configuration
     ;  (xorg-configuration
     ;    (keyboard-layout (keyboard-layout "at"))))
+      (service nix-service-type)
+
+
 
     ))
 
@@ -163,7 +169,7 @@
         "audio" 
         "video"
         "kvm"  ; run qemu as florian with kvm support.
-        "libvirt"
+       ; "libvirt"
         ;;"wireshark"
       )))
     (user-account
