@@ -1,7 +1,7 @@
 (use-modules 
   (gnu)
   (srfi srfi-1) ; remove
-  (gnu packages linux)
+  (gnu packages linux) ; wifi aircrack module
   (gnu packages cups)
   (gnu packages suckless)
   (gnu packages wm)

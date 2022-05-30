@@ -20,6 +20,11 @@
                         :task (guix/package "emacs"
                                  "--verbosity=3"
                                  "--no-grafts")}
+
+         install-channels-home {:doc "installs channels"
+                           :task (guix/pull "channels-home" ;"--allow-downgrades"
+                                            )}
+
          ; guix maintenance
          gc {:doc "guix garbage collect"
              :task (do (println "guix garbage collect..")

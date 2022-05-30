@@ -124,7 +124,7 @@
   ;"claws-mail"
   ; "kmail"
   "celestia-gtk" ; 3d simulation of universe/planets
-   "vscodium"
+  ; "vscodium"
   ;"nss-certs"
  
 ))

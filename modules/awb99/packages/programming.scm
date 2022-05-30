@@ -12,10 +12,10 @@
     "java-swt"
     "rlwrap"
     
-    "clojure-tools" ; nongnu version brings clj and clojure
+    ;"clojure-tools" ; nongnu version brings clj and clojure
     ; "clojure-tools-deps-alpha" ; nongnu version - clojure-tools already brings this.
     ; "clojure-tools-cli" ; guix version (OLD)
-    ; "clojure"   ; from gnu guix  this is old.  brings clojure (OLD)
+     "clojure"   ; from gnu guix  this is old.  brings clojure (OLD)
     ; "leiningen" ; nongnu downloads java-8 jar from github repo, v 2.9.5
    
    ; "graphviz" ;  dependency graphs

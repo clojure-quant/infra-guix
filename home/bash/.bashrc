@@ -42,3 +42,5 @@ GUIX_PROFILE="/home/florian/.guix-profile"
 
 GDK_SCALE=1
 export GDK_SCALE=1
+
+export PATH=$PATH:~/.nix-profile/bin
