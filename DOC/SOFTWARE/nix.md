@@ -13,3 +13,27 @@
 
 
 source prefix/etc/profile.d/nix.sh
+
+
+sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable 
+sudo nix-channel --update
+
+
+You can then install stuff using sudo nix-env -i <blah> (must use sudo to access the nix-daemon
+
+
+See what installable packages are currently available in the channel:
+nix-env -qaP
+
+Install some packages from the channel:
+nix-env -iA nixpkgs.hello
+
+
+To keep up-to-date with the channel, do:
+
+
+$ nix-channel --update nixpkgs
+$ nix-env -u '*'
+
+
+

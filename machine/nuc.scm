@@ -23,7 +23,7 @@
   (awb99 services file-sync)
   (awb99 config cron)
   (awb99 config iptables)
-  (awb99 services ddclient)
+  ;(awb99 services ddclient)
   (awb99 services wayland)
 )
              
@@ -96,7 +96,7 @@
 
     service-bin-links
     service-syncthing
-    service-ddclient-nuc 
+    ; service-ddclient-nuc 
 
     (service docker-service-type)
     (service qemu-binfmt-service-type ; needed for qemu arm system compile
