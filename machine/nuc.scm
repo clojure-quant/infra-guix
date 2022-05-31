@@ -19,6 +19,7 @@
   (gnu services nix) ; nix
   
   (awb99 packages nuc)
+  (awb99 services monitor)
   (awb99 services trezord)
   (awb99 services special-files)
   (awb99 services file-sync)
@@ -129,6 +130,7 @@
         (udev-configuration
           (inherit config)
           (rules (cons* trezord-udev-rules
+                        (list %backlight-udev-rule)
                         (udev-configuration-rules config)))))
           ))
 
@@ -164,7 +166,7 @@
      ; (identity "/home/florian/repo/myLinux/data/ssh/coin")
       (supplementary-groups
       '("wheel" 
-        "lp"  ; line printer
+        "lp"  ; line printer ; control bluetooth devices
         "lpadmin" ; line printer admin
         "netdev" ; network/wifi admin
         "audio" 
@@ -172,6 +174,7 @@
         "kvm"  ; run qemu as florian with kvm support.
        ; "libvirt"
         ;;"wireshark"
+        ; "realtime"  ;; Enable realtime scheduling
       )))
     (user-account
       (name "bob")
