@@ -60,6 +60,8 @@
 (define-public fish-service
   (service home-fish-service-type
     (home-fish-configuration
+      (config
+        (list (local-file "./fish/config.fish" "config.fish")))
       (aliases
        '(("l" . "ls -a")))
       (abbreviations
@@ -136,6 +138,7 @@
             `(".config/waybar/style.css" ,(local-file "./waybar/style.css"))
            ; clojure
             `(".config/clojure/deps.edn" ,(local-file "./clojure/deps.edn"))
+            `(".config/clojure/cljfmt.edn" ,(local-file "./clojure/cljfmt.edn"))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 

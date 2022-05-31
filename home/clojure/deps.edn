@@ -37,7 +37,7 @@
            :cljfmt-fix
            {:extra-deps {cljfmt/cljfmt {:mvn/version "0.8.0"}}
             :main-opts ["-m" "cljfmt.main" "fix" 
-                        ;"--indents" "cljfmt.edn"
+                        "--indents" "/home/florian/.config/clojure/cljfmt.edn"
                         ]}}
 
   ;; Provider attributes

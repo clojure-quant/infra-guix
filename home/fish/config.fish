@@ -1,8 +1,5 @@
-clear
 
-echo Started dev environment
 
-ls "$GUIX_ENVIRONMENT/bin"
+fish_add_path /home/florian/.nix-profile/bin
 
-echo "node version" (node --version)
-java -version
+fish_add_path /home/florian/clojure/bin

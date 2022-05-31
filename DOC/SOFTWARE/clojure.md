@@ -1,4 +1,9 @@
 
+## clojure path
+
+ export PATH=$PATH:/home/florian/clojure/bin
+
+
 
 
 ## clojure-lsp (needed by calva)
