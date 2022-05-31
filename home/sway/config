@@ -164,5 +164,6 @@ seat * xcursor_theme Adwaita 24
 #    }
 #}
 
+# https://github.com/Alexays/Waybar/wiki/Installation
 exec waybar
 
