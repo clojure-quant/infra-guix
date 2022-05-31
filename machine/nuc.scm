@@ -2,6 +2,7 @@
   (gnu)
   (srfi srfi-1) ; remove
   (gnu packages linux) ; wifi aircrack module
+  (gnu system) ; %base-firmware
   (gnu packages cups)
   (gnu packages suckless)
   (gnu packages wm)
@@ -216,8 +217,14 @@
             (target "cryptroot")
             (type luks-device-mapping))))
 
+  ; (kernel linux-nonfree)
   ; for usb wifi card
+  ;(firmware %base-firmware)
+  ;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
   (kernel-loadable-modules (list rtl8812au-aircrack-ng-linux-module))
+  ;kernel-loadable-modules (default: ’())
+  ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
+
 
   ; swapfile has to be created first.
   ; (swap-devices 

@@ -30,6 +30,7 @@
       "swaylock"
       "nix"
       "rtl8812au-aircrack-ng-linux-module"
+      "wpa-supplicant" ; manage wifi networks
       ;  "mcron"
       ;  "shepherd"
    )))
