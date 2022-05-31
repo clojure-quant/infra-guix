@@ -1,8 +1,8 @@
 # infra-guix
 
-My Guix Config for clojure datascience work.
-
 GNU GUIX is a package manager and/or an operating system that is configured via Guile (Scheme).
+
+My Guix Config for clojure datascience work.
 
 ## requirements
 
@@ -63,7 +63,7 @@ bb home-configure
 
 ## OCEAN
 
-OCEAN is a tiny macine hosted by digital-ocean fra-1.
+OCEAN is a tiny machine hosted by digital-ocean fra-1.
 It runs trateg.
 
 in /home/repo/clojure-quant/infra-guix:
@@ -88,3 +88,4 @@ bb syncthing-tunnel
 ```
 
 
+export PATH=$PATH:/home/florian/clojure/bin
