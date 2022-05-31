@@ -129,7 +129,7 @@
             `("config/alacritty/alacritty.yml" ,(local-file "./alacritty/alacritty.yml"))
             `("config/emacs/init.el" ,(local-file "./emacs/init.el")) ; does not get loaded
             `("emacs.d/init.el" ,(local-file "./emacs/init.el"))
-            `("config/sway/config" ,(local-file "./sway/config"))
+            `(".config/sway/config" ,(local-file "./sway/config"))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 

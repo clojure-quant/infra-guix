@@ -37,6 +37,20 @@ source prefix/etc/profile.d/nix.sh
 
 
 
+In an ironic twist of fate, I’ve found that certain tools I need to use are more easily available in the Nix package repository, so I use it to install them.
+
+https://nixos.org/channels/nixpkgs-unstable nixpkgs 
+
+The channel needs to be updated before any packages can be installed:
+
+nix-channel --update 
+Installing packages:
+nix-env -i nodejs dotnet-sdk gh hledger # nix-env -iA nixpkgs.nodejs-12_x # For a specific version
+
+
+(use-service-modules nix)
+(service nix-service-type)
+
 
 
 

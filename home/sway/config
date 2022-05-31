@@ -79,6 +79,8 @@ bindsym --to-code {
 
 exec swayidle -w before-sleep 'swaylock -f -c 000000' timeout 300 'swaylock -f -c 000000' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 exec wlsunset -l 50.6 -L 36.6 -T 6500 -t 3000
+
+# notification daemon mako:
 exec mako
 
 xwayland enable
@@ -148,16 +150,19 @@ seat * xcursor_theme Adwaita 24
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-    status_command i3blocks
-    position top
-    separator_symbol |
-    font Iosevka, Light 18
-    pango_markup enabled
-    colors {
-        statusline #000000
-        background #FFFFFF
-        focused_workspace #f0f0f0 #f0f0f0 #721045
-        inactive_workspace #ffffff #ffffff #595959
-    }
-}
+#bar {
+#    status_command i3blocks
+#    position top
+#    separator_symbol |
+#    font Iosevka, Light 18
+#    pango_markup enabled
+#    colors {
+#        statusline #000000
+#        background #FFFFFF
+#        focused_workspace #f0f0f0 #f0f0f0 #721045
+#        inactive_workspace #ffffff #ffffff #595959
+#    }
+#}
+
+exec waybar
+
