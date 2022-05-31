@@ -34,11 +34,15 @@
            :outdated
            {:extra-deps {com.github.liquidz/antq {:mvn/version "RELEASE"}}
             :main-opts ["-m" "antq.core"]}
+
            :cljfmt-fix
            {:extra-deps {cljfmt/cljfmt {:mvn/version "0.8.0"}}
-            :main-opts ["-m" "cljfmt.main" "fix" 
-                        "--indents" "/home/florian/.config/clojure/cljfmt.edn"
-                        ]}}
+            :main-opts ["-m" "cljfmt.main" "fix"
+                        "--indents" "/home/florian/.config/clojure/cljfmt.edn"]}
+
+           :tree
+           {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.14.1178"}}
+            :exec-fn clojure.tools.cli.api/tree}}
 
   ;; Provider attributes
 
