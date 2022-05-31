@@ -1,8 +1,14 @@
 
 
 
-clojure-lsp (needed by calva)
+## clojure-lsp (needed by calva)
 
-sudo bash < <(curl -s https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install)
 
+https://github.com/clojure-lsp/clojure-lsp/releases
+
+download clojure-lsp-native-static-linux-amd64.zip
+unzip 
+copy to /usr/local/bin
+
+**in calva set this**
 /usr/local/bin/clojure-lsp
