@@ -127,13 +127,15 @@
       (list `("config/test.conf" ,(plain-file "tmp-file.txt" "the content of ~/.config/test.conf"))
             `("ssh/config" ,(local-file "./ssh/config"))
             `("config/alacritty/alacritty.yml" ,(local-file "./alacritty/alacritty.yml"))
+          ; emacs
             `("config/emacs/init.el" ,(local-file "./emacs/init.el")) ; does not get loaded
             `("emacs.d/init.el" ,(local-file "./emacs/init.el"))
+           ; sway / waybar
             `(".config/sway/config" ,(local-file "./sway/config"))
-
             `(".config/waybar/config" ,(local-file "./waybar/config"))
             `(".config/waybar/style.css" ,(local-file "./waybar/style.css"))
-
+           ; clojure
+            `(".config/clojure/deps.edn" ,(local-file "./clojure/deps.edn"))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 
