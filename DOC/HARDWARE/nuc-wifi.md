@@ -40,7 +40,11 @@ Device-3: 1-4:4
     info: Realtek RTL8812AU 802.11a/b/g/n/ac 2T2R DB WLAN Adapter type: WiFi
     rev: 2.0
 
-clojure-
+
+lsmod
+print which kernel modules are loaded.
+
+
 guix install network-manager
 nmcli      ; this will show all network interfaces
 nmcli dev wifi con "MYUSERNAME" password "MYPASSWORD"
