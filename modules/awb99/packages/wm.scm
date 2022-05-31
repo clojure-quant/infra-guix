@@ -71,6 +71,9 @@
    ;  "pamixer" ;audio volume
    ;  "aumix"
 
+     "ddcutil"  ; screen darkness controls
+
+
      "pipewire" ; new audio and video mixer (replaces pulseaudio)
      "wireplumber" ; wpctl status
   ))
@@ -87,7 +90,7 @@
 
 (define-public packages-xwin
   (list
-    ;"ddcutil"  ; screen darkness controls
+   
     "rofi" ; launcher
     ; "interrobang"
     "garcon" ; menu manager

@@ -164,6 +164,6 @@ seat * xcursor_theme Adwaita 24
 #    }
 #}
 
-# https://github.com/Alexays/Waybar/wiki/Installation
+# https://github.com/Alexays/Waybar/wiki/Installation  It has most of the features polybar has and you can style it using css
 exec waybar
 
