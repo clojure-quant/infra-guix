@@ -40,6 +40,11 @@
             :main-opts ["-m" "cljfmt.main" "fix"
                         "--indents" "/home/florian/.config/clojure/cljfmt.edn"]}
 
+           ; https://github.com/clj-kondo/clj-kondo/blob/master/doc/jvm.md
+           :lint
+           {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
+            :main-opts ["-m" "clj-kondo.main" "--lint" "src"]}
+
            :tree
            {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.14.1178"}}
             :exec-fn clojure.tools.cli.api/tree}}
