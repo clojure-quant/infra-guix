@@ -19,9 +19,9 @@
 
 
 
-      (channel
-        (name 'gorilla)
-        (url "https://github.com/clojure-quant/gorilla-guix-chan")) ; babashka + vs-codium
+      ;(channel
+      ;  (name 'gorilla)
+      ;  (url "https://github.com/clojure-quant/gorilla-guix-chan")) ; babashka + vs-codium
 
       (channel ; extra home services
         (name 'rde) ; https://sr.ht/~abcdw/rde/
