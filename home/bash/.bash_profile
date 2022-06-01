@@ -23,3 +23,13 @@ export GDK_SCALE=1
 # icecat/firefox with wayland:
 MOZ_ENABLE_WAYLAND=1
 export MOZ_ENABLE_WAYLAND=1
+
+# load all extra guix profiles on startup
+for i in $GUIX_EXTRA_PROFILES/*; do
+  profile=$i/$(basename "$i")
+  if [ -f "$profile"/etc/profile ]; then
+    GUIX_PROFILE="$profile"
+    . "$GUIX_PROFILE"/etc/profile
+  fi
+  unset profile
+done

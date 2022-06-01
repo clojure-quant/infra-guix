@@ -16,10 +16,7 @@
                            :task (guix/pull "channels" ;"--allow-downgrades"
                                             )}
         
-         install-emacs {:doc "installs emacs packages"
-                        :task (guix/package "emacs"
-                                 "--verbosity=3"
-                                 "--no-grafts")}
+       
 
          install-channels-home {:doc "installs channels"
                            :task (guix/pull "channels-home" ;"--allow-downgrades"
@@ -116,6 +113,24 @@
                               :task (guix/package "nuc-user"
                                            "--verbosity=1"
                                            "--no-grafts")}
+
+         install-emacs {:doc "installs emacs-packages into emacs profile"
+                        :task (let [extra-profiles-dir "/home/florian/.guix-extra-profiles/"
+                                    profile "emacs2"]
+                                 (shell "mkdir" "-p" (str extra-profiles-dir profile))
+                                 (guix/guix 
+                                    "package"
+                                    "--manifest=./manifest/emacs.scm"
+                                    (str "--profile=" extra-profiles-dir profile "/" profile)
+                                    "--verbosity=3"
+                                    "--no-grafts"))}
+
+          remove-emacs {:doc "installs emacs-packages into emacs profile"
+                        :task (let [extra-profiles-dir "/home/florian/.guix-extra-profiles/"
+                                    profile "emacs2"]
+                                 (shell "rm" "-r" (str extra-profiles-dir profile))
+                                 )}
+
 
          nuc-user-weather {:doc "substitute availability for nuc desktop packages"
                       :task (do (guix/guix "weather"

@@ -45,3 +45,5 @@ export GDK_SCALE=1
 
 export PATH=$PATH:~/.nix-profile/bin
 export PATH=$PATH:/home/florian/clojure/bin
+
+GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles

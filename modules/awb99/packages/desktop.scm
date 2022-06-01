@@ -18,8 +18,9 @@
   (list
     ;image
     "sxiv" ; simple X image viewer
-    "glimpse" ; image editor
+    ; "glimpse" ; image editor
     "imagemagick"
+    ; "gimp" ; needs python2
 
     ;; gstreaner us zsed by Nyxt media dependencies.
     "gstreamer" ; Multimedia library
@@ -115,7 +116,7 @@
   "inkscape"
   "scribus"
 
-  "gimp"
+  
 
 
   "udiskie" ; mount usb drives https://github.com/coldfix/udiskie/wiki/Usage
