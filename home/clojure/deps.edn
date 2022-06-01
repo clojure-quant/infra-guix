@@ -29,6 +29,9 @@
 	;;     :extra-paths - vector of additional paths to add to the classpath
 	;;     :classpath-overrides - map of lib to path that overrides the result of resolving deps
 
+ ; see also:
+ ; https://github.com/practicalli/clojure-deps-edn#visualizing-project-vars-and-library-dependencies
+
  :aliases {;;   :deps {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.12.1084"}}}
   ;;   :test {:extra-paths ["test"]}
            :outdated
@@ -47,7 +50,27 @@
 
            :tree
            {:extra-deps {org.clojure/tools.deps.alpha {:mvn/version "0.14.1178"}}
-            :exec-fn clojure.tools.cli.api/tree}}
+            :exec-fn clojure.tools.cli.api/tree}
+
+           :find-deps 
+           {:extra-deps {find-deps/find-deps {:git/url "https://github.com/hagmonk/find-deps"
+                                             :sha "6fc73813aafdd2288260abb2160ce0d4cdbac8be"}}
+            :main-opts ["-m" "find-deps.core"]}            
+            
+            ;
+            }
+
+           :nrepl 
+           {:extra-deps {nrepl/nrepl {:mvn/version "0.8.3"}
+                         ;cider/nrepl {:mvn/version "0.3.0"}
+                         cider/piggieback {:mvn/version "0.4.2"}}
+            :main-opts ["-m" "nrepl.cmdline"
+                        "-b" "0.0.0.0"
+                        "-p" "12345"
+                        ;"--middleware" "[cider.nrepl/cider-middleware,refactor-nrepl.middleware/wrap-refactor]"
+                       ]}
+
+
 
   ;; Provider attributes
 
