@@ -15,8 +15,6 @@
          install-channels {:doc "installs channels"
                            :task (guix/pull "channels" ;"--allow-downgrades"
                                             )}
-        
-       
 
          install-channels-home {:doc "installs channels"
                            :task (guix/pull "channels-home" ;"--allow-downgrades"
@@ -114,42 +112,16 @@
                                            "--verbosity=1"
                                            "--no-grafts")}
 
-         install-emacs {:doc "installs emacs-packages into emacs profile"
-                        :task (let [extra-profiles-dir "/home/florian/.guix-extra-profiles/"
-                                    profile "emacs2"]
-                                 (shell "mkdir" "-p" (str extra-profiles-dir profile))
-                                 (guix/guix 
-                                    "package"
-                                    "--manifest=./manifest/emacs.scm"
-                                    (str "--profile=" extra-profiles-dir profile "/" profile)
-                                    "--verbosity=3"
-                                    "--no-grafts"))}
-
-          remove-emacs {:doc "installs emacs-packages into emacs profile"
-                        :task (let [extra-profiles-dir "/home/florian/.guix-extra-profiles/"
-                                    profile "emacs2"]
-                                 (shell "rm" "-r" (str extra-profiles-dir profile))
-                                 )}
-
-
          nuc-user-weather {:doc "substitute availability for nuc desktop packages"
-                      :task (do (guix/guix "weather"
-                                     "--display-missing"
-                                    ; "-coverage"
-                                   "--manifest=./manifest/nuc-user.scm")
-                                (println "nuc weathrr done."))
+                           :task (do (guix/guix "weather" "--display-missing"
+                                           ; "-coverage"
+                                           "--manifest=./manifest/nuc-user.scm")
+                                    (println "nuc weather done."))}
 
          nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
                             :task (shell "ddclient"
                                          "-foreground"
                                          "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
-       
-                                   }
-          emacs-weather {:doc "substitute availability for emacs packages"
-                       :task (guix/guix "weather"
-                                        "--display-missing"
-                                    ; "-coverage"
-                                        "--manifest=./manifest/emacs.scm")}
     
          ; VM TERMINAL
 
@@ -378,6 +350,38 @@
 
          guix-repl-ocean (guix/guix "repl"
                                     "./machine/ocean-image.scm")
+         ; extra profiles
+
+         ;testing (println "cli args: " *command-line-args*)
+
+         list-profiles (shell "guix" "package" "--list-profiles")
+
+         weather-profile {:doc "substitute availability for extra profile"
+                          :task (let [;profile "emacs2"
+                                      profile (first *command-line-args*)]
+                                  (guix/guix "weather" "--display-missing"
+                                       ; "-coverage"
+                                       (str "--manifest=./manifest/" profile ".scm")))}
+
+         install-profile {:doc "installs packages for extra-profile"
+                          :task (let [extra-profiles-dir "/home/florian/.guix-extra-profiles/"
+                                      ;profile "emacs2"
+                                      profile (first *command-line-args*)]
+                                 (println "installing profile: " profile)
+                                 (shell "mkdir" "-p" (str extra-profiles-dir profile))
+                                 (guix/guix 
+                                    "package"
+                                    (str "--manifest=./manifest/" profile ".scm")
+                                    (str "--profile=" extra-profiles-dir profile "/" profile)
+                                    "--verbosity=3"
+                                    "--no-grafts"))}
+
+         remove-profile {:doc "removes packages from extra-profile"
+                        :task (let [extra-profiles-dir "/home/florian/.guix-extra-profiles/"
+                                    ;profile "emacs2"
+                                    profile (first *command-line-args*)]
+                                 (shell "rm" "-r" (str extra-profiles-dir profile))
+                                 )}
 
         ; a 1 
         ; b {:depends [a]    ; bb run --prn b          this tests return values of tasks

@@ -20,8 +20,9 @@ fi
 source /etc/bashrc
 
 
-echo "wunderbar.."
+echo "hello from .bashrc (wunderbar!) .."
 
+echo "binaries in GUIX_ENVIRONMENT/bin"
 ls "$GUIX_ENVIRONMENT/bin"
 
 

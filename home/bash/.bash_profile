@@ -25,6 +25,7 @@ MOZ_ENABLE_WAYLAND=1
 export MOZ_ENABLE_WAYLAND=1
 
 # load all extra guix profiles on startup
+GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
 for i in $GUIX_EXTRA_PROFILES/*; do
   profile=$i/$(basename "$i")
   if [ -f "$profile"/etc/profile ]; then
