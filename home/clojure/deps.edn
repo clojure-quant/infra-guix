@@ -57,20 +57,17 @@
                                              :sha "6fc73813aafdd2288260abb2160ce0d4cdbac8be"}}
             :main-opts ["-m" "find-deps.core"]}            
             
-            ;
-            }
-
            :nrepl 
            {:extra-deps {nrepl/nrepl {:mvn/version "0.8.3"}
-                         ;cider/nrepl {:mvn/version "0.3.0"}
+                         cider/cider-nrepl {:mvn/version,"0.27.2"}
                          cider/piggieback {:mvn/version "0.4.2"}}
             :main-opts ["-m" "nrepl.cmdline"
                         "-b" "0.0.0.0"
-                        "-p" "12345"
+                        "-p" "9100"
                         ;"--middleware" "[cider.nrepl/cider-middleware,refactor-nrepl.middleware/wrap-refactor]"
                        ]}
-
-
+            ;
+            } ; aliases
 
   ;; Provider attributes
 
