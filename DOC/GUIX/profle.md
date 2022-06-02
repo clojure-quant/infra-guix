@@ -13,3 +13,5 @@ cat ~/opt/sambamba/etc/profile
 For trying things out, I recommend using `guix environment --ad-hoc foo`
 That way, your profile history does not contain the thing that you just wanted to try out, so `guix gc` can work more efficiently
 
+https://rednosehacker.com/taking-baby-steps-with-guix-2-more-profiles
+guix package --list-profiles
