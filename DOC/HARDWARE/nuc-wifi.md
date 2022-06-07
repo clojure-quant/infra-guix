@@ -63,7 +63,7 @@ sudo modinfo 88XXau
 guix install network-manager
 nmcli      ; this will show all network interfaces
 nmcli dev wifi con "MYUSERNAME" password "MYPASSWORD"
-
+sudo nmcli dev wifi con "WIFI-FALCON-MARIA" password "internet2021"
 
 https://fedingo.com/how-to-connect-to-wifi-using-nmcli/
 nmcli dev wifi list
