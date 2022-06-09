@@ -5,12 +5,6 @@
   StrictHostKeyChecking no
   User git
 
-
-Host debian.hoertlehner.com
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
-  UserKnownHostsFile=/dev/null
-  User root
-
 Host aws.hoertlehner.com
   IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
   User admin
