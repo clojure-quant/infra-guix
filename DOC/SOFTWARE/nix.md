@@ -42,6 +42,7 @@ export PATH=$PATH:~/.nix-profile/bin
 ln -s "/nix/var/nix/profiles/per-user/$USER/profile" ~/.nix-profile
 source /run/current-system/profile/etc/profile.d/nix.sh
 ```
+
 To use Nix PATH should contain the directories prefix/bin and ~/.nix-profile/bin 
 - prefix/bin contains the Nix tools themselves, 
 - ~ /.nix-profile is a symbolic link to the current user environment  (an automatically generated package consisting of symlinks to installed packages). 
@@ -61,7 +62,11 @@ https://nixos.org/channels/nixpkgs-unstable nixpkgs
 
 
 
-
+Searching for packages	nix search nixpkgs packagename
+Installing a package	nix-env -iA packagename
+List installed packages	nix-env -q
+Uninstall packages	nix-env -e packagename
+Upgrade packages	nix-env -u
 
 
 
