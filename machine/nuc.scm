@@ -54,7 +54,6 @@
    ; (service mate-desktop-service-type)
    ; (service lxqt-desktop-service-type)
     (service enlightenment-desktop-service-type)
-
   
     (screen-locker-service swaylock "swaylock")
 

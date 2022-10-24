@@ -19,7 +19,7 @@
     ; "leiningen" ; nongnu downloads java-8 jar from github repo, v 2.9.5
    
    ; "graphviz" ;  dependency graphs
-    "babashka" ; channel gorilla
+   ; "babashka" ; channel gorilla - we use babashka from nix.
     "certbot" ; letsencrypt certs
     "git"
   ))
