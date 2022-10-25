@@ -26,7 +26,7 @@
 
 (pretty-print my-guix-maintenance-jobs)
 
-(pretty-print nuc-packages)
+(pretty-print user-packages)
 
 
-(pretty-print (->packages-output nuc-packages))
+(pretty-print (->packages-output user-packages))

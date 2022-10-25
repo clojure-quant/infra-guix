@@ -1,5 +1,5 @@
 
-(define nuc-packages
+(define user-packages
 (list "nss-certs"
 "fuse" ; for sshfs
 "sshfs"
@@ -66,5 +66,5 @@
 ))
 
 
-(specifications->manifest nuc-packages)
+(specifications->manifest user-packages)
 

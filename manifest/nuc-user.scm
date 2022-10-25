@@ -5,5 +5,5 @@
 
 
 
-(specifications->manifest nuc-packages)
+(specifications->manifest user-packages-desktop)
 

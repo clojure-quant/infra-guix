@@ -37,7 +37,7 @@
 
 
 
-(define-public nuc-packages
+(define-public user-packages
 (append 
 ; ********************  packages-nuc-root
 ; ********************  linux cli
@@ -64,3 +64,8 @@
   ))
 
  
+(define-public user-packages-desktop
+(append 
+  user-packages
+  font-packages
+  virtual-machine-packages))

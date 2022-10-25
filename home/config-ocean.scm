@@ -29,7 +29,7 @@
   (awb99 packages nuc) 
   )
 
-(define nuc-packages
+(define user-packages
   (append 
     ; clojure apps
       clojure-packages
@@ -153,7 +153,7 @@
 (home-environment
   (packages
     (->packages-output ; ->packages ; map specification->package
-        nuc-packages))
+        user-packages))
   (services
     (list
        ;bash-service

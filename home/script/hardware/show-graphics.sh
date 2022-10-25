@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "identifying hardware (might be it is not configured"
+echo "identifying hardware (might be it is not configured)"
 # lspci | grep VGA
 # Only VGA is not good enough, because Nvidia mobile adapters are 
 # shown as 3D and some AMD adapters are shown as Display.

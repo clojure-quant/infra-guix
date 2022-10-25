@@ -162,7 +162,7 @@
   (packages
     ;(list )
     ;;(append
-     ; (->packages-output nuc-packages)
+     ; (->packages-output user-packages)
       (->packages-output packages-desktop-sway)
        
      ;;  emacs-packages
