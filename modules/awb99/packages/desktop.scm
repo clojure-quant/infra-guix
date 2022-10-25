@@ -116,9 +116,6 @@
   "inkscape"
   "scribus"
 
-  
-
-
   "udiskie" ; mount usb drives https://github.com/coldfix/udiskie/wiki/Usage
   ;"remmina"
   ; "scm"  ; scheme to c compiler

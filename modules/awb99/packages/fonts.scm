@@ -59,7 +59,6 @@
     "font-abattis-cantarell"
     "font-ibm-plex"
     "font-wqy-microhei"
-    ))
 
 ;; lots of fonts from package fonts.scm
 ;font-adobe-source-code-pro font-adobe-source-han-sans
@@ -88,6 +87,10 @@
 ;font-winitzki-cyrillic font-xfree86-type1
 
 ;the Gentium font family by SIL is packaged under the name font-sil-gentium.
+
+
+
+    ))
 
 
 

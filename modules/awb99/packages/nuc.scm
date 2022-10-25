@@ -37,35 +37,6 @@
 
 
 
-(define-public user-packages
-(append 
-; ********************  packages-nuc-root
-; ********************  linux cli
-  security-packages
-  archive-packages
-  monitor-packages
-  network-packages
-  file-transfer-packages
-  hardware-packages
-  ; ********************  clojure apps 
-  clojure-packages
-  node-packages
-; ********************  python-packages
-; ********************  r-packages
-; ********************  cpp-packages
-  build-packages
-; ********************  desktop
-  desktop-chat-packages
-  desktop-multimedia-packages
-  desktop-office-packages
-  desktop-browser-packages 
-  desktop-tool-packages
-  ;emacs-packages ; dont include emacs packges here. home will conflict.
-  ))
 
  
-(define-public user-packages-desktop
-(append 
-  user-packages
-  font-packages
-  virtual-machine-packages))
+

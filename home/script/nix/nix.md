@@ -55,6 +55,8 @@ https://nixos.org/channels/nixpkgs-unstable nixpkgs
 (use-service-modules nix)
 (service nix-service-type)
 
+Updating all channels	nix-channel --update
+
 
 
 Searching for packages	nix search nixpkgs packagename

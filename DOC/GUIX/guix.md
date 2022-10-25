@@ -22,6 +22,7 @@ https://git.sr.ht/~lle-bout/awesome-guix#awesome-guix
 https://github.com/pjotrp/guix-notes/blob/master/HACKING.org
 https://ambrevar.xyz/guix-advance/
 https://notabug.org/civodul/guix-explorer guix system explorer graph:
+https://github.com/alezost/guix-config/blob/master/modules/al/guix/utils.scm
 
 # Directories
 ls /gnu/store
