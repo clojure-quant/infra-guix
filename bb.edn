@@ -294,7 +294,7 @@
          show-manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
          show-image-types (guix/guix "system" "--list-image-types")
 
-         weather-mc (shell "guix" "weather" "mc")
+
          mcron-schedule-system (shell "sudo" "herd" "schedule" "mcron" "10")
          mcron-schedule-user (shell "herd" "schedule" "mcron" "10")
 
@@ -303,9 +303,7 @@
          export-manifest (guix/guix "package" "--export-manifest")
 
         ; size
-         size-clojure {:doc "size of clojure"
-                       :task (do (println "guix size clojure..")
-                                 (guix/guix "size" "clojure"))}
+
        ; guix size $(guix system build os.scm)
          size-desktop {:doc "size of desktop"
                        :task (do (println "guix size desktop..")
@@ -347,7 +345,7 @@
          ; MANIFEST / PROFILE / EXTRA PROFILES
 
          ;testing (println "cli args: " *command-line-args*)
-         
+
          profile-list (shell "guix" "package" "--list-profiles")
 
          profile-weather {:doc "substitute availability for extra profile"
@@ -362,8 +360,7 @@
                                       extra-profiles-dir (str home "/.guix-extra-profiles/")
                                       profile (first *command-line-args*)
                                       profile-dir (str extra-profiles-dir profile)
-                                      activate-profile (str profile-dir "/" profile "/etc/profile")
-                                      ]
+                                      activate-profile (str profile-dir "/" profile "/etc/profile")]
                                   (println "installing profile: " profile "to: " profile-dir)
                                   (shell "mkdir" "-p" extra-profiles-dir)
                                   (shell "mkdir" "-p" profile-dir)
@@ -375,8 +372,7 @@
                                    "--no-grafts")
                                   ;~/.guix-extra-profiles/desktop/desktop/etc/profile
                                   (println "activating: " activate-profile)
-                                  (shell "bash" activate-profile)
-                                  )}
+                                  (shell "bash" activate-profile))}
 
          profile-remove {:doc "removes packages from extra-profile"
                          :task (let [home (System/getenv "HOME")
@@ -384,8 +380,16 @@
                                      profile (first *command-line-args*)]
                                  (shell "rm" "-r" (str extra-profiles-dir profile)))}
 
+        ; TESTING ... 
+
         ; a 1 
         ; b {:depends [a]    ; bb run --prn b          this tests return values of tasks
         ;    :task (inc a)}
+
+         weather-mc (shell "guix" "weather" "mc")
+
+         size-clojure {:doc "size of clojure"
+                       :task (do (println "guix size clojure..")
+                                 (guix/guix "size" "clojure"))}
  ;
          }}

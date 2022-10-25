@@ -4,7 +4,7 @@
   (list 
     "xsettingsd" ;; Settings Manager replaces daemons GNOME/XFCE - xsettingsd.conf
     "xdg-utils"
-    "fontconfig" ; font loader for os; fc-cache -f  or fc-cache -rv
+    "fontconfig" ; font loader for os; 
     "libxft" ; connect x to font-config
 
     ;; GTK Themes
@@ -96,4 +96,4 @@
 
 ;ix font support in Chromium
 ;xset +fp $(dirname $(readlink -f ~/.guix-profile/share/fonts/truetype/fonts.dir))
-;fc-cache -rv
+
