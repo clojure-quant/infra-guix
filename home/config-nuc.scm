@@ -171,6 +171,8 @@
     (append
      ; (->packages-output user-packages)
       (->packages-output packages-desktop-sway)
+      (->packages-output packages-desktop-extra) ; for enlightenment
+   
       (->packages-output font-packages) 
      ;;  emacs-packages
       )

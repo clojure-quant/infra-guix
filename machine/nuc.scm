@@ -161,7 +161,8 @@
       (comment "Florian")
       (group "users")
       (home-directory "/home/florian")
-      (shell (file-append fish "/bin/fish"))
+      ;(shell (file-append fish "/bin/fish"))
+      (shell (file-append zsh "/bin/zsh"))
      ; (identity "/home/florian/repo/myLinux/data/ssh/coin")
       (supplementary-groups
       '("wheel" 

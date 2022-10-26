@@ -65,14 +65,13 @@
     "sway"
     "swaybg" ; wallpaper background
     "swayidle"
-  ;  "swaylock"
+  ;  "swaylock" ; this is in root profile.
      "i3blocks" ; sway uses i3blocks for menu
      "sysstat" ;mpstat
    ;  "pamixer" ;audio volume
    ;  "aumix"
 
      "ddcutil"  ; screen darkness controls
-
 
      "pipewire" ; new audio and video mixer (replaces pulseaudio)
      "wireplumber" ; wpctl status
