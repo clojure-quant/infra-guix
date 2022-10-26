@@ -52,6 +52,14 @@
       (bash-profile
         (list (local-file "./bash/.bash_profile" "bash_profile"))))))
 
+(define zsh-service
+  (service home-zsh-service-type
+        (home-zsh-configuration
+          (zshrc 
+            (list (local-file "./zsh/.zshrc" "zshrc")))
+          )
+        )))
+
 ; guix install glibc-locales
 ; export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
 ; GUIX_PROFILE="/home/florian/.guix-profile"
@@ -174,7 +182,8 @@
     ;(append 
       (list
         bash-service
-        fish-service
+        zsh-service
+        fish-service ; has problems with profile sourcing.
         mcron-service
         env-vars-service
         my-config-service

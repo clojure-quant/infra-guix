@@ -1,8 +1,8 @@
+
+# THIS ONLY GETS RUN IF BASH IS USED TO LOGIN. (SO MAIN OS SHELL)
+
 # Honor per-interactive-shell startup file
 if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
-
-
-
 
 #export GUILE_LOAD_PATH=./scm:/home/florian/clojure-quant/infra-guix/home/.config/shepherd/init.d:$GUILE_LOAD_PATH
 
@@ -24,13 +24,3 @@ export GDK_SCALE=1
 MOZ_ENABLE_WAYLAND=1
 export MOZ_ENABLE_WAYLAND=1
 
-# load all extra guix profiles on startup
-GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
-for i in $GUIX_EXTRA_PROFILES/*; do
-  profile=$i/$(basename "$i")
-  if [ -f "$profile"/etc/profile ]; then
-    GUIX_PROFILE="$profile"
-    . "$GUIX_PROFILE"/etc/profile
-  fi
-  unset profile
-done

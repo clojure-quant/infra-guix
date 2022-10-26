@@ -1,6 +1,7 @@
 {:paths ["script"]
  :tasks {:requires [guix
-                    [babashka.fs :as fs]]
+                    [babashka.tasks :as tasks]
+                     [babashka.fs :as fs]]
 
          ; helper tasks
          sudo (guix/sudo *command-line-args*)
@@ -12,14 +13,19 @@
          ; 2 is similar to 1 but it additionally displays download URLs
          ; 3 shows all the build log output on standard error.
 
-        ; install
-         install-channels {:doc "installs channels"
+        ; CHANNELS
+         channels-install {:doc "installs channels"
                            :task (guix/pull "channels" ;"--allow-downgrades"
                                             )}
 
-         install-channels-home {:doc "installs channels"
+         channels-install-home {:doc "installs channels"
                                 :task (guix/pull "channels-home" ;"--allow-downgrades"
                                                  )}
+         
+         export-channels (guix/guix "package" "--export-channels")
+
+         
+         
 
          ; guix maintenance
          gc {:doc "guix garbage collect"
@@ -101,18 +107,6 @@
          nuc-os-reconfigure  {:doc "reconfigures guix os on machine nuc (runs as sudo)"
                               :task (do (guix/sudo "nuc-os-reconfigure-user")
                                         (guix/guix "system" "describe"))}
-
-         nuc-home-configure (guix/guix
-                             "home"
-                             "reconfigure"
-                             "--verbosity=3"
-                             "./home/config-nuc.scm")
-
-         nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
-                            :task (shell "ddclient"
-                                         "-foreground"
-                                         "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
-
 
 
 
@@ -286,21 +280,13 @@
 
          ; show
          guix-describe-system (guix/guix "system" "describe")
-         guix-describe-user (guix/guix "describe")
          guix-generations-system (guix/guix "system" "list-generations")
-         guix-generations-user (guix/guix "profile" "list-generations")
          show-channels-root (guix/sudo "describe")
-         show-manifest (shell "cat" "/home/florian/.config/guix/current/manifest")
          show-manifest-root (shell "cat" "/home/florian/.config/guix/current/manifest")
          show-image-types (guix/guix "system" "--list-image-types")
-
-
          mcron-schedule-system (shell "sudo" "herd" "schedule" "mcron" "10")
-         mcron-schedule-user (shell "herd" "schedule" "mcron" "10")
 
-         ;export 
-         export-channels (guix/guix "package" "--export-channels")
-         export-manifest (guix/guix "package" "--export-manifest")
+       
 
         ; size
 
@@ -342,6 +328,23 @@
 
          guix-repl-ocean (guix/guix "repl"
                                     "./machine/ocean-image.scm")
+
+        ; MANIFEST - USER PROFILE
+         guix-describe-user (guix/guix "describe")
+         guix-generations-user (guix/guix "profile" "list-generations")
+         show-manifest (shell "cat" "/home/florian/.config/guix/current/manifest")
+         export-manifest (guix/guix "package" "--export-manifest")
+         mcron-schedule-user (shell "herd" "schedule" "mcron" "10")
+
+         user-install {:doc "installs packages to user profile. param: manifest."
+                       :task (let [profile (first *command-line-args*)]
+                               (println "installing profile: " profile)
+                               (guix/guix
+                                "package"
+                                (str "--manifest=./manifest/" profile ".scm")
+                                "--verbosity=3"
+                                "--no-grafts"))}
+
          ; MANIFEST / PROFILE / EXTRA PROFILES
 
          ;testing (println "cli args: " *command-line-args*)
@@ -379,6 +382,56 @@
                                      extra-profiles-dir (str home "/.guix-extra-profiles/")
                                      profile (first *command-line-args*)]
                                  (shell "rm" "-r" (str extra-profiles-dir profile)))}
+
+         profile-op {:doc "guix extra-profile operation"
+                     :task (let [profile (first *command-line-args*)
+                                 operation (last *command-line-args*)]
+                             (guix/extra-profile-op profile operation)
+                              ;"--list-generations"
+                             )}
+
+         profile-gc {;:depends [profile-op]
+                     :task (let [profile (first *command-line-args*)]
+                             (guix/extra-profile-op profile "--list-generations"))}
+
+         profiles-history {:task (guix/user-profiles-op  "--list-generations")}
+         profiles-gc {:task (guix/user-profiles-op  "--delete-generations")}
+         profiles-upgrade {:task (guix/user-profiles-op  "--upgrade")}
+
+
+         ; HOME 
+         nuc-home-configure (guix/guix
+                             "home"
+                             "reconfigure"
+                             "--verbosity=3"
+                             "./home/config-nuc.scm")
+
+         home-history {:task (do (println "PROFILE: *HOME*")
+                                 (guix/guix "home" "list-generations"))}
+         home-gc {:task (guix/guix "home" "delete-generations")}
+
+         nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
+                            :task (shell "ddclient"
+                                         "-foreground"
+                                         "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
+         
+         gc-roots {:task (guix/guix "gc" "--list-roots") }
+
+         ; profiles
+         ; florian-profile
+         ; florian-extra-profiles: programming cli desktop
+         ; florian-home
+         ; root-profile
+         ; system
+
+         history-all {:depends [home-history profiles-history]
+                      :task (do
+                               (home-history)
+                               (profiles-history)
+                               (tasks/shell "sudo" "bb" "gc-roots") ;sudo guix gc --list-roots
+                              )}
+         
+
 
         ; TESTING ... 
 

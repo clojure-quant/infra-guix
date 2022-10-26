@@ -1,5 +1,7 @@
 (ns guix
-  (:require [babashka.tasks :refer [shell]]))
+  (:require [babashka.tasks :refer [shell]]
+            [babashka.fs :as fs]
+            ))
 
 
 (defn sudo
@@ -11,7 +13,7 @@
   (let [current (System/getenv var)
         appended (str current ":" extra)
         opts {:extra-env (assoc {} var appended)}]
-    (println "guix/extra path: " appended)
+    ;(println "guix/extra path: " appended)
     (if result?
       (merge opts {:out :string
                    :err :inherit})
@@ -63,6 +65,48 @@
     (println "guix package args: " full-args)
     (apply guix "package" full-args)))
 
+
+(defn extra-profiles-dir []
+  (let [home (System/getenv "HOME")]
+    (str home "/.guix-extra-profiles/")))
+
+(defn extra-profile-param [profile]
+  (let [profile-dir (str (extra-profiles-dir) profile)] 
+    ;(println "gc profile: " profile "in: " profile-dir)
+    (str "--profile=" profile-dir "/" profile)))
+ 
+
+(defn extra-profile-op [profile op] 
+  ;(println "extra profile op profile: " profile "op: " op)
+  (guix/guix
+   "package"
+   (extra-profile-param profile)
+   op))
+
+(defn extra-profile-names []
+  (let [path (extra-profiles-dir)]
+    ; (println "path: " path)
+    (fs/list-dir path)
+    (map fs/file-name (fs/list-dir path))))
+  
+
+(defn user-profiles-op [op]
+ (let [profiles (guix/extra-profile-names)]
+   ; user profile
+   (println "PROFILE: *USER*")
+   (guix/guix "package" op)
+
+   ;guix home list-generations
+   ; extra profiles
+   (doall
+    (map (fn [profile]
+           (println "PROFILE: " profile)
+           (guix/extra-profile-op profile op))
+         profiles))
+   ))
+
+
+                  ;"--list-generations"
 
 ; "--image-size=50G"
 (defn system
