@@ -400,7 +400,7 @@
 
 
          ; HOME 
-         nuc-home-configure (guix/guix
+         home-configure-nuc (guix/guix
                              "home"
                              "reconfigure"
                              "--verbosity=3"

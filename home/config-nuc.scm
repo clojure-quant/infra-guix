@@ -56,9 +56,7 @@
   (service home-zsh-service-type
         (home-zsh-configuration
           (zshrc 
-            (list (local-file "./zsh/.zshrc" "zshrc")))
-          )
-        )))
+            (list (local-file "./zsh/.zshrc" "zshrc"))))))
 
 ; guix install glibc-locales
 ; export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
@@ -135,11 +133,11 @@
 (define my-config-service
   (simple-service 'test-config
     home-files-service-type
-      (list `("config/test.conf" ,(plain-file "tmp-file.txt" "the content of ~/.config/test.conf"))
-            `("ssh/config" ,(local-file "./ssh/config"))
-            `("config/alacritty/alacritty.yml" ,(local-file "./alacritty/alacritty.yml"))
+      (list `(".config/test.conf" ,(plain-file "tmp-file.txt" "2022 10 the content of ~/.config/test.conf"))
+            `(".ssh/config" ,(local-file "./ssh/config"))
+            `(".config/alacritty/alacritty.yml" ,(local-file "./alacritty/alacritty.yml"))
           ; emacs
-            `("config/emacs/init.el" ,(local-file "./emacs/init.el")) ; does not get loaded
+            `(".config/emacs/init.el" ,(local-file "./emacs/init.el")) ; does not get loaded
             `("emacs.d/init.el" ,(local-file "./emacs/init.el"))
            ; sway / waybar
             `(".config/sway/config" ,(local-file "./sway/config"))
@@ -181,12 +179,13 @@
   (services
     ;(append 
       (list
+        env-vars-service
+        my-config-service
         bash-service
         zsh-service
         fish-service ; has problems with profile sourcing.
         mcron-service
-        env-vars-service
-        my-config-service
+        
         
        ; (service home-pipewire-service-type)
        ; (service home-wireplumber-service-type)
