@@ -10,10 +10,11 @@
 
 (define-public packages-nuc-root
   (append
+    packages-wm-sway
+    packages-wm-gnome
+    ;packages-wm-xfce
+    ;packages-wm-i3
     packages-desktop-extra
-    packages-desktop-xfce
-    ;packages-desktop-i3
-    packages-desktop-sway
     packages-desktop-printer
     font-packages
     virtual-machine-packages
@@ -23,13 +24,15 @@
     shell-packages
   ))
 
+; this packages go to the system.
 (define-public packages-nuc-root-only
   (append
     packages-nuc-root
     (list
       "swaylock"
       "nix"
-      "rtl8812au-aircrack-ng-linux-module"
+      ; awb99 - rtl8812au module no longer exists in guix kernel. removed due to blobs.
+      ;"rtl8812au-aircrack-ng-linux-module" ; rtl8812au USB wifi driver
       "wpa-supplicant" ; manage wifi networks
       ;  "mcron"
       ;  "shepherd"

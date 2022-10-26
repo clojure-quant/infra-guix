@@ -94,9 +94,12 @@
         ; NUC
          nuc-os-reconfigure-user (guix/system "nuc"
                                               "reconfigure"
+                                              ; use substututes from nongnu in upgrading (kernel does not need to be compiled)
+                                              "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'"
                                           ; "--allow-downgrades"
                                            ;"--no-grafts"
                                               )
+         
 
          nuc-os-weather {:doc "substitute availability for nuc system packages"
                          :task (guix/guix "weather"

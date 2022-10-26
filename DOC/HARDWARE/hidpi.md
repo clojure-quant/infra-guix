@@ -39,3 +39,7 @@ cinnamon> hidpi - perfect
 Gnome: hidpi
 
 gnome 3.16 still has a few problems: The scrollbars in all Gtk2 apps are too narrow. You can manually tweak this by opening the file: usr/share/themes/Adwaita/gtk-2.0/gtkrc and doubling the ‘slider-width’ from 13 to 26
+
+
+QUASSEL on GNOME:
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.

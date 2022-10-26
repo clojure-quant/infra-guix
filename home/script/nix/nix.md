@@ -31,6 +31,11 @@ nix-env --uninstall vscodium
 
 # Create a symlink to your profile and activate Nix profile:
 
+~/.nix-profile/share/applications   xdg application links      
+~/.nix-profile/share/fonts/         fonts
+~/.nix-profile/share/pixmaps        vscode app icon
+~/.nix-profile/share/locale         locales
+
 export PATH=$PATH:~/.nix-profile/bin
 
 ```

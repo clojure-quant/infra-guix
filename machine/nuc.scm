@@ -18,6 +18,10 @@
   (gnu services sddm) ; sddm login manager
   (gnu services nix) ; nix
   
+  ; non-gnu linux kernel, see: https://gitlab.com/nonguix/nonguix
+  (nongnu packages linux)
+  (nongnu system linux-initrd)
+
   (awb99 packages nuc)
   (awb99 services monitor)
   (awb99 services trezord)
@@ -34,7 +38,7 @@
 (use-service-modules networking ssh)
 (use-package-modules certs rsync screen ssh)
 
-
+; 1 SERVICES ***************************************************
 
 (define i3-service
   (simple-service
@@ -133,18 +137,33 @@
                         (udev-configuration-rules config)))))
           ))
 
-
-
+(define (add-nongnu-substitute-servers services)
+  (modify-services services
+      (guix-service-type config => (guix-configuration
+        (inherit config)
+        (substitute-urls
+          (append (list "https://substitutes.nonguix.org")
+          %default-substitute-urls))
+        (authorized-keys
+   (append (list (plain-file "non-guix.pub"
+                    "(public-key 
+                      (ecc 
+                       (curve Ed25519)
+                       (q #C1FD53E5D4CE971933EC50C9F307AE2171A2D3B52C804642A7A35F84F3A4EA98#)
+                      ))"))
+     %default-authorized-guix-keys))))))
 
 (define os-services
    (append
       my-services
       ; %desktop-services
       ;(custom-udev %desktop-services)
-      (modify-gdm-wayland (custom-udev %desktop-services))
-        
+      (add-nongnu-substitute-servers
+        (modify-gdm-wayland 
+          (custom-udev %desktop-services)))
       ))
 
+; 2 USERS/GROUPS *****************************************************
 
 (define my-groups
   (cons* 
@@ -184,6 +203,8 @@
       (shell (file-append zsh "/bin/zsh")))
     %base-user-accounts))
 
+; 3 PACKAGES *****************************************************
+
 (define (->packages-output specs)
   (map specification->package+output specs))
 
@@ -195,6 +216,7 @@
     (specifications->package packages-nuc-root-only)
     %base-packages))
 
+  ; 4 OS ***********************************************************
 
 (operating-system
   ; (locale "de_AT.utf8")
@@ -220,13 +242,20 @@
             (target "cryptroot")
             (type luks-device-mapping))))
 
+   ; awb99: old config, when we had rtl-8812au-aircrack-ng-linux module in gnu guix.
+   (kernel-loadable-modules 
+      (list 
+        rtl8812au-aircrack-ng-linux-module ; for usb wifi card
+      ))
+
+   ; non-gnu kernel
+  (kernel linux)
+  (initrd microcode-initrd); CPU microcode updates are nonfree blobs 
+  (kernel-loadable-modules '()) ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
   ; (kernel linux-nonfree)
-  ; for usb wifi card
+  (firmware (list linux-firmware))
   ;(firmware %base-firmware)
   ;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
-  (kernel-loadable-modules (list rtl8812au-aircrack-ng-linux-module))
-  ;kernel-loadable-modules (default: ’())
-  ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
 
 
   ; swapfile has to be created first.
