@@ -243,10 +243,10 @@
             (type luks-device-mapping))))
 
    ; awb99: old config, when we had rtl-8812au-aircrack-ng-linux module in gnu guix.
-   (kernel-loadable-modules 
-      (list 
-        rtl8812au-aircrack-ng-linux-module ; for usb wifi card
-      ))
+   ;(kernel-loadable-modules 
+   ;   (list 
+   ;     rtl8812au-aircrack-ng-linux-module ; for usb wifi card
+   ;   ))
 
    ; non-gnu kernel
   (kernel linux)

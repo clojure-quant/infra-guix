@@ -40,6 +40,7 @@
                                      "--verbosity=3"
                                      "--max-silent-time=10000"  ; seconds
                                      "--timeout=10000" ; seconds
+                                     "--substitute-urls=\"https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org\""
                                      ))}
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
@@ -95,7 +96,7 @@
          nuc-os-reconfigure-user (guix/system "nuc"
                                               "reconfigure"
                                               ; use substututes from nongnu in upgrading (kernel does not need to be compiled)
-                                              "--substitute-urls='https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org'"
+                                              "--substitute-urls=\"https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org\""
                                           ; "--allow-downgrades"
                                            ;"--no-grafts"
                                               )
