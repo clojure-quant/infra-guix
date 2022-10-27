@@ -13,8 +13,9 @@ export XDG_DATA_DIRS=$XDG_DATA_DIRS:~/.nix-profile/share
 # are not in the search path set by the XDG_DATA_DIRS environment variable, so
 # applications installed by Flatpak may not appear on your desktop until the
 # session is restarted.
-export XDG_DATA_DIRS=$XDG_DATA_DIRS:~/.local/share/flatpak/exports/share/
 export PATH=$PATH:~/.local/share/flatpak/exports/bin/
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:~/.local/share/flatpak/exports/share/
+
 
 # CLOJURE BINARY INSTALLATION
 export PATH=$PATH:/home/florian/clojure/bin

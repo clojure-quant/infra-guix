@@ -25,19 +25,11 @@ flatpak install flathub com.visualstudio.code
 flatpak --user install flathub us.zoom.Zoom 
 flatpak --user install org.signal.Signal.flatpakref
 
-
-
 # exodus wallet
 
 # !/run/current-system/profile/bin/bash 
 # flatpak run us.zoom.Zoom
 # flatpak run com.visualstudio.code
-
-
-# /repo/myLinux/distros/guix$ cat /home/florian/.guix-profile/share/applications/chromium.desktop 
-# [Desktop Entry]
-# Version=1.0
-# Name=Chromium
 
 
 
