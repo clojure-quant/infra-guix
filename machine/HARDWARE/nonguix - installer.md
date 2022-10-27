@@ -1,4 +1,13 @@
 
+
+# list of modules in the kernel:
+
+kernel firmware.
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/log
+lots of amd cards.
+
+
+
 # Non free kernel with installer 
 https://guix.gnu.org/manual/en/html_node/Building-the-Installation-Image.html#Building-the-Installation-Image
 
