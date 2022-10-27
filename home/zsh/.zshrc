@@ -1,28 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# awb99: this is identical from bash config.
-
-# NIX bin paths
-export PATH=$PATH:~/.nix-profile/bin
-
-
-export PATH=$PATH:/home/florian/clojure/bin
-
-# user guix profile
-GUIX_PROFILE="/home/florian/.guix-profile"
-. "$GUIX_PROFILE/etc/profile"
-
-# load all extra guix profiles on startup
-GUIX_EXTRA_PROFILES=$HOME/.guix-extra-profiles
-for i in $GUIX_EXTRA_PROFILES/*; do
-  profile=$i/$(basename "$i")
-  if [ -f "$profile"/etc/profile ]; then
-    GUIX_PROFILE="$profile"
-    . "$GUIX_PROFILE"/etc/profile
-  fi
-  unset profile
-done
+# MOVED TO ZPROFILE
 
 # from here it is identical to https://github.com/ohmyzsh/ohmyzsh
 

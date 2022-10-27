@@ -56,7 +56,12 @@
   (service home-zsh-service-type
         (home-zsh-configuration
           (zshrc 
-            (list (local-file "./zsh/.zshrc" "zshrc"))))))
+            (list (local-file "./zsh/.zshrc" "zshrc")))
+          (zprofile 
+            (list (local-file "./zsh/.zprofile" "zprofile")))
+          ; zlogin
+          
+          )))
 
 ; guix install glibc-locales
 ; export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
@@ -175,9 +180,8 @@
    
       (->packages-output font-packages) 
      ;;  emacs-packages
-      )
-      
-      )
+      ))
+    
   (services
     ;(append 
       (list
