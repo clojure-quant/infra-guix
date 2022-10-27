@@ -1,8 +1,14 @@
 (use-modules 
   (gnu)
   (srfi srfi-1) ; remove
+
+  ; kernel
+  ; non-gnu linux kernel, see: https://gitlab.com/nonguix/nonguix
   (gnu packages linux) ; wifi aircrack module
+  (nongnu packages linux)
+  (nongnu system linux-initrd)
   (gnu system) ; %base-firmware
+  
   (gnu packages cups)
   (gnu packages suckless)
   (gnu packages wm)
@@ -18,10 +24,7 @@
   (gnu services sddm) ; sddm login manager
   (gnu services nix) ; nix
   
-  ; non-gnu linux kernel, see: https://gitlab.com/nonguix/nonguix
-  (nongnu packages linux)
-  (nongnu system linux-initrd)
-
+   ; awb99
   (awb99 packages nuc)
   (awb99 services monitor)
   (awb99 services trezord)
@@ -39,12 +42,6 @@
 (use-package-modules certs rsync screen ssh)
 
 ; 1 SERVICES ***************************************************
-
-(define i3-service
-  (simple-service
-    'i3-packages
-    profile-service-type
-    (list dmenu i3-wm i3lock i3status)))
     
 
 (define my-services
@@ -248,12 +245,18 @@
    ;     rtl8812au-aircrack-ng-linux-module ; for usb wifi card
    ;   ))
 
-   ; non-gnu kernel
+  ; non-gnu kernel
+  ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm
   (kernel linux)
+  ;(kernel linux-lts)
   (initrd microcode-initrd); CPU microcode updates are nonfree blobs 
   (kernel-loadable-modules '()) ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
   ; (kernel linux-nonfree)
-  (firmware (list linux-firmware))
+  (firmware (list 
+              linux-firmware
+              ; iwlwifi-firmware (linux firmware contains it already)
+            ))
+  ;(firmware (append (list iwlwifi-firmware) %base-firmware))
   ;(firmware %base-firmware)
   ;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
 

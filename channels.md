@@ -12,9 +12,10 @@ By default guix pull
 reads ~/.config/guix/channels.scm; with -C it can take channel specifications from a user-supplied file 
 
 - **Nonguix** https://gitlab.com/nonguix/nonguix clojure steam broadcom installer nonfree 
-- **Nonfree**  https://www.rohleder.de/gitweb/?p=guix.git;a=blob;f=mroh/guix/install.scm;hb=HEAD wifi driver, qemu, steem
-- **guix science** https://github.com/guix-science/guix-science
 - **pantherX** https://channels.pantherx.org/pantherx-extra.git/tree/
+- **rohleder.de**  https://www.rohleder.de/gitweb/?p=guix.git;a=blob;f=mroh/guix/install.scm;hb=HEAD wifi driver, qemu, steem
+- **guix science** https://github.com/guix-science/guix-science
+
 - **Bio informatics** https://github.com/pjotrp/guix-notes/blob/master/BIOINFORMATICS.org r shiny cran java node shell python2 python3 machine learning tensor flow mysql numpy services: shiny
 - **Gaming** https://gitlab.com/guix-gaming-channels
 - **RStudio** https://github.com/leibniz-psychology/guix-zpid rstudio

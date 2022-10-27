@@ -124,6 +124,7 @@
     "inxi"  ; hardware info 
   ;  "cpuid" ; cpu info  ; no substitutes available
     "cpuinfo" ; cpu info
+    "lshw" ; list hardware
     "tree"
     "whois"
     ; "perftest" ; makes problems with new guix

@@ -93,6 +93,8 @@
                                      "-drive" "if=none,file=./artefact/installer.qcow2,id=myhd")}
 
         ; NUC
+         ; os reconfigure does not work with substitutes.
+         ; use install-nuc.sh instead.
          nuc-os-reconfigure-user (guix/system "nuc"
                                               "reconfigure"
                                               ; use substututes from nongnu in upgrading (kernel does not need to be compiled)

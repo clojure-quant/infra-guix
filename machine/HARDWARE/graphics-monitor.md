@@ -1,3 +1,15 @@
+
+# detect hardware
+
+inxi --graphics
+Graphics:
+  Device-1: Intel Iris Pro Graphics 580 driver: i915 v: kernel
+  Display: wayland server: X.Org v: 21.1.3 compositor: gnome-shell v: 42.4
+    driver: X: loaded: modesetting unloaded: fbdev,vesa gpu: i915
+    resolution: 3840x2160~60Hz
+  OpenGL: renderer: Mesa Intel Iris Pro Graphics 580 (SKL GT4) v: 4.6 Mesa
+    21.3.8
+
 # control of montor brightness
 
 ddcutil
