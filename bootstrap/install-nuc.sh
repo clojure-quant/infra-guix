@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+# sh and not bash, as on new guix only sh is known.
 
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 

@@ -325,8 +325,6 @@
                                      ;(shell "ssh" "-L" "9090:127.0.0.1:8384" "florian@192.168.1.116")
                                  (shell "ssh" "-N" "-L" "9090:127.0.0.1:8384" "florian@192.168.178.25"))}
 
-
-         guile-test (guix/guile "-l" "./modules/awb99/test.scm")
          guix-repl   {:doc "start guix repl, with module load path: ./modules"
                       :task (guix/guix "repl")}
          guix-repl-test  {:doc "start guix repl, load ./modules/awb99/test.scm"

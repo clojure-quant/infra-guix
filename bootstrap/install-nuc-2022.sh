@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/bin/sh
+# sh and not bash, as on new guix only sh is known.
 
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
-# reconfigues nuc2002 system
+# reconfigures system
 # on the reconfiguration it will use also nonguix substitutes.
 # otherwise nongnu packages will have to be compiled from source.
 

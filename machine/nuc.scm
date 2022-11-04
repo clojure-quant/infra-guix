@@ -36,18 +36,18 @@
   (packages my-packages)
   (services os-services)
   ; kernel
+  ; non-gnu kernel
+  ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm
+ (kernel linux)
+; (kernel linux-libre) ; gnu linux-libre
+ ;(kernel linux-lts) ; nongnu linux (with blobs)
+ (initrd microcode-initrd); CPU microcode updates are nonfree blobs 
+ (kernel-loadable-modules '()) ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
   ; awb99: old config, when we had rtl-8812au-aircrack-ng-linux module in gnu guix.
   ;(kernel-loadable-modules 
   ;   (list 
   ;     rtl8812au-aircrack-ng-linux-module ; for usb wifi card
   ;   ))
-  ; non-gnu kernel
-  ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm
- (kernel linux)
-; (kernel linux-nonfree)
- ;(kernel linux-lts)
- (initrd microcode-initrd); CPU microcode updates are nonfree blobs 
- (kernel-loadable-modules '()) ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
  (firmware (list 
             linux-firmware
             ; iwlwifi-firmware (linux firmware contains it already)
@@ -56,8 +56,7 @@
   ;(firmware %base-firmware)
   ; firmware with intel wifi driver
   ;(firmware (append (list iwlwifi-firmware) %base-firmware))
-
-;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
+ ;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
 
   ; bootloader
   (bootloader
