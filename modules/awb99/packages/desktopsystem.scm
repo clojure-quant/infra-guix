@@ -1,4 +1,4 @@
-(define-module (awb99 packages nuc)
+(define-module (awb99 packages desktopsystem)
   #:use-module (gnu packages linux) ; wifi driver
   #:use-module (awb99 packages tools)
   #:use-module (awb99 packages fonts)
@@ -8,7 +8,19 @@
   #:use-module (awb99 packages emacs)
 )
 
-(define-public packages-nuc-root
+(define packages-desktop-other
+  (list
+    "swaylock"
+    "nix"
+    ; awb99 - rtl8812au module no longer exists in guix kernel. removed due to blobs.
+    ;"rtl8812au-aircrack-ng-linux-module" ; rtl8812au USB wifi driver
+    "wpa-supplicant" ; manage wifi networks
+    ;  "mcron"
+    ;  "shepherd"
+    ))
+
+
+(define-public packages-desktop-system
   (append
     packages-wm-sway
     packages-wm-gnome
@@ -22,24 +34,6 @@
     services-packages
     guix-core-packages
     shell-packages
+    packages-desktop-other ; defined above
   ))
-
-; this packages go to the system.
-(define-public packages-nuc-root-only
-  (append
-    packages-nuc-root
-    (list
-      "swaylock"
-      "nix"
-      ; awb99 - rtl8812au module no longer exists in guix kernel. removed due to blobs.
-      ;"rtl8812au-aircrack-ng-linux-module" ; rtl8812au USB wifi driver
-      "wpa-supplicant" ; manage wifi networks
-      ;  "mcron"
-      ;  "shepherd"
-   )))
-
-
-
-
- 
 

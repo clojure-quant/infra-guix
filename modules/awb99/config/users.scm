@@ -5,16 +5,18 @@
   #:use-module (gnu packages ssh) ; openssh-sans-x
   #:use-module (gnu system shadow) ; openssh-sans-x
   #:use-module (gnu packages shells) ; zsh
-  #:export (mygroups myusers myusers-vm my-sudoers-file))
+  #:export (desktop-groups 
+            desktop-users 
+            myusers-vm 
+            my-sudoers-file))
 
 
-(define-public mygroups
+(define-public desktop-groups
   (cons* 
     (user-group 
       (system? #f) 
       (name "bongotrotters"))
     %base-groups))
-
 
 
 (define-public groups-server
@@ -30,7 +32,7 @@
   ))
 
 (define-public groups-desktop
-   '(; server-groups
+   '( ; server-groups
      "wheel" 
      "netdev" 
      "audio" 
@@ -77,23 +79,29 @@
     (group "users")
     (home-directory "/home/florian")
     ;(shell (file-append fish "/bin/fish"))
-   ; (identity "../../../keys/flo5")
+    (shell (file-append zsh "/bin/zsh"))
+    ; (identity "/home/florian/repo/myLinux/data/ssh/coin")
+    ; (identity "../../../keys/flo5")
     (supplementary-groups
       '("wheel" 
-        "netdev" 
-        "audio" "video"
-        "tty"
+        "lp"  ; line printer ; control bluetooth devices
+        "lpadmin" ; line printer admin
+        "netdev" ; network/wifi admin
+        "audio" 
+        "video"
+        "kvm"  ; run qemu as florian with kvm support.
+        ; "libvirt"
+        ;;"wireshark"
+        ; "realtime"  ;; Enable realtime scheduling
         ; "input"
-        ; "kvm" "libvirt"  ; run qemu as florian with kvm support.
-        ; "lp" "lpadmin"
-       ; "wireshark"
-    ))))
+
+       ))))
 
 
-(define myusers
+(define desktop-users
   (cons* 
      user-florian
-     user-viktor
+     ;user-viktor
      %base-user-accounts))
   
 

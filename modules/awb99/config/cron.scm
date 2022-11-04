@@ -11,6 +11,7 @@
    (gnu packages linux)
    (gnu packages base)
    (gnu packages idutils)
+   (gnu services)
    (gnu services mcron) ; identical to: (use-service-modules mcron)
   ; (mcron scripts mcron)
    ;(mcron base)
@@ -91,3 +92,12 @@
                  mcron-service-type
                  my-guix-maintenance-jobs
                 ))
+
+
+(define-public service-cron
+  (service mcron-service-type
+    (mcron-configuration
+     (jobs my-guix-maintenance-jobs))))
+
+
+              

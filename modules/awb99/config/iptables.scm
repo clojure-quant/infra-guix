@@ -1,6 +1,13 @@
 (define-module (awb99 config iptables)
   #:export (iptables-allow-8080
-            iptables-port-redirect))
+            iptables-port-redirect
+            service-iptables))
+
+(use-modules 
+  (guix) ; plain-file
+  (gnu services) ; service
+  (gnu services networking) ; iptables config
+)
 
 
 (define iptables-allow-8080
@@ -58,3 +65,11 @@ COMMIT
 
 ; sudo iptables-restore iptables.txt
 
+
+(define service-iptables
+  (service iptables-service-type
+    (iptables-configuration
+      (ipv4-rules (plain-file "iptables.rules" 
+        ;iptables-allow-8080 
+        iptables-port-redirect
+    )))))
