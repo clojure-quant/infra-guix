@@ -2,8 +2,6 @@
   (gnu)
   (srfi srfi-1) ; remove
 
-  ; kernel
-  ; non-gnu linux kernel, see: https://gitlab.com/nonguix/nonguix
   (gnu packages linux) ; wifi aircrack module
   (nongnu packages linux)
   (nongnu system linux-initrd)
@@ -17,7 +15,7 @@
   ;(gnu packages docker) ; docker
   ;(gnu packages package-management) ; nix
   ; awb99
-  (awb99 config packagesdesktop)
+  (awb99 config desktoppackages)
   (awb99 config desktopservices)
   (awb99 config users)
 
@@ -25,7 +23,7 @@
 
 (operating-system
   (host-name "nuc27")
-  (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
+  (issue "awb99 config with guix on nuc \n\n")
   ; (locale "de_AT.utf8")
   (locale "en_US.utf8")
   (timezone "Europe/Amsterdam")

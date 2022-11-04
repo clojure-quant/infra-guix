@@ -3,6 +3,11 @@
 
 (use-modules 
   (gnu)
+  ; GNU
+  (gnu system) ; %base-firmware
+  ; NONGNU
+  (nongnu packages linux)
+  (nongnu system linux-initrd)
   ; awb99
   (awb99 config desktoppackages)
   (awb99 config desktopservices)
