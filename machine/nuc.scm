@@ -23,21 +23,43 @@
 
 )
 
-
-
-  ; 4 OS ***********************************************************
-
 (operating-system
+  (host-name "nuc27")
+  (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
   ; (locale "de_AT.utf8")
   (locale "en_US.utf8")
   (timezone "Europe/Amsterdam")
   (keyboard-layout (keyboard-layout "at"))
-  (host-name "nuc27")
-  (issue "Guix is Great!  Ave Guix!!  Ave!!!\n\n")
+  ; awb99 cofnig
   (groups desktop-groups)
   (users desktop-users)
   (packages my-packages)
   (services os-services)
+  ; kernel
+  ; awb99: old config, when we had rtl-8812au-aircrack-ng-linux module in gnu guix.
+  ;(kernel-loadable-modules 
+  ;   (list 
+  ;     rtl8812au-aircrack-ng-linux-module ; for usb wifi card
+  ;   ))
+  ; non-gnu kernel
+  ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm
+ (kernel linux)
+; (kernel linux-nonfree)
+ ;(kernel linux-lts)
+ (initrd microcode-initrd); CPU microcode updates are nonfree blobs 
+ (kernel-loadable-modules '()) ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
+ (firmware (list 
+            linux-firmware
+            ; iwlwifi-firmware (linux firmware contains it already)
+          ))
+  ; default firmware:
+  ;(firmware %base-firmware)
+  ; firmware with intel wifi driver
+  ;(firmware (append (list iwlwifi-firmware) %base-firmware))
+
+;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
+
+  ; bootloader
   (bootloader
     (bootloader-configuration
       (bootloader grub-efi-bootloader)
@@ -50,27 +72,6 @@
               (uuid "968b319a-2e32-476b-ad85-323a4c607c81"))
             (target "cryptroot")
             (type luks-device-mapping))))
-
-   ; awb99: old config, when we had rtl-8812au-aircrack-ng-linux module in gnu guix.
-   ;(kernel-loadable-modules 
-   ;   (list 
-   ;     rtl8812au-aircrack-ng-linux-module ; for usb wifi card
-   ;   ))
-
-  ; non-gnu kernel
-  ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm
-  (kernel linux)
-  ;(kernel linux-lts)
-  (initrd microcode-initrd); CPU microcode updates are nonfree blobs 
-  (kernel-loadable-modules '()) ;A list of objects (usually packages) to collect loadable kernel modules from–e.g. (list ddcci-driver-linux).
-  ; (kernel linux-nonfree)
-  (firmware (list 
-              linux-firmware
-              ; iwlwifi-firmware (linux firmware contains it already)
-            ))
-  ;(firmware (append (list iwlwifi-firmware) %base-firmware))
-  ;(firmware %base-firmware)
-  ;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
 
 
   ; swapfile has to be created first.

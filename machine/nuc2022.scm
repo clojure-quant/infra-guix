@@ -10,6 +10,7 @@
 
 (operating-system
   (host-name "nuc2022")
+  (issue "awb99 config with guix on nuc2022 \n\n")
   (locale "en_US.utf8")
   (timezone "America/Panama")
   (keyboard-layout (keyboard-layout "us" "altgr-intl"))

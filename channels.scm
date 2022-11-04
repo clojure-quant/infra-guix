@@ -2,12 +2,10 @@
 ;; 'guix time-machine -C' to obtain the Guix revision that was
 ;; used to populate this profile.
 
-; (append
-  (list
+(use-modules
+(guix channels))
 
-      (channel
-        (name 'guix)
-        (url "https://git.savannah.gnu.org/git/guix.git"))
+  (cons
 
       (channel
         ; see: https://gitlab.com/nonguix/nonguix
@@ -46,7 +44,6 @@
       ;  (name 'pantherx)
       ;  (url "https://channels.pantherx.org/git/pantherx-extra.git")) ; vs-codium
 
-      
+    ;
+    %default-channels  
   )
-  
-  ; %default-channels)
