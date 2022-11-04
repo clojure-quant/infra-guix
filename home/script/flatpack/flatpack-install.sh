@@ -8,8 +8,6 @@
 # add a directory to XDG_DATA_DIRS)
 # find -type f -iname "*.Desktop"
 
-
-# echo "guix: dev environment"
 export GUILE_LOAD_PATH=./scm:$GUILE_LOAD_PATH
 
 

@@ -1,5 +1,4 @@
 (use-modules
-(gnu packages linux) ; wifi driver
 (awb99 packages tools)
 (awb99 packages fonts)
 (awb99 packages wm)

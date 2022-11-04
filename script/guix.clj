@@ -19,13 +19,6 @@
                    :err :inherit})
       opts)))
 
-(defn guile
-  [& args]
-  (let [opts (extra-path-env false "GUILE_LOAD_PATH" "./modules")
-        result (apply shell opts "guile" args)]
-     ;(println "guix result: " result)
-     ;(println "guix out result: "  (:out result))
-    result))
 
 (defn guix
   [command & args]
