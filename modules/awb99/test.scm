@@ -9,7 +9,7 @@
   #:use-module (awb99 guixutils)
   #:use-module (awb99 services trateg)
   #:use-module (awb99 machine ocean)
-  #:use-module (awb99 services ddclient)
+  #:use-module (awb99 config ddclient)
   #:use-module (awb99 config cron)
   #:use-module (awb99 packages nuc)
   #:use-module (awb99 services wayland)

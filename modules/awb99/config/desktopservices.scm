@@ -34,7 +34,7 @@
   (awb99 config iptables)
   (awb99 config printer)
   (awb99 config ssh)
-  ;(awb99 services ddclient)
+  (awb99 config ddclient)
   (awb99 services wayland)
   (awb99 services tailscale)
 
@@ -74,7 +74,7 @@
       (trezord-configuration))
     service-bin-links
     service-syncthing
-    ; service-ddclient-nuc
+    service-ddclient-nuc
     (tailscale-service `(#:config #f   ; this config is not being used.
                          #:phases #t))
     service-ssh
