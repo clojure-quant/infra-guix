@@ -65,8 +65,6 @@
 
 ; guix install glibc-locales
 ; export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
-; GUIX_PROFILE="/home/florian/.guix-profile"
-; . "$GUIX_PROFILE/etc/profile"
 
 
 (define-public fish-service

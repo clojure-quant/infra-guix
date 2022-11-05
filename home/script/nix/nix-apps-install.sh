@@ -1,4 +1,4 @@
-bb 
+#!/bin/sh
 # without fonts and the config above, vscodium looks weird.
 nix-env --install nixpkgs.fira-code
 
@@ -10,6 +10,6 @@ nix-env --install nixpkgs.fira-code
 
 nix-env -i vscodium
 
-nix-env -i babashka
+# nix-env -i babashka
 
 

@@ -14,7 +14,7 @@ if [ -z $profile ] ; then
   exit -4
 fi
 
-export profiledir="$extradir/$profile"
+export profiledir="$extradir/$profi"
 export profilelink="$profiledir/$profile"
 mkdir -p $extradir
 mkdir -p $profiledir
