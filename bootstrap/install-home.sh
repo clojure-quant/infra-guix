@@ -12,7 +12,7 @@ echo "profile (passed as parameter: " $profile
 if [ -z $profile ] ; then
   echo "profile is not specified. exiting" 
   exit -4
-fi
+fi   
 
 echo "reconfiguring guix home for profile: $profile"
 

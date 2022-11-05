@@ -17,6 +17,7 @@
     "wpa-supplicant" ; manage wifi networks
     ;  "mcron"
     ;  "shepherd"
+    "iptables" ; so iptables is in search-path; needed for tailscale
     ))
 
 

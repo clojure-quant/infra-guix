@@ -20,7 +20,7 @@
 ;  (yellowsquid services pipewire)
   (awb99 guixutils) 
   (awb99 config helper)
-  (awb99 packages nuc)
+  ;(awb99 packages nuc)
   (awb99 packages wm)
   (awb99 packages fonts)
   ;((awb99 home emacs) #:prefix emacs:)
