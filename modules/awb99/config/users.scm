@@ -91,6 +91,7 @@
   (cons* 
      user-florian
      ;user-viktor
+     (create-user "ddclient" 2501 (list ))
      %base-user-accounts))
   
 
