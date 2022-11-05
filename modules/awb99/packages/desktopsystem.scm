@@ -7,14 +7,17 @@
   #:use-module (awb99 packages programming)
   #:use-module (awb99 packages emacs)
 )
-
+  
 (define packages-desktop-other
   (list
     "swaylock"
+    "wpa-supplicant" ; manage wifi networks
+
+    ; other package managers
     "nix"
+    "flatpak"
     ; awb99 - rtl8812au module no longer exists in guix kernel. removed due to blobs.
     ;"rtl8812au-aircrack-ng-linux-module" ; rtl8812au USB wifi driver
-    "wpa-supplicant" ; manage wifi networks
     ;  "mcron"
     ;  "shepherd"
     "iptables" ; so iptables is in search-path; needed for tailscale

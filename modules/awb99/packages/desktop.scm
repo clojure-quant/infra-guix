@@ -103,7 +103,7 @@
   "syncthing-gtk" 
 
   ; tools
-  "flatpak"
+ 
   "xdotool" ; determine windows class names (for i3 wm rules)
   ; "gvfs" ; for user mounts
   "catfish" ; file search tool
