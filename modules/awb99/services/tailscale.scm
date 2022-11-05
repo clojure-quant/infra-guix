@@ -40,14 +40,16 @@
                         ;%zerotier-action-leave
                     ))
          (start #~(make-forkexec-constructor
-                   (list (string-append #$tailscale "/bin/tailscaled"))))
+                   (list (string-append #$tailscale "/bin/tailscaled")
+                         "--state=/var/run/tailscaled.state" 
+                )))
          (stop #~(make-kill-destructor))))))
 
 (define tailscale-service-type
 (service-type (name 'tailscale)
               (description "Tailscale daemon.")
               (extensions
-               (list (s ervice-extension shepherd-root-service-type
+               (list (service-extension shepherd-root-service-type
                                         tailscale-shepherd-service)))))
 
 (define (tailscale-service config) ;#:key (config (list))
