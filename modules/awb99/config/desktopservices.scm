@@ -95,15 +95,15 @@
     (lambda (service)
        (eq? (service-kind service) gdm-service-type)) ;; Remove GDM.
       system-services))
-
+ 
 
 (define (custom-udev system-services)
   (modify-services system-services
       (udev-service-type config =>
         (udev-configuration
           (inherit config)
-          (rules (cons* trezord-udev-rules
-                        (list ;udev-rule-backlight
+          (rules (append trezord-udev-rules
+                        (list udev-rule-backlight
                         )
                         (udev-configuration-rules config)))))
           ))
