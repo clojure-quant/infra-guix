@@ -61,7 +61,7 @@
   ;; The list of file systems that get "mounted".  The unique
   ;; file system identifiers there ("UUIDs") can be obtained
   ;; by running 'blkid' in a terminal.
-  (file-system
+  (file-systems
      (cons* (file-system
               (mount-point "/boot/efi")
               (device (uuid "167C-868D" 'fat32))

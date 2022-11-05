@@ -42,3 +42,8 @@ https://guix.tobias.gr	(public-key (ecc (curve Ed25519) (q #628CD75C05C782233170
 
 https://guix.cbaines.net	(public-key (ecc (curve Ed25519) (q #5F5F4F321533D3A38F909785E682798933BA9BE257C97E5ABC07DD08F27B8DBF#)))
 
+;(guix-service-type
+;config => (guix-configuration
+;(inherit config)
+;(substitute-urls %my-substitute-urls)
+;(extra-options '("--max-jobs=4"))))

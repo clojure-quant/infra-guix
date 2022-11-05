@@ -88,7 +88,7 @@
     (users (cons* user-florian
                   user-viktor
                   %base-user-accounts))
-    (sudoers-file my-sudoers-file)
+    (sudoers-file sudoers-file-no-password)
     (packages (append extra-packages %base-packages))
     (services
       (append

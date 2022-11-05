@@ -30,7 +30,7 @@
   (awb99 config ssh)
   (awb99 services bootstrap-files)
   (awb99 services mingetty)
-  (awb99 services file-sync)
+  (awb99 config file-sync)
   )
 
            

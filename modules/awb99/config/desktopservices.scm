@@ -29,13 +29,13 @@
   (awb99 services monitor)
   (awb99 services trezord)
   (awb99 config special-files)
-  (awb99 services file-sync)
+  (awb99 config file-sync)
   (awb99 config cron)
   (awb99 config iptables)
   (awb99 config printer)
   (awb99 config ssh)
   (awb99 config ddclient)
-  (awb99 services wayland)
+  (awb99 config wayland)
   (awb99 services tailscale)
 
 )
@@ -60,24 +60,30 @@
 
     ; standard default services that are useful in a desktop
     service-cron
-    service-iptables
+    service-iptables  
+    service-ssh  
+    service-ddclient-nuc
     service-printer
+    service-bin-links
+    
+    ; virtualization
     (service docker-service-type)
     (service qemu-binfmt-service-type ; needed for qemu arm system compile
       (qemu-binfmt-configuration
          (platforms (lookup-qemu-platforms "arm" "aarch64" ; "i686" "ppc"
        ))))
+    ; other package managers
     (service nix-service-type)
 
-    ; awb99 special services
+     ; misc    
+    service-syncthing
     (service trezord-service-type
       (trezord-configuration))
-    service-bin-links
-    service-syncthing
-    service-ddclient-nuc
+    
+    ; awb99 special services
     (tailscale-service `(#:config #f   ; this config is not being used.
                          #:phases #t))
-    service-ssh
+    
 
 
     ))

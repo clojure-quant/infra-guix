@@ -8,7 +8,7 @@
   #:export (groups-desktop
             users-desktop
             myusers-vm 
-            my-sudoers-file))
+            sudoers-file-no-password))
 
 ;; GROUPS
 
@@ -112,7 +112,7 @@
 
  ;; Our /etc/sudoers file.  Since 'guest' initially has an empty password,
   ;; allow for password-less sudo.
-(define my-sudoers-file 
+(define sudoers-file-no-password
    (plain-file "sudoers" "\
     root ALL=(ALL) ALL
     %wheel ALL=NOPASSWD: ALL\n"))

@@ -1,4 +1,4 @@
-(define-module (awb99 services file-sync)
+(define-module (awb99 config file-sync)
   #:use-module (gnu)
   #:use-module (gnu services syncthing)
   #:export (service-syncthing))

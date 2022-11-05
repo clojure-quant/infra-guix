@@ -7,9 +7,17 @@
 
 
 ; virtualization
-; The (gnu services virtualization) module provides services for the libvirt and virtlog daemons, as well as other virtualization-related services.
+; packages:  virt-manager
+; The (gnu services virtualization) module provides services for the 
+; libvirt and virtlog daemons, as well as other virtualization-related services.
 ; Libvirt daemon
 ; libvirtd is the server side daemon component of the libvirt virtualization management system. This daemon runs on host servers and performs required management tasks for virtualized guests.
+
+
+; If you’re using Intel processor, then make sure your processor has support 
+; for hardware virtualization. If it does, then make sure VT-x or VT-d extension 
+; is enabled from the BIOS of your computer
+; when virtualisation is enabled, then /dev/kvm should exist
 
 ;; libvirt for VMs
 (define-public services-virtualization
@@ -38,12 +46,3 @@
 
 
 
-
-
-If you’re using Intel processor, then make sure your processor has support for hardware virtualization. 
-If it does, then make sure VT-x or VT-d extension is enabled from the BIOS of your computer
-
-packages:  virt-manager
-
-Indeed, it was disabled in the BIOS, after I enabled virtualisation,
-/dev/kvm appeared.

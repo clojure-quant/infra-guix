@@ -1,20 +1,12 @@
-(define-module (awb99 services wayland))
+(define-module (awb99 config wayland))
 
 (use-modules 
   (gnu services)
-  (gnu services xorg)
-  ;(gnu services virtualization)
-  )
+  (gnu services xorg))
 
 ; the X server is started by a “display manager” such as GDM, SDDM, and SLiM
 ; Simple Desktop Display Manager is a display manager for the X11 and Wayland windowing systems.
 
-
-;(guix-service-type
-;config => (guix-configuration
-;(inherit config)
-;(substitute-urls %my-substitute-urls)
-;(extra-options '("--max-jobs=4"))))
 
 
 ;; Prevent network-manager from modifying /etc/resolv.conf.
