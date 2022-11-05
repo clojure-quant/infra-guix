@@ -14,13 +14,9 @@ if [ -z $profile ] ; then
   exit -4
 fi
 
+echo "reconfiguring guix home for profile: $profile"
 
-pd="$extradir/%profile"
-mkdir -p $extradir
-mkdir -p $pd
-
-guix package \
-  --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
+guix home reconfigure \
   --profile=$pd/pd \
-  --manifest=./manifest/$profile.scm
+  ./home/config-$profile.scm
 
