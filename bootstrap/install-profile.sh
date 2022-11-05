@@ -14,14 +14,14 @@ if [ -z $profile ] ; then
   exit -4
 fi
 
-export profiledir="$extradir/$profi"
-export profilelink="$profiledir/$profile"
+export profiledir="${extradir}/${profile}"
+export profilelink="${profiledir}/${profile}"
 mkdir -p $extradir
 mkdir -p $profiledir
 
 guix package \
   --profile="$profilelink" \
-  --manifest="./manifest/$profile.scm"
+  --manifest="./manifest/${profile}.scm"
 #   --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
 
 echo "activating profile..."
