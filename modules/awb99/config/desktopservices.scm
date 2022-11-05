@@ -1,5 +1,4 @@
 (define-module (awb99 config desktopservices)
-
   #:export (os-services))
 
 (use-modules 
@@ -35,7 +34,10 @@
   (awb99 config iptables)
   (awb99 config printer)
   ;(awb99 services ddclient)
-  (awb99 services wayland))
+  (awb99 services wayland)
+  (awb99 services tailscale)
+
+)
    
 ; use "guix system search" to search for available services
 
@@ -71,7 +73,10 @@
       (trezord-configuration))
     service-bin-links
     service-syncthing
-    ; service-ddclient-nuc 
+    ; service-ddclient-nuc
+    (tailscale-service `(#:config #f 
+                         #:phases #t))
+
 
     ))
 

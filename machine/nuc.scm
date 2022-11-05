@@ -28,10 +28,10 @@
   (locale "en_US.utf8")
   (timezone "Europe/Amsterdam")
   (keyboard-layout (keyboard-layout "at"))
-  ; awb99 cofnig
+  ; awb99 config
   (groups desktop-groups)
   (users desktop-users)
-  (packages my-packages)
+  (packages packages-desktop)
   (services os-services)
   ; kernel
   ; non-gnu kernel

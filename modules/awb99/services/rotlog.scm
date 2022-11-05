@@ -62,6 +62,7 @@
             (frequency 'weekly)
             (options '("rotate 1" "log_rotate" "nocompress"))))
         base-rotations))))
+      
 (define desktop-rotation-service-config
   (rottlog-configuration
     (rotations base-rotations)))
