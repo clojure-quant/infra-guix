@@ -8,7 +8,7 @@
             ;(config guix-daemon)
              (srfi srfi-1)
              (awb99 config users)
-             (awb99 services os-release)
+             (awb99 config os-release)
             )
 
 (use-service-modules

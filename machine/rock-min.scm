@@ -24,7 +24,7 @@
   ; awb99
   (awb99 config helper)
   (awb99 config users)
-  (awb99 services os-release)
+  (awb99 config os-release)
   (awb99 services bootstrap-files)
   (awb99 services mingetty)
   (awb99 services ntp)

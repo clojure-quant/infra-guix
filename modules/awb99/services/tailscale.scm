@@ -67,4 +67,4 @@
     config
 ))
 
-(display "tailscale service compiled!")
+;(display "tailscale service compiled!")

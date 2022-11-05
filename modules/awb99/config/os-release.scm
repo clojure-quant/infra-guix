@@ -1,4 +1,4 @@
-(define-module (awb99 services os-release)
+(define-module (awb99 config os-release)
   #:use-module (oop goops)  ; Defining classes and methods.
   #:use-module (gnu) 
   ; #:use-module (guix gexp)

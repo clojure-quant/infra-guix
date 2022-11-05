@@ -162,6 +162,7 @@
        ; ("_JAVA_AWT_WM_NONREPARENTING" . #t)
         ("GDK_SCALE" . "1")
         ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
+        ("MYVAULT" "/home/florian/repo/myLinux/myvault")
       )))
 
 

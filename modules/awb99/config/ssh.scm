@@ -1,16 +1,24 @@
-(define-module (awb99 services ssh)
+(define-module (awb99 config ssh)
   #:use-module (guix) ; local-file
   #:use-module (gnu services)
-  #:use-module (gnu services ssh)
   #:use-module (gnu packages ssh) ; openssh-sans-x
   #:use-module (gnu packages compression) ; zlib (needed for openssh-sans-x)
+  #:use-module (gnu services ssh)
   #:export (awb99-ssh-config
             service-ssh
             service-ssh-dropbear
             service-ssh-bitblock
   ))
 
+(define (ssh-key-filename key-name)
+  (string-append 
+     (getenv "MYVAULT") 
+     "/ssh/" 
+     key-name 
+      ".pub"))
 
+(display "flo2022 pub file: ")
+(display (ssh-key-filename "flo2022"))
 
 (define awb99-ssh-config
   (openssh-configuration
@@ -21,8 +29,9 @@
     ;(permit-root-login #f)
     (public-key-authentication? #t)
     (authorized-keys
-      `(("florian" ,(local-file "../../../keys/flo5.pub"  )) ; relative this file "../../flo5.pub"
-        ("root" ,(local-file "../../../keys/flo5.pub" )) ; "../../flo5.pub"
+      `(;("florian" ,(local-file "../../../keys/flo5.pub"  )) ; relative this file "../../flo5.pub"
+        ("florian" ,(local-file (ssh-key-filename "flo2022")  ))
+        ;("root" ,(local-file "../../../keys/flo5.pub" )) ; "../../flo5.pub"
       ))))
 
 

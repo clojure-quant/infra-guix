@@ -1,4 +1,4 @@
-(define-module (awb99 services special-files)
+(define-module (awb99 config special-files)
 #:use-module (gnu)
 #:use-module (gnu packages bash) 
 #:use-module (gnu packages shells) ; fish + zsh

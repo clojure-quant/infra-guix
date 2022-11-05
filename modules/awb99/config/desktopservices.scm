@@ -28,11 +28,12 @@
   ;(awb99 packages nuc)
   (awb99 services monitor)
   (awb99 services trezord)
-  (awb99 services special-files)
+  (awb99 config special-files)
   (awb99 services file-sync)
   (awb99 config cron)
   (awb99 config iptables)
   (awb99 config printer)
+  (awb99 config ssh)
   ;(awb99 services ddclient)
   (awb99 services wayland)
   (awb99 services tailscale)
@@ -74,8 +75,9 @@
     service-bin-links
     service-syncthing
     ; service-ddclient-nuc
-    (tailscale-service `(#:config #f 
+    (tailscale-service `(#:config #f   ; this config is not being used.
                          #:phases #t))
+    service-ssh
 
 
     ))

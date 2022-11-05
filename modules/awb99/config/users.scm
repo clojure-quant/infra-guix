@@ -10,6 +10,7 @@
             myusers-vm 
             my-sudoers-file))
 
+;; GROUPS
 
 (define-public desktop-groups
   (cons* 
@@ -48,6 +49,11 @@
     ;;"wireshark"
    ))
 
+;; USERS
+
+(define ssh-key-filename (key-name)
+  (string-append (getenv "MYVAULT") "/ssh/" key-name ".pub"))
+
 (define-public (create-user user-name user-id groups)
   (user-account
     (name user-name)
@@ -82,6 +88,7 @@
     (shell (file-append zsh "/bin/zsh"))
     ; (identity "/home/florian/repo/myLinux/data/ssh/coin")
     ; (identity "../../../keys/flo5")
+    (identity (ssh-key-for-user "flo2022"))
     (supplementary-groups
       '("wheel" 
         "lp"  ; line printer ; control bluetooth devices
