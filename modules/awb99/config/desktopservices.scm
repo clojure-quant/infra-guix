@@ -103,7 +103,8 @@
         (udev-configuration
           (inherit config)
           (rules (cons* trezord-udev-rules
-                        (list udev-rule-backlight)
+                        (list ;udev-rule-backlight
+                        )
                         (udev-configuration-rules config)))))
           ))
 
