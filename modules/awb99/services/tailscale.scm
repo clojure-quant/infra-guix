@@ -6,6 +6,9 @@
 #:use-module (awb99 package tailscale)
 #:export (tailscale-service))
 
+; in building tailscale service,
+; I used nonguix zerotier service as a template.
+  
 ;(define %zerotier-action-join
 ;(shepherd-action
 ; (name 'join)

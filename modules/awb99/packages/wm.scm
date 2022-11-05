@@ -89,6 +89,12 @@
     "i3lock"
   ))
 
+(define-public packages-wm-enlightenment
+  (list 
+    "enlightenment"
+    ;"efl" ; Enlightenment Foundation Libraries
+   ))
+
 
 (define-public packages-desktop-printer
   (list 
@@ -115,9 +121,7 @@
       "bemenu" ; menu library inspired by dmenu
      ; "lxqt"
      ; "mate"
-      ;enlightenment
-      "enlightenment"
-      ;"efl" ; Enlightenment Foundation Libraries
+     
     
       ; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
       ; EXWM  https://config.daviwil.com/desktop
