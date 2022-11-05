@@ -17,6 +17,6 @@ fi
 echo "reconfiguring guix home for profile: $profile"
 
 guix home reconfigure \
-  --profile=$pd/pd \
   ./home/config-$profile.scm
 
+ # --verbosity=3

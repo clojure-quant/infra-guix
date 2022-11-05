@@ -47,7 +47,7 @@
 (service-type (name 'tailscale)
               (description "Tailscale daemon.")
               (extensions
-               (list (service-extension shepherd-root-service-type
+               (list (s ervice-extension shepherd-root-service-type
                                         tailscale-shepherd-service)))))
 
 (define (tailscale-service config) ;#:key (config (list))

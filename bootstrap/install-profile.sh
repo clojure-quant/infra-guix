@@ -20,11 +20,11 @@ mkdir -p $pd
 
 guix package \
   --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
-  --profile=$pd \
-  --manifest=./manifest/$profile.scm
+  --profile="$pd" \
+  --manifest="./manifest/$profile.scm"
 
 echo "activating profile..."
 export GUIX_PROFILE="$pd/$profile"
-echo $GUIX_PROFILE
+echo "GUIX PROFILE: $GUIX_PROFILE"
 . "$GUIX_PROFILE/etc/profile"
 
