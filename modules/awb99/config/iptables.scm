@@ -38,6 +38,7 @@ COMMIT
 -A INPUT -p tcp -s 127.0.0.1 -j ACCEPT
 -I INPUT -i lo -j ACCEPT
 -I OUTPUT -o lo -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp --dport 8080 -j ACCEPT
 -A INPUT -p tcp --dport 8443 -j ACCEPT
 -A INPUT -j REJECT --reject-with icmp-port-unreachable

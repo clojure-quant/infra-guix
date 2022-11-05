@@ -27,7 +27,7 @@
   (awb99 config users)
   (awb99 config os-release)
   (awb99 services bootstrap-files)
-  (awb99 services mingetty)
+  (awb99 config mingetty)
   )
 
 ;; this is a bootstrap image of guix for rock-pro

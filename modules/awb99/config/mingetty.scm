@@ -1,4 +1,4 @@
-(define-module (awb99 services mingetty)
+(define-module (awb99 config mingetty)
   #:use-module (gnu)
   #:use-module (gnu packages bash) 
   #:use-module (gnu packages shells) ; fish + zsh

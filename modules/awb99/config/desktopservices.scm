@@ -45,7 +45,7 @@
   (list 
     ; Because the GNOME, Xfce and MATE desktop services pull in so many packages, 
     ; the default %desktop-services variable doesn’t include any of them by default. 
-    ;(service xfce-desktop-service-type)
+    ;(service xfce-desktop-service-type)  
     (service gnome-desktop-service-type)
     ; (service mate-desktop-service-type)
     ; (service lxqt-desktop-service-type)
