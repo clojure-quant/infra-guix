@@ -75,12 +75,12 @@
           
   ; create swapfile with bootstrap/file-swap-create.sh
   ; https://guix.gnu.org/en/manual/devel/en/html_node/Swap-Space.html
-  (swap-devices
-    (list
-      (swap-space
-        (target "/mnt/swapfile")
-        (dependencies (filter (file-system-mount-point-predicate "/")
-                              file-systems)))))
+  ;(swap-devices
+  ;  (list
+  ;    (swap-space
+  ;      (target "/mnt/swapfile")
+  ;      (dependencies (filter (file-system-mount-point-predicate "/")
+  ;                            file-systems)))))
 
   ; end of os
   )
