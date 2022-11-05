@@ -132,6 +132,13 @@
          ; user-garbage-job
                 )))))
 
+(define (rclone-config-filename user-name)
+  (string-append 
+    (getenv "MYVAULT") 
+    "/rclone/" 
+     username-name
+    "-rclone.conf"))
+
 
 (define my-config-service
   (simple-service 'test-config
@@ -149,6 +156,8 @@
            ; clojure
             `(".config/clojure/deps.edn" ,(local-file "./clojure/deps.edn"))
             `(".config/clojure/cljfmt.edn" ,(local-file "./clojure/cljfmt.edn"))
+            ; rclone
+            `(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 
