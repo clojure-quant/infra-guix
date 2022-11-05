@@ -3,7 +3,7 @@
 (define-public desktop-chat-packages
   (list 
     ;"telegram-desktop"
-    ;; IRC
+    ;; IRC 
     ; irc.libera.chat on port 6697.
     ; "weechat" ; IRC
     "quassel"    ; GUI replication of WeeChat.

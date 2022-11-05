@@ -19,9 +19,9 @@ mkdir -p $extradir
 mkdir -p $pd
 
 guix package \
-  --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
-  --profile="$pd" \
+  --profile="$pd/$profile" \
   --manifest="./manifest/$profile.scm"
+#   --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
 
 echo "activating profile..."
 export GUIX_PROFILE="$pd/$profile"

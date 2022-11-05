@@ -41,8 +41,15 @@
                     ))
          (start #~(make-forkexec-constructor
                    (list (string-append #$tailscale "/bin/tailscaled")
-                         "--state=/var/run/tailscaled.state" 
-                )))
+                         "--state=/var/run/tailscaled.state")
+                   #:log-file "/var/log/tailscaled.log"
+                   #:environment-variables 
+                      (append 
+                         (list 
+                           "PATH=/run/setuid-programs:/run/current-system/profile/bin:/run/current-system/profile/sbin"
+                          )
+                          (environ))
+                  ))
          (stop #~(make-kill-destructor))))))
 
 (define tailscale-service-type
