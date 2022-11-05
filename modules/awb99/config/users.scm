@@ -5,14 +5,14 @@
   #:use-module (gnu packages ssh) ; openssh-sans-x
   #:use-module (gnu system shadow) ; openssh-sans-x
   #:use-module (gnu packages shells) ; zsh
-  #:export (desktop-groups 
-            desktop-users 
+  #:export (groups-desktop
+            users-desktop
             myusers-vm 
             my-sudoers-file))
 
 ;; GROUPS
 
-(define-public desktop-groups
+(define groups-desktop
   (cons* 
     (user-group 
       (system? #f) 
@@ -20,7 +20,7 @@
     %base-groups))
 
 
-(define-public groups-server
+(define groups-server
   '("wheel" ;  makes it a sudoer
     "netdev" ;; network devices
     "audio" "video" ; play sound and access the webcam.
@@ -32,7 +32,7 @@
     ; "wireshark"
   ))
 
-(define-public groups-desktop
+(define groups-desktop
    '( ; server-groups
      "wheel" 
      "netdev" 
@@ -50,9 +50,6 @@
    ))
 
 ;; USERS
-
-(define ssh-key-filename (key-name)
-  (string-append (getenv "MYVAULT") "/ssh/" key-name ".pub"))
 
 (define-public (create-user user-name user-id groups)
   (user-account
@@ -74,7 +71,6 @@
     (comment "Viktor")
     (group "users")
     (home-directory "/home/viktor")
-   ; (identity "../../../keys/viktor")
     ;  (shell (file-append zsh "/bin/zsh"))
   ))
 
@@ -86,9 +82,6 @@
     (home-directory "/home/florian")
     ;(shell (file-append fish "/bin/fish"))
     (shell (file-append zsh "/bin/zsh"))
-    ; (identity "/home/florian/repo/myLinux/data/ssh/coin")
-    ; (identity "../../../keys/flo5")
-    (identity (ssh-key-for-user "flo2022"))
     (supplementary-groups
       '("wheel" 
         "lp"  ; line printer ; control bluetooth devices
@@ -105,7 +98,7 @@
        ))))
 
 
-(define desktop-users
+(define users-desktop
   (cons* 
      user-florian
      ;user-viktor

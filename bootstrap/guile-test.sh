@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
@@ -18,11 +18,14 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 # guile -l ./modules/awb99/config/iptables.scm
 # guile -l ./modules/awb99/config/cron.scm
 # guile -l ./modules/awb99/config/users.scm
-guix repl -- ./modules/awb99/config/desktopservices.scm
+# guix repl -- ./modules/awb99/config/desktopservices.scm
 
+# package lists
 # guile -l ./modules/awb99/packages/desktopsystem.scm
 # guile -l ./modules/awb99/config/desktoppackages.scm
-# guile -l ./machine/nuc2022.scm
+
+# SYSTEM
+guix repl -- ./machine/nuc2022.scm
 
 #guix repl -- ./manifest/bin.scm
 

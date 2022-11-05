@@ -3,7 +3,7 @@
   #:use-module (gnu services)
   #:use-module (gnu packages ssh) ; openssh-sans-x
   #:use-module (gnu packages compression) ; zlib (needed for openssh-sans-x)
-  #:use-module (gnu services ssh)
+  #:use-module (gnu  services ssh)
   #:export (awb99-ssh-config
             service-ssh
             service-ssh-dropbear

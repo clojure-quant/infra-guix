@@ -29,8 +29,8 @@
   (timezone "Europe/Amsterdam")
   (keyboard-layout (keyboard-layout "at"))
   ; awb99 config
-  (groups desktop-groups)
-  (users desktop-users)
+  (groups groups-desktop)
+  (users users-desktop)
   (packages packages-desktop)
   (services os-services)
   ; kernel

@@ -1,11 +1,9 @@
 (define-module (awb99 config cron)
-; #:use-module (gnu services mcron)
-;#:use-module (gnu packages linux)
-;#:use-module (guix gexp) ; #~
 ;#:export (my-guix-maintenance-jobs)
 )
 
-(use-modules ;(guix) 
+(use-modules
+  ;(guix) 
    (gnu) 
    (guix gexp) ;brings #~     #~ means ‘[begin a] gexp’, short for G-Expression
    (gnu packages linux)

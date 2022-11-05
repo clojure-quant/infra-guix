@@ -20,8 +20,8 @@
   (timezone "America/Panama")
   (keyboard-layout (keyboard-layout "us" "altgr-intl"))
   ; awb99 config:
-  (groups desktop-groups)
-  (users desktop-users)
+  (groups groups-desktop)
+  (users users-desktop)
   (packages packages-desktop)
   (services os-services)
   ; kernel  ************************************
