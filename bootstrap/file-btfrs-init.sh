@@ -1,17 +1,24 @@
 #!/bin/sh
 
+; dont run this by mistake
+exit
 
 # why btrfs
 
-# In the Ext4 filesystem, you define the number of inodes the filesystem can supports while you create the filesystem.
-# You can’t change it after the filesystem is created. If you create too many small files, you may have free disk space left on your 
-# filesystem, but you won’t be able to create new files/directories unless you have free inodes. This is a big limitation of the Ext4 filesystem.
-# In the Btrfs filesystem, the inode allocation is flexible. The filesystem can add as many inodes as needed. So, you will never run out of inodes.
-# The Btrfs filesystem supports multiple devices and has built-in RAID support. The Btrfs filesystem has a built-in logical volume manager
-# (LVM) that is used to add multiple storage devices or partitions to a single Btrfs filesystem. 
+# In the Ext4 filesystem, you define the number of inodes the filesystem can 
+# supports while you create the filesystem. You can’t change it after the 
+# filesystem is created. If you create too many small files, you may have 
+# free disk space left on your filesystem, but you won’t be able to create 
+# new files/directories unless you have free inodes. This is a big 
+# limitation of the Ext4 filesystem.
+
+# In the Btrfs filesystem, the inode allocation is flexible. The filesystem 
+# can add as many inodes as needed. So, you will never run out of inodes.
+# The Btrfs filesystem supports multiple devices and has built-in RAID support. 
+# The Btrfs filesystem has a built-in logical volume manager
+# (LVM) that is used to add multiple storage devices or partitions to a 
+# single Btrfs filesystem. 
 # A single Btrfs filesystem can span over multiple disks and partitions.
-
-
 
 sudo lsblk -a
 
@@ -35,8 +42,6 @@ parted --script /dev/sda mklabel gpt \
  # set 1 boot on \\
  # set 1 bios_grub on
 
-
-
 # 2. FORMAT PARTITION
 
 # The -L option is used to specify the volume label.
@@ -50,8 +55,6 @@ mkfs.btrfs -L nas /dev/sda2
 # sudo mkdir /nas
 # sudo mount /dev/sda2 /nas
 # sudo umount /dev/sda2
-
-
 
 # (file-system
 #   (device (file-system-label "nas"))

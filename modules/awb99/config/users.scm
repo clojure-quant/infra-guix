@@ -13,41 +13,43 @@
 ;; GROUPS
 
 (define groups-desktop
-  (cons* 
-    (user-group 
-      (system? #f) 
-      (name "bongotrotters"))
-    %base-groups))
+(cons* 
+  (user-group 
+    (system? #f) 
+    (name "bongotrotters"))
+  %base-groups))
 
+;; USER GROUP MEMBERSHIPS
 
-(define groups-server
+(define user-groups-server
   '("wheel" ;  makes it a sudoer
-    "netdev" ;; network devices
-    "audio" "video" ; play sound and access the webcam.
-    "tty"   ; to access "/dev/ttyN".
-    "input" ; to access "/dev/input"
-    ;; "input" and "tty" are needed to start X server without root permissions: "input" 
-    ; "kvm" "libvirt"  ; run qemu as florian with kvm support.
-    ; "lp" "lpadmin"
-    ; "wireshark"
-  ))
+     "netdev" ;; network/wifi admin 
+     "audio" "video" ; play sound and access the webcam.
+    
+     ;; "input" and "tty" are needed to start X server without root permissions: "input" 
+     "tty"   ; to access "/dev/ttyN".
+     "input" ; to access "/dev/input"
 
-(define groups-desktop
-   '( ; server-groups
-     "wheel" 
-     "netdev" 
-     "audio" 
-     "video"
-     "tty"
-    ; desktop groups
-     "lp"  ; line printer
+     "lp"  ; line printer control bluetooth devices
      "lpadmin" ; line printer admin
-     "kvm"  ; hardware-acceleration qemu as user with kvm support.
-     "docker" ; run docker as non root
+     ; "realtime"  ;; Enable realtime scheduling
+   ))
+
+(define user-groups-vm
+  '("kvm"  ; hardware-acceleration qemu as user with kvm support.
+    "docker" ; run docker as non root
     ; "libvirt" ;Virt-manager  Needs group: libvirt or libvirtd
     ; "libvirt-qemu "
-    ;;"wireshark"
-   ))
+  ))
+
+
+(define user-groups-desktop
+  (append
+    user-groups-server
+    user-groups-vm
+    '(
+      ;;"wireshark"
+      )))
 
 ;; USERS
 
@@ -82,20 +84,7 @@
     (home-directory "/home/florian")
     ;(shell (file-append fish "/bin/fish"))
     (shell (file-append zsh "/bin/zsh"))
-    (supplementary-groups
-      '("wheel" 
-        "lp"  ; line printer ; control bluetooth devices
-        "lpadmin" ; line printer admin
-        "netdev" ; network/wifi admin
-        "audio" 
-        "video"
-        "kvm"  ; run qemu as florian with kvm support.
-        ; "libvirt"
-        ;;"wireshark"
-        ; "realtime"  ;; Enable realtime scheduling
-        ; "input"
-
-       ))))
+    (supplementary-groups user-groups-desktop)))
 
 
 (define users-desktop

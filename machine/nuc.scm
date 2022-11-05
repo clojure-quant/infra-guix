@@ -46,6 +46,7 @@
   ;   (list 
   ;     rtl8812au-aircrack-ng-linux-module ; for usb wifi card
   ;   ))
+
  (firmware (list 
             linux-firmware
             ; iwlwifi-firmware (linux firmware contains it already)
@@ -56,24 +57,19 @@
   ;(firmware (append (list iwlwifi-firmware) %base-firmware))
  ;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
 
-  ; bootloader
   (bootloader
     (bootloader-configuration
       (bootloader grub-efi-bootloader)
       ;(target "/boot/efi")
       (targets '("/boot/efi"))
       (keyboard-layout keyboard-layout)))
+
   (mapped-devices
     (list (mapped-device
             (source
               (uuid "968b319a-2e32-476b-ad85-323a4c607c81"))
             (target "cryptroot")
             (type luks-device-mapping))))
-
-
-  ; swapfile has to be created first.
-  ; (swap-devices 
-  ;  (list "/swapfile"))
 
   (file-systems
     (cons* (file-system
@@ -85,4 +81,10 @@
              (device "/dev/mapper/cryptroot")
              (type "ext4")
              (dependencies mapped-devices))
-           %base-file-systems)))
+           %base-file-systems))
+          
+  ; create swapfile with bootstrap/file-swap-create
+  ; (swap-devices 
+  ;  (list "/swapfile"))        
+          
+          )

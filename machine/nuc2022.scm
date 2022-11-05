@@ -71,4 +71,11 @@
               (device "/dev/mapper/cryptroot")
               (type "btrfs")
               (dependencies mapped-devices))
-            %base-file-systems)))
+            %base-file-systems))
+          
+  ; create swapfile with bootstrap/file-swap-create.sh
+  (swap-devices
+   (list "/swapfile"))
+
+  ; end of os
+  )

@@ -1,6 +1,9 @@
 
 
 
+; https://superuser.com/questions/1639692/how-to-set-sysctl-fs-notify-max-user-watches-in-guix-guix-system-error-servi/1639697#1639697
+
+
 (modify-services %desktop-services
 (sysctl-service-type config =>
   (sysctl-configuration
@@ -9,7 +12,6 @@
                        %default-sysctl-settings)))))
 
 )
-https://superuser.com/questions/1639692/how-to-set-sysctl-fs-notify-max-user-watches-in-guix-guix-system-error-servi/1639697#1639697
 
 
 (service sysctl-service-type
