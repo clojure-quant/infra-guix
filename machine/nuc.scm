@@ -10,7 +10,6 @@
   ;(gnu packages cups)
   ;(gnu packages suckless)
   ;(gnu packages wm)
-  ;(gnu packages finance)  ; trezord-udev-rules
   ;(gnu packages shells) ; zsh
   ;(gnu packages docker) ; docker
   ;(gnu packages package-management) ; nix

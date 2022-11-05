@@ -2,7 +2,6 @@
              (guix) 
              (srfi srfi-1)
              (gnu packages shells) ; zsh
-             (gnu packages finance)  ; trezord-udev-rules
              (gnu services web)
              (gnu packages logging) ; tailon
              (gnu packages mc)

@@ -6,8 +6,6 @@
   (ice-9 match)
   (srfi srfi-1)
   (guix) ; plain-file
-  (gnu packages finance)  ; trezord-udev-rules
-
   (gnu services) ; service
   (gnu services base) ; mingetty 
   (gnu services docker) ; docker service
@@ -97,15 +95,14 @@
       system-services))
  
 
-(define (custom-udev system-services)
+(define (add-custom-udev-rules system-services)
   (modify-services system-services
       (udev-service-type config =>
         (udev-configuration
           (inherit config)
-          (rules (append trezord-udev-rules
-                        (list udev-rule-backlight
-                        )
-                        (udev-configuration-rules config)))))
+          (rules (append
+                   (list udev-rule-backlight)
+                   (udev-configuration-rules config)))))
           ))
 
 (define (add-nongnu-substitute-servers services)
@@ -128,8 +125,7 @@
    (append
       my-services
       ; %desktop-services
-      ;(custom-udev %desktop-services)
       (add-nongnu-substitute-servers
         (modify-gdm-wayland 
-          (custom-udev %desktop-services)))
+          (add-custom-udev-rules %desktop-services)))
       ))
