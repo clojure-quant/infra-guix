@@ -1,9 +1,9 @@
-(define-module (awb99 services monitor)
+(define-module (awb99 config monitor)
   #:use-module (gnu services base) ; udev-rule
-  #:export (%backlight-udev-rule))
+  #:export (udev-rule-backlight))
 
 ;; Allow members of the "video" group to change the screen brightness.
-(define %backlight-udev-rule
+(define udev-rule-backlight
 (udev-rule
  "90-backlight.rules"
  (string-append "ACTION==\"add\", SUBSYSTEM==\"backlight\", "

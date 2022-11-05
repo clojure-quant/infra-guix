@@ -22,7 +22,7 @@
   (gnu packages autotools)
 
   ; awb99
-  (awb99 config helper)
+  (awb99 helper)
   (awb99 config users)
   (awb99 config os-release)
   (awb99 services bootstrap-files)

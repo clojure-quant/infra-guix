@@ -26,7 +26,7 @@
  
 ; awb99
   ;(awb99 packages nuc)
-  (awb99 services monitor)
+  (awb99 config monitor)
   (awb99 services trezord)
   (awb99 config special-files)
   (awb99 config file-sync)
@@ -103,7 +103,7 @@
         (udev-configuration
           (inherit config)
           (rules (cons* trezord-udev-rules
-                      ;  (list %backlight-udev-rule)
+                        (list udev-rule-backlight)
                         (udev-configuration-rules config)))))
           ))
 

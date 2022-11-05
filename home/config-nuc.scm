@@ -19,7 +19,7 @@
  ;(mcron core)
 ;  (yellowsquid services pipewire)
   (awb99 guixutils) 
-  (awb99 config helper)
+  (awb99 helper)
   ;(awb99 packages nuc)
   (awb99 packages wm)
   (awb99 packages fonts)
@@ -136,7 +136,7 @@
   (string-append 
     (getenv "MYVAULT") 
     "/rclone/" 
-     username-name
+     user-name
     "-rclone.conf"))
 
 
@@ -144,9 +144,11 @@
   (simple-service 'test-config
     home-files-service-type
       (list `(".config/test.conf" ,(plain-file "tmp-file.txt" "2022 10 the content of ~/.config/test.conf"))
-            `(".ssh/config" ,(local-file "./ssh/config"))
+           ; ssh client config 
+             `(".ssh/config" ,(local-file "./ssh/config"))
+           ; alacritty terminal config
             `(".config/alacritty/alacritty.yml" ,(local-file "./alacritty/alacritty.yml"))
-          ; emacs
+           ; emacs
             `(".config/emacs/init.el" ,(local-file "./emacs/init.el")) ; does not get loaded
             `("emacs.d/init.el" ,(local-file "./emacs/init.el"))
            ; sway / waybar

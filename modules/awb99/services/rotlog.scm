@@ -44,6 +44,7 @@
       (files '("/var/log/shepherd.log"))
       (frequency 'daily)
       (options '("rotate 1" "log_rotate")))))
+    
 (define server-rotation-service-config
   (rottlog-configuration
     (rotations

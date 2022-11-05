@@ -1,4 +1,4 @@
-(define-module (awb99 config helper)
+(define-module (awb99 helper)
   #:use-module (gnu packages)
   #:export (->packages-output))
 

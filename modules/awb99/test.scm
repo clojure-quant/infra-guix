@@ -13,7 +13,7 @@
   #:use-module (awb99 config cron)
   #:use-module (awb99 packages nuc)
   #:use-module (awb99 config wayland)
-  #:use-module (awb99 config helper)
+  #:use-module (awb99 helper)
   #:use-module (awb99 home emacs)
   #:use-module (awb99 home sway-service)
 )

@@ -25,7 +25,7 @@
   (gnu home services shells)
   (gnu home services mcron)
   (awb99 guixutils) 
-  (awb99 config helper)
+  (awb99 helper)
   (awb99 packages nuc) 
   )
 
