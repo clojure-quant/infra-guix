@@ -1,4 +1,4 @@
-(define-module (awb99 services nginx)
+(define-module (awb99 config nginx)
 #:export (my-certbot-service my-nginx-service)
 
 )

@@ -15,7 +15,7 @@
              (awb99 config special-files)
              (awb99 config mingetty)
              (awb99 services trezord-debug)
-             (awb99 services nginx)       
+             (awb99 config nginx)       
             )
              
 (use-service-modules desktop mcron networking spice ssh)

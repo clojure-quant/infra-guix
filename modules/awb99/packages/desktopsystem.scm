@@ -21,6 +21,7 @@
     ;  "mcron"
     ;  "shepherd"
     "iptables" ; so iptables is in search-path; needed for tailscale
+    "readymedia" ; DLNA/UPnP-AV media server (formerly known as MiniDLNA)
     ))
 
 

@@ -25,20 +25,23 @@
   (gnu packages rsync)
   (gnu packages screen)
  
-; awb99
-  ;(awb99 packages nuc)
-  (awb99 config monitor)
-  (awb99 config special-files)
-  (awb99 config file-sync)
-  (awb99 config cron)
-  (awb99 config iptables)
-  (awb99 config printer)
-  (awb99 config ssh)
-  (awb99 config ddclient)
-  (awb99 config wayland)
+  ; awb99 services
   (awb99 services trezord)
   (awb99 services tailscale)
 
+  ;awb99 config
+  (awb99 config iptables)
+  (awb99 config special-files)
+  (awb99 config ssh)
+  (awb99 config cron)
+  (awb99 config file-sync)
+
+  (awb99 config wayland)
+  (awb99 config monitor)
+  (awb99 config ddclient)
+  (awb99 config printer)
+
+; end of use-module
 )
    
 ; use "guix system search" to search for available services
@@ -89,6 +92,14 @@
 
     ))
 
+  (define (services-machine-dependent machine-name)
+    (list
+      (readymedia-service machine-name)
+    )
+  )
+  
+
+
 ; https://framagit.org/tyreunom/system-configuration/-/blob/master/modules/config/os.scm
 
 (define (remove-gdm system-services)
@@ -124,9 +135,10 @@
                       ))"))
      %default-authorized-guix-keys))))))
 
-(define os-services
+(define (os-services machine-name)
    (append
       my-services
+      (services-machine-dependent machine-name)
       ; %desktop-services
       (add-nongnu-substitute-servers
         (modify-gdm-wayland 

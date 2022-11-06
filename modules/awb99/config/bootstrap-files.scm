@@ -1,4 +1,4 @@
-(define-module (awb99 services bootstrap-files)
+(define-module (awb99 config bootstrap-files)
   #:use-module (oop goops)  ; Defining classes and methods.
   #:use-module (gnu) 
   ; #:use-module (guix gexp)

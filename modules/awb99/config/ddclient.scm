@@ -15,7 +15,8 @@
     (ddclient-configuration 
       (secret-file (ddclient-config-filename "nuc")) ;"/home/florian/repo/myLinux/data/nuc/ddclient.conf"
       (syslog #f)
-      (user "florian") ; default is "ddclient"
+      ; user florian will lead to duplicate user warning in os reconfiguration
+      ;(user "florian") ; default is "ddclient"
        
     )))
 

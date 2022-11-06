@@ -1,4 +1,4 @@
-(define-module (awb99 services virtualization))
+(define-module (awb99 config virtualization))
 
 (use-modules 
   (gnu services)
@@ -11,7 +11,9 @@
 ; The (gnu services virtualization) module provides services for the 
 ; libvirt and virtlog daemons, as well as other virtualization-related services.
 ; Libvirt daemon
-; libvirtd is the server side daemon component of the libvirt virtualization management system. This daemon runs on host servers and performs required management tasks for virtualized guests.
+; libvirtd is the server side daemon component of the 
+; libvirt virtualization management system. This daemon runs on host servers and 
+; performs required management tasks for virtualized guests.
 
 
 ; If you’re using Intel processor, then make sure your processor has support 

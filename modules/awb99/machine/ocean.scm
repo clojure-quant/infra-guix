@@ -26,7 +26,7 @@
   (awb99 config special-files)
   (awb99 config os-release)
   (awb99 config mingetty)
-  (awb99 services bootstrap-files)
+  (awb99 config bootstrap-files)
   (awb99 services trateg)
   )
 

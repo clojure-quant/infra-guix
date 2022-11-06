@@ -1,4 +1,4 @@
-(define-module (awb99 services ntp)
+(define-module (awb99 config ntp)
   #:use-module (oop goops)  ; Defining classes and methods.
   #:use-module (gnu) 
   #:use-module (gnu services networking)
@@ -7,6 +7,7 @@
 
 ; ntp is already in guix desktop services
 ; this ntp service is for bootstrapping only
+;used in embedded machines
 
 (define service-ntp
   (service openntpd-service-type

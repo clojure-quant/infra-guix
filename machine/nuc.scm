@@ -22,7 +22,7 @@
   (groups groups-desktop)
   (users users-desktop)
   (packages packages-desktop)
-  (services os-services)
+  (services (os-services "nuc"))
   (setuid-programs os-setuid-programs)
   ; kernel
   ; non-gnu kernel

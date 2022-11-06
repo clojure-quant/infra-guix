@@ -23,7 +23,7 @@
   (groups groups-desktop)
   (users users-desktop)
   (packages packages-desktop)
-  (services os-services)
+  (services (os-services "nuc2022"))
   ; kernel  ************************************
   ; non-gnu kernel
   ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm
