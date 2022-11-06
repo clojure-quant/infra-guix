@@ -6,7 +6,12 @@
 # Roughly, create empty file, chattr +C, then write the right 
 # amount of zeroes to it, then mkswap.
 
-sudo chattr +C
+# A file with the 'C' attribute set will not be subject to
+# copy-on-write updates.  This flag is only supported on
+# file systems which perform copy-on-write.  (Note: For
+# btrfs, the 'C' flag should be set on new or empty files.
+sudo touch /mnt/swapfile
+sudo chattr +C /mnt/swapfile
 
 # This is 10 GiB of swap space.  
 # sudo dd if=/dev/zero of=/mnt/swapfile bs=1MiB count=5120

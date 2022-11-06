@@ -83,6 +83,24 @@
 (define os-with-swap
   (operating-system
     (inherit os)
+    (mapped-devices (list (mapped-device
+      (source (uuid
+                "2c520d24-1c53-4129-bfb2-e7ab66fcc9df"))
+            (target "cryptroot")
+           (type luks-device-mapping))))
+    (file-systems
+      (cons*  ;add multiple items to a list
+        (file-system
+          (mount-point "/boot/efi")
+          (device (uuid "167C-868D" 'fat32))
+          (type "vfat"))
+        (file-system
+          (mount-point "/")
+          (device "/dev/mapper/cryptroot")
+          (type "btrfs")
+          (dependencies mapped-devices))
+         %base-file-systems))
+    
     (swap-devices
       (list
         (swap-space
