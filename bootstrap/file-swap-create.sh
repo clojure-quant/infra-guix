@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# BTRFS problem with CoW
+# CoW is optional, but you can turn it of *only* on new (empty) 
+# files that have never been written to.
+# Roughly, create empty file, chattr +C, then write the right 
+# amount of zeroes to it, then mkswap.
+
+sudo chattr +C
+
 # This is 10 GiB of swap space.  
 # sudo dd if=/dev/zero of=/mnt/swapfile bs=1MiB count=5120
 sudo dd if=/dev/zero of=/mnt/swapfile bs=1MiB count=10240
