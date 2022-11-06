@@ -23,6 +23,7 @@
   (users users-desktop)
   (packages packages-desktop)
   (services os-services)
+  (setuid-programs os-setuid-programs)
   ; kernel
   ; non-gnu kernel
   ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm

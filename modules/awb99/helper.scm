@@ -30,3 +30,8 @@
      (format #f "~a/.local/var/log"
        (getenv "HOME"))))
 
+(define* (getenv* nam #:optional default)
+    "Like `getenv' but returns DEFAULT if NAM is not found."
+    (or (getenv nam)
+        default))
+  

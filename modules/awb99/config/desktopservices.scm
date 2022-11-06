@@ -1,11 +1,15 @@
 (define-module (awb99 config desktopservices)
-  #:export (os-services))
+  #:export (os-services
+            os-setuid-programs))
 
 (use-modules 
   (gnu packages wm) ; swaylock
   (ice-9 match)
   (srfi srfi-1)
   (guix) ; plain-file
+  (gnu system setuid)
+  (gnu system) ;setuid-programs
+  (gnu packages nfs) ; setuid nfs
   (gnu services) ; service
   (gnu services base) ; mingetty 
   (gnu services docker) ; docker service
@@ -16,7 +20,6 @@
   (gnu services desktop)
   (gnu services xorg)
   (gnu services ssh)
-
   (gnu services web)
   (gnu packages certs)
   (gnu packages rsync)
@@ -25,7 +28,6 @@
 ; awb99
   ;(awb99 packages nuc)
   (awb99 config monitor)
-  (awb99 services trezord)
   (awb99 config special-files)
   (awb99 config file-sync)
   (awb99 config cron)
@@ -34,6 +36,7 @@
   (awb99 config ssh)
   (awb99 config ddclient)
   (awb99 config wayland)
+  (awb99 services trezord)
   (awb99 services tailscale)
 
 )
@@ -129,3 +132,13 @@
         (modify-gdm-wayland 
           (add-custom-udev-rules %desktop-services)))
       ))
+
+
+; SETUID PROGRAMS
+; https://guix.gnu.org/en/manual/devel/en/html_node/Setuid-Programs.html#Setuid-Programs
+
+(define os-setuid-programs
+  (append (list 
+           (setuid-program (program (file-append nfs-utils "/sbin/mount.nfs"))))
+           %setuid-programs)
+)
