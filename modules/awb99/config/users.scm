@@ -99,7 +99,7 @@
      user-florian
      ;user-viktor
      ;(create-user "ddclient" 2501 (list ))
-     user-ddclient
+     ; user-ddclient ; ddclient service will already create this user
      %base-user-accounts))
   
 

@@ -10,7 +10,9 @@
 #:use-module (guix gexp)
 #:use-module (guix records)
 #:use-module (ice-9 match)
-#:export (minidlna-service))
+#:export (minidlna-service
+          minidlna-service-type
+          minidlna-configuration))
 
 (define-record-type* <minidlna-configuration>
 minidlna-configuration make-minidlna-configuration

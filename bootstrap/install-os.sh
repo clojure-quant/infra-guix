@@ -1,6 +1,8 @@
 #!/bin/sh
 # sh and not bash, as on new guix only sh is known.
 
+source ./bootstrap/guile-cache-clear.sh
+
 # check that MYVAULT environment variable is set.
 if [ -z $MYVAULT ] ; then
   echo "MYVAULT environment variable not set. exiting" 

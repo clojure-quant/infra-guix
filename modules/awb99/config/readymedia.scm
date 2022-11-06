@@ -7,6 +7,7 @@
 (define-public (service-readymedia machine-name)
   (service minidlna-service-type
     (minidlna-configuration 
+      (mediadir "/mnt/media")
       (extra-config (string-append 
         "friendly_name=" machine-name "\n"
         "")))))

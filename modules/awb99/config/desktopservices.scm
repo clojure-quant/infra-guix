@@ -40,6 +40,7 @@
   (awb99 config monitor)
   (awb99 config ddclient)
   (awb99 config printer)
+  (awb99 config readymedia)
 
 ; end of use-module
 )
@@ -94,7 +95,7 @@
 
   (define (services-machine-dependent machine-name)
     (list
-      (readymedia-service machine-name)
+      (service-readymedia machine-name)
     )
   )
   

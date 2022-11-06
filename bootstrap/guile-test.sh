@@ -18,12 +18,14 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 # guile -l ./modules/awb99/services/tailscale.scm
 #guix repl -- ./modules/awb99/services/tailscale.scm
 
+
 # configured services
 # guile -l ./modules/awb99/config/printer.scm
 # guile -l ./modules/awb99/config/iptables.scm
 # guile -l ./modules/awb99/config/cron.scm
 # guile -l ./modules/awb99/config/users.scm
 # guix repl -- ./modules/awb99/config/desktopservices.scm
+# guix repl -- ./modules/awb99/config/readymedia.scm
 
 # package lists
 # guile -l ./modules/awb99/packages/desktopsystem.scm
