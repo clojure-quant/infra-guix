@@ -2,7 +2,8 @@
 
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
-guix repl -- ./bootstrap/guiletest.scm
+# guile experiments
+# guix repl -- ./bootstrap/guiletest.scm
 
 # channels
 #guile -l ./channels.scm
@@ -27,7 +28,7 @@ guix repl -- ./bootstrap/guiletest.scm
 # guile -l ./modules/awb99/config/desktoppackages.scm
 
 # SYSTEM
-# guix repl -- ./machine/nuc.scm
+guix repl -- ./machine/nuc.scm
 # guix repl -- ./machine/nuc2022.scm
 
 

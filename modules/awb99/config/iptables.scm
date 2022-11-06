@@ -66,8 +66,8 @@ COMMIT
 
 ; sudo iptables-restore iptables.txt
 
-(define example-rules "
-iptables.rules" "*filter
+(define example-rules 
+"*filter
 :INPUT DROP [0:0]
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
@@ -78,7 +78,6 @@ iptables.rules" "*filter
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 COMMIT
 ")
-
 
 (define service-iptables
   (service iptables-service-type

@@ -12,5 +12,15 @@
 
   ))
 
-(display trezord-udev-rules)
+
+(display
+   (cons* 
+     3
+     4
+     5
+     6
+     (list 1 2)
+  )
+
+)
 

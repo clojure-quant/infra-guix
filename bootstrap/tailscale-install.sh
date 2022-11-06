@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+# https://tailscale.com/download/linux/static
+
 dir="$HOME/bin"
 
 mkdir -p $dir
@@ -20,8 +23,7 @@ tar xvf "tailscale_${V}_${ARCH}.tgz"
 
 # sudo tailscaled --state=tailscaled.state
 
-# sudo tailscale up
 
-# tailscale ip -4
 
-# https://tailscale.com/download/linux/static
+# 
+

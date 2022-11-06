@@ -57,7 +57,7 @@
   (user-account
     (name user-name)
     (comment user-name)
-    (uid user-id) ; uid needs to match user in host for docker; in cli: "id"
+    ;(uid user-id) ; uid needs to match user in host for docker; in cli: "id"
     (group "users")
     ;(home-directory "/home/florian")
     ;(shell (file-append fish "/bin/fish"))
@@ -86,12 +86,20 @@
     (shell (file-append zsh "/bin/zsh"))
     (supplementary-groups user-groups-desktop)))
 
+  (define user-ddclient
+    (user-account
+      (name "ddclient")
+      (comment "ddclient")
+      (group "users")
+      (system? #t) ; dont show in login manager.
+      ))
 
 (define users-desktop
   (cons* 
      user-florian
      ;user-viktor
-     (create-user "ddclient" 2501 (list ))
+     ;(create-user "ddclient" 2501 (list ))
+     user-ddclient
      %base-user-accounts))
   
 

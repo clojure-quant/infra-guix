@@ -31,7 +31,7 @@
 ;; GUIX RELATED
 
 (define job-guix-pull-gc
-   ; gc (remove packages older than 2 months.
+   ; gc (remove packages older than 6 months.
    ; keep at least 500G free)
    ; pull
    ; run daily at 03:05
@@ -40,12 +40,12 @@
     )
 
 (define job-guix-pull-gc-reconfigure
-   ; gc (remove packages older than 2 months
+   ; gc (remove packages older than 6 months
    ; keep at least 500G free)
    ; pull and update every day at 03:05
    ; run daily at 03:05
    #~(job "5 3 * * *"  ;Vixie cron syntax
-       "guix gc --optimize -d 2m && guix gc -F 500G && guix pull && guix system reconfigure -k /etc/config.scm"))
+       "guix gc --optimize -d 6m && guix gc -F 500G && guix pull && guix system reconfigure -k /etc/config.scm"))
 
 (define renice-guix-daemon-job
 ;; renice guix-daemon to prevent competing with work
