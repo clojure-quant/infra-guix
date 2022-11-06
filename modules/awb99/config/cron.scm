@@ -10,7 +10,7 @@
    (gnu packages base)
    (gnu packages idutils)
    (gnu services)
-   (gnu services mcron) ; identical to: (use-service-modules mcron)
+   (gnu services mcron)
   ; (mcron scripts mcron)
    ;(mcron base)
    ;(mcron config)
@@ -30,14 +30,47 @@
 ; https://git.sr.ht/~efraim/guix-config/tree/master/item/config/filesystems.scm
 
 
-(define system-garbage-job
-   ;; gc (remove packages older than 2 months, keep at least 500G free), pull and update every day at 00:05
-   #~(job "5 0 * * *"            ;Vixie cron syntax
+;; GUIX RELATED
+
+(define job-guix-pull-gc
+   ; gc (remove packages older than 2 months.
+   ; keep at least 500G free)
+   ; pull
+   ; run daily at 03:05
+   #~(job "5 3 * * *"            ;Vixie cron syntax
           "guix gc --optimize -d 2m && guix gc -F 300G && guix pull")
     )
 
+(define job-guix-pull-gc-reconfigure
+   ; gc (remove packages older than 2 months
+   ; keep at least 500G free)
+   ; pull and update every day at 03:05
+   ; run daily at 03:05
+   #~(job "5 3 * * *"  ;Vixie cron syntax
+       "guix gc --optimize -d 2m && guix gc -F 500G && guix pull && guix system reconfigure -k /etc/config.scm"))
+
+(define renice-guix-daemon-job
+;; renice guix-daemon to prevent competing with work
+#~(job "* 7 * * *" "sleep 300; pgrep guix-daemon | xargs renice -n 10"))
+
+
+;; BTFRS RELATED
+
+(define job-btfrs-scrub
+  #~(job 
+      '(next-hour '(3)) 
+       (string-append #$btrfs-progs "/bin/btrfs scrub start -c 3 /")))
+
+; from: https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/monokuma.scm
+;(define btrfs-job
+;; Run 'btrfs balance' every three days to make free space.
+;#~(job (lambda (now)
+;         (next-day-from now (range 1 31 3)))
+;       (string-append #$btrfs-progs "/bin/btrfs balance "
+;                      "start -dusage=50 -musage=70 /")))
+
 ;; cron format: minute hour day-of-month month day-of-week
-;; TODO: migrate crons to clearer syntax:   #~(job '(next-hour '(3)) (string-append #$btrfs-progs "/bin/btrfs scrub start -c 3 /")))
+;; TODO: migrate crons to clearer syntax:   
 (define cpupower-powersave-job
 ;; Set the governor to powersave every minute, except for the time
 ;; between 3 and 5 to permit rebuilding. This reduces my
@@ -50,47 +83,19 @@
 #~(job "0-59/30 * * * *"            ;Vixie cron syntax
        "for i in $(pgrep .); do sudo prlimit --pid $i --nofile=1000000:1000000; done"))
 
-(define renice-guix-daemon-job
-;; renice guix-daemon to prevent competing with work
-#~(job "* 7 * * *" "sleep 300; pgrep guix-daemon | xargs renice -n 10"))
-
-(define guix-reconfigure-job
-;; gc (remove packages older than 2 months, keep at least 500G free), pull and update every day at 03:05
-#~(job "5 3 * * *"            ;Vixie cron syntax
-       "guix gc --optimize -d 2m && guix gc -F 500G && guix pull && guix system reconfigure -k /etc/config.scm"))
-
-
 ;(define arnebab-org-publish-job
 ;; gc (publish my website every day at 02:00
 ;#~(job "* 2 * * *"            ;Vixie cron syntax
 ;       "su - MYSELF bash -c 'cd ~/Schreibtisch/arnebab-org && make && hg push sr.ht && hg push'"))
 
 
-; from: https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/monokuma.scm
-;(define btrfs-job
-;; Run 'btrfs balance' every three days to make free space.
-;#~(job (lambda (now)
-;         (next-day-from now (range 1 31 3)))
-;       (string-append #$btrfs-progs "/bin/btrfs balance "
-;                      "start -dusage=50 -musage=70 /")))
-
-
-
-;; used in nuc, vm-terminal
+;; used in desktop + vm-terminal
 
 (define-public my-guix-maintenance-jobs
   (list
-     system-garbage-job
+     job-guix-pull-gc-reconfigure
      ; hello-job
      ))
-
-
-(define-public service-cron
-  (simple-service 'my-cron-jobs
-                 mcron-service-type
-                 my-guix-maintenance-jobs
-                ))
-
 
 (define-public service-cron
   (service mcron-service-type

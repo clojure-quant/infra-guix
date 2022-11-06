@@ -3,8 +3,6 @@
   #:use-module (gnu services syncthing)
   #:export (service-syncthing))
 
-
-
 ;The (gnu services syncthing) module provides the following services:
 ; You might want a syncthing daemon if you have files between two or 
 ; more computers and want to sync them in real time, safely protected from prying eyes.

@@ -66,6 +66,19 @@ COMMIT
 
 ; sudo iptables-restore iptables.txt
 
+(define example-rules "
+iptables.rules" "*filter
+:INPUT DROP [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -i wlp4s0 -p tcp -m tcp -s 10.1.3.0/24 --dport 2242 -j ACCEPT
+-A INPUT -i wlp4s0 -p tcp -m tcp -s 10.1.3.0/24 --dport 8000:8099 -j ACCEPT
+-A INPUT -i wwp0s20f0u6i12 -j DROP
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+COMMIT
+")
+
 
 (define service-iptables
   (service iptables-service-type
