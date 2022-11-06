@@ -1,45 +1,45 @@
  Host github.com
-  IdentityFile  /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile  /home/florian/repo/myLinux/myvault/ssh/flo5
   IdentitiesOnly yes
   UserKnownHostsFile=/dev/null
   StrictHostKeyChecking no
   User git
 
 Host aws.hoertlehner.com
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   User admin
 
 
 Host 178.128.203.133
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   UserKnownHostsFile=/dev/null
   User florian
 
 Host quant.hoertlehner.com
   User florian
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   UserKnownHostsFile ~/.ssh/known_hosts
   StrictHostKeyChecking no
 
 Host 192.168.178.25
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   User florian
   StrictHostKeyChecking no
   
 
 Host old.hoertlehner.com
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   UserKnownHostsFile=/dev/null
   User admin
 
 
 Host localhost
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   User florian
   port 10022
   StrictHostKeyChecking no
 
 Host 85.127.91.114
-  IdentityFile /home/florian/repo/myLinux/data/ssh/flo5
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   User florian
   StrictHostKeyChecking no
