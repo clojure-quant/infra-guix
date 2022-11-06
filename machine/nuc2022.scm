@@ -61,26 +61,27 @@
   ;; The list of file systems that get "mounted".  The unique
   ;; file system identifiers there ("UUIDs") can be obtained
   ;; by running 'blkid' in a terminal.
-  (file-systems
-     (cons* (file-system
-              (mount-point "/boot/efi")
-              (device (uuid "167C-868D" 'fat32))
-              (type "vfat"))
-            (file-system
-              (mount-point "/")
-              (device "/dev/mapper/cryptroot")
-              (type "btrfs")
-              (dependencies mapped-devices))
-            %base-file-systems))
+    (file-systems
+      (cons*  ;add multiple items to a list
+        (file-system
+          (mount-point "/boot/efi")
+          (device (uuid "167C-868D" 'fat32))
+          (type "vfat"))
+        (file-system
+          (mount-point "/")
+          (device "/dev/mapper/cryptroot")
+          (type "btrfs")
+          (dependencies mapped-devices))
+        %base-file-systems))
           
   ; create swapfile with bootstrap/file-swap-create.sh
   ; https://guix.gnu.org/en/manual/devel/en/html_node/Swap-Space.html
-  ;(swap-devices
-  ;  (list
-  ;    (swap-space
-  ;      (target "/mnt/swapfile")
-  ;      (dependencies (filter (file-system-mount-point-predicate "/")
-  ;                            file-systems)))))
+  (swap-devices
+    (list
+      (swap-space
+        (target "/mnt/swapfile")
+        (dependencies (filter (file-system-mount-point-predicate "/")
+                              file-systems)))))
 
   ; end of os
   )

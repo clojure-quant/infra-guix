@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source ./bootstrap/guile-cache-clear.sh
+
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
 # guile experiments
