@@ -2,8 +2,8 @@
 ;; pass it to the 'guix system reconfigure' command 
 
 (use-modules 
-  (gnu)
   ; GNU
+  (gnu)
   (gnu system) ; %base-firmware
   ; NONGNU
   (nongnu packages linux)

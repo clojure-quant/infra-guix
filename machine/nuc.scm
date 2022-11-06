@@ -1,23 +1,14 @@
 (use-modules 
   (gnu)
-  (srfi srfi-1) ; remove
-
   (gnu packages linux) ; wifi aircrack module
+  (gnu system) ; %base-firmware
+  ; nongnu
   (nongnu packages linux)
   (nongnu system linux-initrd)
-  (gnu system) ; %base-firmware
-  
-  ;(gnu packages cups)
-  ;(gnu packages suckless)
-  ;(gnu packages wm)
-  ;(gnu packages shells) ; zsh
-  ;(gnu packages docker) ; docker
-  ;(gnu packages package-management) ; nix
   ; awb99
   (awb99 config desktoppackages)
   (awb99 config desktopservices)
   (awb99 config users)
-
 )
 
 (operating-system
