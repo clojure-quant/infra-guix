@@ -159,7 +159,7 @@
             `(".config/clojure/deps.edn" ,(local-file "./clojure/deps.edn"))
             `(".config/clojure/cljfmt.edn" ,(local-file "./clojure/cljfmt.edn"))
             ; rclone
-            `(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
+            ;`(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 
@@ -187,7 +187,6 @@
      ; (->packages-output user-packages)
       (->packages-output packages-wm-sway)
       (->packages-output packages-desktop-extra) ; for enlightenment
-   
       (->packages-output font-packages) 
      ;;  emacs-packages
       ))
