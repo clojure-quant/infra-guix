@@ -4,21 +4,12 @@
   #:use-module (gnu packages ssh) ; openssh-sans-x
   #:use-module (gnu packages compression) ; zlib (needed for openssh-sans-x)
   #:use-module (gnu  services ssh)
+  #:use-module (awb99 vault)
   #:export (awb99-ssh-config
             service-ssh
             service-ssh-dropbear
             service-ssh-bitblock
   ))
-
-(define (ssh-key-filename key-name)
-  (string-append 
-     (getenv "MYVAULT") 
-     "/ssh/" 
-     key-name 
-      ".pub"))
-
-(display "flo2022 pub file: ")
-(display (ssh-key-filename "flo2022"))
 
 (define awb99-ssh-config
   (openssh-configuration

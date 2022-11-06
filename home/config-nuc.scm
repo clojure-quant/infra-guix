@@ -20,6 +20,7 @@
 ;  (yellowsquid services pipewire)
   (awb99 guixutils) 
   (awb99 helper)
+  (awb99 vault)
   ;(awb99 packages nuc)
   (awb99 packages wm)
   (awb99 packages fonts)
@@ -132,12 +133,7 @@
          ; user-garbage-job
                 )))))
 
-(define (rclone-config-filename user-name)
-  (string-append 
-    (getenv "MYVAULT") 
-    "/rclone/" 
-     user-name
-    "-rclone.conf"))
+
 
 
 (define my-config-service
@@ -159,7 +155,7 @@
             `(".config/clojure/deps.edn" ,(local-file "./clojure/deps.edn"))
             `(".config/clojure/cljfmt.edn" ,(local-file "./clojure/cljfmt.edn"))
             ; rclone
-            ;`(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
+            `(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
        )))
 
@@ -173,7 +169,7 @@
        ; ("_JAVA_AWT_WM_NONREPARENTING" . #t)
         ("GDK_SCALE" . "1")
         ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
-        ("MYVAULT" "/home/florian/repo/myLinux/myvault")
+        ("MYVAULT" . "/home/florian/repo/myLinux/myvault")
       )))
 
 
