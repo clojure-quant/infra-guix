@@ -413,11 +413,6 @@
          home-history {:task (do (println "PROFILE: *HOME*")
                                  (guix/guix "home" "list-generations"))}
          home-gc {:task (guix/guix "home" "delete-generations")}
-
-         nuc-ddclient-test {:doc "test ddclient for nuc.hoertlehner.com"
-                            :task (shell "ddclient"
-                                         "-foreground"
-                                         "-file" "/home/florian/repo/myLinux/data/nuc/ddclient.conf")}
          
          gc-roots {:task (guix/guix "gc" "--list-roots") }
 

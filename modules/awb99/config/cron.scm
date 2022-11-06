@@ -1,6 +1,4 @@
-(define-module (awb99 config cron)
-;#:export (my-guix-maintenance-jobs)
-)
+(define-module (awb99 config cron))
 
 (use-modules
   ;(guix) 
