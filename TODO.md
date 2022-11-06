@@ -1,7 +1,4 @@
 
-
-
-
 guix home - bash file on system config.
 
 ssh server

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# OUTDATED
+# we have a custom package tailscale now
+# use this file in case our custom package needs to be changed.
 
 # https://tailscale.com/download/linux/static
 
