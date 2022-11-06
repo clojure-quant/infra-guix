@@ -1,5 +1,17 @@
 (define-module (awb99 packages wm))
 
+; xwin / wayland
+
+(define-public packages-xwin
+(list
+  "rofi" ; launcher
+  ; "interrobang"
+  "garcon" ; menu manager
+  "dmenu"
+  ;"progress" ; coreutil progress
+))
+
+; windowmanager
 
 (define-public packages-wm-gnome
 (list 
@@ -95,6 +107,15 @@
     ;"efl" ; Enlightenment Foundation Libraries
    ))
 
+  (define-public packages-wm-mate
+    (list 
+      "mate"
+      ; "lxqt"
+      ; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
+      ; EXWM  https://config.daviwil.com/desktop
+    ))
+
+; printer
 
 (define-public packages-desktop-printer
   (list 
@@ -106,25 +127,10 @@
   ))
 
 
-(define-public packages-xwin
-  (list
-   
-    "rofi" ; launcher
-    ; "interrobang"
-    "garcon" ; menu manager
-    "dmenu"
-    ;"progress" ; coreutil progress
-  ))
-
 (define-public packages-desktop-extra
 (list
       "bemenu" ; menu library inspired by dmenu
-     ; "lxqt"
-     ; "mate"
-     
     
-      ; dwm https://www.reddit.com/r/GUIX/comments/l9ncsr/dwm_and_st_on_guix_best_practice/?utm_medium=android_app&utm_source=share
-      ; EXWM  https://config.daviwil.com/desktop
      ))   
 
 

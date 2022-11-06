@@ -5,7 +5,8 @@
   (list 
     "cryptsetup"  ; luks encryption
     "encfs"
-    "openssl"))
+    "openssl") ; not to confuse with openssh
+   )
 
 (define-public filesystem-packages
   (list 
@@ -139,53 +140,15 @@
   "nss-certs" ; tls certificates
   "glibc-locales" ; all supported gnu clib locales (1 gig)
   ; "glibc-utf8-locales" ; small set of locales
-  ; "openssh" ; required for git with ssh repos
+  
+; ssh -  required for git with ssh repos
+  ; "openssh" 
   "openssh-sans-x"
-  ;"openssl"
 
   "guile" 
   ;"stow" symlink manager
-))
 
-(define-public virtual-machine-packages
-(list 
-  "ovmf"
-  ; qemu
-  "qemu"
-  "virt-viewer"
-  "virt-manager" ; ui for qemu
-  ; docker
-  "docker"
-  "docker-compose"
-  "docker-cli" 
- ; Ganeti is a virtual machine management system
-))
-
-(define-public services-packages
-(list  
-  
-  "syncthing"
   "iptables"
 ))
 
-
-(define-public crypto-packages
-(list 
-  ; to see package source code:
-  ; guix edit trezord 
-  ;; create a plugdev group and add the trezord user to that group
-  "trezord"  ; gnu/packages/finance.scm:1277:2  https://github.com/trezor/trezord-go
-  "trezord-udev-rules"   ; run trezord as normal (non root) user  https://github.com/trezor/trezor-common
- ; "trezor-agent"  ; trezor as ssh  / gpg agent   https://github.com/romanz/trezor-agent
-; trezor agent makes problem with new guix version 
-  ; "electrum" ; bitcoin wallet   https://electrum.readthedocs.io/en/latest/hardware-linux.html#udev-rules
-  ; "electron-cash" ; https://github.com/Electron-Cash/Electron-Cash Bitcoin Cash client
-  ; "ledger"
-  ; "ledger-agent"  ; https://github.com/romanz/trezor-agent   does trezor and ledger
-  ; "python-trezor"  ;  https://github.com/romanz/trezor-agent  https://github.com/trezor/python-trezor
-  ; "python-ledgerblue"   ; blue/nano s
-  ; "python-trezor-agent"
-  ; python-btchip-python
-  ; python-keepkey  ; https://github.com/keepkey/python-keepkey
-))
 

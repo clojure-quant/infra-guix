@@ -22,8 +22,6 @@
     hardware-packages
   ; apps
     guix-core-packages
-   ; virtual-machine-packages
-   ; crypto-packages
   ; desktop
   ;  desktop-chat-packages
   ;  desktop-multimedia-packages
