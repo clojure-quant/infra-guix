@@ -124,5 +124,6 @@
   "celestia-gtk" ; 3d simulation of universe/planets
   ; "vscodium"
   ;"nss-certs"
+  "xdot" ; dot graph files, used in guix graph
  
 ))

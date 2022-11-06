@@ -86,20 +86,11 @@
     (shell (file-append zsh "/bin/zsh"))
     (supplementary-groups user-groups-desktop)))
 
-  (define user-ddclient
-    (user-account
-      (name "ddclient")
-      (comment "ddclient")
-      (group "users")
-      (system? #t) ; dont show in login manager.
-      ))
 
 (define users-desktop
   (cons* 
      user-florian
      ;user-viktor
-     ;(create-user "ddclient" 2501 (list ))
-     ; user-ddclient ; ddclient service will already create this user
      %base-user-accounts))
   
 

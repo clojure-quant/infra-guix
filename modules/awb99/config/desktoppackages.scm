@@ -19,6 +19,7 @@
 (define-public cli-packages
 (append 
   security-packages
+  filesystem-packages
   archive-packages
   monitor-packages
   network-packages

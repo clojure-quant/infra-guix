@@ -11,7 +11,7 @@
 (define-public filesystem-packages
   (list 
     "btrfs-progs" ; mkfs.btrfs
-    "e2fsprogs"  ;mkfs.ext4
+    "e2fsprogs"  ;mkfs.ext4 chattr
     "util-linux" ;mkwap
     "lvm2-static" ;dmsetup
     ;"connman" ;call connmanctl
