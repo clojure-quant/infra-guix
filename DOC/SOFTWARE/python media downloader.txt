@@ -1,0 +1,16 @@
+
+http://www.libroesoterico.com/biblioteca/Astrologia/index.php
+ python grab_pdfs.py http://libroesoterico.com/biblioteca/Santeria/index.php santeria
+
+
+
+
+https://github.com/Dineshkarthik/telegram_media_downloader/issues/66
+cd telegram_media_downloader/
+sudo python3 media_downloader.py
+sudo chown -hR andreas:andreas ./document
+
+ls photo -alfg  |wc
+nano config.yaml 
+
+
