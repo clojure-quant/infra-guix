@@ -35,7 +35,7 @@
   (awb99 config ssh)
   (awb99 config cron)
   (awb99 config file-sync)
-
+  (awb99 config samba)
   (awb99 config wayland)
   (awb99 config monitor)
   (awb99 config ddclient)
@@ -80,12 +80,13 @@
     ; other package managers
     (service nix-service-type)
 
-     ; misc    
+     ; nas file sharing
+    service-samba
     service-syncthing
+
+    ; awb99 special services
     (service trezord-service-type
       (trezord-configuration))
-    
-    ; awb99 special services
     (tailscale-service `(#:config #f   ; this config is not being used.
                          #:phases #t))
     

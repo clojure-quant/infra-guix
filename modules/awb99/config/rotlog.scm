@@ -22,6 +22,7 @@
   #:use-module (gnu services admin)
   #:export (server-rotation-service-config
             desktop-rotation-service-config))
+          
 (define base-rotations
   (list
     (log-rotation
