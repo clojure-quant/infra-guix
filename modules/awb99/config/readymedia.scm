@@ -3,6 +3,7 @@
 #:use-module (awb99 services readymedia))
 
 
+; MiniDLNA: ssdp (1900/udp)  trivnet1 (8200/tcp) 
 
 (define-public (service-readymedia machine-name)
   (service minidlna-service-type
