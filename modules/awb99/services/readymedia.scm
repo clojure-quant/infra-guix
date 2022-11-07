@@ -86,7 +86,8 @@ strict_dlna=no
                     (list #$(file-append minidlna "/sbin/minidlnad")
                           "-d" "-f" #$(minidlna-config-file config)
                           "-P" #$pidfile)
-                    #:pid-file #$pidfile))
+                    #:pid-file #$pidfile
+                    #:log-file "/var/log/minidlnad.log"))
           (stop #~(make-kill-destructor)))))))
 
 (define minidlna-service-type
