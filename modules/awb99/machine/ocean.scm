@@ -18,7 +18,7 @@
   (gnu services web)
   ; awb99 packages
   (awb99 packages programming)
-  (awb99 packages tools)
+  (awb99 packages systemcli)
   ; (awb99 guixutils)
   (awb99 config users)
   (awb99 config iptables)

@@ -47,12 +47,6 @@
       hardware-packages
     ; apps
       guix-core-packages
-     ; desktop
-    ;  desktop-chat-packages
-    ;  desktop-multimedia-packages
-    ;  desktop-office-packages
-    ;  desktop-browser-packages 
-    ;  desktop-tool-packages
     ; services
       services-packages
     ))

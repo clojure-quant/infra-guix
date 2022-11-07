@@ -1,5 +1,5 @@
 (use-modules
-(awb99 packages tools)
+(awb99 packages systemcli)
 (awb99 packages fonts)
 (awb99 packages wm)
 (awb99 packages desktop)

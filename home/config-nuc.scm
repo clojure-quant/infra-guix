@@ -197,8 +197,6 @@
         zsh-service
         fish-service ; has problems with profile sourcing.
         mcron-service
-        
-        
        ; (service home-pipewire-service-type)
        ; (service home-wireplumber-service-type)
       
