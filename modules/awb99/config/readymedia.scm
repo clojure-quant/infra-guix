@@ -8,6 +8,7 @@
   (service minidlna-service-type
     (minidlna-configuration 
       (mediadir "/var/nas/media")
+      (usergroup "nas")
       (extra-config (string-append 
         "friendly_name=" machine-name "\n"
         "")))))

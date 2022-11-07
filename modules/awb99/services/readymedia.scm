@@ -21,6 +21,8 @@ minidlna-configuration?
                (default readymedia))
 (user          minidlna-configuration-user          ;string
                (default "minidlna"))
+(usergroup     minidlna-configuration-user          ;string
+              (default "minidlna"))
 (mediadir      minidlna-configuration-mediadir)     ;string
 (dbdir         minidlna-configuration-dbdir         ;string
                (default "/var/cache/minidlna"))
@@ -52,29 +54,30 @@ strict_dlna=no
 
 (define minidlna-accounts
 (match-lambda
-  (($ <minidlna-configuration> minidlna user mediadir dbdir logdir pidfile extra-config extra-options)
+  (($ <minidlna-configuration> minidlna user usergroup mediadir dbdir logdir pidfile extra-config extra-options)
    (list (user-group (name user) (system? #t))
          (user-account
           (name user)
           (group user)
+          (supplementary-groups (list usergroup))
           (system? #t)
           (comment "minidlna daemon system account")
-          (home-directory mediadir) ; "/var/empty" ?
+          (home-directory "/var/empty") 
           (shell (file-append shadow "/sbin/nologin")))))))
 
 (define minidlna-activation
 (match-lambda
-  (($ <minidlna-configuration> minidlna user mediadir dbdir logdir pidfile extra-config extra-options)
+  (($ <minidlna-configuration> minidlna user usergroup mediadir dbdir logdir pidfile extra-config extra-options)
    #~(begin
        (use-modules (guix build utils))
-       (mkdir-p #$mediadir)
+       ;(mkdir-p #$mediadir)
        (mkdir-p #$dbdir)
        (mkdir-p #$logdir)
        (mkdir-p #$(dirname pidfile))))))
 
 (define (minidlna-shepherd-service config)
 (match config
-  (($ <minidlna-configuration> minidlna user mediadir dbdir logdir pidfile extra-config extra-options)
+  (($ <minidlna-configuration> minidlna user usergroup mediadir dbdir logdir pidfile extra-config extra-options)
    (list (shepherd-service
           (provision '(minidlna))
           (documentation "Run minidlna daemon")
@@ -99,6 +102,7 @@ strict_dlna=no
 
 (define* (minidlna-service #:key (minidlna minidlna)
                          (user "minidlna")
+                         (usergroup "minidlnaextra")
                          (mediadir "/var/lib/minidlna")
                          (dbdir "/var/cache/minidlna")
                          (logdir "/var/log")
@@ -108,8 +112,12 @@ strict_dlna=no
 "Return a service that runs @command{minidlnad} daemon with specified @var{user} and directories"
 (service minidlna-service-type
          (minidlna-configuration
-          (minidlna minidlna) (user user)
-          (mediadir mediadir) (dbdir dbdir)
-          (logdir logdir) (pidfile pidfile)
-          (extra-config extra-config)
-          (extra-options extra-options))))
+            (minidlna minidlna) 
+            (user user)
+            (usergroup usergroup)
+            (mediadir mediadir) 
+            (dbdir dbdir)
+            (logdir logdir) 
+            (pidfile pidfile)
+            (extra-config extra-config)
+            (extra-options extra-options))))

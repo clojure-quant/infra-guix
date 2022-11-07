@@ -67,7 +67,7 @@
     service-cron
     service-iptables  
     service-ssh  
-    service-ddclient-nuc
+    ;service-ddclient-nuc
     service-printer
     service-bin-links
     

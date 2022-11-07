@@ -53,11 +53,15 @@ chown :friends tmpfile    	change group of a file
 If root owns those files, you'll need to chown them properly, before you can change their permissions:
 chown -R yourname:yourname folderName
 chmod ug+rwx file.txt    Give full access to user and group
-groups
+
+# groups
+
 Groupadd groupname
 Usermod -aG groupname username     (add user to group) 
 cat /etc/group 	   Shows all groups
-Groups username    shows which groups a user beongs to
+
+groups username    shows which groups a user beongs to
+
  In Tru64 UNIX, when you create a new file, it is by default given the same group affiliation as the directory that contains it. In Linux (and every other UNIX implementation we're aware of), when you create a new file, its group affiliation is by default set to your primary group. This is intended to increase security: a file will not be shared with a group unless you explicitly make it belong to that group. Whether this precaution is more trouble than it's worth could be debated, but that is how Linux works and we cannot change it.
 
 Take an example from our handbook: user kvelyvis belongs to four groups: sxnet, hospital, prcensus, and palloni. The palloni group is her primary group, since user palloni is her advisor. Under Tru64 UNIX, if she created a file in a directory belonging to the hospital group, the file would be affiliated with the hospital group. If she gave group read or group write permissions, other members of the hospital group could read or modify the file. But under Linux, the new file would belong to the palloni group, not the hospital group, as palloni is her primary group. Members of the hospital group will not be able to read or modify the file even if she gives group read and group write permissions (unless they happen to also be members of the palloni group).

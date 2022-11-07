@@ -15,8 +15,8 @@
 (define groups-desktop
 (cons* 
   (user-group 
-    (system? #f) 
-    (name "bongotrotters"))
+    (system? #t) 
+    (name "nas")) 
   %base-groups))
 
 ;; USER GROUP MEMBERSHIPS
@@ -47,7 +47,7 @@
   (append
     user-groups-server
     user-groups-vm
-    '(
+    '( "nas"
       ;;"wireshark"
       )))
 
