@@ -13,6 +13,32 @@
   (awb99 config desktopservices)
   (awb99 config users))
 
+(define my-mapped-devices 
+  (list (mapped-device
+          (source (uuid "2c520d24-1c53-4129-bfb2-e7ab66fcc9df"))
+          (target "cryptroot")
+          (type luks-device-mapping))
+        ;(mapped-device 
+        ;  (source (uuid "37338969-9461-404f-b67f-491a27b2f8d3")) ; 1tb usb disk
+        ;  (target "cryptsamsung")
+        ;  (type luks-device-mapping))
+        
+        ))
+
+(define my-file-systems
+  (cons*  ;add multiple items to a list
+    (file-system
+       (mount-point "/boot/efi")
+       (device (uuid "167C-868D" 'fat32))
+       (type "vfat"))
+     (file-system
+       (mount-point "/")
+       (device "/dev/mapper/cryptroot")
+       (type "btrfs")
+       (dependencies my-mapped-devices))
+   %base-file-systems))
+
+
 (define os
   (operating-system
     (host-name "nuc2022")
@@ -54,26 +80,11 @@
      (targets (list "/boot/efi"))
      (keyboard-layout keyboard-layout)))
     ; filesystem 
-    (mapped-devices (list (mapped-device
-                          (source (uuid
-                                   "2c520d24-1c53-4129-bfb2-e7ab66fcc9df"))
-                          (target "cryptroot")
-                          (type luks-device-mapping))))
+    (mapped-devices my-mapped-devices)
     ;; The list of file systems that get "mounted".  The unique
     ;; file system identifiers there ("UUIDs") can be obtained
     ;; by running 'blkid' in a terminal.
-      (file-systems
-        (cons*  ;add multiple items to a list
-          (file-system
-            (mount-point "/boot/efi")
-            (device (uuid "167C-868D" 'fat32))
-            (type "vfat"))
-          (file-system
-            (mount-point "/")
-            (device "/dev/mapper/cryptroot")
-            (type "btrfs")
-            (dependencies mapped-devices))
-          %base-file-systems))
+      (file-systems my-file-systems)
 
   ; end of os
   ))
@@ -83,23 +94,8 @@
 (define os-with-swap
   (operating-system
     (inherit os)
-    (mapped-devices (list (mapped-device
-      (source (uuid
-                "2c520d24-1c53-4129-bfb2-e7ab66fcc9df"))
-            (target "cryptroot")
-           (type luks-device-mapping))))
-    (file-systems
-      (cons*  ;add multiple items to a list
-        (file-system
-          (mount-point "/boot/efi")
-          (device (uuid "167C-868D" 'fat32))
-          (type "vfat"))
-        (file-system
-          (mount-point "/")
-          (device "/dev/mapper/cryptroot")
-          (type "btrfs")
-          (dependencies mapped-devices))
-         %base-file-systems))
+    (mapped-devices my-mapped-devices)
+    (file-systems my-file-systems)
     
     (swap-devices
       (list

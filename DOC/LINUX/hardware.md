@@ -2,7 +2,7 @@
 
 Finding out more about the hardware / operating system is important: a) when installing drivers for a new machine, and b) when running installation scripts that are hardware / os dependent.
 
-uname -m and -p   	 	(Processor)  x86_64  for 64 bit system, i686 for 32 bit system.
+uname -m and -p   	(Processor)  x86_64  for 64 bit system, i686 for 32 bit system.
 uname -r 	 	 	Kernel Release  (Ubuntu/Debian/..)
 uname -v	 	 	Kernel Version  ( version of kernel)
 uname -a 	 	 	processor and hostname
@@ -150,71 +150,3 @@ https://lists.debian.org/debian-user/2015/08/msg00125.html
 sg_format --resize --count=0x74706DB0 /dev/sdb
 
 # sg_format --format --count=0x74706DB0 /dev/sdb
-
-sudo cryptsetup luksUUID /dev/sdc
-Luks id
-
-create a mapping for the current session
-Check mapping status
-Check the mapper
-sudo dd if=/dev/zero of=/dev/mapper/red2
-sudo mkfs.ext4 /dev/mapper/red2 
-sudo fsck -Vt ext4 /dev/mapper/red2         this shows errors!
-
-
-sudo unmount /dev/sda10
-sudo fsck /dev/mapper/red2
-
-
-CLEAR PARTITION
-FORMAT PARTITION
-sudo mkdir /home/florian/drives/red2
-sudo chown florian:florian /home/florian/drives/red2
-sudo chattr +i /home/florian/drives/red2
-
-SHOW MOUNTED DRIVES
-cat /proc/mounts
-sudo mount /dev/mapper/red2  /home/florian/drives/red2
-sudo mount /dev/mapper/red2 /run/media/florian/red2
-
-
-
-MAKE SURE NO FILESYSTEM WHEN NOT MOUNTED 
-umount /dev/mapper/red2
-cryptsetup luksClose red2
-
-
-
-
-
-luksid
-
-
-KESU
-
-
-Red1
-2T
-
-
-empty
-Red2
-2T
-luksid
-E9f8af9d-ef79-4775-b902-f8864096f8d9
-
-Filesystem id
-26a0d4ed-de73-4ee5-b6e8-73f525627743
-empty
-Red3
-2T
-
-
-Backup 2021 09
-
-
-
-
-
-
-

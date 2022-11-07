@@ -33,3 +33,34 @@ sudo mount -a
 sudo mount toshiba
 sudo umount toshiba
 
+
+sudo cryptsetup luksUUID /dev/sdc
+Luks id
+
+create a mapping for the current session
+Check mapping status
+Check the mapper
+sudo dd if=/dev/zero of=/dev/mapper/red2
+sudo mkfs.ext4 /dev/mapper/red2 
+sudo fsck -Vt ext4 /dev/mapper/red2         this shows errors!
+
+
+sudo unmount /dev/sda10
+sudo fsck /dev/mapper/red2
+
+
+CLEAR PARTITION
+FORMAT PARTITION
+sudo mkdir /home/florian/drives/red2
+sudo chown florian:florian /home/florian/drives/red2
+sudo chattr +i /home/florian/drives/red2
+
+SHOW MOUNTED DRIVES
+cat /proc/mounts
+sudo mount /dev/mapper/red2  /home/florian/drives/red2
+sudo mount /dev/mapper/red2 /run/media/florian/red2
+
+
+MAKE SURE NO FILESYSTEM WHEN NOT MOUNTED 
+umount /dev/mapper/red2
+cryptsetup luksClose red2
