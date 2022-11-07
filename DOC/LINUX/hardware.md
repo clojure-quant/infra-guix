@@ -144,8 +144,6 @@ cat /sys/module/libata/parameters/ignore_hpa
 Wird hier "1" ausgegeben, wird HPA automatisch deaktiviert sobald eine SSD mit HPA angeschlossen wird.
 
 
-
-
 udisksctl status
 https://lists.debian.org/debian-user/2015/08/msg00125.html
 
@@ -153,30 +151,8 @@ sg_format --resize --count=0x74706DB0 /dev/sdb
 
 # sg_format --format --count=0x74706DB0 /dev/sdb
 
-
-
-
-
-
-
-
-
-
-sudo cryptsetup luksFormat --type luks2 /dev/sdb2
-Create luks partition
-sudo cryptsetup luksDump /dev/sdc
-Check the key
 sudo cryptsetup luksUUID /dev/sdc
 Luks id
-sudo cryptsetup luksOpen /dev/sdb2 red2
-sudo cryptsetup -v status red2
-ls -l /dev/mapper/red2
-
-sdc           8:32   1   1,9T  0 disk  
-└─sdc1        8:33   1   1,9T  0 part  
-  └─red2    254:0    0   1,9T  0 crypt 
-
-
 
 create a mapping for the current session
 Check mapping status
