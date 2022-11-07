@@ -16,3 +16,6 @@ guix home - bash file on system config.
 
 # external usb disks
 /media/florian/T7
+
+
+zeroconf	Support for DNS Service Discovery (DNS-SD)
