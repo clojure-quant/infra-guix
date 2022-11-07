@@ -48,17 +48,17 @@
           ("tma" . "TERM=xterm-24bits tmux attach-session -t")
         ))
       (bashrc
-        (list (local-file "./bash/.bashrc" "bashrc")))
+        (list (local-file "./config/bash/.bashrc" "bashrc")))
       (bash-profile
-        (list (local-file "./bash/.bash_profile" "bash_profile"))))))
+        (list (local-file "./config/bash/.bash_profile" "bash_profile"))))))
 
 (define zsh-service
   (service home-zsh-service-type
         (home-zsh-configuration
           (zshrc 
-            (list (local-file "./zsh/.zshrc" "zshrc")))
+            (list (local-file "./config/zsh/.zshrc" "zshrc")))
           (zprofile 
-            (list (local-file "./zsh/.zprofile" "zprofile")))
+            (list (local-file "./config/zsh/.zprofile" "zprofile")))
           ; zlogin
           
           )))
@@ -71,7 +71,7 @@
   (service home-fish-service-type
     (home-fish-configuration
       (config
-        (list (local-file "./fish/config.fish" "config.fish")))
+        (list (local-file "./config/fish/config.fish" "config.fish")))
       (aliases
        '(("l" . "ls -a")))
       (abbreviations
@@ -140,19 +140,21 @@
     home-files-service-type
       (list `(".config/test.conf" ,(plain-file "tmp-file.txt" "2022 10 the content of ~/.config/test.conf"))
            ; ssh client config 
-             `(".ssh/config" ,(local-file "./ssh/config"))
+             `(".ssh/config" ,(local-file "./config/ssh/config"))
+           ; git config 
+            `(".gitconfig" ,(local-file "./config/git/gitconfig"))
            ; alacritty terminal config
-            `(".config/alacritty/alacritty.yml" ,(local-file "./alacritty/alacritty.yml"))
+            `(".config/alacritty/alacritty.yml" ,(local-file "./config/alacritty/alacritty.yml"))
            ; emacs
-            `(".config/emacs/init.el" ,(local-file "./emacs/init.el")) ; does not get loaded
-            `("emacs.d/init.el" ,(local-file "./emacs/init.el"))
+            `(".config/emacs/init.el" ,(local-file "./config/emacs/init.el")) ; does not get loaded
+            `("emacs.d/init.el" ,(local-file "./config/emacs/init.el"))
            ; sway / waybar
-            `(".config/sway/config" ,(local-file "./sway/config"))
-            `(".config/waybar/config" ,(local-file "./waybar/config"))
-            `(".config/waybar/style.css" ,(local-file "./waybar/style.css"))
+            `(".config/sway/config" ,(local-file "./config/sway/config"))
+            `(".config/waybar/config" ,(local-file "./config/waybar/config"))
+            `(".config/waybar/style.css" ,(local-file "./config/waybar/style.css"))
            ; clojure
-            `(".config/clojure/deps.edn" ,(local-file "./clojure/deps.edn"))
-            `(".config/clojure/cljfmt.edn" ,(local-file "./clojure/cljfmt.edn"))
+            `(".config/clojure/deps.edn" ,(local-file "./config/clojure/deps.edn"))
+            `(".config/clojure/cljfmt.edn" ,(local-file "./config/clojure/cljfmt.edn"))
             ; rclone
             `(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
             ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
