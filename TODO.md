@@ -1,7 +1,6 @@
 
 guix home - bash file on system config.
 
-ssh server
 
 home config
 
@@ -15,3 +14,5 @@ most likely related to not sufficient swap space.
 
 guix home - bash file on system config.
 
+# external usb disks
+/media/florian/T7
