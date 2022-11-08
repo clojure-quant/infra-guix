@@ -42,6 +42,7 @@ guix system image \
   --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
   --image-type=rock64-raw \
   --target=aarch64-linux-gnu \
+  --system=aarch64-linux \
   --image-size=16G \
   --cores=6 \
   --no-grafts \
