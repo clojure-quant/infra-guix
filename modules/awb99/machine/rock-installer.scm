@@ -13,7 +13,9 @@
   (operating-system
     (inherit installation-os)
     (kernel linux-arm64-generic)
-    (firmware (list linux-firmware))
+    ;(firmware (list linux-firmware))
+    ; linux firmware brings this error: kernel module not found "ahci"
+    (firmware (list ))
 
     ;; Add some extra packages useful for the installation process
     (packages

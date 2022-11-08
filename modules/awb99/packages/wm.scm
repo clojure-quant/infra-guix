@@ -16,10 +16,11 @@
 (define-public packages-wm-gnome
 (list 
    "gnome" ; comes with tons of apps pre-installed.
+   "dconf-editor" ; dconf editor
    "gnome-tweaks"
    "totem" ; video player
    "rhythmbox" ; music player
-   "gsettings-desktop-schemas-next" ; in gnome only withot -next included
+   ;"gsettings-desktop-schemas-next" ; in gnome only withot -next included
    "authenticator" ; two factor authenticator
    "vinagre" ; rdp and vnc
    "matcha-theme"))
