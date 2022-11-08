@@ -143,8 +143,6 @@ Ob ignore_hpa aktiviert ist, stellt man mit folgendem Kommando fest:
 cat /sys/module/libata/parameters/ignore_hpa
 Wird hier "1" ausgegeben, wird HPA automatisch deaktiviert sobald eine SSD mit HPA angeschlossen wird.
 
-
-udisksctl status
 https://lists.debian.org/debian-user/2015/08/msg00125.html
 
 sg_format --resize --count=0x74706DB0 /dev/sdb

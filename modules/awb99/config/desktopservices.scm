@@ -17,7 +17,7 @@
   (gnu services virtualization) ; qemu
   (gnu services sddm) ; sddm login manager
   (gnu services nix) ; nix
-  (gnu services desktop)
+  (gnu services desktop) ; udisks
   (gnu services xorg)
   (gnu services ssh)
   (gnu services web)
@@ -67,7 +67,14 @@
     service-cron
     service-iptables  
     service-ssh  
-    ;service-ddclient-nuc
+
+    ; udisksd is runnign WITHOUT udisks-service running. 
+    ; adding udisk-service leads to an error on os install.
+    ;(udisks-service) ; http://udisks.freedesktop.org/docs/latest/,
+    ;  Programs that talk to UDisks include the @command{udisksctl} command, part of UDisks, and GNOME Disks
+  
+  
+  ;service-ddclient-nuc
     service-printer
     service-bin-links
     
