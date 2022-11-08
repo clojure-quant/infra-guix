@@ -28,6 +28,7 @@
   ; awb99 services
   (awb99 services trezord)
   (awb99 services tailscale)
+  (awb99 services nasmount)
 
   ;awb99 config
   (awb99 config iptables)
@@ -101,11 +102,26 @@
 
     ))
 
+ 
+
+(define services-nuc2022
+  (list nasmount-service
+    ))
+  
+(define services-nuc
+  (list 
+    ))
+
+
+
   (define (services-machine-dependent machine-name)
-    (list
-      (service-readymedia machine-name)
-    )
-  )
+    (append 
+       (list (service-readymedia machine-name))
+       (cond 
+         ((string=? machine-name "nuc") services-nuc)
+         ((string=? machine-name "nuc2022") services-nuc2022)
+         ((string=? machine-name "rock") (list))
+         (#t  (list)))))
   
 
 

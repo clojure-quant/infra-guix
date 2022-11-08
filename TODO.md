@@ -1,18 +1,16 @@
 
+# system suspense not working.
+most likely related to not sufficient swap space.
+seems to be a bug of v5 linux kernel.
+https://bbs.archlinux.org/viewtopic.php?id=259382
+
+
+# home config
 guix home - bash file on system config.
-
-
-home config
 
 # udev rules
 udev rule backlight not working.
 
-
-# system suspense not working.
-most likely related to not sufficient swap space.
-
-
-guix home - bash file on system config.
 
 # external usb disks
 /media/florian/T7

@@ -13,11 +13,11 @@ if [ -z $MYVAULT ] ; then
 fi
 echo "VAULT LOCATION: $MYVAULT"
 
-DEV_NAME="luksmount"
+DEV_NAME="luksnas"
 
 echo "mounting mapped luks partition in /mnt/lukstest"
 
-sudo mkdir -p /mnt/lukstest
-sudo chattr +i /mnt/lukstest
+sudo mkdir -p /media/nas
+#sudo chattr +i /media/nas
 
-sudo mount /dev/mapper/$DEV_NAME /mnt/lukstest
+sudo mount /dev/mapper/$DEV_NAME /media/nas

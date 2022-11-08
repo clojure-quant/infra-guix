@@ -5,5 +5,5 @@
 
 echo "unmounting nas"
 
-sudo umount /mnt/nas2
+sudo umount /media/nas
 sudo cryptsetup luksClose luksnas

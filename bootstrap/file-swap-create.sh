@@ -15,7 +15,9 @@ sudo chattr +C /mnt/swapfile
 
 # This is 10 GiB of swap space.  
 # sudo dd if=/dev/zero of=/mnt/swapfile bs=1MiB count=5120
-sudo dd if=/dev/zero of=/mnt/swapfile bs=1MiB count=10240
+# awb99: swapfile must be bigger than current ram, because
+# otherwise hibernation will not work.
+sudo dd if=/dev/zero of=/mnt/swapfile bs=1MiB count=40960 
 
 # For security, make the file readable and writable only by root.
 sudo chmod 600 /mnt/swapfile

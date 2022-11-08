@@ -13,7 +13,7 @@ if [ -z $MYVAULT ] ; then
 fi
 echo "VAULT LOCATION: $MYVAULT"
 
-DEV_NAME="luksmount"
+DEV_NAME="luksnas"
 
 echo "formatting luks partition with btrfs.."
 

@@ -4,9 +4,9 @@
 # usage: ./file-luks-nas-start.sh
 # see:
 
-sudo cryptsetup luksOpen /dev/sda1 luksnas2 --key-file /home/florian/repo/myLinux/myvault/luks/media2022.key
+sudo cryptsetup luksOpen /dev/sda1 luksnas --key-file /home/florian/repo/myLinux/myvault/luks/media2022.key
 
-sudo mkdir -p /mnt/nas2
+sudo mkdir -p /media/nas
 # sudo chattr +i /mnt/nas
 
-sudo mount /dev/mapper/luksnas2 /mnt/nas2
+sudo mount /dev/mapper/luksnas /media/nas

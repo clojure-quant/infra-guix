@@ -5,7 +5,7 @@ source ./bootstrap/guile-cache-clear.sh
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
 # guile experiments
-# guix repl -- ./bootstrap/guiletest.scm
+ #guix repl -- ./bootstrap/guile-test.scm
 
 # channels
 #guile -l ./channels.scm
@@ -32,11 +32,13 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 # guile -l ./modules/awb99/config/desktoppackages.scm
 
 # OS
-#guix repl -- ./machine/nuc.scm
-# guix repl -- ./machine/nuc2022.scm
-# guix repl -- ./machine/rock-min.scm
+#guix repl -- ./os/nuc.scm
+guix repl -- ./os/nuc2022.scm
+# guix repl -- ./os/rock-min.scm
+
+#image
 # guix repl -- ./image/rock-min.scm
-guix repl -- ./image/rock-installer.scm
+# guix repl -- ./image/rock-installer.scm
 
 #guix repl -- ./manifest/bin.scm
 
