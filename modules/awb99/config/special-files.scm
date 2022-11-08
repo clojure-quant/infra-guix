@@ -6,13 +6,11 @@
 
 (define service-bin-links
   (service special-files-service-type
-     `(("/bin/bash" ,(file-append bash "/bin/sh"))
+     `(("/usr/bin/env" ,(file-append coreutils "/bin/env"))
+       ("/bin/bash" ,(file-append bash "/bin/sh"))
        ("/bin/sh" ,(file-append bash "/bin/sh"))
        ("/bin/fish" ,(file-append fish "/bin/fish"))
        ("/bin/zsh" ,(file-append zsh "/bin/zsh"))
-       ("/usr/bin/env" ,(file-append coreutils "/bin/env")))))
+       )))
   
   
-; (define service-bin-links
-;   (extra-special-file "/usr/bin/env"
-;      (file-append coreutils "/bin/env")))
