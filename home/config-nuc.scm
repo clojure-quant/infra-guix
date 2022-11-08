@@ -32,7 +32,7 @@
 
 ; mcron home example:
 ; https://hg.sr.ht/~yoctocell/guixrc/browse/yoctocell/home/mcron.scm?rev=tip
-
+; https://git.sr.ht/~efraim/guix-config/tree/master/item/efraim-home.scm
 
 
 

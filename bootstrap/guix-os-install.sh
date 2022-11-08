@@ -19,7 +19,7 @@ if [ -z $machine ] ; then
   echo "first cli parameter needs to be machine-name. exiting" 
   exit -4
 fi
-echo "os-install for $machine config-file: ./machine/$machine.scm" 
+echo "os-install for $machine config-file: ./os/$machine.scm" 
 
 
 export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
@@ -30,4 +30,4 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
 guix system reconfigure \
   --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
-   ./machine/$machine.scm
+   ./os/$machine.scm

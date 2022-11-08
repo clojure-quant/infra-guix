@@ -7,7 +7,7 @@
   #:use-module (gnu packages shells) ; zsh
   #:export (groups-desktop
             users-desktop
-            myusers-vm 
+            users-cli
             sudoers-file-no-password))
 
 ;; GROUPS
@@ -94,7 +94,7 @@
      %base-user-accounts))
   
 
-(define myusers-vm
+(define users-cli
   (cons 
     (user-account
        (name "florian")

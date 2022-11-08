@@ -69,7 +69,7 @@
                                   (println "installer image result: ]" img "[ ")
                                   (shell "sync")
                                   (shell "qemu-img convert"
-                                         "-c"
+                                         "-c"     
                                          "-f" "raw"
                                          "-O" "qcow2"
                                          img
@@ -219,11 +219,7 @@
          ; ROCK-PRO
 
          rock-build {:doc "builds an image for pine/rock-pro"
-                     ; https://guix.gnu.org/en/blog/2017/porting-guixsd-to-armv7/
-                     ; https://framagit.org/tyreunom/guix-android
-                     ; https://gitlab.manjaro.org/manjaro-arm/packages/core/linux/-/blob/master/config
-                     ; https://guix.gnu.org/de/blog/2019/guix-on-an-arm-board/
-                     ; https://github.com/guix-mirror/guix/blob/master/gnu/system/images/rock64.scm
+                    
                      ; build-rock (guix/system "image" "rock1")
                      ; when this image is booted execute bash /etc/static/boostrap.sh
                      :task (guix/image "rock-min"

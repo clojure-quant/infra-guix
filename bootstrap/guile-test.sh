@@ -31,10 +31,11 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 # guile -l ./modules/awb99/packages/desktopsystem.scm
 # guile -l ./modules/awb99/config/desktoppackages.scm
 
-# SYSTEM
+# OS
 #guix repl -- ./machine/nuc.scm
-guix repl -- ./machine/nuc2022.scm
-
+# guix repl -- ./machine/nuc2022.scm
+# guix repl -- ./machine/rock-min.scm
+guix repl -- ./image/rock-min.scm
 
 #guix repl -- ./manifest/bin.scm
 
