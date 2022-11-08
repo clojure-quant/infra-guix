@@ -5,6 +5,7 @@
   ; GNU
   (gnu)
   (gnu system) ; %base-firmware
+  (gnu system nss)
   ; NONGNU
   (nongnu packages linux)
   (nongnu system linux-initrd)
@@ -84,8 +85,16 @@
     ;; The list of file systems that get "mounted".  The unique
     ;; file system identifiers there ("UUIDs") can be obtained
     ;; by running 'blkid' in a terminal.
-      (file-systems my-file-systems)
+    (file-systems my-file-systems)
 
+    ;; Allow resolution of '.local' host names with mDNS.
+    ; .local use is reserved for zeroconf/avahi aka bonjour usage, 
+    ; which are parallel services for resolving local names/services besides DNS.
+    ; in addition to setting the name-service-switch of the operating-system 
+    ; declaration, you also need to use avahi-service-type (see avahi-service-type),
+    ; or %desktop-services, which includes it (see Desktop Services). Doing this 
+    ;makes nss-mdns accessible to the name service cache daemon (see nscd-service).
+    (name-service-switch %mdns-host-lookup-nss)
   ; end of os
   ))
 

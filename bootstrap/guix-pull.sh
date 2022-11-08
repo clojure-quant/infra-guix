@@ -7,4 +7,5 @@ guix pull \
   --verbosity=3 \
   --max-silent-time=10000 \
   --timeout=10000 \
+  --cores=8 \
   --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org"
