@@ -14,15 +14,16 @@
          (actions (list ))
          (one-shot? #t)
          (start #~(make-forkexec-constructor
-                   (list "file-luks-nas-start.sh")
+                   (list "/home/florian/repo/clojure-quant/infra-guix/bootstrap/file-luks-nas-start.sh")
                    #:log-file "/var/log/nasmount.log"
                    #:user "root"
                    #:environment-variables 
-                      (append 
+                      ;(append 
                          (list 
+                           "PATH=/run/setuid-programs:/run/current-system/profile/bin:/run/current-system/profile/sbin"
                            "MYVAULT=/home/florian/repo/myLinux/myvault"
                           )
-                          (environ))
+                          ;(environ))
                   ))
          (stop #~(make-kill-destructor))))))
 
