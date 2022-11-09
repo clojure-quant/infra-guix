@@ -6,6 +6,8 @@
 #:use-module (awb99 package tailscale)
 #:export (tailscale-service))
 
+
+; https://tailscale.com/kb/1096/nixos-minecraft/
 ; in building tailscale service,
 ; I used nonguix zerotier service as a template.
   
