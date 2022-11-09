@@ -44,7 +44,9 @@
                     ))
          (start #~(make-forkexec-constructor
                    (list (string-append #$tailscale "/bin/tailscaled")
-                         "--state=/var/run/tailscaled.state")
+                         ; /var/run gets deleted on every reboot
+                         ; "--state=/var/run/tailscaled.state"
+                        )
                    #:log-file "/var/log/tailscaled.log"
                    #:environment-variables 
                       (append 
