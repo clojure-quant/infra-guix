@@ -42,8 +42,8 @@
 
 (define os
   (operating-system
-    (host-name "nuc2022")
-    (issue "awb99 config with guix on nuc2022 \n\n")
+    (host-name "nuc12")
+    (issue "awb99 config with guix on nuc12 \n\n")
     (locale "en_US.utf8")
     (timezone "America/Panama")
     (keyboard-layout (keyboard-layout "us" "altgr-intl"))
@@ -51,7 +51,7 @@
     (groups groups-desktop)
     (users users-desktop)
     (packages packages-desktop)
-    (services (os-services "nuc2022"))
+    (services (os-services "nuc12"))
     ; kernel  ************************************
     ; non-gnu kernel
     ; https://gitlab.com/nonguix/nonguix/-/blob/master/nongnu/packages/linux.scm

@@ -1,4 +1,13 @@
-(define-module (awb99 config cron btrfs))
+(define-module (awb99 config cron btrfs)
+  #:export (job-btrfs-balance)
+)
+
+(use-modules
+  (guix gexp) ;brings #~     #~ means ‘[begin a] gexp’, short for G-Expression
+  (gnu services mcron)
+  (gnu packages linux) ; btfrs-progs
+)
+
 
 ; btrfs advantages:
 ; - not being susceptible to the EXT4 inodes exhaustion problem
@@ -17,7 +26,7 @@
 ;; BTFRS RELATED
 
 ; from: https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/monokuma.scm
-(define btrfs-balance-job
+(define job-btrfs-balance
 ;; Re-allocate chunks which are using less than 5% of their chunk
 ;; space, to regain Btrfs 'unallocated' space.  The usage is kept
 ;; low (5%) to minimize wear on the SSD.  Runs at 5 AM every 3 days.

@@ -1,4 +1,0 @@
-
-
-
-service lizardfs-service-type

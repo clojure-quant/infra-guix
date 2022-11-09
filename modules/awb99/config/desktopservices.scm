@@ -104,7 +104,7 @@
 
  
 
-(define services-nuc2022
+(define services-nuc12
   (list nasmount-service
     ))
   
@@ -119,7 +119,7 @@
        (list (service-readymedia machine-name))
        (cond 
          ((string=? machine-name "nuc") services-nuc)
-         ((string=? machine-name "nuc2022") services-nuc2022)
+         ((string=? machine-name "nuc12") services-nuc12)
          ((string=? machine-name "rock") (list))
          (#t  (list)))))
   

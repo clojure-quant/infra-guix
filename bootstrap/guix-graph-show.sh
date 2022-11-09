@@ -10,4 +10,4 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
 # guix graph --type=bag-emerged python3 | xdot -
 
-guix system shepherd-graph ./machine/nuc.scm
+guix system shepherd-graph ./os/nuc.scm | xdot -

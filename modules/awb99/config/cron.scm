@@ -16,7 +16,9 @@
    ;(mcron utils)
    ;(mcron vixie-specification)
    ;(mcron core)
-   ;(mcron)
+   ;(mcron)\
+  (awb99 config cron guix)
+  (awb99 config cron btrfs)
 )
 
 ; https://www.gnu.org/software/mcron/manual/mcron.html#Guile-Simple-Examples
@@ -26,30 +28,6 @@
 
 ; stolen from:
 ; https://git.sr.ht/~efraim/guix-config/tree/master/item/config/filesystems.scm
-
-
-;; GUIX RELATED
-
-(define job-guix-pull-gc
-   ; gc (remove packages older than 6 months.
-   ; keep at least 500G free)
-   ; pull
-   ; run daily at 03:05
-   #~(job "5 3 * * *"            ;Vixie cron syntax
-          "guix gc --optimize -d 2m && guix gc -F 300G && guix pull")
-    )
-
-(define job-guix-pull-gc-reconfigure
-   ; gc (remove packages older than 6 months
-   ; keep at least 500G free)
-   ; pull and update every day at 03:05
-   ; run daily at 03:05
-   #~(job "5 3 * * *"  ;Vixie cron syntax
-       "guix gc --optimize -d 6m && guix gc -F 500G && guix pull && guix system reconfigure -k /etc/config.scm"))
-
-(define renice-guix-daemon-job
-;; renice guix-daemon to prevent competing with work
-#~(job "* 7 * * *" "sleep 300; pgrep guix-daemon | xargs renice -n 10"))
 
 
 

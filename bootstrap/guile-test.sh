@@ -33,7 +33,7 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
 # OS
 #guix repl -- ./os/nuc.scm
-guix repl -- ./os/nuc2022.scm
+guix repl -- ./os/nuc12.scm
 # guix repl -- ./os/rock-min.scm
 
 #image
