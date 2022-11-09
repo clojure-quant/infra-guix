@@ -23,5 +23,6 @@ guix system image \
   --target=aarch64-linux-gnu \
   --cores=6 \
   --no-grafts \
+  --skip-checks \
   -e "(@ (gnu system install) rockpro64-installation-os)"
                                              

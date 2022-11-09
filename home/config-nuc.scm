@@ -157,7 +157,7 @@
             `(".config/clojure/cljfmt.edn" ,(local-file "./config/clojure/cljfmt.edn"))
             ; rclone
             `(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
-            ;`("xsettingsd" ,(local-file "./xsettingsd/xsettingsd.conf"))
+            ;`("xsettingsd" ,(local-file "./config/xsettingsd/xsettingsd.conf"))
        )))
 
 
