@@ -10,6 +10,7 @@
   (gnu system setuid)
   (gnu system) ;setuid-programs
   (gnu packages nfs) ; setuid nfs
+  (gnu packages linux) ; btrfs
   (gnu services) ; service
   (gnu services base) ; mingetty 
   (gnu services docker) ; docker service
@@ -140,6 +141,10 @@
         (udev-configuration
           (inherit config)
           (rules (append
+                  (list 
+                     ;bbbbbbtrfslvm2 fuse alsa-utils crda 
+                     ;btrfs ; not found.
+                    )
                    (list udev-rule-backlight)
                    (udev-configuration-rules config)))))
           ))
