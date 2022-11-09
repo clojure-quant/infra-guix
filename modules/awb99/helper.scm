@@ -6,6 +6,9 @@
 (define (->packages-output specs)
   (map specification->package+output specs))
 
+(define guix-system?
+(file-exists? "/run/current-system/provenance"))
+
 (define headless?
   (eq? #f (getenv "DISPLAY")))
 
@@ -17,8 +20,7 @@
         "tux03"
         "octopus01"))
 
-(define guix-system?
-  (file-exists? "/run/current-system/provenance"))
+
 
 (define work-machine?
 (not (eq? #f (member (gethostname)

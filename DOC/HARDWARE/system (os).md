@@ -13,14 +13,3 @@ https://git.sr.ht/~efraim/guix-config/tree/master/item/efraim-home.scm
 
 https://github.com/dustinlyons/guix-config/blob/main/Workstation-Desktop.org
 https://github.com/daviwil/dotfiles/blob/master/Systems.org
-
-
-(define headless?
-  (eq? #f (getenv "DISPLAY")))
-
-  (define work-machine?
-  (not (eq? #f (member (gethostname)
-                       (cons "bayfront"
-                             UTenn_machines)))))
-(define guix-system
-  (file-exists? "/run/current-system/provenance"))

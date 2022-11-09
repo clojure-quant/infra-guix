@@ -74,7 +74,8 @@ https://glockapps.com/blog/improve-delivery-to-gmail-inbox/
 
 
 
-https://gmail.com/postmaster/ special tool from google to monitor if ones domain is spam or not.
+https://gmail.com/postmaster/ special tool from google to monitor if 
+ones domain is spam or not.
 
 
 
