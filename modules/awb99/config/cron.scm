@@ -52,20 +52,7 @@
 #~(job "* 7 * * *" "sleep 300; pgrep guix-daemon | xargs renice -n 10"))
 
 
-;; BTFRS RELATED
 
-(define job-btfrs-scrub
-  #~(job 
-      '(next-hour '(3)) 
-       (string-append #$btrfs-progs "/bin/btrfs scrub start -c 3 /")))
-
-; from: https://git.savannah.gnu.org/cgit/guix/maintenance.git/tree/hydra/monokuma.scm
-;(define btrfs-job
-;; Run 'btrfs balance' every three days to make free space.
-;#~(job (lambda (now)
-;         (next-day-from now (range 1 31 3)))
-;       (string-append #$btrfs-progs "/bin/btrfs balance "
-;                      "start -dusage=50 -musage=70 /")))
 
 ;; cron format: minute hour day-of-month month day-of-week
 ;; TODO: migrate crons to clearer syntax:   
@@ -92,6 +79,7 @@
 (define-public my-guix-maintenance-jobs
   (list
      job-guix-pull-gc-reconfigure
+     job-btrfs-balance
      ; hello-job
      ))
 

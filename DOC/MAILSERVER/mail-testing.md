@@ -79,4 +79,15 @@ mail    (shows mailbox of user)
 echo "body3" | mail -s "subject3" hoertlehner@gmail.com
 sudo nano /etc/aliases
 
+MAIL TESTER
+www.mail-tester.com
+https://glockapps.com/
+Send a test email to 100 providers, and get a report how many are spam
+
+https://glockapps.com/blog/improve-delivery-to-gmail-inbox/ 
+
+
+
+https://gmail.com/postmaster/ special tool from google to monitor if 
+ones domain is spam or not.
 

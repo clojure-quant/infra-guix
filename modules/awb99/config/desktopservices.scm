@@ -28,6 +28,7 @@
   ; awb99 services
   (awb99 services trezord)
   (awb99 services tailscale)
+  (awb99 services tailscaleup)
   (awb99 services nasmount)
 
   ;awb99 config
@@ -45,10 +46,7 @@
 
 ; end of use-module
 )
-   
-; use "guix system search" to search for available services
-
-
+ 
 (define my-services
   (list 
     ; Because the GNOME, Xfce and MATE desktop services pull in so many packages, 
@@ -59,7 +57,7 @@
     ; (service lxqt-desktop-service-type)
     ;(service enlightenment-desktop-service-type)
     (screen-locker-service swaylock "swaylock")
-    ; Wayland needs sddm-service instead of GDM as the graphical login manager
+    
     ;(set-xorg-configuration
     ;  (xorg-configuration
     ;    (keyboard-layout (keyboard-layout "at"))))
@@ -97,6 +95,7 @@
       (trezord-configuration))
     (tailscale-service `(#:config #f   ; this config is not being used.
                          #:phases #t))
+    tailscaleup-service
     
 
 
