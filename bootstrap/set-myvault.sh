@@ -1,1 +1,1 @@
-set MYVAULT=/home/florian/repo/myLinux/myvault
+export MYVAULT=/home/florian/repo/myLinux/myvault

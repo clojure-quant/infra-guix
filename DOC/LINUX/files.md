@@ -10,7 +10,13 @@
 
 /proc – Process Information Contains information about system process. This is a pseudo filesystem contains information about running process. For example: /proc/{pid} directory contains information about the process with that particular pid. This is a virtual filesystem with text information about system resources. For example: /proc/uptime
 
-/var –  variable files. Content of the files that are expected to grow can be found under this directory: system log files (/var/log); packages and database files (/var/lib); emails (/var/mail); print queues (/var/spool); lock files (/var/lock); temp files needed across reboots (/var/tmp);
+/var –  variable files. Content of the files that are expected to grow can be found under this directory: 
+system log files (/var/log); 
+packages and database files (/var/lib); 
+emails (/var/mail); 
+print queues (/var/spool);
+lock files (/var/lock); 
+temp files needed across reboots (/var/tmp);
 
 tmp – Temporary Files Directory that contains temporary files created by system and users. Files under this directory are deleted when system is rebooted.
 
@@ -28,7 +34,10 @@ tmp – Temporary Files Directory that contains temporary files created by syste
 
 /mnt – Mount Directory Temporary mount directory where sysadmins can mount filesystems.
 
-/media – Removable Media Devices Temporary mount directory for removable devices. For examples, /media/cdrom for CD-ROM; /media/floppy for floppy drives; /media/cdrecorder for CD write
+/media – Removable Media Devices Temporary mount directory for removable devices. For examples, 
+/media/cdrom for CD-ROM; 
+/media/floppy for floppy drives; 
+/media/cdrecorder for CD write
 
 /srv – Service Data srv stands for service. Contains server specific services related data. For example, /srv/cvs contains CVS related data.
 

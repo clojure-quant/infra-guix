@@ -36,27 +36,7 @@
 
 (define %user "joshua")
 
-(operating-system
-  (host-name "locke-lamora")
-  (timezone "America/Chicago")
-  (locale "en_US.UTF-8")
-  ;; This goofy code will generate the grub.cfg
-  ;; without installing the grub bootloader on disk.
-  (bootloader (bootloader-configuration
-               (bootloader
-                (bootloader
-                 (inherit grub-bootloader)
-                 (installer #~(const #t))))))
-  (file-systems (cons (file-system
-                        (device "/dev/sda")
-                        (mount-point "/")
-                        (type "ext4"))
-                      %base-file-systems))
 
-  (swap-devices (list "/dev/sdb"))
-
-  (initrd-modules (cons "virtio_scsi"    ; Needed to find the disk
-                        %base-initrd-modules))
 
   (users (cons* (user-account
                  (name "joshua")
@@ -227,19 +207,7 @@
                              (uri "/.well-known")
                              (body (list "root /srv/www;"))))))
                          ))))
-             (service openssh-service-type
-                      (openssh-configuration
-                       (openssh openssh-sans-x)
-                       (password-authentication? #f)
-                       (port-number 63355)
-                       (authorized-keys
-                        `(
-                          ;; ("joshua" ,(local-file "/home/joshua/linode-guix-system-configuration/ssh-keys/joshua_id_rsa.pub"))
-                          ;; ("root" ,(local-file "/home/joshua/linode-guix-system-configuration/ssh-keys/joshua_id_rsa.pub"))
-                          ;; local file is simpler.  I can get rid of (use-module (secret ssh-keys))
-                          ("joshua" ,(plain-file "id_rsa.pub" %joshua-ssh-key))
-                          ("root" ,(plain-file "id_rsa.pub" %joshua-ssh-key))
-                          ))))
+            
 
              ;; I've created the prosody admin user, and I imported the cert...
              ;; but pidgin tells me that I the XMPP server at gnucode.me does not support encryption.
