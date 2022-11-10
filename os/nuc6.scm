@@ -12,7 +12,7 @@
 )
 
 (operating-system
-  (host-name "nuc27")
+  (host-name "nuc6")
   (issue "awb99 config with guix on nuc \n\n")
   ; (locale "de_AT.utf8")
   (locale "en_US.utf8")
@@ -22,7 +22,7 @@
   (groups groups-desktop)
   (users users-desktop)
   (packages packages-desktop)
-  (services (os-services "nuc"))
+  (services (os-services "nuc6"))
   (setuid-programs os-setuid-programs)
   ; kernel
   ; non-gnu kernel

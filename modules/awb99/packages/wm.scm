@@ -16,6 +16,7 @@
 (define-public packages-wm-gnome
 (list 
    "gnome" ; comes with tons of apps pre-installed.
+   "dconf"
    "dconf-editor" ; dconf editor
    "gnome-tweaks"
    "totem" ; video player

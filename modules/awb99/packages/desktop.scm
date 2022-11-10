@@ -44,6 +44,8 @@
     "pavucontrol" 
     "opus" ; audio codec
     ; "sound" ; to "use-service-modules" to always use pulseaudio to avoid apps crashing. 
+    ;  "pulseaudio"
+    ; "alsa-utils"
 
     ; pdf
     "pdfarranger"
