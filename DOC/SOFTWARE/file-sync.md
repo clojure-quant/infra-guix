@@ -65,9 +65,6 @@ rclone config
 
 #!/bin/bash
 rclone copy ./burgcmd/ flogoogle:rclone/burg
-rclone copy ./dataReservations flogoogle:rclone/dataReservations
-rclone copy ./dataReviews flogoogle:rclone/dataReviews
-rclone copy ./dataReservationDetails flogoogle:rclone/dataReservationDetails
 
 BACKUP
 https://www.tarsnap.com/simple-usage.html
