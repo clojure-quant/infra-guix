@@ -1,4 +1,7 @@
 
+https://www.linuxbabe.com/mail-server/setup-basic-postfix-mail-sever-ubuntu
+best intro how to do it.
+
 https://github.com/forteco/myMail
 
 My repository configures docker-mailserver.
