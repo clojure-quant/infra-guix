@@ -31,4 +31,15 @@ Add debian test repository
 Apt-get install docker.io docker-compose
 Add github/myMAIL
 
+guix packages: 
+- exim
+- dkimproxy (designed for postfix, but works with others)
+- dovecot
+
+IMAP over SSL via Dovecot, complete with full text search provided by Solr.
+POP3 over SSL, also via Dovecot
+SMTP over SSL via Postfix, including a nice set of DNSBLs to discard spam before it ever hits your filters.
+Spam fighting via Rspamd.
+
+Mail server verification using DKIM and DMARC so the Internet knows your mailserver is legit.
 
