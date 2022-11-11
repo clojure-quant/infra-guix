@@ -62,7 +62,7 @@
     ; torrent
  
     ; "transmission" ; torrent
-    "transmission:gui" ; without :gui it does not work.n  The normal "out" output is the CLI versiononly.
+    "transmission:gui" ; without :gui it does not work. The normal "out" output is the CLI version only.
     "qbittorrent" ; torrent
     ;"deluge"
 

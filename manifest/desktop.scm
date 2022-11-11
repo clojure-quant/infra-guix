@@ -1,6 +1,5 @@
 (use-modules
-(awb99 packages systemcli)
-(awb99 packages fonts))
+(awb99 packages desktop))
 
 (define-public desktop-packages
 (append 
