@@ -73,6 +73,7 @@
 
    "pipewire" ; new audio and video mixer (replaces pulseaudio)
    "wireplumber" ; wpctl status
+   "glmark2" ; graphics benchmark tool
 ))
 
 (define-public packages-wm-xfce
