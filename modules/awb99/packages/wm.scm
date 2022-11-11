@@ -2,78 +2,78 @@
 
 ; xwin / wayland
 
-(define-public packages-xwin
+(define-public packages-wm-xwin
 (list
   "rofi" ; launcher
   ; "interrobang"
   "garcon" ; menu manager
   "dmenu"
   ;"progress" ; coreutil progress
+  "xcursor-themes"
+  "xclock" ;x test
 ))
+
+(define-public packages-wm-wayland
+(list
+  "wayland"
+  ;  "xrandr" ; hidpi x-windows scaling
+  ;"wlr-randr"
+  "wofi" ; wayland rofi - programm launcher
+  "alacritty" ; terminal
+  "mako" ; desktop notifications for Wayland
+))
+
+(define-public packages-wm-extra
+(list
+  "bemenu" ; menu library inspired by dmenu
+  
+  "wmctrl" ; manage x-windows
+  "xlsclients" ; lists ids of open window ids
+  "ddcutil"  ; communicate with monitor, screen darkness controls
+  "light" ; send commands to background lightness
+  "acpi" ; acpi info (battery, temperature) acpi -t (temperature)
+
+  "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
+  ;"xdg-desktop-portal-wlr"
+  "xdg-desktop-portal-gtk" 
+  ; this seem to be libraries only
+  ;"qtbase" 
+  ;"qtwayland" ;to make Qt work on Wayland
+     ))   
+
 
 ; windowmanager
 
 (define-public packages-wm-gnome
 (list 
    "gnome" ; comes with tons of apps pre-installed.
-   "dconf"
+   "dconf" ; dump dconf entries in cli
    "dconf-editor" ; dconf editor
    "gnome-tweaks"
-   "totem" ; video player
-   "rhythmbox" ; music player
-   ;"gsettings-desktop-schemas-next" ; in gnome only withot -next included
-   "authenticator" ; two factor authenticator
-   "vinagre" ; rdp and vnc
+   ;"gsettings-desktop-schemas-next" ; in gnome only without -next included
    "matcha-theme"))
 
 (define-public packages-wm-sway
 (list 
-  "wayland"
-  ;  "xrandr" ; hidpi x-windows scaling
-  ;"wlr-randr"
-  "wofi" ; wayland rofi - programm launcher
-  "alacritty" ; terminal
-  "mako" ; desktop notifications for Wayland 
+  "sway"
+  "swaybg" ; wallpaper background
+  "swayidle"
+  ;  "swaylock" ; this is in root profile.
+  "i3blocks" ; sway uses i3blocks for menu   
   "waybar"
-  "xlsclients" ; running window ids
+  
   ;"slurp" ; screenshots
   "grim" ; screenshots
   ;"swappy" ; screenshots
   "wl-clipboard"
   "wlsunset"  ; day night gamma adjustment
-  "acpi" ; acpi info (battery, temperature)
-
-  "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
-  ;"xdg-desktop-portal-wlr"
-  "xdg-desktop-portal-gtk" 
-
-  "qtbase" "qtwayland" ;to make Qt work on Wayland
-
+ 
  ; "glib:bin" ; gtk+ settings (creates conflicts)
   ;"gsettings-desktop-schemas" ; gtk+ settings - this does not work!
-
-  "xcursor-themes"
-  "xclock" ;x test
-
-  "wmctrl" ; manage x-windows
  ; "interrobang" ; launcher
+ 
 
-  "light" ; background lightness
-
-  "sway"
-  "swaybg" ; wallpaper background
-  "swayidle"
-;  "swaylock" ; this is in root profile.
-   "i3blocks" ; sway uses i3blocks for menu
-   "sysstat" ;mpstat
- ;  "pamixer" ;audio volume
- ;  "aumix"
-
-   "ddcutil"  ; screen darkness controls
-
-   "pipewire" ; new audio and video mixer (replaces pulseaudio)
-   "wireplumber" ; wpctl status
-   "glmark2" ; graphics benchmark tool
+   
 ))
 
 (define-public packages-wm-xfce
@@ -130,10 +130,6 @@
   ))
 
 
-(define-public packages-desktop-extra
-(list
-      "bemenu" ; menu library inspired by dmenu
-    
-     ))   
+
 
 

@@ -109,10 +109,6 @@
 (define services-nuc12
   (list nasmount-service
     ))
-  
-
-
-
 
   (define (services-machine-dependent machine-name)
     (append 

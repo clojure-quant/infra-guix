@@ -17,7 +17,7 @@
    ; "gnome-icon-theme"
    ; "gnome-backgrounds"
     
-    "papirus-icon-theme"
+    ;"papirus-icon-theme" ;very big
     "breeze-icons"
 
 

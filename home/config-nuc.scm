@@ -181,10 +181,12 @@
   (packages
     ;(list )
     (append
+     (list )
+     (list )
      ; (->packages-output user-packages)
-      (->packages-output packages-wm-sway)
-      (->packages-output packages-desktop-extra) ; for enlightenment
-      (->packages-output font-packages) 
+      ;(->packages-output packages-wm-sway)
+      ;(->packages-output packages-wm-extra) ; for enlightenment
+     ;(->packages-output font-packages) 
      ;;  emacs-packages
       ))
     

@@ -51,6 +51,7 @@
     "lsof"
     "powertop"
     "smartmontools"
+    "sysstat" ;mpstat lots of tools
   ))
 
 
@@ -93,9 +94,9 @@
     "bash-completion"
     "zsh"
     "zsh-autosuggestions"
-    "fish"
+    ;"fish"
     "less" ; needed by fish history
-    "which" ; needed by clojisr in --pure environment
+    "which" ; like whereis/locate find out where a programm is installed
     "grep" ; needed by byobu
     "sed" ; needed by byobu
 
@@ -135,6 +136,19 @@
     "neofetch" ; system info (compact format)
    ))
 
+
+
+(define-public cli-packages
+(append 
+  security-packages
+  filesystem-packages
+  archive-packages
+  monitor-packages
+  network-packages
+  file-transfer-packages
+  shell-packages
+  hardware-packages))  
+
 (define-public guix-core-packages
 (list 
   "nss-certs" ; tls certificates
@@ -150,5 +164,3 @@
 
   "iptables"
 ))
-
-

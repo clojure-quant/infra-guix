@@ -31,6 +31,7 @@
     ;"gst-plugins-ugly"
 
     ;video
+    "totem" ; video player
     "vlc"
     ; "mpv"  ; audio/video player
     "subdl" ; subtitle download
@@ -41,11 +42,16 @@
     "obs" ; video/audio streaming
 
     ;; audio
+    "rhythmbox" ; music player
     "pavucontrol" 
     "opus" ; audio codec
     ; "sound" ; to "use-service-modules" to always use pulseaudio to avoid apps crashing. 
     ;  "pulseaudio"
     ; "alsa-utils"
+    "pipewire" ; new audio and video mixer (replaces pulseaudio)
+    "wireplumber" ; wpctl status
+    ;  "pamixer" ;audio volume
+    ;  "aumix"
 
     ; pdf
     "pdfarranger"
@@ -82,6 +88,7 @@
    "eovim" ;    NEOVIM GUI
    "kate" ;          text editor
    "mousepad"  ; text editor
+  
 ))
 
 (define-public desktop-browser-packages 
@@ -127,5 +134,9 @@
   ; "vscodium"
   ;"nss-certs"
   "xdot" ; dot graph files, used in guix graph
+  "authenticator" ; two factor authenticator
+  "vinagre" ; rdp and vnc
+  "glmark2" ; graphics benchmark tool
+
  
 ))

@@ -16,16 +16,6 @@
   (awb99 package tailscale)
 )
 
-(define-public cli-packages
-(append 
-  security-packages
-  filesystem-packages
-  archive-packages
-  monitor-packages
-  network-packages
-  file-transfer-packages
-  hardware-packages))  
-
 
 (define packages-packagemanager
   (list
@@ -50,16 +40,16 @@
 (define-public packages-desktop-system
 (append
   guix-core-packages
-  shell-packages
   cli-packages
 
   ; a typical desktop machine
+  packages-wm-wayland
+  packages-wm-extra
   packages-wm-gnome
   packages-wm-sway
   ;packages-wm-xfce
   ;packages-wm-i3
   packages-desktop-printer
-  packages-desktop-extra
   font-packages
 
   ; sort of customized setup
