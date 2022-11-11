@@ -40,7 +40,7 @@
           (requirement '(loopback))  ; services need to be started before current service
           (start 
             #~(make-forkexec-constructor
-                (append (list (string-append #$clojure-tools "/bin/clj")
+                (append (list (string-append #$clojure-tools "/bin/clojure")
                               ;"/bin/bash" "/home/shared/repo/clojure-quant/infra-guix/bootstrap/demo.sh" 
                               "-X:goldly-docs")
                          '#$arguments)
@@ -50,7 +50,7 @@
             #:environment-variables (append (list "HOME=/home/florian" ; (string-append "HOME=" (or #$home (passwd:dir (getpw #$user))))
                                                   "SSL_CERT_DIR3=/etc/ssl/certs"
                                                   "SSL_CERT_FILE3=/etc/ssl/certs/ca-certificates.crt"
-                                                  (string-append "JAVA_HOME=" #$openjdk17)
+                                                  (string-append "JAVA_HOME=" #$openjdk)
                                                   "PATH=/run/setuid-programs:/home/florian/.config/guix/current/bin:/home/florian/.guix-profile/bin:/home/florian/.guix-profile/sbin:/run/current-system/profile/bin:/run/current-system/profile/sbin"
                                                    )
                                             (remove (lambda (str)

@@ -1,5 +1,8 @@
 docker
 
+# for problems with docjer socket see:
+# https://developer.fedoraproject.org/tools/docker/docker-installation.html
+
 Installation
 apt-get install docker-engine
 Docker service

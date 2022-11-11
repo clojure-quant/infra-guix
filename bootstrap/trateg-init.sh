@@ -20,7 +20,6 @@ mkdir repo
 cd repo
 mkdir clojure-quant
 cd clojure-quant
-git clone https://github.com/clojure-quant/infra-guix.git
 git clone https://github.com/clojure-quant/trateg.git
 
 cd trateg

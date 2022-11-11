@@ -109,6 +109,20 @@
                               )))
  %base-user-accounts))
 
+(define-public users-docker
+(cons 
+  (user-account
+     (name "florian")
+     (password "")   
+     (comment "GNU Guix Live")
+     (group "users")
+     (supplementary-groups '("wheel"
+                             "netdev"
+                             "audio"
+                             "video"
+                             "tty"
+                            )))
+%base-user-accounts))
 
  ;; Our /etc/sudoers file.  Since 'guest' initially has an empty password,
   ;; allow for password-less sudo.
