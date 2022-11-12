@@ -28,7 +28,11 @@ treemacs  switch project tree on/off
 # magit
 
 C-x g       git status
+s           stage file
+c           commit
+C-c C-c     upload commit
 
+# cua
 
 The popular Ctrl-v (paste), Ctrl-c (copy), Ctrl-z (undo) can be enabled by typing: M-x cua-mode or by inserting =(cua-mode) in Emacs configuration file. It also supports the Vim key bindings by installing the evil package (M-x package-install evil).
 
