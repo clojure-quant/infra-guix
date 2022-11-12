@@ -29,6 +29,17 @@
 
 (require 'vterm)
 ;(vterm)
+
+
+;; Turn off the splash screen
+(setq inhibit-startup-screen t)
+;; Turn off the splash screen
+(setq initial-scratch-message nil)
+
+;; Maximize window on initialize
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
+
 (print "hello ......")
 
 

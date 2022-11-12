@@ -1,20 +1,26 @@
 (use-modules
-(awb99 packages programming))
+ (awb99 guixutils)  
+ (awb99 packages programming)
+ (awb99 package babashka)
+ )
 
+(define bin-packages
+  (packages->manifest 
+    (list
+      babashka
+      )))
 
 (define-public programming-packages
-(append 
-  ; ********************  clojure  
-  clojure-packages
-  ;node-packages
-  ; ********************  
-  ; python-packages
-  ; ********************  
-  ; r-packages
-  ; ********************  cpp-packages
-  ;build-packages
-
-  ))
+  (specifications->manifest
+    (append 
+      clojure-packages
+      ; node-packages
+      ; python-packages
+      ; r-packages
+      ; build-packages
+    )))
 
 
-(specifications->manifest programming-packages)
+(append
+  bin-packages
+   programming-packages)
