@@ -6,7 +6,6 @@ creds.edn
 /cljenv
 .cpcache
 
-
 ./guix-cuf/
 ./guix-cuf-1-link/
 guix-cuf.lock
@@ -18,3 +17,4 @@ artefact
 .\#*
 \#*\#
 .clj-kondo
+*~

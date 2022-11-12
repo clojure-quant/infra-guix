@@ -6,20 +6,13 @@ ssh port: 22
 http: 8080  (gets forwarded via iptables to 80)
 https: 8443 (gets forwarded via iptables to 443)
 
-## setup a new machine at digital ocean
+# trateg dirs
 
-1. on your pc in infra-guix:
-bb ocean-image
-
-2. upload image to digital-ocean
-
-3. start a new droplet
-
-4. on your pc in infra-guix:
-bb ocean-init 
-this copies secrets to the machine
-
-5. sudo bash /home/shared/clojure-quant/infra-guix/bootstrap/trateg-resize.sh
+- /var/log/trateg  logfiles
+- /var/trateg  persistent storage
+    /db     database
+    /series timeseries 
+   
 
 ## website herd service - trateg/goldly -docs
 
