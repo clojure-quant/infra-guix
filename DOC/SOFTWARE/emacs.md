@@ -1,6 +1,14 @@
 # emacs
 
-emacs -nw -l ~/.config/emacs/init.el
+emacs -q -nw -l ~/.config/emacs/init.el
+
+
+# plugins
+When you install Emacs packages with Guix, the Elisp files are placed under the share/emacs/site-lisp/ directory of the profile in which they are installed. The Elisp libraries are made available to Emacs through the EMACSLOADPATH environment variable, which is set when installing Emacs itself.
+
+export EMACSLOADPATH=/home/florian/.guix-profile/share/emacs/site-lisp/
+export EMACSLOADPATH=/home/florian/.guix-home/profile/share/emacs/site-lisp
+
 
 projectile-switch-project  switch between projects
 treemacs  switch project tree on/off
@@ -10,12 +18,6 @@ The popular Ctrl-v (paste), Ctrl-c (copy), Ctrl-z (undo) can be enabled by typin
 
 https://config.daviwil.com/emacs
 
-
-plugins
-When you install Emacs packages with Guix, the Elisp files are placed under the share/emacs/site-lisp/ directory of the profile in which they are installed. The Elisp libraries are made available to Emacs through the EMACSLOADPATH environment variable, which is set when installing Emacs itself.
-
-export EMACSLOADPATH=/home/florian/.guix-profile/share/emacs/site-lisp/
-export EMACSLOADPATH=/home/florian/.guix-home/profile/share/emacs/site-lisp
 
 
 /home/florian/.guix-home/profile/libexec

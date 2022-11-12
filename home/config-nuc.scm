@@ -145,9 +145,8 @@
             `(".gitconfig" ,(local-file "./config/git/gitconfig"))
            ; alacritty terminal config
             `(".config/alacritty/alacritty.yml" ,(local-file "./config/alacritty/alacritty.yml"))
-           ; emacs
-            `(".config/emacs/init.el" ,(local-file "./config/emacs/init.el")) ; does not get loaded
-            `("emacs.d/init.el" ,(local-file "./config/emacs/init.el"))
+   	    ; emacs
+            `(".emacs.d/init.el" ,(local-file "./config/emacs/init.el"))
            ; sway / waybar
             `(".config/sway/config" ,(local-file "./config/sway/config"))
             `(".config/waybar/config" ,(local-file "./config/waybar/config"))
@@ -181,7 +180,11 @@
   (packages
     ;(list )
     (append
-     (list )
+     (->packages-output
+      (list
+       "emacs"
+       "emacs-treemacs"
+       "emacs-vterm"))
      (list )
      ; (->packages-output user-packages)
       ;(->packages-output packages-wm-sway)

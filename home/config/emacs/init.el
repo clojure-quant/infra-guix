@@ -1,12 +1,35 @@
-
 ; ~/.config/emacs/init.el
 
+(add-to-list 'load-path "/home/florian/.guix-profile/share/emacs/site-lisp")
+
+(require 'guix-emacs)
+(guix-emacs-autoload-packages)
+
+(load "subdirs.el")
+(load "site-start.el")
 
 
-(message "awb99 emacs config loading..")
+(defun hello ()
+  (print "hello from emacs"))
 
-(print "awb99 emacs config loading..")
+(global-set-key (kbd "C-c a") 'print-hello)
 
-; Make searches case sensitive by default (in all buffers that do not override this).
+; You can try M-x load-library and see if you can load the package or library that way first.
 
-(setq-default case-fold-search nil)
+
+(defun mp-add-python-keys ()
+  (local-set-key (kbd "C-c q") 'shell))
+
+(add-hook 'python-mode-hook #'mp-add-python-keys)
+
+; emacs -q -nw -l ~/.mutt/emacs.el
+; -q means "don't load an init.el file
+; -nw means "no window" (don't create an X window, just do it in the terminal)
+; -l means "load this lisp file"
+
+(require 'vterm)
+;(vterm)
+(print "hello ......")
+
+
+(treemacs)
