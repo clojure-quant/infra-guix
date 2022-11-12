@@ -3,34 +3,36 @@
 emacs -q -nw -l ~/.config/emacs/init.el
 
 
-# plugins
-When you install Emacs packages with Guix, the Elisp files are placed under the share/emacs/site-lisp/ directory of the profile in which they are installed. The Elisp libraries are made available to Emacs through the EMACSLOADPATH environment variable, which is set when installing Emacs itself.
+# guix plugins
+**installed emacs packages** are in share/emacs/site-lisp/ 
+libraries are made available to Emacs through the EMACSLOADPATH environment variable
 
 export EMACSLOADPATH=/home/florian/.guix-profile/share/emacs/site-lisp/
 export EMACSLOADPATH=/home/florian/.guix-home/profile/share/emacs/site-lisp
 
+Additionally, autoload definitions are automatically evaluated at the initialization of Emacs, by the Guix-specific guix-emacs-autoload-packages procedure. If, for some reason, you want to avoid auto-loading the Emacs packages installed with Guix, you can do so by running Emacs with the --no-site-file option
 
+# important keybindings
+C = CTRL
+M = ALT or ESC
+e**x**ecute function M-x
+emacs eval expression    C-M-x
+zoom in/out using C-x C-+,
+
+# projectile
+
+**projectile-grep** greps in project
 projectile-switch-project  switch between projects
 treemacs  switch project tree on/off
-zoom in/out using C-x C-+,
+
+# magit
+
+C-x g       git status
+
 
 The popular Ctrl-v (paste), Ctrl-c (copy), Ctrl-z (undo) can be enabled by typing: M-x cua-mode or by inserting =(cua-mode) in Emacs configuration file. It also supports the Vim key bindings by installing the evil package (M-x package-install evil).
 
 https://config.daviwil.com/emacs
-
-
-
-/home/florian/.guix-home/profile/libexec
-the emacs plugins are installed via a plugin that uses git.
-git needs to have GIT_EXEC_PATH installed.
-
-the github repo needs ssl certs
-
-export GIT_EXEC_PATH=/home/florian/.guix-home/profile/libexec/git-core
-export SSL_CERT_DIR=/etc/ssl/certs
-export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-
-Additionally, autoload definitions are automatically evaluated at the initialization of Emacs, by the Guix-specific guix-emacs-autoload-packages procedure. If, for some reason, you want to avoid auto-loading the Emacs packages installed with Guix, you can do so by running Emacs with the --no-site-file option (see Init File in The GNU Emacs Manual).
 
 
 
@@ -65,3 +67,6 @@ emacs-evil-owl
 emacs-evil-mc
 emacs-evil-leader
 emacs-evil-cleverparens
+
+
+

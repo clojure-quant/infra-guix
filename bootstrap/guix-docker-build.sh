@@ -31,12 +31,6 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 # docker daemon has to be running
 
 
-#echo "cleaning up artefacts directory"
-#rm -R -f ./docker-image
-#mkdir ./docker-image
-
-
-
 
 
 # --root=file  or  -r file
@@ -59,16 +53,24 @@ image=$(guix system image --image-type=docker \
         --cores=4 \
        ./os/$machine.scm)
 
-echo "removing old docker images"
-docker rmi -f guix:latest
-docker rmi -f $machine:latest
+# example what gets built:
+# /gnu/store/g3zsngpk9h64y2jnrknhrxgwkmar563b-docker-image.tar.gz
+echo "docker image was built: $image"
+
+#echo "cleaning up artefacts directory"
+#rm -R -f ./docker-image
+#mkdir ./docker-image
+
+#echo "removing old docker images"
+#docker rmi -f guix:latest
+#docker rmi -f $machine:latest
 
 # echo "uncompressing docker tar"
 # mkdir ./artefacts/docker-pinkgorilla
 # tar -xf ./artefacts/docker-pinkgorilla.tar.gz -C ./artefacts/docker-pinkgorilla
 
-#echo "docker is loading docker image from tar.gz .."
-# docker load --input ./docker-image/docker-pinkgorilla.tar.gz
+echo "docker is loading docker image: $image"
+docker load --input $image
 # image will have tag guix:latest
 
 #echo "tagging image: pinkgorilla:latest"

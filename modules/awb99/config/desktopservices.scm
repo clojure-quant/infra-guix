@@ -34,7 +34,7 @@
 
   ;awb99 config
   (awb99 config iptables)
-  (awb99 config special-files)
+  (awb99 config bin-links)
   (awb99 config ssh)
   (awb99 config cron)
   (awb99 config file-sync)

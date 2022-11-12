@@ -112,7 +112,7 @@
   ;; Collect garbage 5 minutes after 0am every day.
   ;; The job's action is a shell command.
   #~(job "35 0 * * *"            ;Vixie cron syntax
-         "guix gc -d 5d && guix pull && guix package --upgrade"
+         "guix pull && guix package --upgrade"
          #:user "florian"
        ))
 
@@ -147,6 +147,8 @@
             `(".config/alacritty/alacritty.yml" ,(local-file "./config/alacritty/alacritty.yml"))
    	    ; emacs
             `(".emacs.d/init.el" ,(local-file "./config/emacs/init.el"))
+	    `("emacsload/cfrs.el" ,(local-file "./config/emacs/cfrs.el"))
+	    
            ; sway / waybar
             `(".config/sway/config" ,(local-file "./config/sway/config"))
             `(".config/waybar/config" ,(local-file "./config/waybar/config"))
@@ -183,8 +185,21 @@
      (->packages-output
       (list
        "emacs"
+       "emacs-rainbow-delimiters"
+       "emacs-posframe" ; required by treemacs which requires cfrs
        "emacs-treemacs"
-       "emacs-vterm"))
+       "emacs-projectile"
+       "emacs-magit"
+       "emacs-vterm"
+       ; clojure
+       "emacs-clojure-mode"
+       "emacs-cider"
+       "emacs-anakondo"
+       "emacs-helm-cider"
+       ; markdown
+       "emacs-markdown-mode"
+       "emacs-markdown-preview-mode"
+       ))
      (list )
      ; (->packages-output user-packages)
       ;(->packages-output packages-wm-sway)
@@ -200,7 +215,7 @@
         my-config-service
         bash-service
         zsh-service
-        fish-service ; has problems with profile sourcing.
+       ; fish-service ; has problems with profile sourcing.
         mcron-service
        ; (service home-pipewire-service-type)
        ; (service home-wireplumber-service-type)

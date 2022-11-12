@@ -1,6 +1,8 @@
 ; ~/.config/emacs/init.el
 
 (add-to-list 'load-path "/home/florian/.guix-profile/share/emacs/site-lisp")
+(add-to-list 'load-path "/home/florian/.guix-home/profile/share/emacs/site-lisp")
+
 
 (require 'guix-emacs)
 (guix-emacs-autoload-packages)
@@ -36,7 +38,7 @@
 ;; Turn off the splash screen
 (setq initial-scratch-message nil)
 
-;; Maximize window on initialize
+;; Maximize Window on initialize
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
 
@@ -44,3 +46,32 @@
 
 
 (treemacs)
+
+(add-to-list 'load-path "/home/florian/emacsload")
+(print "loading cfrs..")
+(require 'cfrs)
+
+(require 'projectile)
+
+(defvar default-ecb-source-path
+  (list '("~/repo/clojure-quant/infra-guix" "infra-guix")
+	 '("~/" "~/")
+	 '("/" "/")))
+
+(add-hook 'ecb-basic-buffer-sync-hook
+		  (lambda ()
+			(when (functionp 'projectile-get-project-directories)
+			  (when (projectile-project-p)
+				(dolist (path-dir (projectile-get-project-directories))
+				  (unless (member (list path-dir path-dir) default-ecb-source-path)
+					(push (list path-dir path-dir) default-ecb-source-path)
+					(customize-set-variable 'ecb-source-path default-ecb-source-path)
+					))))))
+
+(setq projectile-project-search-path
+      '("~/repo/"
+	;"~/work/"
+	("~/github" . 1)))
+
+
+;(require 'rainbow-delimiters)

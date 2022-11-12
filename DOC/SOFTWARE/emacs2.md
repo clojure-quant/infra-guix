@@ -3,11 +3,7 @@ Emacs
 node --harmony-async-await app.js
 emacs -nw      (no window; does not open a emacs editor in a gui)
 
-Lingo
-C
-control key (CTRL)
-M
-meta key (ALT or ESC)
+
 
 Remember Ctrl-g is used to cancel current command. If you are stuck in wrong key sequence just press Ctrl-g to cancel it.
 

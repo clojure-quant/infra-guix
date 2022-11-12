@@ -23,7 +23,7 @@
   (awb99 config users)
   (awb99 config iptables)
   (awb99 config ssh)
-  (awb99 config special-files)
+  (awb99 config bin-link)
   (awb99 config os-release)
   (awb99 config mingetty)
   (awb99 config bootstrap-files)

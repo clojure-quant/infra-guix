@@ -12,7 +12,7 @@
              (awb99 config cron)
 
              (awb99 config os-release)
-             (awb99 config special-files)
+             (awb99 config bin-links)
              (awb99 config mingetty)
              (awb99 services trezord-debug)
              (awb99 config nginx)       
