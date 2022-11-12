@@ -61,17 +61,15 @@ echo "docker image was built: $image"
 #rm -R -f ./docker-image
 #mkdir ./docker-image
 
-#echo "removing old docker images"
-#docker rmi -f guix:latest
-#docker rmi -f $machine:latest
-
 # echo "uncompressing docker tar"
 # mkdir ./artefacts/docker-pinkgorilla
 # tar -xf ./artefacts/docker-pinkgorilla.tar.gz -C ./artefacts/docker-pinkgorilla
 
 echo "docker is loading docker image: $image"
+docker rmi -f guix:latest
 docker load --input $image
 # image will have tag guix:latest
 
-#echo "tagging image: pinkgorilla:latest"
-#docker tag guix:latest pinkgorilla:latest
+echo "tagging image: $machine"
+docker rmi -f $machine:latest
+docker tag guix:latest $machine:latest
