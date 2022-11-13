@@ -24,6 +24,10 @@ https://ambrevar.xyz/guix-advance/
 https://notabug.org/civodul/guix-explorer guix system explorer graph:
 https://github.com/alezost/guix-config/blob/master/modules/al/guix/utils.scm
 
+https://notabug.org/jbranso/linode-guix-system-configuration/src/master/deploy-locke-lamora-linode-simple.scm
+
+
+
 # Directories
 ls /gnu/store
 cat  ~/.config/guix/current/etc/profile       bash env variables

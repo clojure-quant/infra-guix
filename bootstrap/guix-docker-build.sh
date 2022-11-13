@@ -73,3 +73,6 @@ docker load --input $image
 echo "tagging image: $machine"
 docker rmi -f $machine:latest
 docker tag guix:latest $machine:latest
+
+echo "docker images available: "
+docker images

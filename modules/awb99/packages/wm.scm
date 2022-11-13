@@ -8,6 +8,7 @@
   ; "interrobang"
   "garcon" ; menu manager
   "dmenu"
+  "xrandr" ; hidpi x-windows scaling
   ;"progress" ; coreutil progress
   "xcursor-themes"
   "xclock" ;x test
@@ -16,8 +17,7 @@
 (define-public packages-wm-wayland
 (list
   "wayland"
-  ;  "xrandr" ; hidpi x-windows scaling
-  ;"wlr-randr"
+  "wlr-randr"
   "wofi" ; wayland rofi - programm launcher
   "alacritty" ; terminal
   "mako" ; desktop notifications for Wayland
@@ -34,11 +34,11 @@
   "acpi" ; acpi info (battery, temperature) acpi -t (temperature)
 
   "xdg-desktop-portal" ; xdg-desktop-portal greatly improves the usability of Flatpak-installed apps, allowing them to open file chooser dialogs, open links
-  ;"xdg-desktop-portal-wlr"
+  "xdg-desktop-portal-wlr"
   "xdg-desktop-portal-gtk" 
   ; this seem to be libraries only
-  ;"qtbase" 
-  ;"qtwayland" ;to make Qt work on Wayland
+  "qtbase" 
+  "qtwayland" ;to make Qt work on Wayland
      ))   
 
 

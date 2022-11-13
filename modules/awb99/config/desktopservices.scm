@@ -80,6 +80,11 @@
     
     ; virtualization
     (service docker-service-type)
+    (service kernel-module-loader-service-type
+             '("br_netfilter"
+	       ;"ddcci"
+	       ;"ddcci_backlight"
+	       ))
     (service qemu-binfmt-service-type ; needed for qemu arm system compile
       (qemu-binfmt-configuration
          (platforms (lookup-qemu-platforms "arm" "aarch64" ; "i686" "ppc"

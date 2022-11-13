@@ -2,12 +2,11 @@
   #:export (os-docker-base
             ))
 
-; https://notabug.org/jbranso/linode-guix-system-configuration/src/master/deploy-locke-lamora-linode-simple.scm
-
 (use-modules 
   (gnu)
   (guix)
   (guix gexp)
+  (guix packages)
   (gnu packages)
   (gnu packages bootloaders)
   (gnu packages ssh)
@@ -18,8 +17,9 @@
   (gnu services web)
   ; awb99 packages
   (awb99 packages programming)
+  (awb99 package babashka)
   (awb99 packages systemcli)
-  ; (awb99 guixutils)
+  (awb99 guixutils) 
   (awb99 config users)
   (awb99 config iptables)
   (awb99 config ssh)
@@ -28,8 +28,13 @@
   (awb99 config mingetty)
   (awb99 config bootstrap-files)
   (awb99 services trateg)
-  )
+)
 
+
+(define bin-packages
+  (list
+    babashka
+     ))
 
 (define (->packages-output specs)
   (map specification->package+output specs))
@@ -61,12 +66,16 @@
     ; users
     (users users-docker)
     (sudoers-file sudoers-file-no-password)
-    (packages (append extra-packages %base-packages))
+    (packages
+     (append
+      extra-packages
+      bin-packages
+      %base-packages))
     (services
       (append
         (list
           service-bin-links
-          service-ssh
+          ;service-ssh
           ;(service dhcp-client-service-type)
           ;service-os-release
           ;service-bootstrap-files; add the trateg git clone script
@@ -81,8 +90,6 @@
                 (terminal-outputs '(console))))
     (file-systems (cons (file-system
                           (mount-point "/")
-                          ;; Must be vda2 or you won't be able to reboot after `guix deploy`.
-                          ;; This is because our base image makes an EFI partition at vda1.
                            (device "/dev/vda2")
                           (type "ext4"))
                    %base-file-systems))
