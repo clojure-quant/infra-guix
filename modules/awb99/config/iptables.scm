@@ -31,6 +31,8 @@ COMMIT
 ; MiniDLNA: ssdp (1900/udp)  trivnet1 (8200/tcp) 
 ; multicast dns: udp 5353
 
+; nrepl: 9100
+
 (define iptables-port-redirect
 "*filter
 :INPUT ACCEPT
@@ -43,6 +45,7 @@ COMMIT
 -I OUTPUT -o lo -j ACCEPT
 -A INPUT -p tcp --dport 22 -j ACCEPT
 -A INPUT -p tcp --dport 8200 -j ACCEPT
+-A INPUT -p tcp --dport 9100 -j ACCEPT
 -A INPUT -p udp --dport 1900 -j ACCEPT
 -A INPUT -p udp --dport 5353 -j ACCEPT
 -A INPUT -p tcp --dport 8080 -j ACCEPT

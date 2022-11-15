@@ -185,6 +185,7 @@
      (->packages-output
       (list
        "emacs"
+       "emacs-which-key"
        "emacs-rainbow-delimiters"
        "emacs-posframe" ; required by treemacs which requires cfrs
        "emacs-treemacs"

@@ -21,5 +21,7 @@ add to the kernel:
 sudo modprobe br_netfilter
 
 
+show info about netfilter:
 modprobe -R br_netfilter 
 
+https://guix.gnu.org/manual/en/html_node/Linux-Services.html#index-kernel-module-loader

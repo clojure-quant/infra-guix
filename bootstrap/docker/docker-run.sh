@@ -8,7 +8,9 @@ echo "running bash in docker-image: $image "
 docker run \
     -d \
     -it $image \
-    --net "bridged"
+    --network macvlan0
+
+# "bridged"
 #    /run/current-system/profile/bin/bash 
     #--login
 

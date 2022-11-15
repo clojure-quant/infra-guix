@@ -75,3 +75,8 @@
 
 
 ;(require 'rainbow-delimiters)
+
+
+(transient-mark-mode t)
+
+(set-face-attribute 'region nil :background "#666" :foreground "#ffffff")

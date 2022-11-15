@@ -74,7 +74,9 @@
     ; firmware with intel wifi driver
     ;(firmware (append (list iwlwifi-firmware) %base-firmware))
     ;(firmware (cons* radeon-RS780-firmware-non-free %base-firmware))
- 
+
+
+   
    ; bootloader ************************************
    (bootloader (bootloader-configuration
      (bootloader grub-efi-bootloader)
