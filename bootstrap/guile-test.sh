@@ -33,9 +33,9 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 
 # OS
 #guix repl -- ./os/nuc.scm
-# guix repl -- ./os/nuc12.scm
+guix repl -- ./os/nuc12.scm
 # guix repl -- ./os/rock-min.scm
-guix repl -- ./os/docker-base.scm
+# guix repl -- ./os/docker-base.scm
 
 #image
 # guix repl -- ./image/rock-min.scm
