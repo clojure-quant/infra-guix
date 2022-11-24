@@ -19,7 +19,7 @@ Host www.crbclean.com
 
 Host box.hoertlehner.com
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo2022
-  User root
+  User florian
 
 Host 178.128.203.133
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
