@@ -9,13 +9,17 @@ Host aws.hoertlehner.com
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   User admin   
 
+Host www.heureka.li
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
+  User root
+
 Host www.crbclean.com
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo2022
   User root
 
 Host box.hoertlehner.com
-  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
-  User admin
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo2022
+  User root
 
 Host 178.128.203.133
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
