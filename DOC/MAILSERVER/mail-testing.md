@@ -79,7 +79,7 @@ mail    (shows mailbox of user)
 echo "body3" | mail -s "subject3" hoertlehner@gmail.com
 sudo nano /etc/aliases
 
-MAIL TESTER
+ä MAIL TESTER
 www.mail-tester.com
 https://glockapps.com/
 Send a test email to 100 providers, and get a report how many are spam

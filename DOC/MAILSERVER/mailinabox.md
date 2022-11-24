@@ -82,15 +82,9 @@ service fail2ban restart
 
 # SIEVE SCRIPTS
 
-cat /etc/dovecot/sieve-spam.sieve
-cat /var/log/mail.log | grep sieve
-tail /var/log/mail.log -n 500
 
-cat /var/log/syslog
 
-/home/user-data/mail/sieve
-
-cat crbclean.com/florianh.sieve
+/home/user-data/mail/sieve)crbclean.com/florianh.sieve
 require ["fileinto","copy", "mailbox"];
 # rule:[test]
 if allof (header :contains "subject" "Dr Alfombra  INV-5038 is in transit")
@@ -99,54 +93,16 @@ if allof (header :contains "subject" "Dr Alfombra  INV-5038 is in transit")
 	stop;
 }
 
-
-require ["fileinto","copy", "mailbox", "envelope"];
-
-
-if address :is "to" "florianh@crbclean.com"
-{
-    redirect :copy "hoertlehner@gmail.com";
-}
- 
-if address :is "to" "madalynr@crbclean.com"
-{
-    redirect :copy " roberg.madalyn@gmail.com";
-}
- 
-if address :is "to" "marcusw@crbclean.com"
-{
-    redirect :copy "marcuswendt4@gmail.com";
-}
- 
-if address :is "to" "sebastiang@crbclean.com"
-{
-    redirect :copy "sebastiangstrongindustriescorp@gmail.com";
-}
- 
-if address :is "to" "andrewe@crbclean.com"
-{
-    redirect :copy "andrewecrbclean@gmail.com";
-}
- 
-# CRB CLEAN 
-
-if address :contains "to" "@crbclean.com"
-{
-  redirect :copy "crb.clean@gmail.com";
-}
-
-if address :contains "from" "@crbclean.com"
-{
-   redirect :copy "crb.clean@gmail.com";
-}
-
-if envelope "To" "sent@crbclean.com"
-{
-  discard;
-  stop;
-} 
-
 # FORWARD SENT EMAIL TO SENT@CRBCLEAN.COM
 nano /etc/postfix/main.cf
 always_bcc = sent@crbclean.com
+
+
+https://discourse.mailinabox.email/t/when-does-a-full-backup-occur/3174/2
+To delete OLD encrypted backup files if stored locally, use:
+rm /home/user-data/backup/encrypted/*
+
+To manually recreate a new full encrypted backup use:
+/root/mailinabox/management/backup.py --full
+
 
