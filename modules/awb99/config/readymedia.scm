@@ -20,5 +20,6 @@
       (usergroup "nas")
       (extra-config (string-append 
         "friendly_name=" machine-name "\n"
-        "log_level=warn\n" ; debug info warn error fatal off
+        "log_level=general,artwork,database,inotify,scanner,metadata,http,ssdp,tivo=info\n"
+        ; debug info warn error fatal off
         "")))))

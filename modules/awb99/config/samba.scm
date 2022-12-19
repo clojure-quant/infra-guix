@@ -16,7 +16,7 @@ logging = syslog@1
 
 [public]
 browsable = yes
-path = /var/nas/media
+path = /media/nas
 read only = yes
 guest ok = yes
 guest only = yes\n")))))

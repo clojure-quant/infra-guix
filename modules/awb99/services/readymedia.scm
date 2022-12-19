@@ -73,7 +73,10 @@ strict_dlna=no
        ;(mkdir-p #$mediadir)
        (mkdir-p #$dbdir)
        (mkdir-p #$logdir)
-       (mkdir-p #$(dirname pidfile))))))
+       (mkdir-p #$(dirname pidfile))
+      ; (let ((user2 (getpwnam "minidlna")))
+      ;   (chown #$(dirname pidfile) #$(passwd:uid user2) #$(passwd:gid user2)))
+       ))))
 
 (define (minidlna-shepherd-service config)
 (match config
@@ -81,11 +84,13 @@ strict_dlna=no
    (list (shepherd-service
           (provision '(minidlna))
           (documentation "Run minidlna daemon")
-          (requirement '(networking))
+          (requirement '(networking user-processes))
           (start #~(make-forkexec-constructor
                     (list #$(file-append minidlna "/sbin/minidlnad")
                           "-d" "-f" #$(minidlna-config-file config)
-                          "-P" #$pidfile)
+                          "-P" #$pidfile
+			  )
+;		    #:user #$user
                     #:pid-file #$pidfile
                     #:log-file "/var/log/minidlnad.log"))
           (stop #~(make-kill-destructor)))))))
@@ -103,7 +108,7 @@ strict_dlna=no
 
 (define* (minidlna-service #:key (minidlna minidlna)
                                  (user "minidlna")
-                                 (usergroup "minidlnaextra")
+                                 (usergroup "minidlna")
                                  (mediadir "/var/lib/minidlna")
                                  (dbdir "/var/cache/minidlna")
                                  (logdir "/var/log")
