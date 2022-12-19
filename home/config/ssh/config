@@ -7,8 +7,19 @@
 
 Host aws.hoertlehner.com
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
-  User admin
+  User admin   
 
+Host www.heureka.li
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
+  User root
+
+Host www.crbclean.com
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo2022
+  User root
+
+Host box.hoertlehner.com
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo2022
+  User florian
 
 Host 178.128.203.133
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
@@ -25,13 +36,6 @@ Host 192.168.178.25
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
   User florian
   StrictHostKeyChecking no
-  
-
-Host old.hoertlehner.com
-  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5
-  UserKnownHostsFile=/dev/null
-  User admin
-
 
 Host localhost
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo5

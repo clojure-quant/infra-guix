@@ -21,7 +21,7 @@ uptime   Zeigt wie lange es rennt, und die AVERAGE LOAD.
 reboot now
 shutdown now
 
-processes
+# processes
 „ps –ax“ listet alle prozesse auf
 ps aux | grep exe
 „kill processid“ killt einen prozess 	
@@ -30,7 +30,7 @@ ps –ef | grep mysql         	-> nur die mysql tasks auflsiten
 $ ps -ef | more view current running processes.
 $ ps -efH | more  view current running processes in a tree structure. H = hierarchy.
 
-disk
+# disk
 free
 free –g   how many GB ram the system has.
 free –t total ram including swap memory
@@ -94,7 +94,8 @@ http://www.webmin.com/demo.html
 
 
 
-systemctl
+# systemctl
+
 
 systemctl
 sudo systemctl status

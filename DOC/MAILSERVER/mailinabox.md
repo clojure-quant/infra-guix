@@ -1,9 +1,10 @@
-mail in a box https://mailinabox.email/   6600 github stars
+# mail in a box https://mailinabox.email/  
+ 6600 github stars
 https://news.ycombinator.com/item?id=13050500
 https://hub.docker.com/r/connor557/mailinabox/~/dockerfile/
 
 
-MY SCALEWAY MAILINABOX SERVER
+# MY SCALEWAY MAILINABOX SERVER
 VCS1 WITH Ubuntu 14.04.5 LTS Trusty Tahr
  	Box.hoertlehner.com
  	https://163.172.183.85/admin
@@ -22,7 +23,7 @@ VCS1 WITH Ubuntu 14.04.5 LTS Trusty Tahr
  	995 (POP) [google pop: 
  	4190 (Sieve).
 
-	SSH login credentials are in myLinux repo.
+
 tail /var/log/mail.log -n 20
 nano /home/user-data/mail/sieve/global_before/global.sieve
 
@@ -35,31 +36,9 @@ Domains
  	@scaleway: Network -> reverse: box.hoertlehner.com
 	@omnis: www + box + ns1.box + ns2.box => 163.172.183.85
  	        MX: box.hoertlehner.com
-  	florian@hoertlehner.com - pwd: 	Pwd: MBN1NxSVJk2X 	
-	fh@hoertlehner.com  - pwd:  LBTO0mLX39gd
- 	Catch all → florian@hoertlehner.com
+ 
 
-
-
-  	paesold.org
- 	office@paesold.org (pwd:h93bIoi9Jx17)
- 	www.paesold.org (in omnis eingetragen)
- 	
- 	heureka.li
- 	Dns läuft von mailserver.
- 	@mailserver DNS entry: www.heureka.li -> 51.15.221.91
- 	office@heureka.li (pwd:h93bIoi9Jx17)
-	ccp@heureka.li (pwd:h93bIoi9Jx17)
-
- 	bathanh.org
-  	@omnis: MX: box.hoertlehner.com
- 	office@bathanh.org   pwd: 1RAFFRaW3qX1
-
- 	NOT USED
- 	Crbclean.com  		May 25th, 2018
-
-
-SPF, DKIM and DMARC
+# SPF, DKIM and DMARC
 
 https://dmarcian.com/dmarc-inspector/?domain=crbclean.com
 https://mxtoolbox.com/SuperTool.aspx?action=mx%3acrbclean.com&run=toolpage#
@@ -67,15 +46,7 @@ http://dkimvalidator.com/
 
 
 
-
-
-
-
-ENABLE SMTP AT SCALEWAY
-1) At 'Security tab, create your custom Security group with BLOCK SMTP = NO
-2) Asign the new Security group to your MiaB server.
-3) Right after 2) it is IMPORTANT to hard-reboot the server through your SCALEWAY admin panel to get the 1)  settings booked (soft-reboot through SSH is not enough)
-INSTALL TODO on Scaleway
+# INSTALL TODO on Scaleway
 https://community.online.net/t/problems-with-ufw-on-a-fresh-ubuntu/1016/3
 apt-get install ufw
 Edit /etc/default/ufw and set these 2 options:
@@ -92,7 +63,7 @@ ufw enable
 Finally you are able to run the MIAB installation:
  	curl -s https://mailinabox.email/setup.sh | sudo bash
 
-TEST NS SERVER
+# TEST NS SERVER
 
  	yaourt -S bind-tools
  	dig @ns1.box.hoertlehner.com heureka.li
@@ -106,20 +77,14 @@ TEST NS SERVER
  	tail  /var/log/syslog -n 200
 
 
-FIREWALL FAIL2BAN
+# FIREWALL FAIL2BAN
 service fail2ban restart
 
-SIEVE SCRIPTS
+# SIEVE SCRIPTS
 
-cat /etc/dovecot/sieve-spam.sieve
-cat /var/log/mail.log | grep sieve
-tail /var/log/mail.log -n 500
 
-cat /var/log/syslog
 
-/home/user-data/mail/sieve
-
-cat crbclean.com/florianh.sieve
+/home/user-data/mail/sieve)crbclean.com/florianh.sieve
 require ["fileinto","copy", "mailbox"];
 # rule:[test]
 if allof (header :contains "subject" "Dr Alfombra  INV-5038 is in transit")
@@ -128,70 +93,16 @@ if allof (header :contains "subject" "Dr Alfombra  INV-5038 is in transit")
 	stop;
 }
 
-
-require ["fileinto","copy", "mailbox", "envelope"];
-
-
-if address :is "to" "florianh@crbclean.com"
-{
-    redirect :copy "hoertlehner@gmail.com";
-}
- 
-if address :is "to" "madalynr@crbclean.com"
-{
-    redirect :copy " roberg.madalyn@gmail.com";
-}
- 
-if address :is "to" "marcusw@crbclean.com"
-{
-    redirect :copy "marcuswendt4@gmail.com";
-}
- 
-if address :is "to" "sebastiang@crbclean.com"
-{
-    redirect :copy "sebastiangstrongindustriescorp@gmail.com";
-}
- 
-if address :is "to" "andrewe@crbclean.com"
-{
-    redirect :copy "andrewecrbclean@gmail.com";
-}
- 
-# CRB CLEAN 
-
-if address :contains "to" "@crbclean.com"
-{
-  redirect :copy "crb.clean@gmail.com";
-}
-
-if address :contains "from" "@crbclean.com"
-{
-   redirect :copy "crb.clean@gmail.com";
-}
-
-if envelope "To" "sent@crbclean.com"
-{
-  discard;
-  stop;
-} 
-
-
-
-
-
-
-FORWARD SENT EMAIL TO SENT@CRBCLEAN.COM
+# FORWARD SENT EMAIL TO SENT@CRBCLEAN.COM
 nano /etc/postfix/main.cf
 always_bcc = sent@crbclean.com
- 
- 
 
 
-crbclean  	pwds
-madalynr  	mgr70317
-Marcus 	Victory2018!
-Garth 		luvculo69
-Andrewe 	Crb2018!
+https://discourse.mailinabox.email/t/when-does-a-full-backup-occur/3174/2
+To delete OLD encrypted backup files if stored locally, use:
+rm /home/user-data/backup/encrypted/*
 
- 	
+To manually recreate a new full encrypted backup use:
+/root/mailinabox/management/backup.py --full
+
 

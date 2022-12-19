@@ -1,4 +1,4 @@
-SECURE CHAT
+# SECURE CHAT
 
 Matrix - RIOT CLIENT
 yaourt -S riot-desktop here
@@ -15,7 +15,7 @@ http://tox.im/#home secure chat program
 https://www.surespot.me/documents/how_surespot_works.html
 
 
-EMAIL BACKUP
+# EMAIL BACKUP
 
 Imapsync syncs two mailboxes via imap (linux perl script)
 http://imapsync.lamiral.info/OPTIONS
@@ -33,7 +33,7 @@ https://github.com/henryboldi/felony
 
 
 
-EMAIL SERVER
+# EMAIL SERVER
 
 
 SERVER SOFTWARE
@@ -54,16 +54,13 @@ good looking webmail.
 secure
 
 
-
-
-ARTICLES
+# ARTICLES
 https://www.debinux.de/2015/05/mailserver-from-scratch-debian-8/
 http://sealedabstract.com/code/nsa-proof-your-e-mail-in-2-hours/
 Ask HN: Is it possible to run your own mail server for personal use? http://hn.premii.com/#/comments/12282231
 http://flurdy.com/docs/postfix/#config-secure-crypt how to configure email
 
-EASY CONFIGURATIONS
-
+# EASY CONFIGURATIONS
 
 Sovereign (6700 github stars).
 https://github.com/sovereign/sovereign/blob/master/README.md
