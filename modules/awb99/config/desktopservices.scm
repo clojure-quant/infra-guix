@@ -37,6 +37,7 @@
   (awb99 config bin-links)
   (awb99 config ssh)
   (awb99 config cron)
+  (awb99 config file-nfs)
   (awb99 config file-sync)
   (awb99 config samba)
   (awb99 config wayland)
@@ -92,7 +93,8 @@
     ; other package managers
     (service nix-service-type)
 
-     ; nas file sharing
+    ; nas file sharing
+    service-nfs
     service-samba
     service-syncthing
 
