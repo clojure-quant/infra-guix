@@ -33,15 +33,19 @@
                        (guix/guix "gc" "--optimize" "-d" "2m")
                        (guix/guix "gc" "-F" "200G"))}
          pull {:doc "guix pull (update package definitions)"
-               :task  (do (println "guix pull..")
-                          (guix/guix "pull"
-                                    ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
-                                     (str "--channels=" "./channels.scm")
+               :task  (let [full-args (str "--channels=" "./channels.scm")
                                      "--verbosity=3"
                                      "--max-silent-time=10000"  ; seconds
                                      "--timeout=10000" ; seconds
-                                     "--substitute-urls=\"https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org\""
-                                     ))}
+                                     "--substitute-urls=\"https://ci.guix.gnu.org\""
+                                        ; 
+                                     ; https://bordeaux.guix.gnu.org
+                                      ; https://substitutes.nonguix.org
+                            ) ]
+                          (println "guix pull. args: " full-args)
+                          (guix/guix "pull"
+                                    ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
+                                    )}
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
                             (guix/guix "upgrade"))}
@@ -94,7 +98,7 @@
 
         ; NUC
          ; os reconfigure does not work with substitutes.
-         ; use install-nuc.sh instead.
+         ; use "./bootstrap/guix-os-install.sh nuc12" instead.
          nuc-os-reconfigure-user (guix/system "nuc"
                                               "reconfigure"
                                               ; use substututes from nongnu in upgrading (kernel does not need to be compiled)

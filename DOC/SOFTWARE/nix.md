@@ -16,6 +16,8 @@ nix-env -u '*'
 ## install packages
 ```
 nix-env -iA nixpkgs.hello
+
+nix-env -i babashka
 nix-env -i vscodium
 nix-env -i nodejs dotnet-sdk gh hledger 
 

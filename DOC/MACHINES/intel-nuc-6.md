@@ -14,6 +14,21 @@ USB3 usbc - back.
 Start the NUC and *push F10 to enter the boot menu*. Select the USB flash drive as a boot option.
 
 
+
+
+## NUC
+
+NUC is a Intel Skull Canyon machine. It runs enlightment desktop environment.
+
+```
+bb nuc-reconfigure
+bb home-configure
+
+```
+
+
+
+
 # wifi
 
 wifi supported by iwlwifi-firmware

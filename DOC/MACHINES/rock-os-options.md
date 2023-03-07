@@ -1,3 +1,24 @@
+# ROCK PRO
+
+
+
+
+## ROCK
+
+ROCK is a Pine64 Rock Pro embedded arm device with 4 gig ram and a 2 tb nvme ssd attached via usb-c.
+It runs syncthing and borg backup.
+
+```
+bb rock-build
+bb syncthing-tunnel
+```
+
+
+export PATH=$PATH:/home/florian/clojure/bin
+
+
+
+
 # diet-pi
 very up to date debian, based on armbian
 guix install p7zip

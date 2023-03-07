@@ -1,5 +1,14 @@
  GUIX WIFI
 
+
+# wifi auto connect
+ in network manager
+ 1. share with other users
+ 2. connect automatically
+ this way once the machine starts it will connect to wifi.
+
+ 
+
 # supported by guix by default
 
  WiFi devices part of %base-firmware:

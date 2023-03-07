@@ -1,3 +1,15 @@
+# guix installer
+
+
+# download latest iso image:
+
+https://guix.gnu.org/download/
+
+; to check which device is the usb stick:
+lsblk
+
+sudo dd if=/home/florian/Downloads/guix-system-install-1.4.0.x86_64-linux.iso of=/dev/sdb status=progress oflag=sync
+sync
 
 
 # list of modules in the kernel:
@@ -7,8 +19,8 @@ https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/log
 lots of amd cards.
 
 
-
 # Non free kernel with installer 
+# systemcrafters nonguix installer is not working!!
 https://guix.gnu.org/manual/en/html_node/Building-the-Installation-Image.html#Building-the-Installation-Image
 
 https://github.com/deusmax/guixsd-config-install

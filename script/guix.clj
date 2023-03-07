@@ -46,8 +46,12 @@
   [name & args]
   (let [filename (str "./" name ".scm")
         channels (str "--channels=" filename)
-        full-args (concat args [channels])]
-    (println "guix pull " full-args)
+        substitutes (str "--substitute-urls="
+                         ; "https://ci.guix.gnu.org "
+                         "https://bordeaux.guix.gnu.org "
+                         "https://substitutes.nonguix.org")
+        full-args (concat args [channels substitutes])]
+    (println "guix pull: " full-args)
     (apply guix "pull" full-args)))
 
 (defn package
