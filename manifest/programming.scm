@@ -7,7 +7,7 @@
 (define bin-packages
   (packages->manifest 
     (list
-      babashka
+      ; babashka
       )))
 
 (define-public programming-packages

@@ -32,8 +32,9 @@
              :task (do (println "guix garbage collect..")
                        (guix/guix "gc" "--optimize" "-d" "2m")
                        (guix/guix "gc" "-F" "200G"))}
+         
          pull {:doc "guix pull (update package definitions)"
-               :task  (let [full-args (str "--channels=" "./channels.scm")
+               :task  (let [full-args (str "--channels=" "./channels.scm"
                                      "--verbosity=3"
                                      "--max-silent-time=10000"  ; seconds
                                      "--timeout=10000" ; seconds
@@ -45,7 +46,7 @@
                           (println "guix pull. args: " full-args)
                           (guix/guix "pull"
                                     ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
-                                    )}
+                                    ))}
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
                             (guix/guix "upgrade"))}
@@ -209,6 +210,7 @@
 
          ocean-reconfigure-user (guix/system "ocean-image"
                                              "reconfigure")
+         
          ocean-reconfigure  {:doc "reconfigures guix os on machine ocean (runs as sudo)"
                              :task (do (guix/sudo "ocean-reconfigure-user")
                                        (guix/guix "system" "describe"))}
@@ -266,6 +268,7 @@
                                 "--image-type=pine64-raw"
                                 ;"--no-grafts"
                                 )
+         
          pine-build-chromium (guix/image "pinephone-chromium"
                                         ;"--system=aarch64-linux"
                                          "--target=aarch64-linux-gnu"
@@ -404,11 +407,13 @@
 
 
          ; HOME 
-         home-configure-nuc (guix/guix
+         home-configure  (let [profile (first *command-line-args*)]
+                            (println "installing home profile: " profile)
+                               (guix/guix
                              "home"
                              "reconfigure"
                              "--verbosity=3"
-                             "./home/config-nuc.scm")
+                             (str "./home/config-" profile ".scm")))
 
          home-history {:task (do (println "PROFILE: *HOME*")
                                  (guix/guix "home" "list-generations"))}

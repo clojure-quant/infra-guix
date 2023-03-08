@@ -1,6 +1,6 @@
 #!/bin/sh
 # without fonts and the config above, vscodium looks weird.
-nix-env --install nixpkgs.fira-code
+nix-env --install fira-code
 
 # see: 
 # https://stackoverflow.com/questions/57981225/how-to-install-fonts-with-nix-in-ubuntu

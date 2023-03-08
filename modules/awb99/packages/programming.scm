@@ -23,6 +23,7 @@
    ; "babashka" ; channel gorilla - we use babashka from nix.
     "certbot" ; letsencrypt certs
     "git"
+    "clj-kondo"
   ))
 
 
