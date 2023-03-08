@@ -12,3 +12,7 @@
 - ./bootstrap/guix-add-nonguix-key.sh
 - ./bootstrap/guix-os-install.sh gram2022
 
+## step 3 - nix
+./bootstrap/nix/nix-init.sh
+./bootstrap/nix/nix-apps-install.sh
+
