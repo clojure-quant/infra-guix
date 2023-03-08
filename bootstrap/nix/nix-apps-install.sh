@@ -7,9 +7,5 @@ nix-env --install nixpkgs.fira-code
 # mkdir ~/.config/fontconfig/conf.d/
 # cp script/10-nix-fonts.conf ~/.config/fontconfig/conf.d/
 
-
+nix-env -i babashka
 nix-env -i vscodium
-
-# nix-env -i babashka
-
-
