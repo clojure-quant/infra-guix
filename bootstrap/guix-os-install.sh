@@ -31,6 +31,6 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 guix system reconfigure \
      --substitute-urls="https://ci.guix.gnu.org https://bordeaux.guix.gnu.org https://substitutes.nonguix.org" \
      --verbosity=3 \
-     --max-silent-time=10000
-     --timeout=10000
+     --max-silent-time=10000 \
+     --timeout=10000 \
    ./os/$machine.scm
