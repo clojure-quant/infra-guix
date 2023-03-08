@@ -1,14 +1,15 @@
 
-# new machine workflow
+# new DESKTOP machine workflow
 
 ## step 1 - run guix-installer
 - guix installer with physical lan cable 
 - btfrs encrypted disk
 
 ## step 2 - create nonguix config
-- copy /etc/guix.scm config to usb stick
+- from new machine copy /etc/guix.scm config to usb stick
 - create new non-guix os setup.
 - copy myLinux and infra-guix to stick
+- copy repos to /repo/myLinux and /repo/clojure-quant/infra-guix
 - ./bootstrap/guix-add-nonguix-key.sh
 - ./bootstrap/guix-os-install.sh gram2022
 - reboot
@@ -21,13 +22,20 @@
 ## step 4 - guix home
 Here the bin links and paths are not yet setup.
 
+source ./bootstrap/myvault-set.sh
 ~/.nix-profile/bin/bb home-configure florian-desktop
 
 
 # step 5 - guix profiles
+; this adds nonguix channels to user profile
+bb channels-install 
 
-bb user-install desktop
-bb user-install programming
+bb profile-install desktop
+bb profile-install programming
+bb profile-install custom
+
+
+./bootstrap/ohmyzsh-install.sh
 
 # step 6 - clone repos
 

@@ -1,14 +1,16 @@
 (use-modules
  (awb99 guixutils)  
  (awb99 packages programming)
- (awb99 package babashka)
+ ; (awb99 package babashka)
  )
 
-(define bin-packages
-  (packages->manifest 
-    (list
-      ; babashka
-      )))
+; babashka now comes from nix
+
+;(define bin-packages
+;  (packages->manifest 
+;    (list
+;      ; babashka
+;      )))
 
 (define-public programming-packages
   (specifications->manifest
@@ -21,6 +23,8 @@
     )))
 
 
-(append
-  bin-packages
-   programming-packages)
+;(append
+;  bin-packages
+;   programming-packages)
+
+programming-packages

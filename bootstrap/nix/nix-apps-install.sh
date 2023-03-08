@@ -8,4 +8,5 @@ nix-env --install fira-code
 # cp script/10-nix-fonts.conf ~/.config/fontconfig/conf.d/
 
 nix-env -i babashka
+nix-env -i clojure-lsp
 nix-env -i vscodium
