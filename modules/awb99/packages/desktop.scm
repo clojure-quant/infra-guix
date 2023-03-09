@@ -137,5 +137,7 @@
   "vinagre" ; rdp and vnc
   "glmark2" ; graphics benchmark tool
 
+  "blueman" ; blootooth manager
+
  
 ))

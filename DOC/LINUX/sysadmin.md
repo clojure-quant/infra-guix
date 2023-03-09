@@ -30,14 +30,6 @@ ps –ef | grep mysql         	-> nur die mysql tasks auflsiten
 $ ps -ef | more view current running processes.
 $ ps -efH | more  view current running processes in a tree structure. H = hierarchy.
 
-# disk
-free
-free –g   how many GB ram the system has.
-free –t total ram including swap memory
-df -h.  	disk free –h  (h=human readable)
-df –t   	type of file system.
-du -cks *|sort -rn|head 	calculate the recursive file usage of sub dirs.
-du –h shows all files with size.
 
 
 $ uname –a   important info about the system (kernel, host name, processor type,..)
@@ -59,32 +51,6 @@ https://github.com/nicolargo/glances
 
 virtual memory statistics (kernel threads, disks, system processes,I/O blocks, interrupts, CPU activity and much more. (install package sysstat) 
 Disk
-
-iotop  
-iostat 
-(like top; but disk access)
-(average kb/sec IO access over long time)
-http://guichaz.free.fr/iotop/
-
-iotop -botqqqk --iter=60 >> /var/log/iotop
-this logs the io usage to a logfile 
--b = batch mode.
--o = only processes that had IO access
-nmon
-Nigel’s performance Monitor: CPU, Memory, Disk Usage, Network, Top processes, NFS, Kernel and much more. Online Mode and Capture Mode (saves to CSV for later processing)
-apt-get install nmon -y
-network
-
-nethogs
-dnstop eth0
-mtr www.google.at
-sudo jnettop -i eth0
-
-
-Bandwidth per process
-dns request monitor
-my traceroute: ping history monitor; packet loss
-network traffic monitor
 
 
 

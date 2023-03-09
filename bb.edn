@@ -1,7 +1,7 @@
 {:paths ["script"]
  :tasks {:requires [guix
                     [babashka.tasks :as tasks]
-                     [babashka.fs :as fs]]
+                    [babashka.fs :as fs]]
 
          ; helper tasks
          sudo (guix/sudo *command-line-args*)
@@ -21,32 +21,32 @@
          channels-install-home {:doc "installs channels"
                                 :task (guix/pull "channels-home" ;"--allow-downgrades"
                                                  )}
-         
+
          export-channels (guix/guix "package" "--export-channels")
 
-         
-         
+
+
 
          ; guix maintenance
          gc {:doc "guix garbage collect"
              :task (do (println "guix garbage collect..")
                        (guix/guix "gc" "--optimize" "-d" "2m")
                        (guix/guix "gc" "-F" "200G"))}
-         
+
          pull {:doc "guix pull (update package definitions)"
                :task  (let [full-args (str "--channels=" "./channels.scm"
-                                     "--verbosity=3"
-                                     "--max-silent-time=10000"  ; seconds
-                                     "--timeout=10000" ; seconds
-                                     "--substitute-urls=\"https://ci.guix.gnu.org\""
+                                           "--verbosity=3"
+                                           "--max-silent-time=10000"  ; seconds
+                                           "--timeout=10000" ; seconds
+                                           "--substitute-urls=\"https://ci.guix.gnu.org\""
                                         ; 
                                      ; https://bordeaux.guix.gnu.org
                                       ; https://substitutes.nonguix.org
-                            ) ]
-                          (println "guix pull. args: " full-args)
-                          (guix/guix "pull"
+                                           )]
+                        (println "guix pull. args: " full-args)
+                        (guix/guix "pull"
                                     ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
-                                    ))}
+                                   ))}
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
                             (guix/guix "upgrade"))}
@@ -74,7 +74,7 @@
                                   (println "installer image result: ]" img "[ ")
                                   (shell "sync")
                                   (shell "qemu-img convert"
-                                         "-c"     
+                                         "-c"
                                          "-f" "raw"
                                          "-O" "qcow2"
                                          img
@@ -107,7 +107,7 @@
                                           ; "--allow-downgrades"
                                            ;"--no-grafts"
                                               )
-         
+
 
          nuc-os-weather {:doc "substitute availability for nuc system packages"
                          :task (guix/guix "weather"
@@ -210,7 +210,7 @@
 
          ocean-reconfigure-user (guix/system "ocean-image"
                                              "reconfigure")
-         
+
          ocean-reconfigure  {:doc "reconfigures guix os on machine ocean (runs as sudo)"
                              :task (do (guix/sudo "ocean-reconfigure-user")
                                        (guix/guix "system" "describe"))}
@@ -225,7 +225,7 @@
          ; ROCK-PRO
 
          rock-build {:doc "builds an image for pine/rock-pro"
-                    
+
                      ; build-rock (guix/system "image" "rock1")
                      ; when this image is booted execute bash /etc/static/boostrap.sh
                      :task (guix/image "rock-min"
@@ -268,7 +268,7 @@
                                 "--image-type=pine64-raw"
                                 ;"--no-grafts"
                                 )
-         
+
          pine-build-chromium (guix/image "pinephone-chromium"
                                         ;"--system=aarch64-linux"
                                          "--target=aarch64-linux-gnu"
@@ -295,7 +295,7 @@
          show-image-types (guix/guix "system" "--list-image-types")
          mcron-schedule-system (shell "sudo" "herd" "schedule" "mcron" "10")
 
-       
+
 
         ; size
 
@@ -408,18 +408,18 @@
 
          ; HOME 
          home-configure  (let [profile (first *command-line-args*)]
-                            (println "installing home profile: " profile)
-                               (guix/guix
-                             "home"
-                             "reconfigure"
-                             "--verbosity=3"
-                             (str "./home/config-" profile ".scm")))
+                           (println "installing home profile: " profile)
+                           (guix/guix
+                            "home"
+                            "reconfigure"
+                            "--verbosity=3"
+                            (str "./home/config-" profile ".scm")))
 
          home-history {:task (do (println "PROFILE: *HOME*")
                                  (guix/guix "home" "list-generations"))}
          home-gc {:task (guix/guix "home" "delete-generations")}
-         
-         gc-roots {:task (guix/guix "gc" "--list-roots") }
+
+         gc-roots {:task (guix/guix "gc" "--list-roots")}
 
          ; profiles
          ; florian-profile
@@ -430,11 +430,11 @@
 
          history-all {:depends [home-history profiles-history]
                       :task (do
-                               (home-history)
-                               (profiles-history)
-                               (tasks/shell "sudo" "bb" "gc-roots") ;sudo guix gc --list-roots
+                              (home-history)
+                              (profiles-history)
+                              (tasks/shell "sudo" "bb" "gc-roots") ;sudo guix gc --list-roots
                               )}
-         
+
 
 
         ; TESTING ... 

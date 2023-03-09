@@ -15,6 +15,10 @@
 # fi
 export PATH=$PATH:~/.nix-profile/bin
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:~/.nix-profile/share
+# TODO: do this, so the XDG_DATA_DIRS var stays clean if flatpak is not installed.
+# if [ -d "$HOME/.nix-profile" ]; then
+# export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.nix-profile/share/applications"
+# fi
 
 # FLATPAK
 # Note that the directories 
@@ -23,13 +27,12 @@ export XDG_DATA_DIRS=$XDG_DATA_DIRS:~/.nix-profile/share
 # are not in the search path set by the XDG_DATA_DIRS environment variable, so
 # applications installed by Flatpak may not appear on your desktop until the
 # session is restarted.
+if [ -d "$HOME/share/flatpak" ]; then
 export PATH=$PATH:~/.local/share/flatpak/exports/bin/
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:~/.local/share/flatpak/exports/share/
+fi
 
-# TODO: do this, so the XDG_DATA_DIRS var stays clean if flatpak is not installed.
-# if [ -d "$HOME/.nix-profile" ]; then
-# export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.nix-profile/share/applications"
-# fi
+
 
 
 # CLOJURE BINARY INSTALLATION
