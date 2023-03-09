@@ -9,3 +9,7 @@ install handling of extenson mime type requests: set to always prompt for instal
 
 install chromium web store app
 https://github.com/NeverDecaf/chromium-web-store/releases/tag/v1.5.3
+
+
+**bitwarden**
+https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb

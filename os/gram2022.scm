@@ -15,7 +15,7 @@
 
 
 ; gram2022
-; audio driver needs special firmware
+; audio driver needs special firmware - https://github.com/nonguix/nonguix/blob/master/nongnu/packages/firmware.scm
 ; aircrack usb wifi card firmware loaded
 
 

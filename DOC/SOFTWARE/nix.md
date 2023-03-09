@@ -3,6 +3,8 @@
 
 
 ##  See what installable packages are currently available in the channel:
+
+https://search.nixos.org/packages
 ```
 nix-env -qaP
 ```

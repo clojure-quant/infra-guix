@@ -50,3 +50,29 @@ http://linuxconfig.org/find-by-ip-perl-ip-to-location-example
 Check open ports
 sudo nmap -O voip.hoertlehner.com
 
+iotop  
+iostat 
+(like top; but disk access)
+(average kb/sec IO access over long time)
+http://guichaz.free.fr/iotop/
+
+iotop -botqqqk --iter=60 >> /var/log/iotop
+this logs the io usage to a logfile 
+-b = batch mode.
+-o = only processes that had IO access
+nmon
+Nigel’s performance Monitor: CPU, Memory, Disk Usage, Network, Top processes, NFS, Kernel and much more. Online Mode and Capture Mode (saves to CSV for later processing)
+apt-get install nmon -y
+network
+
+nethogs
+dnstop eth0
+mtr www.google.at
+sudo jnettop -i eth0
+
+
+Bandwidth per process
+dns request monitor
+my traceroute: ping history monitor; packet loss
+network traffic monitor
+

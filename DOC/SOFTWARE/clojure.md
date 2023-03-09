@@ -1,10 +1,4 @@
 
-## clojure path
-
- export PATH=$PATH:/home/florian/clojure/bin
-
-
-
 
 ## clojure-lsp (nix)
 nix-env -i clojure-lsp

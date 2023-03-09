@@ -134,6 +134,7 @@
     "mesa-utils"
     "fasd" ; newer than autojump  
     "neofetch" ; system info (compact format)
+    "hwinfo"
    ))
 
 

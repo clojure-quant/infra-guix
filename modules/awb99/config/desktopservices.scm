@@ -14,7 +14,7 @@
   (gnu services) ; service
   (gnu services base) ; mingetty 
   (gnu services docker) ; docker service
-  (gnu services networking) ; ntpd
+  (gnu services networking) ; ntpd bluetooth
   (gnu services virtualization) ; qemu
   (gnu services sddm) ; sddm login manager
   (gnu services nix) ; nix
@@ -22,6 +22,7 @@
   (gnu services xorg)
   (gnu services ssh)
   (gnu services web)
+  (gnu services pm) ; power management
   (gnu packages certs)
   (gnu packages rsync)
   (gnu packages screen)
@@ -78,7 +79,16 @@
   ;service-ddclient-nuc
     service-printer
     service-bin-links
-    
+
+   ; https://www.reddit.com/r/GUIX/comments/y1mazl/guix_breaks_when_reconfiguring_after_adding/ 
+   (service bluetooth-service-type
+            (bluetooth-configuration
+             (auto-enable? #t)))
+   ; (simple-service 'blueman dbus-root-service-type (list blueman))
+
+
+
+   
     ; virtualization
     (service docker-service-type)
     ;(service kernel-module-loader-service-type
@@ -117,12 +127,26 @@
   (list nasmount-service
     ))
 
+(define services-gram2022
+  (list ; nasmount-service
+
+   ; https://linrunner.de/tlp/   laptop power management
+   ; https://guix.gnu.org/manual/en/html_node/Power-Management-Services.html
+     (service tlp-service-type
+               (tlp-configuration
+                 (cpu-boost-on-ac? #t)
+	  	 (sched-powersave-on-bat? #t)
+                 (wifi-pwr-on-bat? #t)))
+    ))
+
+
   (define (services-machine-dependent machine-name)
     (append 
        (list (service-readymedia machine-name))
        (cond 
          ((string=? machine-name "nuc6") services-nuc6)
          ((string=? machine-name "nuc12") services-nuc12)
+	 ((string=? machine-name "gram2022") services-gram2022)
          ((string=? machine-name "rock") (list))
          (#t  (list)))))
   

@@ -34,10 +34,12 @@ bb profile-install desktop
 bb profile-install programming
 bb profile-install custom
 
+# step 6 - customize
 
 ./bootstrap/ohmyzsh-install.sh
 
-# step 6 - clone repos
+/SOFTWARE/chromium.md install plugins
+
 
 
 cd repo
