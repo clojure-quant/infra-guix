@@ -1,15 +1,32 @@
 (define-module (awb99 packages emacs))
-
+      
 (define-public emacs-packages
-  (list 
-   ;"emacs"
-   "emacs-next"
-   "emacs-evil"
+  (list
+   ; emacs app
+   "emacs"
+ ; "emacs-next"
+
+   ; default packages
+   "emacs-which-key"
+   "emacs-rainbow-delimiters"
+   "emacs-posframe" ; required by treemacs which requires cfrs
    "emacs-treemacs"
+   "emacs-magit"
+   "emacs-vterm"
+ ;  "emacs-evil"
    "emacs-ag" ; ag search (dired)
    "emacs-projectile" ; made by bbastsov
+   
+   ; clojure
    "emacs-clojure-mode"
    "emacs-cider"
+   "emacs-anakondo"
+   "emacs-helm-cider"
+
+   ; markdown
+   "emacs-markdown-mode"
+   "emacs-markdown-preview-mode"
+   
    ;"emacs-paredit"
 
    ;"emacs-modus-themes" ; themes for better readability

@@ -98,6 +98,7 @@
    ; "ungoogled-chromium"
    "ungoogled-chromium-wayland"
    "ublock-origin-chromium"
+   "google-chrome-stable" ; from nongnu
    "midori"
    ; "nomad"
    ; "vimb"   ; vim keybinding browser.

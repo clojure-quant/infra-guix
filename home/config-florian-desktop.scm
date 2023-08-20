@@ -133,8 +133,6 @@
                 )))))
 
 
-
-
 (define my-config-service
   (simple-service 'test-config
     home-files-service-type
@@ -184,22 +182,22 @@
     (append
      (->packages-output
       (list
-       "emacs"
-       "emacs-which-key"
-       "emacs-rainbow-delimiters"
-       "emacs-posframe" ; required by treemacs which requires cfrs
-       "emacs-treemacs"
-       "emacs-projectile"
-       "emacs-magit"
-       "emacs-vterm"
+     ;  "emacs"
+     ;  "emacs-which-key"
+     ;  "emacs-rainbow-delimiters"
+     ;  "emacs-posframe" ; required by treemacs which requires cfrs
+     ;  "emacs-treemacs"
+     ;  "emacs-projectile"
+     ;  "emacs-magit"
+     ;  "emacs-vterm"
        ; clojure
-       "emacs-clojure-mode"
-       "emacs-cider"
-       "emacs-anakondo"
-       "emacs-helm-cider"
+     ;  "emacs-clojure-mode"
+     ;  "emacs-cider"
+     ;  "emacs-anakondo"
+     ;  "emacs-helm-cider"
        ; markdown
-       "emacs-markdown-mode"
-       "emacs-markdown-preview-mode"
+     ;  "emacs-markdown-mode"
+     ;  "emacs-markdown-preview-mode"
        ))
      (list )
      ; (->packages-output user-packages)

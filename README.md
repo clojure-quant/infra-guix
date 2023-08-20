@@ -1,14 +1,10 @@
 # infra-guix
 
-GNU GUIX is a package manager and/or an operating system that is configured via Guile (Scheme).
-
-My Guix Config for clojure datascience work.
-
 ## requirements
 
 - guix installed (package manager (guix foreign) or guix operating system)
   For GUIX installation see DOCS/guix-foreign.md
-- babashka
+
 
 ## Understanding the Content of this Repository
 
@@ -40,8 +36,44 @@ it is excluded from this git repo.
 
 `bb tasks` to see available tasks.
 
-```
-bb install-channels
-bb update
+## install channels (package sources)
 
-```
+To install my custom channels: `bb channels-install`
+
+To upgrade all installed packages: `bb pull && bb update`
+
+##  user - update guix package definitions
+
+this is needed for both profile and home operations
+ bb pull is better than "guix pull" because it keeps my custom channels.
+`bb pull`
+
+# user profile  (extra manifest)
+
+use this to install a manifest (a list of packages)
+available packages are in manifest directory.
+  - desktop  (browser, office, chat, email)
+  - emacs
+  - programming (clojure)
+  - ocean
+  - custom (tailscale)
+example: `bb profile-install desktop`
+
+
+this list of packages is then installed as an *extra profile*
+use `bb profile-list` to show installed profiles.
+
+`bb profiles-upgrade` to upgrade all packages in all installed profiles
+
+# user home (.dotfiles + packages)
+
+available home configs are in home/config.*profile-name*.scm
+  - florian-desktop  (config for: myvault, ssh, rclone, clojure, zsh, emacs, sway settings)
+  - ocean (mainly cli paths, etc)
+
+`bb home-configure florian-desktop`
+
+
+
+
+
