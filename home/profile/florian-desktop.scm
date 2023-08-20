@@ -48,17 +48,17 @@
           ("tma" . "TERM=xterm-24bits tmux attach-session -t")
         ))
       (bashrc
-        (list (local-file "./config/bash/.bashrc" "bashrc")))
+        (list (local-file "../config/bash/.bashrc" "bashrc")))
       (bash-profile
-        (list (local-file "./config/bash/.bash_profile" "bash_profile"))))))
+        (list (local-file "../config/bash/.bash_profile" "bash_profile"))))))
 
 (define zsh-service
   (service home-zsh-service-type
         (home-zsh-configuration
           (zshrc 
-            (list (local-file "./config/zsh/.zshrc" "zshrc")))
+            (list (local-file "../config/zsh/.zshrc" "zshrc"))) ; relativ to profile dir
           (zprofile 
-            (list (local-file "./config/zsh/.zprofile" "zprofile")))
+            (list (local-file "../config/zsh/.zprofile" "zprofile")))
           ; zlogin
           
           )))
@@ -66,22 +66,6 @@
 ; guix install glibc-locales
 ; export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
 
-
-(define-public fish-service
-  (service home-fish-service-type
-    (home-fish-configuration
-      (config
-        (list (local-file "./config/fish/config.fish" "config.fish")))
-      (aliases
-       '(("l" . "ls -a")))
-      (abbreviations
-       '(("gc" . "guix gc")))
-      (environment-variables
-       '(("TEST" . "val")
-         ("GDK_SCALE" . "1")
-         ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
-           ))
-    )))
 
 (define dummy-job-1
    #~(job '(next-minute (range 0 60 10))
@@ -138,22 +122,22 @@
     home-files-service-type
       (list `(".config/test.conf" ,(plain-file "tmp-file.txt" "2022 10 the content of ~/.config/test.conf"))
            ; ssh client config 
-             `(".ssh/config" ,(local-file "./config/ssh/config"))
+             `(".ssh/config" ,(local-file "../config/ssh/config"))
            ; git config 
-            `(".gitconfig" ,(local-file "./config/git/gitconfig"))
+            `(".gitconfig" ,(local-file "../config/git/gitconfig"))
            ; alacritty terminal config
-            `(".config/alacritty/alacritty.yml" ,(local-file "./config/alacritty/alacritty.yml"))
+            `(".config/alacritty/alacritty.yml" ,(local-file "../config/alacritty/alacritty.yml"))
    	    ; emacs
-            `(".emacs.d/init.el" ,(local-file "./config/emacs/init.el"))
-	    `("emacsload/cfrs.el" ,(local-file "./config/emacs/cfrs.el"))
+          ;  `(".emacs.d/init.el" ,(local-file "../config/emacs/init.el"))
+	  ;  `("emacsload/cfrs.el" ,(local-file "../config/emacs/cfrs.el"))
 	    
            ; sway / waybar
-            `(".config/sway/config" ,(local-file "./config/sway/config"))
-            `(".config/waybar/config" ,(local-file "./config/waybar/config"))
-            `(".config/waybar/style.css" ,(local-file "./config/waybar/style.css"))
+            `(".config/sway/config" ,(local-file "../config/sway/config"))
+            `(".config/waybar/config" ,(local-file "../config/waybar/config"))
+            `(".config/waybar/style.css" ,(local-file "../config/waybar/style.css"))
            ; clojure
-            `(".config/clojure/deps.edn" ,(local-file "./config/clojure/deps.edn"))
-            `(".config/clojure/cljfmt.edn" ,(local-file "./config/clojure/cljfmt.edn"))
+            `(".config/clojure/deps.edn" ,(local-file "../config/clojure/deps.edn"))
+            `(".config/clojure/cljfmt.edn" ,(local-file "../config/clojure/cljfmt.edn"))
             ; rclone
             `(".config/rclone/rclone.conf" ,(local-file (rclone-config-filename "florian")))
             ;`("xsettingsd" ,(local-file "./config/xsettingsd/xsettingsd.conf"))
@@ -170,6 +154,7 @@
         ("GDK_SCALE" . "1")
         ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
         ("MYVAULT" . "/home/florian/repo/myLinux/myvault")
+	("SPACEMACSDIR" . "/home/florian/.config/spacemacs")
       )))
 
 
@@ -214,7 +199,6 @@
         my-config-service
         bash-service
         zsh-service
-       ; fish-service ; has problems with profile sourcing.
         mcron-service
        ; (service home-pipewire-service-type)
        ; (service home-wireplumber-service-type)

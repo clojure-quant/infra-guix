@@ -413,7 +413,7 @@
                             "home"
                             "reconfigure"
                             "--verbosity=3"
-                            (str "./home/config-" profile ".scm")))
+                            (str "./home/profile/" profile ".scm")))
 
          home-history {:task (do (println "PROFILE: *HOME*")
                                  (guix/guix "home" "list-generations"))}
