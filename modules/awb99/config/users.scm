@@ -82,7 +82,6 @@
     (comment "Florian")
     (group "users")
     (home-directory "/home/florian")
-    ;(shell (file-append fish "/bin/fish"))
     (shell (file-append zsh "/bin/zsh"))
     (supplementary-groups user-groups-desktop)))
 

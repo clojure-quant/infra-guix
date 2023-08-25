@@ -21,8 +21,6 @@
     "breeze-icons"
 
 
-
-
     ;; Fonts
 
     ; guix manual: essential fonts:
@@ -47,18 +45,18 @@
     ; "font-iosevka-curly-slab"
     "font-jetbrains-mono"   
    
-    "font-google-noto"  ; 700 mb android default,Material ui
-    "font-google-material-design-icons"
-    "font-google-roboto"
+    ;"font-google-noto"  ; 700 mb android default,Material ui
+    ;"font-google-material-design-icons"
+    ;"font-google-roboto"
 
-    "font-openmoji"
-    "font-awesome"
-    "font-wqy-microhei" 
+    ;"font-openmoji"
+    ;"font-awesome"
+    ;"font-wqy-microhei" 
 
-    "font-gnu-unifont" 
-    "font-abattis-cantarell"
-    "font-ibm-plex"
-    "font-wqy-microhei"
+    ;"font-gnu-unifont" 
+    ;"font-abattis-cantarell"
+    ;"font-ibm-plex"
+    ;"font-wqy-microhei"
 
 ;; lots of fonts from package fonts.scm
 ;font-adobe-source-code-pro font-adobe-source-han-sans

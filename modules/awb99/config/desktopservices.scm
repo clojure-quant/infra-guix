@@ -59,8 +59,13 @@
     ; (service mate-desktop-service-type)
     ; (service lxqt-desktop-service-type)
     ;(service enlightenment-desktop-service-type)
-    (screen-locker-service swaylock "swaylock")
     
+    ;(screen-locker-service swaylock "swaylock")
+    (service screen-locker-service-type 
+      (screen-locker-configuration 
+       (program swaylock) 
+       (name "swaylock")))
+
     ;(set-xorg-configuration
     ;  (xorg-configuration
     ;    (keyboard-layout (keyboard-layout "at"))))
