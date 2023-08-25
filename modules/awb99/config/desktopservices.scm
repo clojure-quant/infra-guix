@@ -26,6 +26,7 @@
   (gnu packages certs)
   (gnu packages rsync)
   (gnu packages screen)
+  (gnu packages finance) ;trezord udev rule
  
   ; awb99 services
   (awb99 services trezord)
@@ -56,11 +57,8 @@
     ; the default %desktop-services variable doesn’t include any of them by default. 
     ;(service xfce-desktop-service-type)  
     (service gnome-desktop-service-type)
-    ; (service mate-desktop-service-type)
-    ; (service lxqt-desktop-service-type)
     ;(service enlightenment-desktop-service-type)
-    
-    ;(screen-locker-service swaylock "swaylock")
+        
     (service screen-locker-service-type 
       (screen-locker-configuration 
        (program swaylock) 
@@ -116,6 +114,12 @@
     ; awb99 special services
     (service trezord-service-type
       (trezord-configuration))
+
+    (udev-rules-service 
+      'trezord 
+      trezord-udev-rules 
+      #:groups '("plugdev"))
+
     (tailscale-service `(#:config #f   ; this config is not being used.
                          #:phases #t))
     tailscaleup-service
