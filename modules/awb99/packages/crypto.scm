@@ -1,6 +1,11 @@
 (define-module (awb99 packages crypto))
 
 
+
+; for trezor to work there need to be 2 services running:
+; 1. trezord service
+; 2. udev-rule-service using the trezord-udev-rules
+
 (define-public crypto-packages
 (list 
   ; to see package source code:
