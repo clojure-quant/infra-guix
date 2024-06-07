@@ -136,6 +136,11 @@
   (list nasmount-service
     ))
 
+(define services-nuc13
+  (list nasmount-service
+    ))
+
+
 (define services-gram2022
   (list ; nasmount-service
 
@@ -155,7 +160,8 @@
        (cond 
          ((string=? machine-name "nuc6") services-nuc6)
          ((string=? machine-name "nuc12") services-nuc12)
-	 ((string=? machine-name "gram2022") services-gram2022)
+         ((string=? machine-name "nuc12") services-nuc13)
+	       ((string=? machine-name "gram2022") services-gram2022)
          ((string=? machine-name "rock") (list))
          (#t  (list)))))
   
