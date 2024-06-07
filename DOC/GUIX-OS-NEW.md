@@ -23,8 +23,8 @@
 Here the bin links and paths are not yet setup.
 
 source ./bootstrap/myvault-set.sh
-~/.nix-profile/bin/bb home-configure florian-desktop
-
+either:   ~/.nix-profile/bin/bb home-configure florian-desktop
+or:       ./bootstrap/guix-home-florian.sh
 
 # step 5 - guix profiles
 ; this adds nonguix channels to user profile

@@ -1,6 +1,3 @@
-
-;; pass it to the 'guix system reconfigure' command 
-
 (use-modules 
 ; GNU
 (gnu)
@@ -15,29 +12,28 @@
 (awb99 config users))
 
 (define my-mapped-devices 
-(list (mapped-device
-        (source (uuid "0a8e2be5-309c-4258-a33c-4265fb9b4b1a"))
-        (target "cryptroot")
-        (type luks-device-mapping))
-      ;(mapped-device 
-      ;  (source (uuid "37338969-9461-404f-b67f-491a27b2f8d3")) ; 1tb usb disk
-      ;  (target "cryptsamsung")
-      ;  (type luks-device-mapping))
-      
-      ))
+  (list (mapped-device
+          (source (uuid "0a8e2be5-309c-4258-a33c-4265fb9b4b1a"))
+          (target "cryptroot")
+          (type luks-device-mapping))
+        ;(mapped-device 
+        ;  (source (uuid "37338969-9461-404f-b67f-491a27b2f8d3")) ; 1tb usb disk
+        ;  (target "cryptsamsung")
+        ;  (type luks-device-mapping))
+       ))
 
 (define my-file-systems
-(cons*  ;add multiple items to a list
-  (file-system
-     (mount-point "/boot/efi")
-     (device (uuid "D451-9D44" 'fat32))
-     (type "vfat"))
-   (file-system
-     (mount-point "/")
-     (device "/dev/mapper/cryptroot")
-     (type "btrfs")
-     (dependencies my-mapped-devices))
- %base-file-systems))
+  (cons*  ;add multiple items to a list
+    (file-system
+      (mount-point "/boot/efi")
+      (device (uuid "D451-9D44" 'fat32))
+      (type "vfat"))
+    (file-system
+      (mount-point "/")
+      (device "/dev/mapper/cryptroot")
+      (type "btrfs")
+      (dependencies my-mapped-devices))
+  %base-file-systems))
 
 
 (define os
@@ -103,19 +99,18 @@
 ; create swapfile with bootstrap/file-swap-create.sh
 ; https://guix.gnu.org/en/manual/devel/en/html_node/Swap-Space.html
 (define os-with-swap
-(operating-system
-  (inherit os)
-  (mapped-devices my-mapped-devices)
-  (file-systems my-file-systems)
-  
-  (swap-devices
-    (list
-      (swap-space
-        (target "/mnt/swapfile")
-        (dependencies (filter (file-system-mount-point-predicate "/")
-                               file-systems)))))))
+  (operating-system
+    (inherit os)
+    (mapped-devices my-mapped-devices)
+    (file-systems my-file-systems)
+    (swap-devices
+      (list
+        (swap-space
+          (target "/mnt/swapfile")
+          (dependencies (filter (file-system-mount-point-predicate "/")
+                                 file-systems)))))))
 
 (if (file-exists? "/mnt/swapfile")
-os-with-swap
-os)
+  os-with-swap
+  os)
                         

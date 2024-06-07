@@ -12,3 +12,9 @@ nix-env -i clojure-tools
 nix-env -i babashka
 nix-env -i clojure-lsp
 nix-env -i vscodium
+
+# wayland screen recorder
+# screen recorders dont work.
+
+# nix-env -i vokoscreen-ng
+# nix-env -i kooha    

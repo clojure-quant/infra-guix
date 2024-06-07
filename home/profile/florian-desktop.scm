@@ -154,7 +154,7 @@
         ("GDK_SCALE" . "1")
         ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
         ("MYVAULT" . "/home/florian/repo/myLinux/myvault")
-	("SPACEMACSDIR" . "/home/florian/.config/spacemacs")
+	      ("SPACEMACSDIR" . "/home/florian/.config/spacemacs")
       )))
 
 
