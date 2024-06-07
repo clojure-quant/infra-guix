@@ -34,18 +34,17 @@
                        (guix/guix "gc" "-F" "200G"))}
 
          pull {:doc "guix pull (update package definitions)"
-               :task  (let [full-args (str "--channels=" "./channels.scm"
-                                           "--verbosity=3"
-                                           "--max-silent-time=10000"  ; seconds
-                                           "--timeout=10000" ; seconds
-                                           "--substitute-urls=\"https://ci.guix.gnu.org\""
-                                        ; 
-                                     ; https://bordeaux.guix.gnu.org
+               :task  (do
+                        (println "guix pull...  ")
+                        (shell "guix"
+                                "pull" 
+                                "--channels=./channels.scm"
+                                "--verbosity=3"
+                                "--max-silent-time=10000"  ; seconds
+                                "--timeout=10000" ; seconds
+                                ;"--substitute-urls=\"https://ci.guix.gnu.org\""
+                               ; https://bordeaux.guix.gnu.org
                                       ; https://substitutes.nonguix.org
-                                           )]
-                        (println "guix pull. args: " full-args)
-                        (guix/guix "pull"
-                                    ; The default location (if you don't pass explicit --channels) is ~/.config/guix/channels.scm.
                                    ))}
          upgrade {:doc "guix upgrade installed packages"
                   :task (do (println "guix upgrade packages..")
