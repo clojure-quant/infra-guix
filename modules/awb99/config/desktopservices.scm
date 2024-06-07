@@ -44,7 +44,7 @@
   (awb99 config samba)
   (awb99 config wayland)
   (awb99 config monitor)
-  (awb99 config ddclient)
+  ;(awb99 config ddclient)
   (awb99 config printer)
   (awb99 config readymedia)
 
