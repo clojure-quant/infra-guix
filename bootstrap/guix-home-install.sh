@@ -24,6 +24,5 @@ export GUILE_LOAD_PATH=./modules:$GUILE_LOAD_PATH
 extradir="$HOME/.guix-extra-profiles"
 
 guix home reconfigure \
-  ./home/config-$profile.scm
-
- # --verbosity=3
+  --verbosity=3 \
+  ./home/profile/$profile.scm
