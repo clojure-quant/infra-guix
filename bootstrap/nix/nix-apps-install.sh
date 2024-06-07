@@ -18,3 +18,10 @@ nix-env -i vscodium
 
 # nix-env -i vokoscreen-ng
 # nix-env -i kooha    
+
+
+#  ls /nix/store |grep vscode
+# ls /nix/store |grep codiu
+
+# ls .nix-profile/share/applications
+# /home/florian/.nix-profile/bin/codium
