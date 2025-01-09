@@ -155,8 +155,10 @@
         ("MOZ_ENABLE_WAYLAND" . "1") ; for icecat
         ("MYVAULT" . "/home/florian/repo/myLinux/myvault")
 	      ("SPACEMACSDIR" . "/home/florian/.config/spacemacs")
-      )))
-
+        ; path works, it adds something to path. 
+        ; however with it nix is there twice
+        ;("PATH" . "/home/florian/.nix-profile/bin:$PATH") 
+        )))
 
 (define (specifications->package specs)
   (map specification->package specs))
@@ -190,7 +192,7 @@
       ;(->packages-output packages-wm-extra) ; for enlightenment
      ;(->packages-output font-packages) 
      ;;  emacs-packages
-      ))
+      )) ; of packages
     
   (services
     ;(append 
@@ -207,6 +209,8 @@
       ;sway-services
 ;      emacs-services
       ;alacritty-services
-    )
+    )) ; of services
 
-    ))
+  )
+
+  

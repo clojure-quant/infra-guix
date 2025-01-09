@@ -15,6 +15,12 @@ Host admin.crbclean.com
   User root   
   StrictHostKeyChecking no
 
+Host 170.187.149.253
+  IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo2022
+  User root   
+  StrictHostKeyChecking no
+
+
 Host www.crbclean.com
   IdentityFile /home/florian/repo/myLinux/myvault/ssh/flo2022
   User root
